@@ -1,0 +1,171 @@
+<wxs src="../common/common.wxs" module="common" />
+<wxs src="./index.wxs" module="payment" />
+
+<view class="container">
+    <view wx:if="{{!fetching}}">
+        <view class="status {{status}}" />
+        <view class="description">
+            <block wx:if="{{status === 'cancel'}}">
+                <view class="title">订单已取消</view>
+                <view class="time">{{common.date(info.detail.cancel_at)}}取消</view>
+            </block>
+            <block wx:elif="{{status === 'paid'}}">
+                <view class="title">订单已支付</view>
+                <view class="time">{{common.date(info.detail.paid_at)}}支付</view>
+            </block>
+            <block wx:elif="{{status === 'refunding'}}">
+                <view class="title">
+                    待退款({{refunding_fee === info.detail.fee ? '全部退款' : '部分退款'}})
+                </view>
+                <view class="time">{{common.date(refund_apply_at)}}发起</view>
+            </block>
+            <block wx:elif="{{status === 'refunded'}}">
+                <view class="title">
+                    已退款({{refunded_fee === info.detail.fee ? '全部退款' : '部分退款'}})
+                </view>
+                <view class="time">{{common.date(refund_at)}}退款</view>
+            </block>
+            <block wx:elif="{{status === 'expired'}}">
+                <view class="title">订单已超时</view>
+                <view class="time">{{common.date(info.detail.created_at + info.payExpire)}}超时</view>
+            </block>
+            <block wx:else>
+                <view class="title">订单待支付</view>
+                <view class="time">
+                    订单将在{{payment.countDown(info.detail.created_at, info.payExpire, curStamp)}}后关闭
+                </view>
+            </block>
+        </view>
+        <view class="main">
+            <view class="detail">
+                <cw-cell title="小区名称" is-detail value="{{info.detail.community_name}}" />
+                <cw-cell title="收费年度" is-detail value="{{info.detail.start_year}}至{{info.detail.end_year}}年" />
+                <cw-cell
+                    title="住宅物业费"
+                    is-detail
+                    value="{{payment.yuan(info.detail.house_fee)}}元/{{info.detail.computed_house_fee_by_area ? '平方米' : '单位建筑'}}"
+                />
+                <cw-cell
+                    title="仓房物业费"
+                    is-detail
+                    value="{{payment.yuan(info.detail.warehoure_fee)}}元/{{info.detail.computed_warehouse_fee_by_area ? '平方米' : '单位建筑'}}"
+                />
+                <cw-cell
+                    title="车位物业费"
+                    is-detail
+                    value="{{payment.yuan(info.detail.carport_fee)}}元/{{info.detail.computed_carport_fee_by_area ? '平方米' : '单位建筑'}}"
+                    border="{{false}}"
+                />
+            </view>
+        </view>
+
+        <cw-panel custom-class="section" title="收费信息">
+            <cw-cell
+                wx:for="{{info.items}}"
+                wx:key="key"
+                is-detail
+                title="{{ common.building(item) }}"
+                label="{{ payment.label(item, info.detail) }}"
+                value="{{item.refund ? '退款' : ''}}"
+                value-class="{{item.refund ? 'refound' : ''}}"
+            />
+            <cw-cell title="应收" is-detail value="￥{{payment.yuan(info.detail.fee)}}元" />
+            <cw-cell
+                title="实收"
+                is-detail
+                border="{{false}}"
+                value="￥{{payment.yuan(info.detail.paid_fee)}}元"
+                value-class="total"
+            />
+        </cw-panel>
+
+        <cw-panel title="订单信息" custom-class="section" use-footer-slot="{{status === 'needpay'}}">
+            <cw-cell
+                title="订单编号："
+                is-detail
+                value="{{payment.tradeNo(info.detail.created_at, info.detail.order_id)}}"
+            />
+            <cw-cell title="下单时间：" is-detail value="{{common.date(info.detail.created_at)}}" />
+            <cw-cell
+                title="交易单号："
+                is-detail
+                value="{{info.detail.transaction_id}}"
+                wx:if="{{info.detail.transaction_id}}"
+            />
+            <cw-cell
+                title="支付时间："
+                is-detail
+                value="{{common.date(info.detail.paid_at)}}"
+                wx:if="{{info.detail.paid_at}}"
+            />
+            <cw-cell
+                title="支付方式："
+                is-detail
+                value="{{info.detail.is_cash ? '现金' : '微信'}}"
+                wx:if="{{info.detail.transaction_id}}"
+            />
+            <cw-cell
+                value-class="total"
+                is-detail
+                value="待支付：￥{{payment.yuan(info.detail.fee)}}元"
+                wx:if="{{status === 'needpay'}}"
+                border="{{false}}"
+            />
+            <view slot="footer" class="footer">
+                <cw-button size="small" round type="danger" class="btn" catch:tap="doPay">立即支付</cw-button>
+            </view>
+        </cw-panel>
+
+        <cw-panel title="退款信息" custom-class="section" wx:if="{{info.detail.refunding}}">
+            <cw-cell-group
+                wx:for="{{info.items}}"
+                wx:if="{{item.refund_apply_at}}"
+                title="{{payment.tradeNo(info.detail.created_at, item.id)}}"
+                wx:key="key"
+            >
+                <cw-cell title="退款房产：" is-detail value="{{ common.building(item) }}" />
+                <cw-cell title="申请时间：" is-detail value="{{common.date(item.refund_apply_at)}}" />
+                <cw-cell title="退款金额：" is-detail value="{{payment.yuan(item.fee)}}元" />
+                <cw-cell
+                    title="退款状态："
+                    is-detail
+                    value="{{!item.refund ? '待退款' : (item.refund_status === 1 ? '成功' : '失败')}}"
+                />
+                <cw-cell title="退款单号：" is-detail wx:if="{{item.refund_id}}" value="{{item.refund_id}}" />
+                <cw-cell
+                    title="退款账户："
+                    is-detail
+                    wx:if="{{item.refund_id}}"
+                    value="{{item.refund_recv_accout ? item.refund_recv_accout : '-'}}"
+                />
+                <cw-cell
+                    title="退款时间："
+                    border="{{false}}"
+                    is-detail
+                    wx:if="{{item.refund_id}}"
+                    value="{{common.date(item.refund_at)}}"
+                />
+            </cw-cell-group>
+        </cw-panel>
+    </view>
+    <view wx:else>
+        <view class="status needpay" />
+        <view class="description">
+            <cw-skeleton row="{{ 2 }}" />
+        </view>
+        <view class="main">
+            <view class="detail">
+                <cw-skeleton row="{{ 5 }}" />
+            </view>
+        </view>
+        <cw-panel custom-class="section" title="收费信息">
+            <cw-skeleton row="{{ 3 }}" />
+        </cw-panel>
+        <cw-panel custom-class="section" title="订单信息">
+            <cw-skeleton row="{{ 3 }}" />
+        </cw-panel>
+    </view>
+    <cw-copyright />
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+</view>

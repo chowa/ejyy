@@ -1,0 +1,138 @@
+<wxs src="../common/common.wxs" module="common" />
+<wxs src="./index.wxs" module="complain" />
+
+<view class="container">
+    <cw-notice-bar text="当前反馈信息已被合并，展示的为合并后的答复结果" wx:if="{{detail.merge_id}}" />
+    <cw-steps steps="{{steps}}" active="{{detail.step - 1}}" />
+
+    <cw-cell-group title="反馈信息" wx:if="{{fetching}}">
+        <cw-cell is-detail title="工单号码：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="反馈小区：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="反馈类型：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="反馈分类：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="问题描述：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="现场图片：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="反馈时间：" border="{{false}}">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+    </cw-cell-group>
+    <view wx:else>
+        <cw-cell-group title="请对服务评价" wx:if="{{!detail.merge_id && detail.step === 4 && !detail.rate}}">
+            <cw-cell is-detail title="满意度">
+                <cw-rate value="{{rate}}" bind:change="onRateChange" />
+            </cw-cell>
+            <cw-field
+                label="评价"
+                type="textarea"
+                maxlength="{{ 128 }}"
+                show-word-limit
+                autosize
+                model:value="{{ rate_content }}"
+                placeholder="请输入评价"
+            />
+            <cw-cell is-detail>
+                <cw-button size="small" type="info" bind:click="rateSubmit" loading="{{submiting}}">评价</cw-button>
+            </cw-cell>
+        </cw-cell-group>
+
+        <cw-cell-group title="业主评价" wx:if="{{!detail.merge_id && detail.step === 4 && detail.rate}}">
+            <cw-cell is-detail title="满意度：">
+                <cw-rate value="{{detail.rate}}" readonly />
+            </cw-cell>
+            <cw-cell is-detail title="评价内容：" value="{{detail.rate_content || '业主未提交评价内容'}}" />
+            <cw-cell is-detail title="评价时间：" border="{{false}}" value="{{common.date(detail.rated_at)}}" />
+        </cw-cell-group>
+
+        <cw-cell-group title="反馈回复" wx:if="{{detail.step === 4}}">
+            <cw-cell is-detail title="回复内容" value="{{ detail.dispose_content || '无内容' }}" />
+            <cw-cell is-detail title="现场图片：">
+                <cw-image
+                    wx:for="{{detail.dispose_imgs}}"
+                    wx:key="index"
+                    src="{{ASSETS_HOST}}{{item}}"
+                    width="80px"
+                    height="80px"
+                    data-index="{{index}}"
+                    bind:click="showDisposeImg"
+                />
+                <view wx:if="{{detail.dispose_imgs.length === 0}}" class="text-color-light">处理人员未提供</view>
+            </cw-cell>
+            <cw-cell is-detail title="工单完成时间：" border="{{false}}" value="{{common.date(detail.finished_at)}}" />
+        </cw-cell-group>
+
+        <cw-cell-group title="处理人确认" wx:if="{{detail.step >= 3}}">
+            <cw-cell is-detail title="处理人员回复：" value="{{ detail.dispose_reply }}" />
+            <cw-cell
+                is-detail
+                title="处理人确认时间："
+                border="{{false}}"
+                value="{{common.date(detail.disposed_at)}}"
+            />
+        </cw-cell-group>
+
+        <cw-cell-group title="反馈受理" wx:if="{{detail.step >= 2}}">
+            <cw-cell is-detail title="受理人员：">
+                <cw-employee info="{{ detail.allotInfo }}" />
+            </cw-cell>
+            <cw-cell
+                is-detail
+                title="受理人员联系电话："
+                is-link
+                bind:click="makePhone"
+                clickable
+                data-phone="{{detail.allotInfo.phone}}"
+                value="{{detail.allotInfo.phone}}"
+            />
+            <cw-cell is-detail title="指派人员：">
+                <cw-employee info="{{ detail.disposedInfo }}" />
+            </cw-cell>
+            <cw-cell
+                is-detail
+                title="指派人员联系电话："
+                is-link
+                clickable
+                bind:click="makePhone"
+                data-phone="{{detail.disposedInfo.phone}}"
+                value="{{detail.disposedInfo.phone}}"
+            />
+            <cw-cell is-detail title="受理时间：" value="{{common.date(detail.alloted_at)}}" />
+        </cw-cell-group>
+
+        <cw-cell-group title="反馈信息">
+            <cw-cell is-detail title="工单号码：" value="{{common.number('C', detail.created_at, detail.id)}}" />
+            <cw-cell is-detail title="反馈小区：" value="{{detail.community_name}}" />
+            <cw-cell is-detail title="反馈类型：" value="{{detail.type === 1 ? '投诉' : '建议'}}" />
+            <cw-cell is-detail title="反馈分类：" value="{{complain.categoryName(detail.category)}}" />
+            <cw-cell is-detail title="问题描述：" value="{{detail.description}}" />
+            <cw-cell is-detail title="现场图片：">
+                <cw-image
+                    wx:for="{{detail.complain_imgs}}"
+                    wx:key="index"
+                    src="{{ASSETS_HOST}}{{item}}"
+                    width="80px"
+                    height="80px"
+                    data-index="{{index}}"
+                    bind:click="showComplainImg"
+                />
+                <view wx:if="{{detail.complain_imgs.length === 0}}" class="text-color-light">业主未提供</view>
+            </cw-cell>
+            <cw-cell is-detail title="反馈时间：" border="{{false}}" value="{{common.date(detail.created_at)}}" />
+        </cw-cell-group>
+    </view>
+
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+    <cw-copyright />
+</view>

@@ -1,0 +1,4 @@
+.car-number-btn-wrapper {
+    border-radius: 4rpx;
+    margin: 80rpx 30rpx;
+}

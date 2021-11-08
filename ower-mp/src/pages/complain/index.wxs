@@ -1,0 +1,25 @@
+function categoryName(category) {
+    switch (category) {
+        case 1:
+            return '卫生';
+        case 2:
+            return '噪音';
+        case 3:
+            return '服务态度';
+        case 4:
+            return '违建';
+        case 5:
+            return '占用消防通道';
+        case 6:
+            return '小区设施';
+        case 7:
+            return '其他';
+
+        default:
+            return '未知';
+    }
+}
+
+module.exports = {
+    categoryName: categoryName
+};

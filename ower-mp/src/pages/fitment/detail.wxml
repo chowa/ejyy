@@ -1,0 +1,141 @@
+<wxs src="../common/common.wxs" module="common" />
+<wxs src="../payment/index.wxs" module="payment" />
+
+<view class="container {{detail.step === 2 ? 'padding' : ''}}">
+    <cw-notice-bar
+        text="装修需缴纳装修保证金，因法律法规对保证金规范要求不明确，「e家宜业」不提供在线支付功能，请前往物业办公室办理相关手续。"
+        wx:if="{{detail.step === 1 && detail.fitment_pledge}}"
+    />
+
+    <cw-steps steps="{{steps}}" active="{{detail.step - 1}}" />
+
+    <cw-cell-group title="反馈信息" wx:if="{{fetching}}">
+        <cw-cell is-detail title="工单编号：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="所在小区：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="装修地址：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="报备时间：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+    </cw-cell-group>
+    <view wx:else>
+        <cw-cell-group title="退还保证金账户信息" wx:if="{{detail.step === 4 && detail.fitment_pledge}}">
+            <view wx:if="{{!detail.is_return_cash_deposit}}">
+                <cw-cell
+                    is-detail
+                    title="退款状态："
+                    label="当前状态可以修改退款账户信息"
+                    value="未退款"
+                    border="{{false}}"
+                />
+            </view>
+            <view wx:else>
+                <cw-cell is-detail title="退款状态：" value="已退款" />
+                <cw-cell is-detail title="操作人员：">
+                    <view class="user-detail">
+                        <view class="avatar">
+                            <image
+                                class="avatar-url"
+                                src="{{ ASSETS_HOST }}{{ detail.returnInfo.avatar_url }}"
+                                lazy-load
+                                mode="scaleToFill"
+                            />
+                        </view>
+                        <view class="main-info">
+                            <view class="name">
+                                {{detail.returnInfo.real_name}}
+                            </view>
+                            <view class="department">
+                                {{detail.returnInfo.department ? detail.returnInfo.department : '-'}}
+                                {{detail.returnInfo.job ? detail.returnInfo.job : '-'}}
+                            </view>
+                        </view>
+                    </view>
+                </cw-cell>
+                <cw-cell is-detail title="退款户名：" value="{{detail.return_name}}" />
+                <cw-cell is-detail title="退款银行：" value="{{detail.return_bank}}" />
+                <cw-cell is-detail title="退款账户：" value="{{detail.return_bank_id}}" />
+                <cw-cell is-detail title="退款时间：" value="{{common.date(detail.returned_at)}}" border="{{false}}" />
+            </view>
+        </cw-cell-group>
+
+        <cw-cell-group title="验收信息" wx:if="{{detail.step === 4}}">
+            <cw-cell is-detail title="验收人员：">
+                <cw-employee info="{{detail.confirmInfo}}" />
+            </cw-cell>
+            <cw-cell is-detail title="验收时间：" border="{{false}}" value="{{common.date(detail.confirmed_at)}}" />
+        </cw-cell-group>
+
+        <cw-cell-group title="完工确认" wx:if="{{detail.step >= 3}}">
+            <cw-cell is-detail title="确认时间：" border="{{false}}" value="{{common.date(detail.finished_at)}}" />
+        </cw-cell-group>
+
+        <cw-cell-group
+            title="退还保证金账户信息"
+            wx:if="{{detail.step >= 2 && detail.fitment_pledge && !detail.is_return_cash_deposit}}"
+        >
+            <cw-field
+                label="户名"
+                maxlength="{{ 12 }}"
+                show-word-limit
+                model:value="{{ return_name }}"
+                placeholder="请输入户名"
+            />
+            <cw-field
+                label="银行"
+                maxlength="{{ 20 }}"
+                show-word-limit
+                model:value="{{ return_bank }}"
+                placeholder="请输入银行"
+            />
+            <cw-field
+                label="账号"
+                maxlength="{{ 30 }}"
+                show-word-limit
+                border="{{false}}"
+                model:value="{{ return_bank_id }}"
+                placeholder="请输入账号"
+            />
+            <cw-cell border="{{false}}">
+                <cw-button size="small" bind:click="updateReturn" loading="{{returnSubmiting}}" type="info" round>
+                    {{detail.return_bank_id ? '更新' : '确认'}}
+                </cw-button>
+            </cw-cell>
+        </cw-cell-group>
+
+        <cw-cell-group title="许可信息" wx:if="{{detail.step >= 2}}">
+            <cw-cell is-detail title="许可人员：">
+                <cw-employee info="{{detail.agreeInfo}}" />
+            </cw-cell>
+            <cw-cell is-detail title="保证金：" value="{{payment.yuan(detail.cash_deposit)}}元" />
+            <cw-cell is-detail title="受理时间：" border="{{false}}" value="{{common.date(detail.agreed_at)}}" />
+        </cw-cell-group>
+
+        <cw-cell-group title="报备信息">
+            <cw-cell is-detail title="工单编号：" value="{{detail.created_at}}{{detail.id}}" />
+            <cw-cell is-detail title="所在小区：" value="{{detail.community_name}}" />
+            <cw-cell is-detail title="装修地址：" value="{{common.building(detail, false)}}" />
+            <cw-cell is-detail title="报备时间：" value="{{common.date(detail.created_at)}}" />
+        </cw-cell-group>
+    </view>
+
+    <cw-button
+        custom-class="btn"
+        block
+        type="info"
+        loading="{{finishSubmiting}}"
+        wx:if="{{detail.step === 2}}"
+        bind:click="finishSubmit"
+    >
+        确认完工
+    </cw-button>
+
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+    <cw-copyright />
+</view>

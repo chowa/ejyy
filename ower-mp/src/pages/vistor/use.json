@@ -1,0 +1,9 @@
+{
+    "navigationBarTitleText": "访客码出示",
+    "navigationStyle": "custom",
+    "usingComponents": {
+        "cw-copyright": "../../components/copyright",
+        "cw-nav-bar": "../../components/nav-bar",
+        "cw-toast": "../../components/toast"
+    }
+}

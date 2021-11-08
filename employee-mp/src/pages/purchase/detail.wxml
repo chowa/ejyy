@@ -1,0 +1,141 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-cell-group title="采购详细" wx:if="{{fetching}}">
+        <cw-cell is-detail title="流程编号：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="申请人：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="采购金额：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="采购备注：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="申请时间：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="申请结果：" border="{{false}}">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+    </cw-cell-group>
+    <view wx:else>
+        <cw-cell-group title="采购详细">
+            <cw-cell
+                is-detail
+                title="流程编号："
+                value="{{common.number('MF', detail.info.created_at, detail.info.id)}}"
+            />
+            <cw-cell
+                is-detail
+                title="申请人："
+                is-link
+                url="/pages/colleague/detail?id={{detail.info.created_by}}"
+                clickable
+                wx:if="{{detail.info.created_by !== userInfo.id}}"
+                value="{{detail.info.real_name}}"
+            />
+            <cw-cell is-detail title="采购金额：" value="{{detail.info.total}}元" />
+            <cw-cell is-detail title="采购备注：" value="{{detail.info.remark ? detail.info.remark : '-'}}" />
+            <cw-cell is-detail title="申请时间：" value="{{common.date(detail.info.created_at)}}" />
+            <cw-cell is-detail title="申请结果：" border="{{detail.canceled_at ? true : false}}">
+                <block wx:if="{{detail.info.cancel}}">
+                    <cw-tag round color="#ff976a">已撤销</cw-tag>
+                </block>
+                <block wx:elif="{{detail.info.success === null}}">
+                    <cw-tag round color="#91d5ff">审批中</cw-tag>
+                </block>
+                <block wx:elif="{{!detail.info.success}}">
+                    <cw-tag round color="#ed4014">驳回</cw-tag>
+                </block>
+                <block wx:else>
+                    <cw-tag round color="#52c41a">成功</cw-tag>
+                </block>
+            </cw-cell>
+            <cw-cell
+                is-detail
+                title="撤销时间："
+                wx:if="{{detail.info.cancel}}"
+                border="{{false}}"
+                value="{{common.date(detail.info.canceled_at)}}"
+            />
+        </cw-cell-group>
+
+        <cw-cell-group title="采购项目">
+            <cw-collapse value="{{ activeCollapse }}" bind:change="onCollapseChange">
+                <cw-collapse-item
+                    wx:for="{{detail.items}}"
+                    title="项目{{index + 1}}（{{item.fee}}元）"
+                    wx:key="index"
+                    name="{{index}}"
+                >
+                    <view class="row">
+                        <view class="label">采购物料：</view>
+                        {{item.material}}
+                    </view>
+                    <view class="row">
+                        <view class="label">采购数量：</view>
+                        {{item.total}}
+                    </view>
+                    <view class="row">
+                        <view class="label">采购总金额：</view>
+                        {{item.fee}}
+                    </view>
+                    <view class="row">
+                        <view class="label">供应商：</view>
+                        {{item.supplier}}
+                    </view>
+                    <view class="row">
+                        <view class="label">供应商联系人：</view>
+                        {{item.linkman}}
+                    </view>
+                    <view class="row">
+                        <view class="label">供应商联系电话：</view>
+                        {{item.phone}}
+                    </view>
+                    <view class="row">
+                        <view class="label">供应商开户行：</view>
+                        {{ item.bank_name ? item.bank_name : '-' }}
+                    </view>
+                    <view class="row">
+                        <view class="label">供应商银行账号：</view>
+                        {{ item.bank_id ? item.bank_id : '-' }}
+                    </view>
+                    <view class="row">
+                        <view class="label">供应商开户行地址：</view>
+                        {{ item.bank_address ? item.bank_address : '-' }}
+                    </view>
+                </cw-collapse-item>
+            </cw-collapse>
+        </cw-cell-group>
+
+        <view
+            class="cancel-btn-box"
+            wx:if="{{!detail.info.cancel && detail.info.success === null && detail.info.created_by === userInfo.id}}"
+        >
+            <cw-button custom-class="cancel-btn" block type="warning" loading="{{canceling}}" bind:click="doCancel">
+                撤销申请
+            </cw-button>
+        </view>
+
+        <cw-cell-group title="审批流程">
+            <cw-workflow
+                steps="{{detail.steps}}"
+                info="{{detail.info}}"
+                label="采购金额"
+                userId="{{userInfo.id}}"
+                bind:approved="onApproved"
+                bind:relationed="onRelationed"
+            />
+        </cw-cell-group>
+    </view>
+
+    <cw-copyright />
+
+    <!-- 全局提示 -->
+    <cw-dialog id="cw-dialog" />
+    <cw-notify id="cw-notify" />
+    <cw-toast id="cw-toast" />
+</view>

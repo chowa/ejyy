@@ -1,0 +1,10 @@
+{
+    "navigationBarTitleText": "个人资料",
+    "usingComponents": {
+        "cw-field": "../../components/field",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-copyright": "../../components/copyright",
+        "cw-toast": "../../components/toast",
+        "cw-button": "../../components/button"
+    }
+}

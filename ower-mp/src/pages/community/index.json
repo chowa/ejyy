@@ -1,0 +1,12 @@
+{
+    "navigationBarTitleText": "我的住宅",
+    "usingComponents": {
+        "cw-copyright": "../../components/copyright",
+        "cw-checkbox": "../../components/checkbox",
+        "cw-icon": "../../components/icon",
+        "cw-button": "../../components/button",
+        "cw-dialog": "../../components/dialog",
+        "cw-toast": "../../components/toast",
+        "cw-skeleton": "../../components/skeleton"
+    }
+}

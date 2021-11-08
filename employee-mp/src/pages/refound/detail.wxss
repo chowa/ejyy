@@ -1,0 +1,14 @@
+.cancel-btn-box {
+    margin-top: 16px;
+    padding: 0 16px;
+}
+
+.row {
+    display: flex;
+    min-height: 32px;
+    line-height: 32px;
+}
+
+.row .label {
+    flex: none;
+}

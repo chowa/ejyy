@@ -1,0 +1,3 @@
+<view class="cw-sidebar custom-class">
+    <slot />
+</view>

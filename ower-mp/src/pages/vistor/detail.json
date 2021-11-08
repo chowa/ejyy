@@ -1,0 +1,13 @@
+{
+    "navigationBarTitleText": "访客详情",
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "cw-button": "../../components/button",
+        "cw-cell": "../../components/cell",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-copyright": "../../components/copyright",
+        "cw-toast": "../../components/toast",
+        "cw-skeleton": "../../components/skeleton",
+        "cw-notice-bar": "../../components/notice-bar"
+    }
+}

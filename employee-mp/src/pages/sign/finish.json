@@ -1,0 +1,12 @@
+{
+    "navigationBarTitleText": "下班打卡",
+    "enablePullDownRefresh": true,
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "usingComponents": {
+        "cw-skeleton": "../../components/skeleton",
+        "cw-notify": "../../components/notify",
+        "cw-toast": "../../components/toast",
+        "cw-copyright": "../../components/copyright"
+    }
+}

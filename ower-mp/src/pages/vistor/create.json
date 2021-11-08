@@ -1,0 +1,16 @@
+{
+    "navigationBarTitleText": "访客登记",
+    "usingComponents": {
+        "cw-calendar": "../../components/calendar",
+        "cw-field": "../../components/field",
+        "cw-action-sheet": "../../components/action-sheet",
+        "cw-cell": "../../components/cell",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-copyright": "../../components/copyright",
+        "cw-toast": "../../components/toast",
+        "cw-notify": "../../components/notify",
+        "cw-button": "../../components/button",
+        "cw-switch": "../../components/switch",
+        "cw-car-number": "../../components/car-number"
+    }
+}

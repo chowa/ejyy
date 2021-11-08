@@ -1,0 +1,12 @@
+{
+    "navigationBarTitleText": "挪车详情",
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "cw-panel": "../../components/panel",
+        "cw-cell": "../../components/cell",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-copyright": "../../components/copyright",
+        "cw-employee": "../../components/employee",
+        "cw-skeleton": "../../components/skeleton"
+    }
+}

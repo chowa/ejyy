@@ -1,0 +1,41 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-list
+        fetching="{{fetching}}"
+        page_num="{{page_num}}"
+        page_amount="{{page_amount}}"
+        list="{{list}}"
+        empty="暂无申请认证记录"
+    >
+        <cw-list-item wx:for="{{list}}" title="{{common.number('A', item.created_at, item.id)}}" wx:key="index">
+            <cw-list-item-info label="申请小区">
+                {{item.community_name}}
+            </cw-list-item-info>
+            <cw-list-item-info wx:if="{{item.house}}" label="住宅信息">
+                {{item.house}}
+            </cw-list-item-info>
+            <cw-list-item-info wx:if="{{item.carport}}" label="车位信息">{{item.carport}}</cw-list-item-info>
+            <cw-list-item-info wx:if="{{item.warehouse}}" label="仓房信息">{{item.warehouse}}</cw-list-item-info>
+            <cw-list-item-info wx:if="{{item.community_id}}" label="认证进度">
+                <block wx:if="{{!item.replied}}">
+                    <cw-tag round color="#13c2c2">待认证</cw-tag>
+                </block>
+                <block wx:elif="{{item.success}}">
+                    <cw-tag round type="success">认证成功</cw-tag>
+                </block>
+                <block wx:elif="{{!item.success}}">
+                    <cw-tag round type="danger">认证失败</cw-tag>
+                </block>
+            </cw-list-item-info>
+            <cw-list-item-info wx:if="{{item.replied && !item.success && item.community_id}}" label="失败原因">
+                {{item.reply_content}}
+            </cw-list-item-info>
+            <cw-list-item-info wx:if="{{item.replied && item.community_id}}" label="认证时间">
+                {{common.date(item.replied_at)}}
+            </cw-list-item-info>
+            <cw-list-item-info class="row" label="申请时间">{{common.date(item.created_at)}}</cw-list-item-info>
+            <cw-list-item-info wx:if="{{!item.community_id}}">因为查询到物业信息或小区信息申请被搁置</cw-list-item-info>
+        </cw-list-item>
+    </cw-list>
+</view>

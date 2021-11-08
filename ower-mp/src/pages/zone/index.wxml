@@ -1,0 +1,133 @@
+<view class="container">
+    <view class="header-placeholder"></view>
+
+    <view class="header-wrapper">
+        <view class="header">
+            <view class="avatar">
+                <image
+                    src="{{ ASSETS_HOST }}{{ userInfo.avatar_url }}"
+                    wx:if="{{userInfo.avatar_url}}"
+                    lazy-load="true"
+                    mode="scaleToFill"
+                />
+            </view>
+
+            <view class="is-identity">
+                <view class="txt {{ userInfo.phone ? '' : 'unable' }}">{{ userInfo.phone ? '已认证' : '未认证' }}</view>
+                <view class="icon">
+                    <cw-icon name="identity" custom-class="identity {{ userInfo.phone ? '' : 'unable' }}"></cw-icon>
+                </view>
+            </view>
+
+            <view class="is-approve">
+                <view class="icon">
+                    <cw-icon name="approve" custom-class="approve"></cw-icon>
+                </view>
+                <view class="txt">{{ communityInfo.list.length }}小区</view>
+            </view>
+
+            <view class="info">
+                <view class="name">{{ userInfo.nick_name }}</view>
+                <view class="signature">{{ userInfo.signature }}</view>
+            </view>
+
+            <view class="self">
+                <cw-row>
+                    <cw-col span="6">
+                        <navigator url="/pages/payment/index" class="self-item">
+                            <view class="fill-icon pay">
+                                <cw-icon name="pay"></cw-icon>
+                            </view>
+                            <view>我的缴费</view>
+                        </navigator>
+                    </cw-col>
+                    <cw-col span="6">
+                        <navigator url="/pages/repair/index" class="self-item">
+                            <view class="fill-icon maintain">
+                                <cw-icon name="maintain"></cw-icon>
+                            </view>
+                            <view>我的维修</view>
+                        </navigator>
+                    </cw-col>
+                    <cw-col span="6">
+                        <navigator url="/pages/complain/index" class="self-item">
+                            <view class="fill-icon report">
+                                <cw-icon name="report"></cw-icon>
+                            </view>
+                            <view>我的投诉</view>
+                        </navigator>
+                    </cw-col>
+                    <cw-col span="6">
+                        <navigator url="/pages/pet/index" class="self-item">
+                            <view class="fill-icon pet">
+                                <cw-icon name="pet"></cw-icon>
+                            </view>
+                            <view>我的宠物</view>
+                        </navigator>
+                    </cw-col>
+                </cw-row>
+                <cw-row>
+                    <cw-col span="6">
+                        <navigator url="/pages/fitment/index" class="self-item">
+                            <view class="fill-icon fitment">
+                                <cw-icon name="fitment"></cw-icon>
+                            </view>
+                            <view>我的装修</view>
+                        </navigator>
+                    </cw-col>
+                    <cw-col span="6">
+                        <navigator url="/pages/move_car/index" class="self-item">
+                            <view class="fill-icon movecar">
+                                <cw-icon name="movecar"></cw-icon>
+                            </view>
+                            <view>我的挪车</view>
+                        </navigator>
+                    </cw-col>
+                    <cw-col span="6">
+                        <navigator url="/pages/vistor/index" class="self-item">
+                            <view class="fill-icon vistor">
+                                <cw-icon name="vistor"></cw-icon>
+                            </view>
+                            <view>我的访客</view>
+                        </navigator>
+                    </cw-col>
+                    <cw-col span="6">
+                        <navigator url="/pages/questionnaire/self" class="self-item">
+                            <view class="fill-icon question">
+                                <cw-icon name="question"></cw-icon>
+                            </view>
+                            <view>我的问卷</view>
+                        </navigator>
+                    </cw-col>
+                </cw-row>
+            </view>
+        </view>
+    </view>
+
+    <cw-cell-group title="账号信息">
+        <cw-cell is-link link-type="navigateTo" title="个人资料" url="/pages/zone/profile" />
+        <cw-cell is-link link-type="navigateTo" title="手机认证" url="/pages/zone/phone" />
+        <cw-cell is-link link-type="navigateTo" title="业主名片" url="/pages/zone/card" border="{{false}}" />
+    </cw-cell-group>
+
+    <cw-cell-group title="小区设置">
+        <cw-cell is-link link-type="navigateTo" title="住宅管理" url="/pages/community/index" />
+        <cw-cell is-link link-type="navigateTo" title="家人管理" url="/pages/family/index" border="{{false}}" />
+    </cw-cell-group>
+
+    <cw-cell-group title="联系我们">
+        <cw-cell is-link link-type="navigateTo" title="问题反馈" url="/pages/feedback/index" />
+        <cw-cell is-link link-type="navigateTo" title="功能建议" url="/pages/feedback/feature" />
+        <cw-cell is-link link-type="navigateTo" title="物业入驻" url="/pages/feedback/join" />
+        <cw-cell is-link link-type="navigateTo" title="关于我们" url="/pages/about/index" />
+        <cw-cell is-link link-type="navigateTo" title="用户协议" url="/pages/about/agreement" border="{{false}}" />
+    </cw-cell-group>
+
+    <cw-cell-group title="关于e家宜业">
+        <cw-cell is-link title="检查新版本" value="当前版本：{{VERSION}}" clickable bind:tap="checkUpdate" />
+    </cw-cell-group>
+
+    <cw-copyright></cw-copyright>
+    <!-- 全局提示 -->
+    <cw-toast id="cw-toast"></cw-toast>
+</view>

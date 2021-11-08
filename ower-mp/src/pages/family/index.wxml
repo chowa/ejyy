@@ -1,0 +1,39 @@
+<view class="container">
+    <view wx:if="{{fetching}}">
+        <view class="loading-item">
+            <cw-skeleton avatar title row="2" />
+        </view>
+        <view class="loading-item">
+            <cw-skeleton avatar title row="2" />
+        </view>
+        <view class="loading-item">
+            <cw-skeleton avatar title row="2" />
+        </view>
+        <view class="loading-item">
+            <cw-skeleton avatar title row="2" />
+        </view>
+    </view>
+
+    <view wx:else>
+        <cw-empty description="暂无家人信息" wx:if="{{!fetching && list.length === 0}}" with-copyright />
+        <view wx:else>
+            <navigator wx:for="{{list}}" wx:key="index" class="family-item" url="/pages/family/detail?id={{item.id}}">
+                <view class="user-info">
+                    <image
+                        src="{{ASSETS_HOST}}{{item.avatar_url}}"
+                        lazy-load="true"
+                        class="avatar"
+                        mode="scaleToFill"
+                    ></image>
+
+                    <view>
+                        <view class="name">{{ item.nick_name }}</view>
+                        <view class="signature">{{ item.signature }}</view>
+                    </view>
+                </view>
+                <view class="detail">查看详细信息 ></view>
+            </navigator>
+        </view>
+    </view>
+    <cw-copyright fixed="{{ !fetching && list.length === 0 }}" />
+</view>

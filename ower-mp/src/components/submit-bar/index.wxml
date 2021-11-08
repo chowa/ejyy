@@ -1,0 +1,40 @@
+<wxs src="../wxs/utils.wxs" module="utils" />
+
+<view class="cw-submit-bar custom-class">
+    <slot name="top" />
+
+    <view class="cw-submit-bar__tip">
+        <cw-icon wx:if="{{ tipIcon }}" size="12px" name="{{ tipIcon }}" custom-class="cw-submit-bar__tip-icon" />
+        <view wx:if="{{ hasTip }}" class="cw-submit-bar__tip-text">
+            {{ tip }}
+        </view>
+        <slot name="tip" />
+    </view>
+
+    <view class="bar-class cw-submit-bar__bar">
+        <slot />
+        <view wx:if="{{ hasPrice }}" class="cw-submit-bar__text">
+            <text>{{ label || '合计：' }}</text>
+            <text class="cw-submit-bar__price price-class">
+                <text class="cw-submit-bar__currency">{{ currency }}</text>
+                <text class="cw-submit-bar__price-integer">{{ integerStr }}</text>
+                <text>{{decimalStr}}</text>
+            </text>
+            <text class="cw-submit-bar__suffix-label">{{ suffixLabel }}</text>
+        </view>
+        <cw-button
+            round
+            type="{{ buttonType }}"
+            loading="{{ loading }}"
+            disabled="{{ disabled }}"
+            class="cw-submit-bar__button"
+            custom-class="button-class"
+            custom-style="width: 100%;"
+            bind:click="onSubmit"
+        >
+            {{ loading ? '' : buttonText }}
+        </cw-button>
+    </view>
+
+    <view wx:if="{{ safeAreaInsetBottom }}" class="cw-submit-bar__safe" />
+</view>

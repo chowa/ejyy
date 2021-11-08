@@ -1,0 +1,10 @@
+<view class="cw-copyright {{ fixed ? 'fixed' : ''}} {{ dark ? 'dark' : ''}} {{inTabPage ? 'in-tab-page' : ''}}">
+    <cw-icon name="chowa" custom-class="chowa"></cw-icon>
+    <cw-icon name="logo" custom-class="logo"></cw-icon>
+
+    <view class="cw-company">
+        <text>e家宜业 v{{ version }}</text>
+        <text>卓瓦科技版权所有 保留所有权利</text>
+        <text>https://ejyy.chowa.cn</text>
+    </view>
+</view>

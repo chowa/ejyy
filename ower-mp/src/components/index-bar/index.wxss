@@ -1,0 +1,27 @@
+@import '../common/index.wxss';
+
+.cw-index-bar {
+    position: relative;
+}
+
+.cw-index-bar__sidebar {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    text-align: center;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.cw-index-bar__index {
+    font-weight: 500;
+    padding: 0 4px 0 16px;
+    font-size: 10px;
+    line-height: 14px;
+}

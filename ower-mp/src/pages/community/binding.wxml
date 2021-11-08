@@ -1,0 +1,43 @@
+<view class="container">
+    <cw-notice-bar
+        scrollable
+        wx:if="{{ showNotice }}"
+        text="用户自行解绑的住宅信息需要到物业公司进行人工恢复"
+        wrapable
+        scrollable="{{ false }}"
+    />
+
+    <cw-cell-group>
+        <cw-cell
+            title="实名信息关联住宅"
+            label="已在物业公司实名登记并预留联系电话的业主关联住宅信息"
+            is-link
+            bind:click="getCommunityInfo"
+        />
+        <cw-cell
+            title="物业公司认证住宅"
+            label="扫描物业公司提供的二维码进行住宅信息关联"
+            is-link
+            bind:click="bindByProperty"
+        />
+        <cw-cell
+            title="家庭成员关联认证"
+            label="扫描已关联住宅信息业主的“我的住宅”中“家人认证”提供的二维码关联"
+            is-link
+            bind:click="bindByFamily"
+        />
+        <cw-cell
+            title="自行填写住宅信息认证"
+            label="填写住宅信息后需待物业公司认证后方可正常使用"
+            is-link
+            border="{{ false }}"
+            bind:click="slefAppend"
+        />
+    </cw-cell-group>
+
+    <cw-copyright />
+
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+    <cw-dialog id="cw-dialog" />
+</view>

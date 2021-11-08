@@ -1,0 +1,33 @@
+<view class="cw-list {{withFilter ? 'with-filter' : ''}} {{inTabPage ? 'in-tab-page' : ''}}">
+    <slot />
+
+    <view class="cw-list-loading-item" wx:if="{{fetching && page_num === 1}}" wx:for="{{page_size}}" wx:key="num">
+        <view class="cw-list-loading-item-header">
+            <cw-skeleton row="{{ 1 }}" solt="title" row-width="40%" />
+        </view>
+        <cw-skeleton row="{{ 3 }}" title />
+    </view>
+
+    <cw-divider wx:if="{{ page_num >= page_amount && !fetching && list.length > 0 }}" contentPosition="center">
+        只有这些数据了
+    </cw-divider>
+
+    <!-- 加载状态 -->
+    <view wx:if="{{ fetching && page_num > 1 }}" class="cw-list-load-more">
+        <cw-loading>加载中...</cw-loading>
+    </view>
+
+    <cw-empty
+        fixed="{{fixed}}"
+        description="{{empty}}"
+        icon="{{icon}}"
+        with-copyright
+        wx:if="{{!fetching && list.length === 0}}"
+    >
+        <view wx:if="{{useEmptySlot}}">
+            <slot name="empty" />
+        </view>
+    </cw-empty>
+
+    <cw-copyright wx:if="{{!fetching && list.length === 0}}" inTabPage="{{inTabPage}}" fixed="{{ fixed }}" />
+</view>

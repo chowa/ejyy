@@ -1,0 +1,63 @@
+<view class="container">
+    <cw-notice-bar
+        left-icon="voice"
+        color="#1989fa"
+        background="#ecf9ff"
+        text="实名信息仅用于物业公司对业主认证和缴费信息核实，我们不会泄露您的隐私数据。"
+    />
+
+    <view class="avatar-wrapper" bindtap="selectImage">
+        <image class="avatar" src="{{ASSETS_HOST + avatar_url}}" mode="scaleToFill" />
+        <view class="txt">设置头像</view>
+    </view>
+
+    <cw-cell-group>
+        <cw-field
+            label="真实姓名"
+            maxlength="{{ 8 }}"
+            show-word-limit
+            model:value="{{ real_name }}"
+            placeholder="请输入你的真实姓名"
+        />
+        <cw-field
+            label="身份证号码"
+            type="idcard"
+            maxlength="{{ 18 }}"
+            show-word-limit
+            model:value="{{ idcard }}"
+            placeholder="请输入你的身份证号码"
+        />
+        <cw-cell title="手机号码" is-link="{{!phone}}">
+            <button class="get-phone" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!phone}}">
+                获取你的手机号码
+            </button>
+            {{phone ? phone : ''}}
+        </cw-cell>
+        <cw-field
+            label="昵称"
+            maxlength="{{ 12 }}"
+            show-word-limit
+            model:value="{{ nick_name }}"
+            placeholder="请输入你的昵称"
+        />
+        <cw-field
+            label="签名"
+            type="textarea"
+            maxlength="{{ 36 }}"
+            show-word-limit
+            autosize
+            model:value="{{ signature }}"
+            placeholder="请输入你的签名"
+            border="{{ false }}"
+        />
+    </cw-cell-group>
+
+    <view class="fill-btn" bindtap="useWechatInfo">使用微信公开信息填充？</view>
+
+    <cw-button custom-class="btn" block loading="{{submiting}}" type="info" bind:click="save">
+        提交
+    </cw-button>
+    <cw-copyright />
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+</view>

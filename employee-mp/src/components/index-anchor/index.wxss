@@ -1,0 +1,17 @@
+@import '../common/index.wxss';
+
+.cw-index-anchor {
+    padding: 0 16px;
+    color: #323233;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 32px;
+    background-color: initial;
+}
+
+.cw-index-anchor--active {
+    right: 0;
+    left: 0;
+    color: #07c160;
+    background-color: #fff;
+}

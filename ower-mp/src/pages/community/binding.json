@@ -1,0 +1,12 @@
+{
+    "navigationBarTitleText": "添加住宅",
+    "usingComponents": {
+        "cw-cell": "../../components/cell",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-copyright": "../../components/copyright",
+        "cw-toast": "../../components/toast",
+        "cw-notify": "../../components/notify",
+        "cw-dialog": "../../components/dialog",
+        "cw-notice-bar": "../../components/notice-bar"
+    }
+}

@@ -1,0 +1,62 @@
+.loading-item {
+    background: #fff;
+    padding: 12px;
+    position: relative;
+}
+
+.loading-item + .loading-item:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 20px;
+    right: 20px;
+    border-top: 1px solid #f8f8f8;
+}
+
+.family-item {
+    background: #fff;
+    padding: 12px 20px;
+    position: relative;
+}
+
+.family-item + .family-item::before {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    right: 20px;
+    content: '';
+    border-top: 1px solid #f5f5f5;
+}
+
+.family-item .user-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.family-item .avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    flex: none;
+    margin-right: 12px;
+}
+
+.family-item .name {
+    font-size: 14px;
+    color: #343434;
+    line-height: 20px;
+}
+
+.family-item .signature {
+    font-size: 12px;
+    color: #787878;
+    line-height: 16px;
+    margin-top: 2px;
+}
+
+.family-item .detail {
+    text-align: right;
+    font-size: 12px;
+    color: #999;
+    margin-top: 6px;
+}

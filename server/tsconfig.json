@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es2018",
+        "lib": [
+            "es2015"
+        ],
+        "noImplicitAny": false,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "outDir": "./dist/",
+        "rootDir": "./src/",
+        "baseUrl": "./",
+        "removeComments": true,
+        "paths": {
+            "~/*": ["src/*"]
+        },
+        "typeRoots": ["types", "./node_modules/@types"]
+    }
+}

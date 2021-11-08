@@ -1,0 +1,50 @@
+@import '../common/index.wxss';
+
+.cw-tree-select {
+    position: relative;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-user-select: none;
+    user-select: none;
+    font-size: 14px;
+}
+
+.cw-tree-select__nav {
+    -webkit-flex: 1;
+    flex: 1;
+    background-color: #f7f8fa;
+}
+
+.cw-tree-select__nav__inner {
+    width: 100% !important;
+    height: 100%;
+}
+
+.cw-tree-select__content {
+    -webkit-flex: 2;
+    flex: 2;
+    background-color: #fff;
+}
+
+.cw-tree-select__item {
+    position: relative;
+    font-weight: 700;
+    padding: 0 32px 0 16px;
+    line-height: 44px;
+}
+
+.cw-tree-select__item--active {
+    color: #ee0a24;
+}
+
+.cw-tree-select__item--disabled {
+    color: #c8c9cc;
+}
+
+.cw-tree-select__selected {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    right: 16px;
+}

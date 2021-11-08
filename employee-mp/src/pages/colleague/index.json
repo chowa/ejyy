@@ -1,0 +1,14 @@
+{
+    "navigationBarTitleText": "通讯录",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "cw-cell": "../../components/cell",
+        "cw-divider": "../../components/divider",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-skeleton": "../../components/skeleton",
+        "cw-loading": "../../components/loading",
+        "cw-notify": "../../components/notify"
+    }
+}

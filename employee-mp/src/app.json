@@ -1,0 +1,58 @@
+{
+    "entryPagePath": "pages/home/index",
+    "pages": [
+        "pages/home/index",
+        "pages/login/index",
+        "pages/error/network",
+        "pages/error/general",
+        "pages/repair/index",
+        "pages/repair/detail",
+        "pages/complain/index",
+        "pages/complain/detail",
+        "pages/colleague/index",
+        "pages/colleague/detail",
+        "pages/epidemic/index",
+        "pages/vistor/index",
+        "pages/mission/index",
+        "pages/mission/detail",
+        "pages/mission/submit",
+        "pages/mission/report",
+        "pages/ower/index",
+        "pages/ower/detail",
+        "pages/fitment/index",
+        "pages/move_car/index",
+        "pages/move_car/concat",
+        "pages/inform/index",
+        "pages/party/index",
+        "pages/meeting/index",
+        "pages/sign/begin",
+        "pages/sign/finish",
+        "pages/leave/approve",
+        "pages/leave/index",
+        "pages/refound/approve",
+        "pages/refound/index",
+        "pages/purchase/index",
+        "pages/purchase/approve",
+        "pages/party/detail",
+        "pages/inform/detail",
+        "pages/leave/detail",
+        "pages/purchase/detail",
+        "pages/refound/detail",
+        "pages/refound/item",
+        "pages/purchase/item",
+        "pages/material/index"
+    ],
+    "window": {
+        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "e家宜业物业端",
+        "backgroundColor": "#f7f8fa",
+        "backgroundTextStyle": "light"
+    },
+    "permission": {
+        "scope.userLocation": {
+            "desc": "你的位置信息将用于上下班打卡功能"
+        }
+    },
+    "sitemapLocation": "sitemap.json"
+}

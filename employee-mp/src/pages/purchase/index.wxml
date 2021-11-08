@@ -1,0 +1,143 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-tabs active="{{ activeTabIndex }}" bind:change="onTabChange">
+        <cw-tab title="采购申请">
+            <cw-cell-group>
+                <cw-cell title="采购金额" is-detail value="{{total}}" />
+                <cw-field
+                    label="采购备注"
+                    type="textarea"
+                    maxlength="{{ 512 }}"
+                    show-word-limit
+                    autosize
+                    border="{{false}}"
+                    model:value="{{ remark }}"
+                    placeholder="请输入采购备注"
+                />
+            </cw-cell-group>
+
+            <cw-cell-group title="采购项目" wx:if="{{items.length}}">
+                <cw-collapse value="{{ activeCollapse }}" bind:change="onCollapseChange">
+                    <cw-collapse-item
+                        wx:for="{{items}}"
+                        title="项目{{index + 1}}（{{item.fee}}元）"
+                        wx:key="index"
+                        name="{{index}}"
+                    >
+                        <view class="row">
+                            <view class="label">采购物料：</view>
+                            <block
+                                wx:for="{{options.material}}"
+                                wx:for-index="key"
+                                wx:for-item="row"
+                                wx:key="key"
+                                wx:if="{{row.id === item.material_id}}"
+                            >
+                                {{row.name}}
+                            </block>
+                        </view>
+                        <view class="row">
+                            <view class="label">采购数量：</view>
+                            {{item.total}}
+                        </view>
+                        <view class="row">
+                            <view class="label">采购总金额：</view>
+                            {{item.fee}}
+                        </view>
+                        <view class="row">
+                            <view class="label">供应商：</view>
+                            <block
+                                wx:for="{{options.supplier}}"
+                                wx:for-index="key"
+                                wx:for-item="row"
+                                wx:key="key"
+                                wx:if="{{row.id === item.supplier_id}}"
+                            >
+                                {{row.title}}
+                            </block>
+                        </view>
+                        <view class="footer">
+                            <cw-button size="small" round type="danger" data-index="{{index}}" bind:click="remove">
+                                删除
+                            </cw-button>
+                            <cw-button
+                                size="small"
+                                custom-class="btn-ml"
+                                round
+                                type="info"
+                                data-index="{{index}}"
+                                bind:click="update"
+                            >
+                                修改
+                            </cw-button>
+                        </view>
+                    </cw-collapse-item>
+                </cw-collapse>
+            </cw-cell-group>
+
+            <view class="append-btn-box">
+                <cw-button block round bind:click="appendItem">添加采购项目</cw-button>
+            </view>
+
+            <cw-button
+                custom-class="btn"
+                block
+                wx:if="{{activeTabIndex === 0}}"
+                loading="{{submiting}}"
+                type="info"
+                bind:click="submit"
+            >
+                提交申请
+            </cw-button>
+
+            <cw-copyright />
+        </cw-tab>
+
+        <cw-tab title="历史申请">
+            <cw-list
+                fetching="{{fetching}}"
+                page_num="{{page_num}}"
+                page_amount="{{page_size}}"
+                list="{{list}}"
+                empty="暂无采购申请"
+                icon="refound"
+                withFilter
+            >
+                <cw-list-item
+                    wx:for="{{list}}"
+                    title="{{common.number('MF', item.created_at, item.id)}}"
+                    wx:key="index"
+                    url="/pages/purchase/detail?id={{item.id}}"
+                >
+                    <cw-list-item-info label="备注信息">
+                        {{ item.remark ? item.remark : '-'}}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="采购金额">
+                        {{ item.total }}元
+                    </cw-list-item-info>
+                    <cw-list-item-info label="申请结果">
+                        <block wx:if="{{item.cancel}}">
+                            <cw-tag round color="#ff976a">已取消</cw-tag>
+                        </block>
+                        <block wx:elif="{{item.success === null}}">
+                            <cw-tag round color="#91d5ff">审批中</cw-tag>
+                        </block>
+                        <block wx:elif="{{!item.success}}">
+                            <cw-tag round color="#ed4014">驳回</cw-tag>
+                        </block>
+                        <block wx:else>
+                            <cw-tag round color="#52c41a">成功</cw-tag>
+                        </block>
+                    </cw-list-item-info>
+                    <cw-list-item-info label="申请时间">
+                        {{ common.date(item.created_at) }}
+                    </cw-list-item-info>
+                </cw-list-item>
+            </cw-list>
+        </cw-tab>
+    </cw-tabs>
+
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+</view>

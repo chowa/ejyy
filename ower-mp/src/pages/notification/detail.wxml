@@ -1,0 +1,44 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-nav-bar
+        title="消息详情"
+        fixed
+        left-arrow="{{!backHome}}"
+        bind:click-left="onBackClick"
+        custom-class="{{ navBarClass }}"
+        title-class="nav-bar-title"
+        border="{{false}}"
+        z-index="100"
+        custom-style="height:{{ systemInfo.navBarHeight + systemInfo.statusBarHeight }}px;padding-top:{{ systemInfo.statusBarHeight }}px"
+    >
+        <view slot="left" wx:if="{{backHome}}" class="home-btn">
+            <cw-icon name="home" />
+        </view>
+    </cw-nav-bar>
+
+    <image class="bg-pic" src="../../assets/notification/header.jpg" lazy-load mode="widthFix"></image>
+
+    <view
+        class="notification"
+        style="min-height: {{ systemInfo.windowHeight - 122}}px;padding-top: {{ systemInfo.navBarHeight + systemInfo.statusBarHeight }}px"
+    >
+        <view wx:if="{{ !fetching }}">
+            <view class="title">{{ detail.title }}</view>
+
+            <view class="sub-info">来源：{{ detail.type === 2 ? '系统' : '物业公司' }}</view>
+            <view class="sub-info">送至：{{ detail.scope ? detail.scope + '小区' : '全体业主' }}</view>
+            <view class="sub-info">时间：{{ common.date(detail.created_at) }}</view>
+
+            <view class="main-body">
+                <cw-rich-text detail="{{detail.content}}" />
+            </view>
+        </view>
+        <view class="loading" wx:else>
+            <cw-skeleton title row="{{ 3 }}" row-width="60%" />
+            <cw-skeleton row="{{ 7 }}" custom-class="loading-gutter" />
+        </view>
+    </view>
+
+    <cw-copyright />
+</view>

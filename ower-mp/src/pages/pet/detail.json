@@ -1,0 +1,17 @@
+{
+    "navigationBarTitleText": "宠物详情",
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "cw-panel": "../../components/panel",
+        "cw-calendar": "../../components/calendar",
+        "cw-cell": "../../components/cell",
+        "cw-field": "../../components/field",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-copyright": "../../components/copyright",
+        "cw-toast": "../../components/toast",
+        "cw-notify": "../../components/notify",
+        "cw-button": "../../components/button",
+        "cw-action-sheet": "../../components/action-sheet",
+        "cw-skeleton": "../../components/skeleton"
+    }
+}

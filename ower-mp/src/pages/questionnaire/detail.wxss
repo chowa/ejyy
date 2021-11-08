@@ -1,0 +1,47 @@
+.container {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.title {
+    padding-top: 18px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.expire {
+    font-size: 14px;
+    color: #676767;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.question {
+    background: #fff;
+    border-radius: 4px;
+    padding: 12px 14px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+}
+
+.question + .question {
+    margin-top: 18px;
+}
+
+.question-title {
+    font-size: 14px;
+    color: #2323232;
+    margin-bottom: 8px;
+}
+
+.option {
+    font-size: 14px;
+    height: 28px;
+    line-height: 28px;
+}
+
+.progress {
+    margin-top: 4px;
+    margin-bottom: 6px;
+}

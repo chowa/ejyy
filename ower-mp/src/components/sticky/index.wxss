@@ -1,0 +1,11 @@
+@import '../common/index.wxss';
+
+.cw-sticky {
+    position: relative;
+}
+
+.cw-sticky-wrap--fixed {
+    position: fixed;
+    right: 0;
+    left: 0;
+}

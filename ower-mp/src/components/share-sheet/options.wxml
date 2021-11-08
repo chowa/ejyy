@@ -1,0 +1,20 @@
+<wxs src="../wxs/utils.wxs" module="utils" />
+<wxs src="./options.wxs" module="computed" />
+
+<view class="{{ utils.bem('share-sheet__options', { border: showBorder }) }}">
+    <view
+        wx:for="{{ options }}"
+        wx:key="index"
+        class="cw-share-sheet__option"
+        data-index="{{ index }}"
+        bindtap="onSelect"
+    >
+        <button class="cw-share-sheet__button" open-type="{{ item.openType }}">
+            <image src="{{ computed.getIconURL(item.icon) }}" class="cw-share-sheet__icon" />
+        </button>
+        <view wx:if="{{ item.name }}" class="cw-share-sheet__name">{{ item.name }}</view>
+        <view wx:if="{{ item.description }}" class="cw-share-sheet__option-description">
+            {{ item.description }}
+        </view>
+    </view>
+</view>

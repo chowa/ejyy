@@ -1,0 +1,18 @@
+{
+    "navigationBarTitleText": "请假详情",
+    "enablePullDownRefresh": true,
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "usingComponents": {
+        "cw-button": "../../components/button",
+        "cw-dialog": "../../components/dialog",
+        "cw-notify": "../../components/notify",
+        "cw-toast": "../../components/toast",
+        "cw-cell": "../../components/cell",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-skeleton": "../../components/skeleton",
+        "cw-tag": "../../components/tag",
+        "cw-workflow": "../../components/workflow",
+        "cw-copyright": "../../components/copyright"
+    }
+}

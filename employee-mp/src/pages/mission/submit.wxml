@@ -1,0 +1,69 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-cell-group wx:if="{{fetching}}">
+        <cw-cell is-detail title="巡检位置：" border="{{false}}">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="是否正常：" border="{{false}}">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="巡检备注：" border="{{false}}">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="现场图片：" border="{{false}}">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+    </cw-cell-group>
+    <view wx:else>
+        <view wx:if="{{error}}" class="result error">
+            <cw-icon name="fail" custom-class="icon" />
+            <view class="message">{{ errorMsg }}</view>
+            <navigator url="/pages/home/index">返回首页</navigator>
+        </view>
+        <view wx:elif="{{finish}}" class="result success">
+            <cw-icon name="success" custom-class="icon" />
+            <view class="message">巡检已完成</view>
+            <navigator url="/pages/home/index">返回首页</navigator>
+        </view>
+        <cw-cell-group wx:else>
+            <cw-cell title="巡检位置：" value="{{detail.lineInfo[step].local}}" is-detail />
+            <cw-cell title="巡检进度：" value="{{step + 1}}/{{detail.lineInfo.length}}" is-detail />
+            <cw-cell title="是否正常：">
+                <cw-switch
+                    active-value="{{1}}"
+                    inactive-value="{{0}}"
+                    checked="{{normal}}"
+                    bind:change="onNormalChange"
+                />
+            </cw-cell>
+            <cw-field
+                label="巡检备注："
+                type="textarea"
+                maxlength="{{ 256 }}"
+                show-word-limit
+                autosize
+                model:value="{{ remark }}"
+                placeholder="请输入巡检备注"
+            />
+            <cw-cell title="现场照片" border="{{ false }}">
+                <cw-uploader
+                    file-list="{{uploadImgList}}"
+                    bind:delete="deleteImg"
+                    bind:after-read="afterRead"
+                    max-count="{{3}}"
+                />
+            </cw-cell>
+
+            <cw-button custom-class="btn" block loading="{{submiting}}" type="info" bind:click="submit">
+                上报巡检结果
+            </cw-button>
+        </cw-cell-group>
+    </view>
+
+    <cw-copyright />
+
+    <!-- 全局提示 -->
+    <cw-notify id="cw-notify" />
+    <cw-toast id="cw-toast" />
+</view>

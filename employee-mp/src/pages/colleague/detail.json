@@ -1,0 +1,12 @@
+{
+    "navigationBarTitleText": "同事信息",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "cw-cell": "../../components/cell",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-copyright": "../../components/copyright",
+        "cw-skeleton": "../../components/skeleton"
+    }
+}

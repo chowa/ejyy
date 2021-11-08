@@ -1,0 +1,16 @@
+<cw-panel
+    title="{{title}}"
+    bindtap="goToDetail"
+    custom-class="list-item"
+    status="{{status}}"
+    useFooterSlot="{{useFooterSlot}}"
+    clickable="{{url ? true : false}}"
+>
+    <view class="list-item-inner">
+        <slot />
+    </view>
+
+    <view slot="footer" class="list-item-footer">
+        <slot name="footer" />
+    </view>
+</cw-panel>

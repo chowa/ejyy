@@ -1,0 +1,13 @@
+.container.bottom {
+    padding-bottom: calc(constant(safe-area-inset-bottom) + 44px);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 44px);
+}
+
+.btn {
+    position: fixed !important;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    bottom: constant(safe-area-inset-bottom);
+    bottom: env(safe-area-inset-bottom);
+}

@@ -1,0 +1,31 @@
+<view class="container">
+    <view wx:if="{{fetching}}">
+        <view class="item" wx:for="{{3}}" wx:key="index">
+            <view class="info">
+                <cw-skeleton row="{{2}}" title />
+            </view>
+            <view class="phone" data-phone="{{item.phone}}" bindtap="makeCell">
+                <cw-icon name="phone" />
+            </view>
+        </view>
+    </view>
+    <view wx:else>
+        <view class="item" wx:for="{{list}}" wx:key="index">
+            <view class="info">
+                <view class="title">{{item.title}}</view>
+                <view class="txt">{{item.location}}</view>
+                <view class="txt">{{item.phone}}</view>
+            </view>
+            <view class="phone" data-phone="{{item.phone}}" bindtap="makeCell">
+                <cw-icon name="phone" />
+            </view>
+        </view>
+        <cw-empty
+            wx:if="{{list.length === 0}}"
+            with-copyright
+            description="{{communityInfo.current.name}}小区暂未发布便民信息"
+        />
+    </view>
+
+    <cw-copyright fixed="{{!fetching && list.length === 0}}" />
+</view>

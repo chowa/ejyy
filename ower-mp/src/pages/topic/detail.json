@@ -1,0 +1,8 @@
+{
+    "navigationBarTitleText": "专题详情",
+    "usingComponents": {
+        "cw-rich-text": "../../components/rich-text",
+        "cw-skeleton": "../../components/skeleton",
+        "cw-copyright": "../../components/copyright"
+    }
+}

@@ -1,0 +1,8 @@
+<wxs src="./index.wxs" module="computed" />
+
+<view
+    class="cw-grid custom-class {{ border && !gutter ? 'cw-hairline--top' : '' }}"
+    style="{{ computed.rootStyle({ gutter }) }}"
+>
+    <slot />
+</view>

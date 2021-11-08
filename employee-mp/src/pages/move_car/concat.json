@@ -1,0 +1,14 @@
+{
+    "navigationBarTitleText": "挪车联系方式",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "usingComponents": {
+        "cw-notify": "../../components/notify",
+        "cw-icon": "../../components/icon",
+        "cw-cell": "../../components/cell",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-skeleton": "../../components/skeleton",
+        "cw-empty": "../../components/empty",
+        "cw-copyright": "../../components/copyright"
+    }
+}

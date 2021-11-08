@@ -1,0 +1,10 @@
+{
+    "component": true,
+    "usingComponents": {
+        "header": "./components/header/index",
+        "month": "./components/month/index",
+        "cw-button": "../button/index",
+        "cw-popup": "../popup/index",
+        "cw-toast": "../toast/index"
+    }
+}

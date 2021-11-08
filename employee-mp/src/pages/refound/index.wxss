@@ -1,0 +1,27 @@
+.btn {
+    position: fixed !important;
+    left: 0;
+    right: 0;
+    bottom: constant(safe-area-inset-bottom);
+    bottom: env(safe-area-inset-bottom);
+    z-index: 50;
+}
+
+.append-btn-box {
+    margin-top: 16px;
+    padding: 0 16px;
+}
+
+.row {
+    display: flex;
+    min-height: 32px;
+    line-height: 32px;
+}
+
+.row .label {
+    flex: none;
+}
+
+.footer {
+    text-align: right;
+}

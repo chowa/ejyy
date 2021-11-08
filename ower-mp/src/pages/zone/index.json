@@ -1,0 +1,14 @@
+{
+    "navigationBarTitleText": "我的",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "usingComponents": {
+        "cw-cell": "../../components/cell",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-copyright": "../../components/copyright",
+        "cw-switch": "../../components/switch",
+        "cw-icon": "../../components/icon",
+        "cw-row": "../../components/row",
+        "cw-col": "../../components/col"
+    }
+}

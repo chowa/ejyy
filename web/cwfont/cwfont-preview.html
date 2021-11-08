@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>chowa iconfont glyphs preview</title>
+        <meta charset="utf-8" />
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                height: 100%;
+                background-color: #fff;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            .container {
+                width: 980px;
+                margin: auto;
+            }
+
+            header {
+                padding: 22px 0;
+            }
+
+            header a img {
+                outline: none;
+                display: inline-block;
+                margin-right: 12px;
+            }
+
+            header a h1 {
+                display: inline-block;
+                color: #787878;
+                font-size: 28px;
+                line-height: 80px;
+                vertical-align: top;
+                font-weight: 400;
+            }
+
+            .logo {
+                width: 80px;
+                height: 80px;
+            }
+
+            .glyphs {
+                overflow: hidden;
+                width: 100%;
+                height: auto;
+                list-style: none;
+            }
+
+            .glyphs li {
+                width: 120px;
+                height: 148px;
+                float: left;
+                border: 1px solid #f5f5f5;
+                margin: 10px;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .glyphs li:last-child,
+            .glyphs li:nth-child(10n) {
+                border-right: 1px solid #f5f5f5;
+            }
+
+            .glyphs li .icon {
+                height: 110px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #565656;
+                font-size: 28px;
+                transition: all 0.2s ease-in;
+            }
+
+            .glyphs li .name {
+                height: 38px;
+                line-height: 38px;
+                color: #787878;
+                text-align: center;
+                transition: all 0.2s ease-in;
+                cursor: copy;
+                overflow: hidden;
+                font-size: 12px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                padding: 0 8px;
+            }
+
+            .glyphs li:hover {
+                background-color: #7774e7;
+                border-color: #7774e7;
+            }
+
+            .glyphs li:hover .icon {
+                font-size: 42px;
+                color: #fff;
+            }
+
+            .glyphs li:hover .name {
+                color: #eee;
+            }
+
+            @font-face {
+                font-family: "Ionicons";
+                src: url("../src/styles/iconfont/Ionicons.eot");
+                src: url("../src/styles/iconfont/Ionicons.eot#iefix") format("embedded-opentype"),
+                    url("../src/styles/iconfont/Ionicons.ttf") format("truetype"),
+                    url("../src/styles/iconfont/Ionicons.woff") format("woff"),
+                    url("../src/styles/iconfont/Ionicons.woff2") format("woff2"),
+                    url("../src/styles/iconfont/Ionicons.svg") format("svg");
+            }
+
+            .cw-icon {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Ionicons" !important;
+                font-style: normal;
+                font-weight: 400;
+                display: inline-block;
+                vertical-align: middle;
+            }
+
+            .cw-icon-address:before {
+                content: "\c9d2";
+            }
+
+            .cw-icon-all-mission:before {
+                content: "\c9d3";
+            }
+
+            .cw-icon-approver:before {
+                content: "\c9d4";
+            }
+
+            .cw-icon-bussinese:before {
+                content: "\c9d5";
+            }
+
+            .cw-icon-charging:before {
+                content: "\c9d6";
+            }
+
+            .cw-icon-community:before {
+                content: "\c9d7";
+            }
+
+            .cw-icon-contract:before {
+                content: "\c9d8";
+            }
+
+            .cw-icon-dashboard:before {
+                content: "\c9d9";
+            }
+
+            .cw-icon-dispose-mission:before {
+                content: "\c9da";
+            }
+
+            .cw-icon-elevator:before {
+                content: "\c9db";
+            }
+
+            .cw-icon-energy:before {
+                content: "\c9dc";
+            }
+
+            .cw-icon-entrance:before {
+                content: "\c9dd";
+            }
+
+            .cw-icon-exit-full-screen:before {
+                content: "\c9de";
+            }
+
+            .cw-icon-finance:before {
+                content: "\c9df";
+            }
+
+            .cw-icon-fitment:before {
+                content: "\c9e0";
+            }
+
+            .cw-icon-flow:before {
+                content: "\c9e1";
+            }
+
+            .cw-icon-full-screen:before {
+                content: "\c9e2";
+            }
+
+            .cw-icon-home:before {
+                content: "\c9e3";
+            }
+
+            .cw-icon-hr:before {
+                content: "\c9e4";
+            }
+
+            .cw-icon-inform:before {
+                content: "\c9e5";
+            }
+
+            .cw-icon-iot:before {
+                content: "\c9e6";
+            }
+
+            .cw-icon-judge:before {
+                content: "\c9e7";
+            }
+
+            .cw-icon-lamp:before {
+                content: "\c9e8";
+            }
+
+            .cw-icon-leave:before {
+                content: "\c9e9";
+            }
+
+            .cw-icon-maintain:before {
+                content: "\c9ea";
+            }
+
+            .cw-icon-meeting-create:before {
+                content: "\c9eb";
+            }
+
+            .cw-icon-meeting-participant:before {
+                content: "\c9ec";
+            }
+
+            .cw-icon-meeting:before {
+                content: "\c9ed";
+            }
+
+            .cw-icon-menu-fold:before {
+                content: "\c9ee";
+            }
+
+            .cw-icon-menu-unfold:before {
+                content: "\c9ef";
+            }
+
+            .cw-icon-mission:before {
+                content: "\c9f0";
+            }
+
+            .cw-icon-monitor:before {
+                content: "\c9f1";
+            }
+
+            .cw-icon-more:before {
+                content: "\c9f2";
+            }
+
+            .cw-icon-movecar:before {
+                content: "\c9f3";
+            }
+
+            .cw-icon-my-mission:before {
+                content: "\c9f4";
+            }
+
+            .cw-icon-notication:before {
+                content: "\c9f5";
+            }
+
+            .cw-icon-notice:before {
+                content: "\c9f6";
+            }
+
+            .cw-icon-oa:before {
+                content: "\c9f7";
+            }
+
+            .cw-icon-omit:before {
+                content: "\c9f8";
+            }
+
+            .cw-icon-order:before {
+                content: "\c9f9";
+            }
+
+            .cw-icon-ower:before {
+                content: "\c9fa";
+            }
+
+            .cw-icon-park:before {
+                content: "\c9fb";
+            }
+
+            .cw-icon-party:before {
+                content: "\c9fc";
+            }
+
+            .cw-icon-payment:before {
+                content: "\c9fd";
+            }
+
+            .cw-icon-pet:before {
+                content: "\c9fe";
+            }
+
+            .cw-icon-pledge:before {
+                content: "\c9ff";
+            }
+
+            .cw-icon-promise:before {
+                content: "\ca00";
+            }
+
+            .cw-icon-question:before {
+                content: "\ca01";
+            }
+
+            .cw-icon-refound:before {
+                content: "\ca02";
+            }
+
+            .cw-icon-refresh:before {
+                content: "\ca03";
+            }
+
+            .cw-icon-report:before {
+                content: "\ca04";
+            }
+
+            .cw-icon-screen:before {
+                content: "\ca05";
+            }
+
+            .cw-icon-service:before {
+                content: "\ca06";
+            }
+
+            .cw-icon-setting:before {
+                content: "\ca07";
+            }
+
+            .cw-icon-sign:before {
+                content: "\ca08";
+            }
+
+            .cw-icon-statistic:before {
+                content: "\ca09";
+            }
+
+            .cw-icon-struct:before {
+                content: "\ca0a";
+            }
+
+            .cw-icon-topic:before {
+                content: "\ca0b";
+            }
+
+            .cw-icon-update:before {
+                content: "\ca0c";
+            }
+
+            .cw-icon-vistor:before {
+                content: "\ca0d";
+            }
+
+            .cw-icon-warehouse:before {
+                content: "\ca0e";
+            }
+
+            .cw-icon-warning:before {
+                content: "\ca0f";
+            }
+
+            .cw-icon-wechat:before {
+                content: "\ca10";
+            }
+
+            .cw-icon-xgfy:before {
+                content: "\ca11";
+            }
+        </style>
+    </head>
+
+    <body>
+        <section class="container">
+            <header>
+                <a href="https://github.com/chowa/cwfont">
+                    <img class="logo" src="http://upload.ouliu.net/i/202001081600304i7x6.png" />
+                    <h1>cwfont</h1>
+                </a>
+            </header>
+
+            <ul class="glyphs">
+                <!-- <li>
+    				<div class="icon">
+    					<i class="icon icon-test"></i>
+    				</div>
+    				<div class="name">test</div>
+    			</li> -->
+                <li title=".ivu-icon-address">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-address"></i>
+                    </div>
+                    <div class="name">.ivu-icon-address</div>
+                </li>
+                <li title=".ivu-icon-all-mission">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-all-mission"></i>
+                    </div>
+                    <div class="name">.ivu-icon-all-mission</div>
+                </li>
+                <li title=".ivu-icon-approver">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-approver"></i>
+                    </div>
+                    <div class="name">.ivu-icon-approver</div>
+                </li>
+                <li title=".ivu-icon-bussinese">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-bussinese"></i>
+                    </div>
+                    <div class="name">.ivu-icon-bussinese</div>
+                </li>
+                <li title=".ivu-icon-charging">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-charging"></i>
+                    </div>
+                    <div class="name">.ivu-icon-charging</div>
+                </li>
+                <li title=".ivu-icon-community">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-community"></i>
+                    </div>
+                    <div class="name">.ivu-icon-community</div>
+                </li>
+                <li title=".ivu-icon-contract">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-contract"></i>
+                    </div>
+                    <div class="name">.ivu-icon-contract</div>
+                </li>
+                <li title=".ivu-icon-dashboard">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-dashboard"></i>
+                    </div>
+                    <div class="name">.ivu-icon-dashboard</div>
+                </li>
+                <li title=".ivu-icon-dispose-mission">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-dispose-mission"></i>
+                    </div>
+                    <div class="name">.ivu-icon-dispose-mission</div>
+                </li>
+                <li title=".ivu-icon-elevator">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-elevator"></i>
+                    </div>
+                    <div class="name">.ivu-icon-elevator</div>
+                </li>
+                <li title=".ivu-icon-energy">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-energy"></i>
+                    </div>
+                    <div class="name">.ivu-icon-energy</div>
+                </li>
+                <li title=".ivu-icon-entrance">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-entrance"></i>
+                    </div>
+                    <div class="name">.ivu-icon-entrance</div>
+                </li>
+                <li title=".ivu-icon-exit-full-screen">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-exit-full-screen"></i>
+                    </div>
+                    <div class="name">.ivu-icon-exit-full-screen</div>
+                </li>
+                <li title=".ivu-icon-finance">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-finance"></i>
+                    </div>
+                    <div class="name">.ivu-icon-finance</div>
+                </li>
+                <li title=".ivu-icon-fitment">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-fitment"></i>
+                    </div>
+                    <div class="name">.ivu-icon-fitment</div>
+                </li>
+                <li title=".ivu-icon-flow">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-flow"></i>
+                    </div>
+                    <div class="name">.ivu-icon-flow</div>
+                </li>
+                <li title=".ivu-icon-full-screen">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-full-screen"></i>
+                    </div>
+                    <div class="name">.ivu-icon-full-screen</div>
+                </li>
+                <li title=".ivu-icon-home">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-home"></i>
+                    </div>
+                    <div class="name">.ivu-icon-home</div>
+                </li>
+                <li title=".ivu-icon-hr">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-hr"></i>
+                    </div>
+                    <div class="name">.ivu-icon-hr</div>
+                </li>
+                <li title=".ivu-icon-inform">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-inform"></i>
+                    </div>
+                    <div class="name">.ivu-icon-inform</div>
+                </li>
+                <li title=".ivu-icon-iot">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-iot"></i>
+                    </div>
+                    <div class="name">.ivu-icon-iot</div>
+                </li>
+                <li title=".ivu-icon-judge">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-judge"></i>
+                    </div>
+                    <div class="name">.ivu-icon-judge</div>
+                </li>
+                <li title=".ivu-icon-lamp">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-lamp"></i>
+                    </div>
+                    <div class="name">.ivu-icon-lamp</div>
+                </li>
+                <li title=".ivu-icon-leave">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-leave"></i>
+                    </div>
+                    <div class="name">.ivu-icon-leave</div>
+                </li>
+                <li title=".ivu-icon-maintain">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-maintain"></i>
+                    </div>
+                    <div class="name">.ivu-icon-maintain</div>
+                </li>
+                <li title=".ivu-icon-meeting-create">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-meeting-create"></i>
+                    </div>
+                    <div class="name">.ivu-icon-meeting-create</div>
+                </li>
+                <li title=".ivu-icon-meeting-participant">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-meeting-participant"></i>
+                    </div>
+                    <div class="name">.ivu-icon-meeting-participant</div>
+                </li>
+                <li title=".ivu-icon-meeting">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-meeting"></i>
+                    </div>
+                    <div class="name">.ivu-icon-meeting</div>
+                </li>
+                <li title=".ivu-icon-menu-fold">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-menu-fold"></i>
+                    </div>
+                    <div class="name">.ivu-icon-menu-fold</div>
+                </li>
+                <li title=".ivu-icon-menu-unfold">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-menu-unfold"></i>
+                    </div>
+                    <div class="name">.ivu-icon-menu-unfold</div>
+                </li>
+                <li title=".ivu-icon-mission">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-mission"></i>
+                    </div>
+                    <div class="name">.ivu-icon-mission</div>
+                </li>
+                <li title=".ivu-icon-monitor">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-monitor"></i>
+                    </div>
+                    <div class="name">.ivu-icon-monitor</div>
+                </li>
+                <li title=".ivu-icon-more">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-more"></i>
+                    </div>
+                    <div class="name">.ivu-icon-more</div>
+                </li>
+                <li title=".ivu-icon-movecar">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-movecar"></i>
+                    </div>
+                    <div class="name">.ivu-icon-movecar</div>
+                </li>
+                <li title=".ivu-icon-my-mission">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-my-mission"></i>
+                    </div>
+                    <div class="name">.ivu-icon-my-mission</div>
+                </li>
+                <li title=".ivu-icon-notication">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-notication"></i>
+                    </div>
+                    <div class="name">.ivu-icon-notication</div>
+                </li>
+                <li title=".ivu-icon-notice">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-notice"></i>
+                    </div>
+                    <div class="name">.ivu-icon-notice</div>
+                </li>
+                <li title=".ivu-icon-oa">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-oa"></i>
+                    </div>
+                    <div class="name">.ivu-icon-oa</div>
+                </li>
+                <li title=".ivu-icon-omit">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-omit"></i>
+                    </div>
+                    <div class="name">.ivu-icon-omit</div>
+                </li>
+                <li title=".ivu-icon-order">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-order"></i>
+                    </div>
+                    <div class="name">.ivu-icon-order</div>
+                </li>
+                <li title=".ivu-icon-ower">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-ower"></i>
+                    </div>
+                    <div class="name">.ivu-icon-ower</div>
+                </li>
+                <li title=".ivu-icon-park">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-park"></i>
+                    </div>
+                    <div class="name">.ivu-icon-park</div>
+                </li>
+                <li title=".ivu-icon-party">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-party"></i>
+                    </div>
+                    <div class="name">.ivu-icon-party</div>
+                </li>
+                <li title=".ivu-icon-payment">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-payment"></i>
+                    </div>
+                    <div class="name">.ivu-icon-payment</div>
+                </li>
+                <li title=".ivu-icon-pet">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-pet"></i>
+                    </div>
+                    <div class="name">.ivu-icon-pet</div>
+                </li>
+                <li title=".ivu-icon-pledge">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-pledge"></i>
+                    </div>
+                    <div class="name">.ivu-icon-pledge</div>
+                </li>
+                <li title=".ivu-icon-promise">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-promise"></i>
+                    </div>
+                    <div class="name">.ivu-icon-promise</div>
+                </li>
+                <li title=".ivu-icon-question">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-question"></i>
+                    </div>
+                    <div class="name">.ivu-icon-question</div>
+                </li>
+                <li title=".ivu-icon-refound">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-refound"></i>
+                    </div>
+                    <div class="name">.ivu-icon-refound</div>
+                </li>
+                <li title=".ivu-icon-refresh">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-refresh"></i>
+                    </div>
+                    <div class="name">.ivu-icon-refresh</div>
+                </li>
+                <li title=".ivu-icon-report">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-report"></i>
+                    </div>
+                    <div class="name">.ivu-icon-report</div>
+                </li>
+                <li title=".ivu-icon-screen">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-screen"></i>
+                    </div>
+                    <div class="name">.ivu-icon-screen</div>
+                </li>
+                <li title=".ivu-icon-service">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-service"></i>
+                    </div>
+                    <div class="name">.ivu-icon-service</div>
+                </li>
+                <li title=".ivu-icon-setting">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-setting"></i>
+                    </div>
+                    <div class="name">.ivu-icon-setting</div>
+                </li>
+                <li title=".ivu-icon-sign">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-sign"></i>
+                    </div>
+                    <div class="name">.ivu-icon-sign</div>
+                </li>
+                <li title=".ivu-icon-statistic">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-statistic"></i>
+                    </div>
+                    <div class="name">.ivu-icon-statistic</div>
+                </li>
+                <li title=".ivu-icon-struct">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-struct"></i>
+                    </div>
+                    <div class="name">.ivu-icon-struct</div>
+                </li>
+                <li title=".ivu-icon-topic">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-topic"></i>
+                    </div>
+                    <div class="name">.ivu-icon-topic</div>
+                </li>
+                <li title=".ivu-icon-update">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-update"></i>
+                    </div>
+                    <div class="name">.ivu-icon-update</div>
+                </li>
+                <li title=".ivu-icon-vistor">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-vistor"></i>
+                    </div>
+                    <div class="name">.ivu-icon-vistor</div>
+                </li>
+                <li title=".ivu-icon-warehouse">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-warehouse"></i>
+                    </div>
+                    <div class="name">.ivu-icon-warehouse</div>
+                </li>
+                <li title=".ivu-icon-warning">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-warning"></i>
+                    </div>
+                    <div class="name">.ivu-icon-warning</div>
+                </li>
+                <li title=".ivu-icon-wechat">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-wechat"></i>
+                    </div>
+                    <div class="name">.ivu-icon-wechat</div>
+                </li>
+                <li title=".ivu-icon-xgfy">
+                    <div class="icon">
+                        <i class="cw-icon cw-icon-xgfy"></i>
+                    </div>
+                    <div class="name">.ivu-icon-xgfy</div>
+                </li>
+            </ul>
+        </section>
+    </body>
+</html>

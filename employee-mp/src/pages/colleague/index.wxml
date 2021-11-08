@@ -1,0 +1,45 @@
+<view class="container">
+    <cw-cell-group wx:if="{{fetching}}">
+        <cw-cell is-detail>
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail>
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail>
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail>
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail>
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+    </cw-cell-group>
+
+    <cw-cell-group wx:else>
+        <cw-cell
+            wx:for="{{list}}"
+            wx:key="index"
+            title="{{item.real_name}}"
+            value="{{item.phone}}"
+            is-link
+            clickable
+            bind:click="makePhone"
+            data-phone="{{item.phone}}"
+            label="{{item.department ? item.department : '-'}} {{item.job ? item.job : '-'}}"
+            is-detail
+        />
+    </cw-cell-group>
+
+    <cw-divider wx:if="{{ page_num >= page_amount && !fetching && list.length > 0 }}" contentPosition="center">
+        真的没有了
+    </cw-divider>
+
+    <!-- 加载状态 -->
+    <view wx:if="{{ fetching && page_num > 1 }}" class="load-more">
+        <cw-loading>加载中...</cw-loading>
+    </view>
+
+    <cw-notify id="cw-notify" />
+</view>

@@ -1,0 +1,15 @@
+{
+    "navigationBarTitleText": "车辆管理",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark",
+    "usingComponents": {
+        "cw-panel": "../../components/panel",
+        "cw-icon": "../../components/icon",
+        "cw-notify": "../../components/notify",
+        "cw-dialog": "../../components/dialog",
+        "cw-skeleton": "../../components/skeleton",
+        "cw-empty": "../../components/empty",
+        "cw-button": "../../components/button",
+        "cw-copyright": "../../components/copyright"
+    }
+}

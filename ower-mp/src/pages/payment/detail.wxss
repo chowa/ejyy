@@ -1,0 +1,82 @@
+.status {
+    width: 100%;
+    height: 190px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    transition: all 0.2s ease-in-out;
+}
+
+.status.cancel {
+    background: linear-gradient(to right, #ff9900, #bb7206);
+}
+
+.status.needpay {
+    background: linear-gradient(to right, #3399ff, #0560bb);
+}
+
+.status.expired {
+    background: linear-gradient(to right, #ff3300, #9f2102);
+}
+
+.status.paid {
+    background: linear-gradient(to right, #00cc66, #017d3f);
+}
+
+.status.refunding {
+    background: linear-gradient(to right, #cb51cb, #942494);
+}
+
+.status.refunded {
+    background: linear-gradient(to right, #51c6cb, #2ca9ae);
+}
+
+.description {
+    padding: 30px 30px 12px;
+    position: relative;
+    z-index: 5;
+    color: #fff;
+}
+
+.description .title {
+    font-size: 16px;
+    height: 24px;
+    line-height: 24px;
+}
+
+.description .time {
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+}
+
+.main {
+    padding: 0 20px;
+    position: relative;
+    z-index: 5;
+    margin-bottom: 20px;
+}
+
+.detail {
+    background: #fff;
+    min-height: 140px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    overflow: hidden;
+}
+
+.total {
+    color: #ff3300 !important;
+}
+
+.refound {
+    color: #ff9933 !important;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}

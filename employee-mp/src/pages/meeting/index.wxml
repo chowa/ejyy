@@ -1,0 +1,104 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-tabs active="{{ activeTabIndex }}" bind:change="onTabChange">
+        <cw-tab title="我发起的会议">
+            <cw-list
+                fetching="{{my_fetching}}"
+                page_num="{{my_page_num}}"
+                page_amount="{{my_page_amount}}"
+                list="{{my_list}}"
+                empty="暂无我发起的会议"
+                icon="meeting"
+                withFilter
+            >
+                <cw-list-item
+                    wx:for="{{my_list}}"
+                    title="{{common.number('MT', item.created_at, item.id)}}"
+                    wx:key="index"
+                >
+                    <cw-list-item-info label="会议主题">
+                        {{ item.theme }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="会议室名称">
+                        {{ item.name }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="会议室位置">
+                        {{ item.local }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="会议时间">
+                        {{ common.date(item.start_time) }}至{{ common.time(item.end_time) }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="会议状态">
+                        <block wx:if="{{item.cancel}}">
+                            <cw-tag round color="#ff976a">已取消</cw-tag>
+                        </block>
+                        <block wx:elif="{{item.start_time > now}}">
+                            <cw-tag round color="#eb2f96">未开始</cw-tag>
+                        </block>
+                        <block wx:elif="{{item.start_time <= now && item.end_time >= now}}">
+                            <cw-tag round color="#ffe58f">进行中</cw-tag>
+                        </block>
+                        <block wx:else>
+                            <cw-tag round color="#52c41a">已结束</cw-tag>
+                        </block>
+                    </cw-list-item-info>
+                    <cw-list-item-info label="预定时间">
+                        {{ common.date(item.created_at) }}
+                    </cw-list-item-info>
+                </cw-list-item>
+            </cw-list>
+        </cw-tab>
+
+        <cw-tab title="我参与的会议">
+            <cw-list
+                fetching="{{participant_fetching}}"
+                page_num="{{participant_page_num}}"
+                page_amount="{{participant_page_amount}}"
+                list="{{participant_list}}"
+                empty="暂无需要我参与的会议"
+                icon="meeting"
+                withFilter
+            >
+                <cw-list-item
+                    wx:for="{{participant_list}}"
+                    title="{{common.number('MT', item.created_at, item.id)}}"
+                    wx:key="index"
+                >
+                    <cw-list-item-info label="会议主题">
+                        {{ item.theme }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="会议室名称">
+                        {{ item.name }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="会议室位置">
+                        {{ item.local }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="会议发起人">
+                        {{ item.real_name }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="会议时间">
+                        {{ common.date(item.start_time) }}至{{ common.time(item.end_time) }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="会议状态">
+                        <block wx:if="{{item.cancel}}">
+                            <cw-tag round color="#ff976a">已取消</cw-tag>
+                        </block>
+                        <block wx:elif="{{item.start_time > now}}">
+                            <cw-tag round color="#eb2f96">未开始</cw-tag>
+                        </block>
+                        <block wx:elif="{{item.start_time <= now && item.end_time >= now}}">
+                            <cw-tag round color="#ffe58f">进行中</cw-tag>
+                        </block>
+                        <block wx:else>
+                            <cw-tag round color="#52c41a">已结束</cw-tag>
+                        </block>
+                    </cw-list-item-info>
+                    <cw-list-item-info label="预定时间">
+                        {{ common.date(item.created_at) }}
+                    </cw-list-item-info>
+                </cw-list-item>
+            </cw-list>
+        </cw-tab>
+    </cw-tabs>
+</view>

@@ -1,0 +1,66 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-nav-bar
+        title="使用门禁卡"
+        fixed
+        border="{{ false }}"
+        custom-class="nav-bar"
+        left-arrow
+        bind:click-left="pageBack"
+        z-index="100"
+        custom-style="height:{{ systemInfo.navBarHeight + systemInfo.statusBarHeight }}px;padding-top:{{ systemInfo.statusBarHeight }}px"
+    />
+
+    <view style="height:{{ systemInfo.navBarHeight + systemInfo.statusBarHeight }}px" />
+
+    <view class="card">
+        <view class="broadcast-1" wx:if="{{nfcopen && activeTab === 'nfc'}}" />
+        <view class="broadcast-2" wx:if="{{nfcopen && activeTab === 'nfc'}}" />
+        <image src="../../assets/access/card{{building_id % 3}}.jpg" mode="widthFix" class="bg" />
+        <view class="name">{{communityInfo.current.name}}</view>
+        <view
+            wx:for="{{communityInfo.current.houses}}"
+            wx:key="index"
+            wx:if="{{item.building_id === building_id}}"
+            class="house"
+        >
+            {{ common.building(item) }}
+        </view>
+    </view>
+
+    <view
+        class="content"
+        wx:if="{{communityInfo.current.access_nfc && activeTab === 'nfc' && nfcable}}"
+        style="padding-top:{{ systemInfo.navBarHeight + systemInfo.statusBarHeight }}px"
+    >
+        <view wx:if="{{!nfcopen}}" bindtap="startHCE" class="open">NFC未开启，点击开启NFC</view>
+        <view wx:else>
+            <cw-icon name="use-nfc" custom-class="icon" />
+            <view>请将手机背面顶部靠近刷卡区域</view>
+        </view>
+    </view>
+    <view
+        class="content"
+        wx:if="{{communityInfo.current.access_qrcode && activeTab === 'qrcode'}}"
+        style="padding-top:{{ systemInfo.navBarHeight + systemInfo.statusBarHeight }}px"
+    >
+        <canvas class="canvas" type="2d" id="canvas"></canvas>
+        <view>请将此二维码靠近扫码区域</view>
+    </view>
+
+    <view class="tab" wx:if="{{communityInfo.current.access_nfc && communityInfo.current.access_qrcode && nfcable}}">
+        <view class="nfc {{activeTab === 'nfc' ? 'active': ''}}" bindtap="changeTab" data-tab="nfc">
+            <cw-icon name="nfc" />
+        </view>
+        <view class="qrcode {{activeTab === 'qrcode' ? 'active': ''}}" bindtap="changeTab" data-tab="qrcode">
+            <cw-icon name="qrcode" />
+        </view>
+    </view>
+
+    <view class="bg">
+        <image src="../../assets/access/bg.jpg" mode="heightFix"></image>
+    </view>
+
+    <cw-toast id="cw-toast" />
+</view>

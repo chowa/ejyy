@@ -1,0 +1,38 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-list
+        fetching="{{fetching}}"
+        page_num="{{page_num}}"
+        page_amount="{{page_amount}}"
+        list="{{list}}"
+        empty="暂无装修验收"
+        icon="fitment"
+    >
+        <cw-list-item
+            wx:for="{{list}}"
+            title="{{common.number('F', item.created_at, item.id)}}"
+            wx:key="index"
+            useFooterSlot="{{item.step === 3 ? true : false}}"
+        >
+            <cw-list-item-info label="装修位置">
+                {{ common.building(item) }}
+            </cw-list-item-info>
+            <cw-list-item-info label="申请时间">
+                {{ common.date(item.created_at) }}
+            </cw-list-item-info>
+
+            <view slot="footer">
+                <cw-button size="small" round type="primary" data-id="{{item.id}}" bind:click="finish">
+                    验收完成
+                </cw-button>
+            </view>
+        </cw-list-item>
+    </cw-list>
+
+    <cw-dialog id="cw-dialog" />
+
+    <!-- 全局提示 -->
+    <cw-notify id="cw-notify" />
+    <cw-toast id="cw-toast" />
+</view>

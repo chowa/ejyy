@@ -1,0 +1,51 @@
+@import '../common/index.wxss';
+
+.cw-image {
+    position: relative;
+    display: inline-block;
+}
+
+.cw-image--round {
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.cw-image--round .cw-image__img {
+    border-radius: inherit;
+}
+
+.cw-image__error,
+.cw-image__img,
+.cw-image__loading {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.cw-image__error,
+.cw-image__loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    color: #969799;
+    font-size: 14px;
+    background-color: #f7f8fa;
+}
+
+.cw-image__loading-icon {
+    color: #dcdee0;
+    font-size: 32px !important;
+}
+
+.cw-image__error-icon {
+    color: #dcdee0;
+    font-size: 32px !important;
+}

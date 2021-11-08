@@ -1,0 +1,46 @@
+@import '../common/index.wxss';
+
+.cw-switch {
+    position: relative;
+    display: inline-block;
+    box-sizing: initial;
+    width: 2em;
+    height: 1em;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 1em;
+    transition: background-color 0.3s;
+}
+
+.cw-switch__node {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 100%;
+    z-index: 1;
+    width: 1em;
+    height: 1em;
+    background-color: #fff;
+    box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.05), 0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 3px 3px 0 rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s cubic-bezier(0.3, 1.05, 0.4, 1.05);
+}
+
+.cw-switch__loading {
+    position: absolute !important;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+}
+
+.cw-switch--on {
+    background-color: #1989fa;
+}
+
+.cw-switch--on .cw-switch__node {
+    transform: translateX(1em);
+}
+
+.cw-switch--disabled {
+    opacity: 0.4;
+}

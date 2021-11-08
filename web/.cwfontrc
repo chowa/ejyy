@@ -1,0 +1,28 @@
+---
+  compile:
+    syntax: "less"
+    startPoint: 51666
+    fontName: "Ionicons"
+    styleFileName: "custom-icon"
+    selector: ".ivu-icon-{{glyph}}"
+  global: false
+  stylelint: false
+  hash:
+    font: false
+    style: false
+    len: 8
+  preview: true
+  format:
+    printWidth: 120
+    tabWidth: 4
+    useTabs: false
+    semi: true
+    endOfLine: "lf"
+  input:
+    svgsDir: './cwfont/svg-icons'
+    styleTpl: './cwfont/style.tpl'
+    previewTpl: null
+  output:
+    font: './src/styles/iconfont'
+    style: './src/styles'
+    preview: './cwfont'

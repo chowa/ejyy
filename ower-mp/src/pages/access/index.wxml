@@ -1,0 +1,82 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-tabs active="{{ activeTab }}" bind:change="onTabChange" disabled="{{fetching}}">
+        <cw-tab title="门禁卡">
+            <cw-empty
+                icon="not-support"
+                wx:if="{{!communityInfo.current.access_nfc && !communityInfo.current.access_qrcode}}"
+                description="{{communityInfo.current.name}}小区暂不支持联网门禁系统"
+                fixed="{{false}}"
+            />
+            <cw-empty
+                icon="access"
+                wx:elif="{{cardList.length === 0}}"
+                description="未查询到{{communityInfo.current.name}}小区门禁卡"
+                fixed="{{false}}"
+            />
+            <view wx:else>
+                <view wx:if="{{!fetching}}">
+                    <navigator
+                        wx:for="{{cardList}}"
+                        wx:key="index"
+                        url="/pages/access/card?uid={{item.uid}}&building_id={{item.building_id}}"
+                        class="card"
+                    >
+                        <image src="../../assets/access/card{{item.building_id % 3}}.jpg" mode="widthFix" class="bg" />
+
+                        <view class="name">{{communityInfo.current.name}}</view>
+                        <view
+                            wx:for="{{communityInfo.current.houses}}"
+                            wx:for-item="row"
+                            wx:for-key="key"
+                            wx:key="key"
+                            wx:if="{{row.building_id === item.building_id}}"
+                            class="house"
+                        >
+                            {{ common.building(row) }}
+                        </view>
+                    </navigator>
+                </view>
+                <view wx:else>
+                    <view class="card" wx:for="{{2}}" wx:key="key">
+                        <view class="name"><cw-skeleton row="{{1}}" row-width="25%" /></view>
+                        <view class="house"><cw-skeleton row="{{1}}" row-width="42%" /></view>
+                    </view>
+                </view>
+            </view>
+        </cw-tab>
+        <cw-tab title="远程开门">
+            <cw-empty
+                fixed="{{false}}"
+                icon="not-support"
+                description="{{communityInfo.current.name}}小区暂不支持远程开门"
+                wx:if="{{!communityInfo.current.access_remote}}"
+            />
+            <cw-empty
+                icon="access"
+                wx:elif="{{entranceList.length === 0}}"
+                description="未查询到{{communityInfo.current.name}}小区可远程开门门禁"
+                fixed="{{false}}"
+            />
+            <view wx:else>
+                <cw-cell-group title="可操控智能门禁">
+                    <cw-cell
+                        wx:for="{{entranceList}}"
+                        wx:key="index"
+                        title="{{item.name}}"
+                        is-link
+                        border="{{index === entranceList.length - 1 ? false : true}}"
+                        data-id="{{item.id}}"
+                        bind:click="openDoor"
+                        clickable
+                    />
+                </cw-cell-group>
+            </view>
+        </cw-tab>
+    </cw-tabs>
+
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+    <cw-copyright />
+</view>

@@ -1,0 +1,27 @@
+@import '../common/index.wxss';
+
+.cw-panel {
+    background: #fff;
+}
+
+.cw-panel__header-value {
+    color: #999;
+}
+
+.cw-panel__footer {
+    padding: 8px 16px;
+}
+
+.cw-panel__header:before {
+    content: '';
+    position: absolute;
+    top: 14px;
+    left: 0px;
+    bottom: 14px;
+    width: 4px;
+    background: #1989fa;
+}
+
+.cw-panel__clickable:before {
+    background: #ee0a24;
+}

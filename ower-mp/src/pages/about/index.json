@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "关于我们",
+    "usingComponents": {
+        "cw-copyright": "../../components/copyright"
+    }
+}

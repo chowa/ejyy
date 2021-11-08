@@ -1,0 +1,157 @@
+<wxs src="../../pages/common/common.wxs" module="common" />
+<wxs src="./index.wxs" module="workflow" />
+
+<view class="workflow">
+    <view class="workflow-item">
+        <view class="init dot">
+            <cw-icon name="user" />
+        </view>
+        <view class="content">
+            <view class="title">
+                <navigator class="link" url="/pages/colleague/detail?id={{info.created_by}}">
+                    {{ info.real_name }}
+                </navigator>
+                发起
+            </view>
+            <view class="info">{{ common.date(info.created_at) }}</view>
+        </view>
+    </view>
+
+    <view
+        class="workflow-item {{info.step < item.step ? 'disabled' : ''}} {{info.step === item.step && info.success === 0 ? 'error' : ''}}"
+        wx:for="{{steps}}"
+        wx:key="index"
+    >
+        <block wx:if="{{item.type === 2}}">
+            <view class="approver dot">
+                <cw-icon name="approver" />
+            </view>
+            <view class="content">
+                <view class="title">
+                    <navigator class="link" url="/pages/colleague/detail?id={{item.relation_user_id}}">
+                        {{ item.relation_user_name }}
+                    </navigator>
+                    {{ item.relation_user_id ? '负责审批' : '待指定审批人' }}
+                </view>
+                <!-- 当前步骤-->
+                <block wx:if="{{info.step === item.step}}">
+                    <!-- 自己取消 -->
+                    <block wx:if="{{info.cancel === 1}}">
+                        <view class="info">{{ common.date(info.canceled_at) }} 申请人撤销</view>
+                    </block>
+                    <!-- 被驳回 -->
+                    <block wx:elif="{{info.success === 0}}">
+                        <view class="info">审批驳回</view>
+                        <view class="info" wx:if="{{item.refuse_reason}}">{{ item.refuse_reason }}</view>
+                    </block>
+                    <!-- 已完成 -->
+                    <block wx:elif="{{item.finish}}">
+                        <view class="info">{{ common.date(item.finished_at) }}</view>
+                    </block>
+                    <!-- 未操作 -->
+                    <block wx:else>
+                        <cw-panel
+                            wx:if="{{item.relation_user_id && item.relation_user_id === userId}}"
+                            title="审批操作"
+                            useFooterSlot
+                        >
+                            <cw-radio-group value="{{ agree }}" bind:change="onAgreeChange">
+                                <cw-cell-group>
+                                    <cw-cell title="批准" clickable data-value="{{1}}" bind:click="onAgreeClick">
+                                        <cw-radio slot="right-icon" name="{{1}}" />
+                                    </cw-cell>
+                                    <cw-cell
+                                        title="驳回"
+                                        clickable
+                                        border="{{!agree}}"
+                                        data-value="{{0}}"
+                                        bind:click="onAgreeClick"
+                                    >
+                                        <cw-radio slot="right-icon" name="{{0}}" />
+                                    </cw-cell>
+                                </cw-cell-group>
+                            </cw-radio-group>
+                            <cw-field
+                                model:value="{{ reason }}"
+                                wx:if="{{!agree}}"
+                                maxlength="{{128}}"
+                                show-word-limit
+                                border="{{false}}"
+                                placeholder="请输入驳回原因，非必须"
+                                border="{{ false }}"
+                            />
+                            <view slot="footer" class="footer">
+                                <cw-button size="small" round type="info" data-id="{{item.id}}" bind:click="doApprover">
+                                    确认
+                                </cw-button>
+                            </view>
+                        </cw-panel>
+                        <cw-panel
+                            wx:elif="item.applicant_assign && !item.relation_user_id"
+                            title="指定审批人"
+                            useFooterSlot
+                        >
+                            <view class="relationed" bind:tap="showColleague">
+                                {{ relation_user_id ? relation_user_real_name : '点击选择审批人'}}
+                            </view>
+                            <cw-colleague show="{{show}}" bind:close="closeColleague" bind:select="setRelationId" />
+                            <view slot="footer" class="footer">
+                                <cw-button
+                                    size="small"
+                                    round
+                                    type="info"
+                                    data-id="{{item.id}}"
+                                    bind:click="bindRelation"
+                                >
+                                    确认
+                                </cw-button>
+                            </view>
+                        </cw-panel>
+                        <view class="info" wx:else>待审核</view>
+                    </block>
+                </block>
+                <!-- 过了当前了 -->
+                <block wx:elif="{{info.step > item.step}}">
+                    <view class="info">{{ common.date(item.finished_at) }}</view>
+                </block>
+            </view>
+        </block>
+
+        <block wx:elif="{{item.type === 3}}">
+            <view class="notice dot">
+                <cw-icon name="notice" />
+            </view>
+            <view class="content">
+                <view class="title">
+                    抄送：
+                    <navigator class="link" url="/pages/colleague/detail?id={{item.relation_user_id}}">
+                        {{ item.relation_user_name }}
+                    </navigator>
+                </view>
+            </view>
+        </block>
+
+        <block wx:elif="{{item.type === 4}}">
+            <view class="judge dot">
+                <cw-icon name="judge" />
+            </view>
+            <view class="content">
+                <view class="title">
+                    {{ workflow.judge(item, info.department_name, label) }}
+                </view>
+            </view>
+        </block>
+    </view>
+    <view class="workflow-item last {{!info.success ? 'disabled' : ''}}">
+        <view class="end dot">
+            <cw-icon name="success" />
+        </view>
+        <view class="content">
+            <view class="title">
+                申请成功
+            </view>
+        </view>
+    </view>
+
+    <cw-toast id="cw-toast" />
+</view>

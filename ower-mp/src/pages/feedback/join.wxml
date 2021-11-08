@@ -1,0 +1,60 @@
+<view class="container">
+    <cw-cell-group>
+        <cw-field
+            label="公司名称"
+            maxlength="{{ 20 }}"
+            auto-focus
+            show-word-limit
+            model:value="{{ company_name }}"
+            placeholder="请输入公司名称"
+        />
+        <cw-field
+            label="您的称呼"
+            maxlength="{{ 5 }}"
+            show-word-limit
+            model:value="{{ contact_person }}"
+            placeholder="请输入您的称呼"
+        />
+        <cw-cell title="联系电话" value="{{userInfo.phone}}"></cw-cell>
+        <cw-field
+            label="小区名称"
+            maxlength="{{ 12 }}"
+            show-word-limit
+            model:value="{{ community_name }}"
+            placeholder="请输入小区名称（一个小区名即可）"
+        />
+        <cw-field label="小区户数" type="number" model:value="{{ household_amount }}" placeholder="请输入小区户数" />
+        <cw-cell
+            border="{{false}}"
+            title="小区地址"
+            value="{{province ? province + city + district : '请选择地址'}}"
+            bind:click="showPicker"
+            is-link
+        />
+    </cw-cell-group>
+
+    <cw-popup show="{{pickerVisible}}" position="bottom">
+        <cw-picker
+            columns="{{ columns }}"
+            bind:change="onLocationChange"
+            bind:confirm="confirmLocation"
+            bind:cancel="cancelLocation"
+            show-toolbar="{{true}}"
+        />
+    </cw-popup>
+
+    <view class="notice">
+        <view class="item">本功能每日限用一次。</view>
+        <view class="item">请勿重复申请。</view>
+        <view class="item">请如实填写信息以方便我们与您联系。</view>
+        <view class="item">发布恶意、不实信息将会冻结账号。</view>
+    </view>
+
+    <cw-button custom-class="btn" loading="{{submiting}}" block type="info" disabled="{{ disabled }}" bind:click="save">
+        提交入驻申请
+    </cw-button>
+    <cw-copyright />
+    <cw-notify id="cw-notify" />
+    <cw-toast id="cw-toast" />
+    <cw-dialog id="cw-dialog" />
+</view>

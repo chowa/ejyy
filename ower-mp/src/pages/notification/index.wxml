@@ -1,0 +1,89 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-tabs active="{{ activeTabIndex }}" bind:change="onTabChange">
+        <cw-tab title="未读消息">
+            <cw-list
+                fetching="{{unread_fetching}}"
+                page_num="{{unread_page_num}}"
+                page_amount="{{unread_page_amount}}"
+                list="{{unread_list}}"
+                empty="暂无未读消息"
+                withFilter
+            >
+                <view class="message-wrapper">
+                    <view class="message-item" wx:for="{{ unread_list }}" wx:key="index">
+                        <navigator url="/pages/notification/detail?id={{ item.id }}&unread=1">
+                            <view class="message-inner">
+                                <view class="message-header">
+                                    <view class="ref">
+                                        <view class="dot {{ item.refer === 1 ? 'system' : 'community' }}" />
+                                        <text>{{ item.refer === 2 ? '系统消息' : '物业消息' }}</text>
+                                    </view>
+
+                                    <text class="time">{{ common.date(item.created_at) }}</text>
+                                </view>
+                                <view class="message-body">
+                                    <view class="message-title">{{ item.title }}</view>
+                                    <view class="message-scope">
+                                        通知范围：{{ item.scope ? item.scope + '小区' : '全体业主' }}
+                                    </view>
+                                    <view class="message-preview">
+                                        {{ item.overview }}
+                                    </view>
+
+                                    <view class="message-unread" wx:if="{{ !item.readed }}">未读</view>
+                                </view>
+                                <view class="message-footer">
+                                    <text>立即查看</text>
+                                    <text>></text>
+                                </view>
+                            </view>
+                        </navigator>
+                    </view>
+                </view>
+            </cw-list>
+        </cw-tab>
+
+        <cw-tab title="已读消息">
+            <cw-list
+                fetching="{{readed_fetching}}"
+                page_num="{{readed_page_num}}"
+                page_amount="{{readed_page_amount}}"
+                list="{{readed_list}}"
+                empty="暂无消息"
+                withFilter
+            >
+                <view class="message-wrapper">
+                    <view class="message-item" wx:for="{{ readed_list }}" wx:key="index">
+                        <navigator url="/pages/notification/detail?id={{ item.id }}&unread=0">
+                            <view class="message-inner">
+                                <view class="message-header">
+                                    <view class="ref">
+                                        <view class="dot {{ item.refer === 1 ? 'system' : 'community' }}" />
+                                        <text>{{ item.refer === 2 ? '系统消息' : '物业消息' }}</text>
+                                    </view>
+
+                                    <text class="time">{{ common.date(item.created_at) }}</text>
+                                </view>
+                                <view class="message-body">
+                                    <view class="message-title">{{ item.title }}</view>
+                                    <view class="message-scope">
+                                        通知范围：{{ item.scope ? item.scope + '小区' : '全体业主' }}
+                                    </view>
+                                    <view class="message-preview">
+                                        {{ item.overview }}
+                                    </view>
+                                </view>
+                                <view class="message-footer">
+                                    <text>立即查看</text>
+                                    <text>></text>
+                                </view>
+                            </view>
+                        </navigator>
+                    </view>
+                </view>
+            </cw-list>
+        </cw-tab>
+    </cw-tabs>
+</view>

@@ -1,0 +1,9 @@
+{
+    "navigationBarTitleText": "家人认证",
+    "navigationStyle": "custom",
+    "usingComponents": {
+        "cw-toast": "../../components/toast",
+        "cw-nav-bar": "../../components/nav-bar",
+        "cw-copyright": "../../components/copyright"
+    }
+}

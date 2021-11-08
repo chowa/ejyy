@@ -1,0 +1,14 @@
+{
+    "navigationBarTitleText": "添加车辆",
+    "usingComponents": {
+        "cw-notify": "../../components/notify",
+        "cw-toast": "../../components/toast",
+        "cw-button": "../../components/button",
+        "cw-copyright": "../../components/copyright",
+        "cw-radio-group": "../../components/radio-group",
+        "cw-radio": "../../components/radio",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-cell": "../../components/cell",
+        "cw-car-number": "../../components/car-number"
+    }
+}

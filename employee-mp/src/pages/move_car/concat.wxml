@@ -1,0 +1,39 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-cell-group title="{{car_number}}联系电话" wx:if="{{fetching}}">
+        <cw-cell is-link>
+            <cw-skeleton in-cell row="1" />
+        </cw-cell>
+        <cw-cell is-link>
+            <cw-skeleton in-cell row="1" />
+        </cw-cell>
+        <cw-cell is-link>
+            <cw-skeleton in-cell row="1" />
+        </cw-cell>
+        <cw-cell is-link>
+            <cw-skeleton in-cell row="1" />
+        </cw-cell>
+        <cw-cell is-link>
+            <cw-skeleton in-cell row="1" />
+        </cw-cell>
+    </cw-cell-group>
+    <view wx:else>
+        <cw-cell-group title="{{car_number}}联系电话" wx:if="{{list.length > 0}}">
+            <cw-cell
+                wx:for="{{list}}"
+                wx:key="index"
+                title="{{item.phone}}"
+                data-phone="{{item.phone}}"
+                clickable
+                is-link
+                bind:click="makeCell"
+            >
+                <cw-icon name="phone" />
+            </cw-cell>
+        </cw-cell-group>
+        <cw-empty wx:if="{{list.length === 0}}" with-copyright description="未查询到任何联系方式" />
+    </view>
+
+    <cw-copyright />
+</view>

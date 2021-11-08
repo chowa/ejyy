@@ -1,0 +1,16 @@
+<view class="cw-employee">
+    <view class="avatar">
+        <image class="avatar-url" src="{{ ASSETS_HOST }}{{ info.avatar_url }}" lazy-load mode="scaleToFill" />
+    </view>
+    <view class="postinfo">
+        <view class="name">
+            {{info.real_name}}
+        </view>
+        <view class="department">
+            {{info.department ? info.department : '-'}}
+        </view>
+        <view class="job">
+            {{info.job ? info.job : '-'}}
+        </view>
+    </view>
+</view>

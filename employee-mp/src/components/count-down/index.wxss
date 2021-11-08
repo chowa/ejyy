@@ -1,0 +1,7 @@
+@import '../common/index.wxss';
+
+.cw-count-down {
+    color: #323233;
+    font-size: 14px;
+    line-height: 20px;
+}

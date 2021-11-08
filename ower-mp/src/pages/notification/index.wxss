@@ -1,0 +1,121 @@
+.message-wrapper {
+    padding: 18px 0;
+}
+
+.message-item {
+    padding: 0 18px;
+    margin-bottom: 12px;
+}
+
+.message-inner {
+    border: 1px solid #eee;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.message-header {
+    padding: 0 12px;
+    height: 38px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+}
+
+.message-header .ref {
+    color: #787878;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.message-header .ref .dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    margin-right: 4px;
+}
+
+.message-header .ref .dot.system {
+    background: #cc33ff;
+}
+
+.message-header .ref .dot.community {
+    background: #99ffff;
+}
+
+.message-header .time {
+    font-size: 12px;
+    color: #787878;
+    line-break: 1;
+}
+
+.message-body {
+    padding: 12px 16px;
+    position: relative;
+}
+
+.message-unread {
+    position: absolute;
+    right: 0;
+    top: 18px;
+    font-size: 12px;
+    color: #fff;
+    background: #ff0066;
+    width: 50px;
+    padding-left: 12px;
+    text-align: center;
+    height: 22px;
+    line-height: 22px;
+}
+
+.message-unread:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 11px solid transparent;
+    border-left-color: #fff;
+}
+
+.message-title {
+    font-size: 14px;
+    color: #323333;
+    line-break: 28px;
+    margin-bottom: 8px;
+}
+
+.message-scope {
+    font-size: 12px;
+    color: #545454;
+    line-height: 20px;
+    margin-bottom: 4px;
+}
+
+.message-preview {
+    font-size: 12px;
+    color: #878787;
+    line-height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.message-footer {
+    height: 30px;
+    border-top: 1px solid #eee;
+    padding: 0 12px;
+    font-size: 12px;
+    color: #a6a6a6;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.message-empty {
+    position: relative;
+}

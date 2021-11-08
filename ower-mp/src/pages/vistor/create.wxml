@@ -1,0 +1,79 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-cell-group>
+        <cw-cell
+            title="所在小区"
+            title-width="100px"
+            value="{{communityInfo.current.name}}小区"
+            is-link
+            is-detail
+            url="/pages/community/index"
+        />
+        <cw-cell is-link clickable title="在通讯录中选择访客" bind:click="chooseContact"/>
+        <cw-field
+            label="访客称呼"
+            maxlength="{{ 8 }}"
+            show-word-limit
+            model:value="{{ vistor_name }}"
+            placeholder="请输入访客称呼"
+        />
+        <cw-field
+            label="访客手机"
+            maxlength="{{ 11 }}"
+            show-word-limit
+            model:value="{{ vistor_phone }}"
+            placeholder="请输入访客手机手机号码"
+        />
+        <cw-cell
+            title="到访地点"
+            value="{{!vistorLocal ? '请选择接到访地点' : vistorLocal}}"
+            is-detail="{{vistorLocal ? true : false}}"
+            is-link
+            clickable
+            bind:click="showAction"
+        />
+        <cw-cell
+            title="到访时间"
+            value="{{!expire ? '请选择到访时间' : common.date(expire, false)}}"
+            is-link
+            is-detail="{{expire ? true : false}}"
+            clickable
+            bind:click="showCalendar"
+            border="{{ false }}"
+        />
+    </cw-cell-group>
+
+    <cw-cell-group title="访客车牌">
+        <cw-cell title="是否新能源">
+            <cw-switch bind:change="updateNewEnergy" checked="{{is_new_energy}}" />
+        </cw-cell>
+        <cw-cell>
+            <cw-car-number is-new-energy="{{is_new_energy}}" id="car-number" bind:change="onCarNumberChange" />
+        </cw-cell>
+    </cw-cell-group>
+
+    <cw-button custom-class="btn" block loading="{{submiting}}" type="info" bind:click="save">
+        提交
+    </cw-button>
+    <cw-copyright />
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+    <cw-calendar
+        title="到访日期"
+        min-date="{{stamp}}"
+        max-date="{{stamp + 1000 * 60 * 60 * 24 * 30}}"
+        show="{{calendarVisible}}"
+        bind:close="hideCalendar"
+        bind:confirm="onDateChange"
+    />
+
+    <cw-action-sheet
+        title="到访地点"
+        close-on-click-overlay="{{true}}"
+        show="{{actionVisible}}"
+        bind:close="hideAction"
+        bind:select="onActionChange"
+        actions="{{localActions}}"
+    />
+</view>

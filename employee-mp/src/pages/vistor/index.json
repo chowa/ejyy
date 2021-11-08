@@ -1,0 +1,12 @@
+{
+    "navigationBarTitleText": "访客认证",
+    "backgroundTextStyle": "dark",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "usingComponents": {
+        "cw-copyright": "../../components/copyright",
+        "cw-skeleton": "../../components/skeleton",
+        "cw-cell": "../../components/cell",
+        "cw-cell-group": "../../components/cell-group"
+    }
+}

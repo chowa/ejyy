@@ -1,0 +1,12 @@
+function province(car_number) {
+    return car_number.substring(0, 2);
+}
+
+function number(car_number) {
+    return car_number.substring(2);
+}
+
+module.exports = {
+    province: province,
+    number: number
+};

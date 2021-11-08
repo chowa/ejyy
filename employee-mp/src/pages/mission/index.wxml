@@ -1,0 +1,76 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-list
+        fetching="{{fetching}}"
+        page_num="{{page_num}}"
+        page_amount="{{page_amount}}"
+        list="{{list}}"
+        empty="暂无巡检任务"
+        icon="mission"
+    >
+        <cw-list-item
+            wx:for="{{list}}"
+            title="{{common.number('MN', item.created_at, item.id)}}"
+            wx:key="index"
+            useFooterSlot="{{item.start_date < now && !item.cancel}}"
+        >
+            <cw-list-item-info label="开始日期">
+                {{common.date(item.start_date, false)}}
+            </cw-list-item-info>
+            <cw-list-item-info label="结束日期">
+                {{common.date(item.end_date, false)}}
+            </cw-list-item-info>
+            <cw-list-item-info label="上报时间">
+                {{common.hour(item.start_hour)}}至{{common.hour(item.end_hour)}}
+            </cw-list-item-info>
+            <cw-list-item-info label="任务分类">
+                {{item.category}}
+            </cw-list-item-info>
+            <cw-list-item-info label="巡检路线">
+                {{item.line}}
+            </cw-list-item-info>
+            <cw-list-item-info label="任务状态">
+                <block wx:if="{{item.cancel}}">
+                    <cw-tag round color="#eb2f96">已取消</cw-tag>
+                </block>
+                <block wx:elif="{{item.start_date > now}}">
+                    <cw-tag round color="#ffe58f">未开始</cw-tag>
+                </block>
+                <block wx:elif="{{item.end_date < now}}">
+                    <cw-tag round color="#f90">已结束</cw-tag>
+                </block>
+                <block wx:else>
+                    <cw-tag round color="#52c41a">进行中</cw-tag>
+                </block>
+            </cw-list-item-info>
+            <cw-list-item-info label="分配人">
+                {{item.real_name}}
+            </cw-list-item-info>
+            <cw-list-item-info label="创建时间">
+                {{ common.date(item.created_at) }}
+            </cw-list-item-info>
+
+            <view slot="footer" wx:if="{{item.start_date < now && !item.cancel}}">
+                <cw-button size="small" round type="default" data-id="{{item.id}}" bind:click="goToDetail">
+                    巡检历史
+                </cw-button>
+                <cw-button
+                    size="small"
+                    custom-class="btn-ml"
+                    round
+                    type="primary"
+                    class="btn"
+                    data-id="{{item.id}}"
+                    bind:click="startMission"
+                    wx:if="{{!item.finish && item.end_date > now}}"
+                >
+                    开始巡检
+                </cw-button>
+            </view>
+        </cw-list-item>
+    </cw-list>
+
+    <!-- 全局提示 -->
+    <cw-notify id="cw-notify" />
+</view>

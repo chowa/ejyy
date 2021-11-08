@@ -1,0 +1,54 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/home/index",
+          "pathName": "pages/home/index",
+          "query": "",
+          "scene": 1011
+        },
+        {
+          "name": "pages/vistor/index",
+          "pathName": "pages/vistor/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/home/repair",
+          "pathName": "pages/home/repair",
+          "query": "id=2",
+          "scene": null
+        },
+        {
+          "name": "pages/home/index",
+          "pathName": "pages/home/index",
+          "query": "",
+          "scene": 1011
+        },
+        {
+          "name": "疫情",
+          "pathName": "pages/epidemic/index",
+          "query": "",
+          "scene": 1011
+        },
+        {
+          "name": "",
+          "pathName": "pages/material/index",
+          "query": "id=1",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

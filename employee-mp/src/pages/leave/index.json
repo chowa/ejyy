@@ -1,0 +1,23 @@
+{
+    "navigationBarTitleText": "请假申请",
+    "onReachBottomDistance": 50,
+    "enablePullDownRefresh": true,
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "usingComponents": {
+        "cw-toast": "../../components/toast",
+        "cw-notify": "../../components/notify",
+        "cw-tabs": "../../components/tabs",
+        "cw-tab": "../../components/tab",
+        "cw-tag": "../../components/tag",
+        "cw-button": "../../components/button",
+        "cw-cell": "../../components/cell",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-field": "../../components/field",
+        "cw-calendar": "../../components/calendar",
+        "cw-copyright": "../../components/copyright",
+        "cw-list": "../../components/list",
+        "cw-list-item": "../../components/list-item",
+        "cw-list-item-info": "../../components/list-item-info"
+    }
+}

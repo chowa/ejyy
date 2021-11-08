@@ -1,0 +1,113 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <view wx:if="{{fetching}}">
+        <cw-cell wx:for="{{6}}" wx:key="index" is-link>
+            <cw-skeleton in-cell slot="title" row="1" />
+        </cw-cell>
+    </view>
+    <view wx:else>
+        <view wx:if="{{communityInfo.current.houses.length + communityInfo.current.merchants.length > list.length}}">
+            <cw-cell
+                wx:for="{{communityInfo.current.houses}}"
+                wx:key="index"
+                wx:if="{{!common.includes(list, item.building_id)}}"
+                title="{{common.building(item)}}"
+                data-id="{{item.building_id}}"
+                bind:click="showNotice"
+                value="申请"
+                is-link
+            />
+            <cw-cell
+                wx:for="{{communityInfo.current.merchants}}"
+                wx:key="index"
+                wx:if="{{!common.includes(list, item.building_id)}}"
+                title="{{common.building(item)}}"
+                data-id="{{item.building_id}}"
+                bind:click="showNotice"
+                value="申请"
+                is-link
+            />
+        </view>
+        <cw-empty
+            description="暂无{{communityInfo.current.name}}小区可进行装备的房屋"
+            icon="fitment"
+            with-copyright
+            wx:else
+        >
+            <navigator url="/pages/community/index" class="link">切换默认小区？</navigator>
+        </cw-empty>
+    </view>
+
+    <cw-popup show="{{showPopup}}" position="bottom">
+        <view class="header">装修告知书</view>
+        <view class="wrapper">
+            <view class="paragraph">尊敬的业主：</view>
+            <view class="paragraph indent">
+                您好！为了共同维护小区的房屋结构完好和外观统一，保持环境整洁、优美，维护广大业主的利益，物业服务中心温馨提醒您：
+            </view>
+
+            <view class="unit">
+                <view class="title">一、准备装修的业主请至前台办理装修申请及施工许可证，具体流程如下：</view>
+
+                <view class="item">业主及装修单位申请装修施工，填写申请表</view>
+                <view class="item">经物业工程审批</view>
+                <view class="item">办理施工许可证</view>
+                <view class="item">施工人员办理出入证进场施工</view>
+                <view class="item">
+                    装修中应注意安全用水、用电，并按行业规范安装。整个施工过程中必须做好防火、防盗工作
+                </view>
+                <view class="item">
+                    装修时必须在现场配备灭火器材，需配备2瓶2kg灭火器，严格按申报批准方案施工，装修项目如有变化或增加应及时至物业服务中心前台报备，经审核批准后方可进行
+                </view>
+                <view class="item">
+                    不得在楼道、大堂等公共场所堆放装修垃圾、杂物，产生的装修垃圾要及时袋装清理至物业服务中心指定地点。搬运施工材料和装修垃圾时应保护好小区的公共设施（如路面、楼梯、墙壁、电梯等），若有损坏须由责任人照价赔偿
+                </view>
+                <view class="item">
+                    施工人员出入请配合门岗出示身份证、提供手机号等信息，施工人员出入证须业主办理或经业主电话确认方可办理
+                </view>
+            </view>
+
+            <view class="unit">
+                <view class="title">二、装修完毕后请将门禁卡、装修钥匙及工人出入证收回，并及时启用正式钥匙。</view>
+            </view>
+
+            <view class="unit">
+                <view class="title">
+                    三、业主凭门禁卡出入小区，请自觉刷卡，为防止无关人员进入小区，请不要将门禁卡交给装修公司或其他无关人员。
+                </view>
+            </view>
+
+            <view class="unit">
+                <view class="title">
+                    四、请严格遵守装修施工时间：上午8：00至12:00，下午14:00至18:00，周六、周末、及节假日时段全天禁止噪音施工，以免影响他人休息。
+                </view>
+            </view>
+
+            <view class="unit">
+                <view class="title">五、装修注意事项。</view>
+
+                <view class="item">请勿改动烟道口位置</view>
+                <view class="item">室内所有排水管检查口需预留维修位置</view>
+                <view class="item">请勿在室内承重梁上开孔</view>
+                <view class="item">装修时室内所有地漏口做保护罩</view>
+                <view class="item">请勿将装修污水倒入下水管道</view>
+            </view>
+
+            <view class="paragraph indent">
+                装修期间，物业公司会进行日常的巡视监管，发现装修施工队有违反上述规定，我物业公司会进行劝阻并要求施工队进行整改，若装修施工队不予配合拒不整改，物业公司有权做出停电、停水，直到停止施工的处理。由此引起误工等后果，业主应追究装修队的责任。
+            </view>
+            <view class="paragraph indent">让我们共同建设和谐小区、文明施工，感谢您对我们工作的支持与配合！</view>
+        </view>
+        <view class="footer">
+            <cw-button bind:click="hideNotice">取消</cw-button>
+            <cw-button type="info" disabled="{{countdown !== 0}}" loading="{{submiting}}" bind:click="submit">
+                {{countdown === 0 ? '确认' : ('阅读剩余' + countdown + '秒')}}
+            </cw-button>
+        </view>
+    </cw-popup>
+
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+    <cw-copyright fixed="{{!fetching && communityInfo.current.houses.length <= list.length}}" />
+</view>

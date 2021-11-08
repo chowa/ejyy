@@ -1,0 +1,5 @@
+<cw-tabbar active="{{ activeTab }}" bind:change="onTabChange">
+    <cw-tabbar-item icon="logo">首页</cw-tabbar-item>
+    <cw-tabbar-item icon="service">家政</cw-tabbar-item>
+    <cw-tabbar-item icon="zone">我的</cw-tabbar-item>
+</cw-tabbar>

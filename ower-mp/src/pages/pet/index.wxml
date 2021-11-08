@@ -1,0 +1,37 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-list
+        fetching="{{fetching}}"
+        page_num="{{page_num}}"
+        page_amount="{{page_amount}}"
+        list="{{list}}"
+        empty="暂无宠物"
+        icon="pet"
+    >
+        <cw-list-item
+            wx:for="{{list}}"
+            title="{{common.number('P', item.created_at, item.id)}}"
+            status="{{item.community_name}}小区"
+            wx:key="index"
+            url="/pages/pet/detail?id={{item.id}}"
+        >
+            <view class="pet-card">
+                <view class="photo">
+                    <image src="{{ASSETS_HOST}}{{item.photo}}" mode="widthFix" />
+                </view>
+                <view class="info">
+                    <view class="name">{{item.name}}</view>
+                    <!-- <view>种类：{{item.pet_type === 1 ? '犬' : '未知'}}</view> -->
+                    <view>性别：{{item.sex === 0 ? '雌' : '雄'}}</view>
+                    <view>品种：{{item.breed}}</view>
+                    <view>毛色：{{item.coat_color}}</view>
+                </view>
+
+                <view class="tag {{item.pet_license ? 'green' : ''}}">
+                    {{ item.pet_license ? '已办理登记证' : '未办理登记证'}}
+                </view>
+            </view>
+        </cw-list-item>
+    </cw-list>
+</view>

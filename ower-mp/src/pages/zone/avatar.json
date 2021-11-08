@@ -1,0 +1,9 @@
+{
+    "navigationBarTitleText": "头像裁剪",
+    "disableScroll": true,
+    "usingComponents": {
+        "cw-toast": "../../components/toast",
+        "cw-notify": "../../components/notify",
+        "cw-image-cropper": "../../components/image-cropper"
+    }
+}

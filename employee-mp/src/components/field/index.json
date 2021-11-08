@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "cw-cell": "../cell/index",
+        "cw-icon": "../icon/index"
+    }
+}

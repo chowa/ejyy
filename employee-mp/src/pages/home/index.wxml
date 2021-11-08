@@ -1,0 +1,222 @@
+<view class="container" style="padding-top:{{ systemInfo.navBarHeight + systemInfo.statusBarHeight }}px">
+    <cw-nav-bar
+        title="e家宜业物业端"
+        fixed
+        title-class="nav-bar-title"
+        z-index="100"
+        custom-class="nav-bar"
+        custom-style="height:{{ systemInfo.navBarHeight + systemInfo.statusBarHeight }}px;padding-top:{{ systemInfo.statusBarHeight }}px"
+    >
+        <view slot="left" class="default-community" bind:tap="changeCommunity">
+            <cw-icon name="local" />
+            <span
+                wx:for="{{postInfo.community_list}}"
+                wx:key="index"
+                wx:if="{{item.community_id === postInfo.default_community_id}}"
+            >
+                {{ item.name }}
+            </span>
+        </view>
+    </cw-nav-bar>
+
+    <view
+        class="recommand-desktop"
+        wx:if="{{showRecommand}}"
+        style="top: {{systemInfo.navBarHeight + systemInfo.statusBarHeight}}px;"
+    >
+        <view class="close" bind:tap="hideRecommand">
+            <cw-icon name="cross" />
+        </view>
+        <view class="text">
+            <view class="num">1</view>
+            点击上方
+            <view class="btn-mock">
+                <view class="big-circle" />
+            </view>
+            按钮
+        </view>
+        <view class="text">
+            <view class="num">2</view>
+            点击「添加到桌面」
+        </view>
+        <image src="../../assets/recommand.jpg" class="recommand-img" mode="widthFix" />
+        <view class="text">
+            <view class="num">3</view>
+            桌面打开「e家宜业」，办公更高效
+        </view>
+    </view>
+
+    <cw-panel title="我的任务">
+        <cw-row custom-class="links">
+            <cw-col span="6">
+                <navigator class="feature" url="/pages/repair/index">
+                    <cw-icon name="maintain" custom-class="icon repair" info="{{workInfo.repair_total}}" />
+                    <view class="label">维修工单</view>
+                </navigator>
+            </cw-col>
+            <cw-col span="6">
+                <navigator class="feature" url="/pages/complain/index">
+                    <cw-icon name="report" custom-class="icon complain" info="{{workInfo.complain_total}}" />
+                    <view class="label">投诉工单</view>
+                </navigator>
+            </cw-col>
+            <cw-col span="6">
+                <navigator class="feature" url="/pages/mission/index">
+                    <cw-icon name="mission" custom-class="icon mission" info="{{workInfo.mission_total}}" />
+                    <view class="label">巡检任务</view>
+                </navigator>
+            </cw-col>
+        </cw-row>
+    </cw-panel>
+
+    <view wx:if="{{ !userInfo.subscribed && showOaComponent }}" class="section official-account">
+        <view class="recommand">关注官方公众号第一时间接收重要消息</view>
+        <official-account binderror="onOALoadFail" />
+    </view>
+
+    <cw-panel title="小区服务" custom-class="section">
+        <cw-row custom-class="links">
+            <cw-col span="6">
+                <view class="feature" bind:tap="owerScan">
+                    <cw-icon name="ower" custom-class="icon ower" />
+                    <view class="label">业主核实</view>
+                </view>
+            </cw-col>
+            <cw-col span="6" wx:if="{{!common.haveAccess(userInfo.access, ROLES.YQFK)}}">
+                <view class="feature" bind:tap="epidemicScan">
+                    <cw-icon name="xgfy" custom-class="icon virtus" />
+                    <view class="label">疫情防控</view>
+                </view>
+            </cw-col>
+            <cw-col span="6" wx:if="{{!common.haveAccess(userInfo.access, ROLES.FKTX)}}">
+                <view class="feature" bind:tap="vistorScan">
+                    <cw-icon name="vistor" custom-class="icon vistor" />
+                    <view class="label">访客认证</view>
+                </view>
+            </cw-col>
+            <cw-col span="6" wx:if="{{!common.haveAccess(userInfo.access, ROLES.ZXDJ)}}">
+                <navigator class="feature" url="/pages/fitment/index">
+                    <cw-icon name="fitment" custom-class="icon fitment" />
+                    <view class="label">装修验收</view>
+                </navigator>
+            </cw-col>
+            <cw-col span="6" wx:if="{{!common.haveAccess(userInfo.access, ROLES.XQNC)}}">
+                <navigator class="feature" url="/pages/move_car/index">
+                    <cw-icon name="movecar" custom-class="icon movecar" />
+                    <view class="label">现场挪车</view>
+                </navigator>
+            </cw-col>
+        </cw-row>
+    </cw-panel>
+
+    <cw-panel title="信息建设" custom-class="section">
+        <cw-row custom-class="links">
+            <cw-col span="6">
+                <navigator class="feature" url="/pages/party/index">
+                    <cw-icon name="party" custom-class="icon party" info="{{workInfo.party.length}}" />
+                    <view class="label">党建党讯</view>
+                </navigator>
+            </cw-col>
+            <cw-col span="6">
+                <navigator class="feature" url="/pages/inform/index">
+                    <cw-icon name="inform" custom-class="icon inform" info="{{workInfo.inform.length}}" />
+                    <view class="label">行政通知</view>
+                </navigator>
+            </cw-col>
+        </cw-row>
+    </cw-panel>
+
+    <cw-panel title="行政事务" custom-class="section">
+        <cw-row custom-class="links">
+            <cw-col span="6">
+                <navigator class="feature" url="/pages/meeting/index">
+                    <cw-icon name="meeting" custom-class="icon meeting" info="{{workInfo.meeting.length}}" />
+                    <view class="label">会议安排</view>
+                </navigator>
+            </cw-col>
+            <cw-col span="6">
+                <navigator class="feature" url="/pages/sign/begin">
+                    <cw-icon name="gotowork" custom-class="icon gotowork" />
+                    <view class="label">上班打卡</view>
+                </navigator>
+            </cw-col>
+            <cw-col span="6">
+                <navigator class="feature" url="/pages/sign/finish">
+                    <cw-icon name="gotohome" custom-class="icon gotohome" />
+                    <view class="label">下班打卡</view>
+                </navigator>
+            </cw-col>
+            <cw-col span="6">
+                <navigator class="feature" url="/pages/colleague/index">
+                    <cw-icon name="connect" custom-class="icon connect" />
+                    <view class="label">通讯录</view>
+                </navigator>
+            </cw-col>
+            <cw-col span="6" wx:if="{{!common.haveAccess(userInfo.access, ROLES.WLCC)}}">
+                <view class="feature" bind:tap="scanMaterial">
+                    <cw-icon name="warehouse" custom-class="icon warehouse" />
+                    <view class="label">物品领用</view>
+                </view>
+            </cw-col>
+        </cw-row>
+    </cw-panel>
+
+    <cw-panel title="流程审批" custom-class="section">
+        <cw-row custom-class="links">
+            <cw-col span="6">
+                <navigator class="feature" url="/pages/leave/approve">
+                    <cw-icon name="leave" custom-class="icon leave" info="{{workInfo.leave_total}}" />
+                    <view class="label">请假审批</view>
+                </navigator>
+            </cw-col>
+            <cw-col span="6">
+                <navigator class="feature" url="/pages/refound/approve">
+                    <cw-icon name="refound" custom-class="icon refound" info="{{workInfo.refound_total}}" />
+                    <view class="label">报销审批</view>
+                </navigator>
+            </cw-col>
+            <cw-col span="6">
+                <navigator class="feature" url="/pages/purchase/approve">
+                    <cw-icon name="warehouse" custom-class="icon purchase" info="{{workInfo.purchase_total}}" />
+                    <view class="label">采购审批</view>
+                </navigator>
+            </cw-col>
+        </cw-row>
+    </cw-panel>
+
+    <cw-panel title="流程申请" custom-class="section">
+        <cw-row custom-class="links">
+            <cw-col span="6">
+                <navigator class="feature" url="/pages/leave/index">
+                    <cw-icon name="leave" custom-class="icon leave-apply" />
+                    <view class="label">请假申请</view>
+                </navigator>
+            </cw-col>
+            <cw-col span="6">
+                <navigator class="feature" url="/pages/refound/index">
+                    <cw-icon name="refound" custom-class="icon refound-apply" />
+                    <view class="label">报销申请</view>
+                </navigator>
+            </cw-col>
+            <cw-col span="6">
+                <navigator class="feature" url="/pages/purchase/index">
+                    <cw-icon name="warehouse" custom-class="icon purchase-apply" />
+                    <view class="label">采购申请</view>
+                </navigator>
+            </cw-col>
+        </cw-row>
+    </cw-panel>
+
+    <cw-copyright />
+
+    <cw-action-sheet
+        title="设置默认小区"
+        show="{{ showAction }}"
+        actions="{{ actions }}"
+        bind:close="onCloseAction"
+        bind:select="onSelectAction"
+    />
+    <!-- 全局提示 -->
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+</view>

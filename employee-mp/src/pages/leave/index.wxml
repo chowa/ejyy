@@ -1,0 +1,101 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-tabs active="{{ activeTabIndex }}" bind:change="onTabChange">
+        <cw-tab title="请假申请">
+            <cw-cell-group>
+                <cw-cell
+                    title="请假时间"
+                    value="{{!begin_date ? '请选择请假时间' : common.date(begin_date, false)}}"
+                    is-link
+                    clickable
+                    is-detail="{{begin_date ? true : false}}"
+                    bind:click="showCalendar"
+                />
+                <cw-field label="请假天数" type="digit" model:value="{{ total }}" placeholder="请输入请假天数" />
+                <cw-field
+                    label="请假原因"
+                    type="textarea"
+                    maxlength="{{ 128 }}"
+                    show-word-limit
+                    autosize
+                    border="{{false}}"
+                    model:value="{{ reason }}"
+                    placeholder="请输入请假原因"
+                />
+            </cw-cell-group>
+
+            <cw-calendar
+                title="请假时间"
+                default-date="{{begin_date}}"
+                show="{{show}}"
+                min-date="{{now}}"
+                max-date="{{now + 1000 * 60 * 60 * 24 * 30}}"
+                bind:close="hideCalendar"
+                bind:confirm="onDateChange"
+            />
+
+            <cw-button
+                custom-class="btn"
+                block
+                wx:if="{{activeTabIndex === 0}}"
+                loading="{{submiting}}"
+                type="info"
+                bind:click="submit"
+            >
+                提交申请
+            </cw-button>
+
+            <cw-copyright />
+        </cw-tab>
+
+        <cw-tab title="历史申请">
+            <cw-list
+                fetching="{{fetching}}"
+                page_num="{{page_num}}"
+                page_amount="{{page_size}}"
+                list="{{list}}"
+                empty="暂无请假申请"
+                icon="leave"
+                withFilter
+            >
+                <cw-list-item
+                    wx:for="{{list}}"
+                    title="{{common.number('LF', item.created_at, item.id)}}"
+                    wx:key="index"
+                    url="/pages/leave/detail?id={{item.id}}"
+                >
+                    <cw-list-item-info label="请假时间">
+                        {{ common.date(item.begin_date, false) }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="请假天数">
+                        {{ item.total }}天
+                    </cw-list-item-info>
+                    <cw-list-item-info label="请假原因">
+                        {{ item.reason }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="申请结果">
+                        <block wx:if="{{item.cancel}}">
+                            <cw-tag round color="#ff976a">已取消</cw-tag>
+                        </block>
+                        <block wx:elif="{{item.success === null}}">
+                            <cw-tag round color="#91d5ff">审批中</cw-tag>
+                        </block>
+                        <block wx:elif="{{!item.success}}">
+                            <cw-tag round color="#ed4014">驳回</cw-tag>
+                        </block>
+                        <block wx:else>
+                            <cw-tag round color="#52c41a">成功</cw-tag>
+                        </block>
+                    </cw-list-item-info>
+                    <cw-list-item-info label="申请时间">
+                        {{ common.date(item.created_at) }}
+                    </cw-list-item-info>
+                </cw-list-item>
+            </cw-list>
+        </cw-tab>
+    </cw-tabs>
+
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+</view>

@@ -1,0 +1,10 @@
+<cw-transition
+    show="{{ show }}"
+    custom-class="cw-overlay"
+    custom-style="z-index: {{ zIndex }}; {{ customStyle }}"
+    duration="{{ duration }}"
+    bind:tap="onClick"
+    catch:touchmove="noop"
+>
+    <slot></slot>
+</cw-transition>

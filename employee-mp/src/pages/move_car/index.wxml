@@ -1,0 +1,30 @@
+<view class="container">
+    <!-- 车牌号码输入框 -->
+    <cw-radio-group value="{{ is_new_energy }}">
+        <cw-cell-group title="能源类型">
+            <cw-cell title="汽油/柴油" clickable data-name="{{ 0 }}" bind:click="onCarEnergyChange">
+                <cw-radio name="{{ 0 }}" slot="right-icon"></cw-radio>
+            </cw-cell>
+            <cw-cell title="新能源" clickable data-name="{{ 1 }}" bind:click="onCarEnergyChange" border="{{ false }}">
+                <cw-radio name="{{ 1 }}" slot="right-icon"></cw-radio>
+            </cw-cell>
+        </cw-cell-group>
+    </cw-radio-group>
+
+    <cw-cell-group title="车牌号码">
+        <cw-cell>
+            <cw-car-number is-new-energy="{{is_new_energy}}" id="car-number" bind:change="onCarNumberChange" />
+        </cw-cell>
+    </cw-cell-group>
+
+    <!-- 提交车牌 -->
+    <view class="car-number-btn-wrapper">
+        <cw-button type="info" block bind:click="submit" loading="{{submiting}}">
+            查找车主联系电话
+        </cw-button>
+    </view>
+
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+    <cw-copyright />
+</view>

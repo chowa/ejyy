@@ -1,0 +1,8 @@
+{
+    "component": true,
+    "usingComponents": {
+        "cw-icon": "../icon/index",
+        "cw-sidebar": "../sidebar/index",
+        "cw-sidebar-item": "../sidebar-item/index"
+    }
+}

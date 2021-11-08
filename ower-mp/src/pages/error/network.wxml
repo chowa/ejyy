@@ -1,0 +1,11 @@
+<view class="container">
+    <cw-empty icon="neterror" description="网络连接异常" fixed="{{false}}" />
+
+    <view class="hint">请确认是否已经连接了wifi或打开了移动数据</view>
+    <view class="hint">如需技术支持，请发送邮件至concat@chowa.cn</view>
+
+    <cw-button type="info" round bind:tap="checkNetwork" block custom-class="btn">检测网络</cw-button>
+    <cw-copyright />
+    <!-- 全局提示 -->
+    <cw-toast id="cw-toast"></cw-toast>
+</view>

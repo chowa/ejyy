@@ -1,0 +1,11 @@
+{
+    "navigationBarTitleText": "访客通行",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50,
+    "usingComponents": {
+        "cw-list": "../../components/list",
+        "cw-list-item": "../../components/list-item",
+        "cw-list-item-info": "../../components/list-item-info",
+        "cw-tag": "../../components/tag"
+    }
+}

@@ -1,0 +1,63 @@
+<view>
+    <view class="cw-car-number-items">
+        <view class="cw-car-number-items-box" bindtap="openKeyboard">
+            <view class="cw-car-number-items-province cw-car-number-items-box-list">{{carNumber[0] || ""}}</view>
+            <view class="cw-car-number-items-city cw-car-number-items-box-list">{{carNumber[1] || ""}}</view>
+        </view>
+        <!-- 常规 -->
+        <view class="cw-car-number-item" bindtap="openKeyboard">{{carNumber[2] || ''}}</view>
+        <view class="cw-car-number-item" bindtap="openKeyboard">{{carNumber[3] || ''}}</view>
+        <view class="cw-car-number-item" bindtap="openKeyboard">{{carNumber[4] || ''}}</view>
+        <view class="cw-car-number-item" bindtap="openKeyboard">{{carNumber[5] || ''}}</view>
+        <view class="cw-car-number-item" bindtap="openKeyboard">{{carNumber[6] || ''}}</view>
+        <!-- 新能源 -->
+        <view class="cw-car-number-item" bindtap="openKeyboard" wx:if="{{isNewEnergy}}">
+            {{carNumber[7] || ''}}
+        </view>
+    </view>
+
+    <!-- 虚拟键盘 -->
+    <view class="cw-keyboard" hidden="{{!keyboardVisible}}">
+        <view class="cw-keyboard-close">
+            <view class="cw-keyboard-close-btn" bindtap="closeKeyboard">
+                <cw-icon name="keyboard-hide" />
+            </view>
+        </view>
+        <!-- 省份简写键盘 -->
+        <view class="cw-keyboard-item" hidden="{{carNumber[0]}}">
+            <view class="cw-keyboard-line" wx:for="{{provinces}}" wx:key="index">
+                <view
+                    class="cw-keyboard-btn"
+                    wx:for="{{item}}"
+                    wx:key="index"
+                    data-val="{{itemlist}}"
+                    wx:for-item="itemlist"
+                    bindtap="bindChoose"
+                >
+                    {{itemlist}}
+                </view>
+            </view>
+            <view class="cw-keyboard-del" bindtap="bindDelChoose">
+                <cw-icon name="backspace" />
+            </view>
+        </view>
+        <!-- 车牌号码选择键盘 -->
+        <view class="cw-keyboard-item iscarnumber" hidden="{{!carNumber[0]}}">
+            <view class="cw-keyboard-line" wx:for="{{numbers}}" wx:key="index">
+                <view
+                    class="cw-keyboard-btn"
+                    wx:for="{{item}}"
+                    wx:key="index"
+                    data-val="{{itemlist}}"
+                    wx:for-item="itemlist"
+                    bindtap="bindChoose"
+                >
+                    {{itemlist}}
+                </view>
+            </view>
+            <view class="cw-keyboard-del" bindtap="bindDelChoose">
+                <cw-icon name="backspace" />
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,5 @@
+@import '../common/index.wxss';
+
+.cw-sidebar {
+    width: 80px;
+}

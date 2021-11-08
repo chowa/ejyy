@@ -1,0 +1,16 @@
+{
+    "navigationBarTitleText": "请假审批",
+    "onReachBottomDistance": 50,
+    "enablePullDownRefresh": true,
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "usingComponents": {
+        "cw-tabs": "../../components/tabs",
+        "cw-tab": "../../components/tab",
+        "cw-tag": "../../components/tag",
+        "cw-button": "../../components/button",
+        "cw-list": "../../components/list",
+        "cw-list-item": "../../components/list-item",
+        "cw-list-item-info": "../../components/list-item-info"
+    }
+}

@@ -1,0 +1,109 @@
+<wxs src="../common/common.wxs" module="common" />
+<wxs src="./index.wxs" module="mission" />
+
+<view class="container">
+    <cw-cell-group title="任务信息" wx:if="{{fetching}}">
+        <cw-cell is-detail title="任务编号：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="开始日期：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="结束日期：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="上报时间：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="任务分类：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="巡检线路：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="任务状态：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="创建时间：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="创建人：" border="{{false}}">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+    </cw-cell-group>
+    <view wx:else>
+        <cw-cell-group title="任务信息">
+            <cw-cell
+                is-detail
+                title="任务编号："
+                value="{{common.number('MN', detail.info.created_at, detail.info.id)}}"
+            />
+            <cw-cell is-detail title="开始日期：" value="{{common.date(detail.info.start_date, false)}}" />
+            <cw-cell is-detail title="结束日期：" value="{{common.date(detail.info.end_date, false)}}" />
+            <cw-cell
+                is-detail
+                title="上报时间："
+                value="{{common.hour(detail.info.start_hour)}}至{{common.hour(detail.info.end_hour)}}"
+            />
+            <cw-cell is-detail title="任务分类：" value="{{detail.info.category}}" />
+            <cw-cell is-detail title="巡检线路：" value="{{detail.info.line}}" />
+            <cw-cell is-detail title="任务状态：">
+                <block wx:if="{{detail.info.cancel}}">
+                    <cw-tag round color="#eb2f96">已取消</cw-tag>
+                </block>
+                <block wx:elif="{{detail.info.start_date > now}}">
+                    <cw-tag round color="#ffe58f">未开始</cw-tag>
+                </block>
+                <block wx:elif="{{detail.info.end_date < now}}">
+                    <cw-tag round color="#f90">已结束</cw-tag>
+                </block>
+                <block wx:else>
+                    <cw-tag round color="#52c41a">进行中</cw-tag>
+                </block>
+            </cw-cell>
+            <cw-cell is-detail title="创建时间：" value="{{common.date(detail.info.created_at)}}" />
+            <cw-cell
+                is-detail
+                title="创建人："
+                border="{{false}}"
+                is-link
+                url="/pages/colleague/detail?id={{detail.disposeInfo.id}}"
+                clickable
+                value="{{detail.disposeInfo.real_name}}"
+            />
+        </cw-cell-group>
+
+        <cw-cell-group title="执行情况">
+            <view class="node-detail">
+                <cw-row>
+                    <cw-col
+                        span="6"
+                        wx:for="{{nodes}}"
+                        wx:key="index"
+                        data-status="{{item.status}}"
+                        bind:tap="showDetail"
+                        data-id="{{item.id}}"
+                        custom-class="node-wrapper"
+                    >
+                        <view class="node status{{item.status}}">
+                            <view class="status">
+                                {{ mission.statusText(item.status) }}
+                            </view>
+                            <view class="year">
+                                {{ item.year }}
+                            </view>
+                            <view class="date">
+                                {{ item.date }}
+                            </view>
+                        </view>
+                    </cw-col>
+                </cw-row>
+            </view>
+        </cw-cell-group>
+    </view>
+
+    <cw-copyright />
+
+    <!-- 全局提示 -->
+    <cw-notify id="cw-notify" />
+</view>

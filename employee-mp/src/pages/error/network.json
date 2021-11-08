@@ -1,0 +1,9 @@
+{
+    "navigationBarTitleText": "网络错误",
+    "usingComponents": {
+        "cw-button": "../../components/button",
+        "cw-toast": "../../components/toast",
+        "cw-copyright": "../../components/copyright",
+        "cw-empty": "../../components/empty"
+    }
+}

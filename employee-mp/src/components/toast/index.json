@@ -1,0 +1,9 @@
+{
+    "component": true,
+    "usingComponents": {
+        "cw-icon": "../icon/index",
+        "cw-loading": "../loading/index",
+        "cw-overlay": "../overlay/index",
+        "cw-transition": "../transition/index"
+    }
+}

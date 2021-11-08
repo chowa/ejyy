@@ -1,0 +1,13 @@
+.list-item {
+    margin-bottom: 12px;
+}
+
+.list-item-inner {
+    padding: 12px 18px;
+}
+
+.list-item-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}

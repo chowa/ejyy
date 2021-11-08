@@ -1,0 +1,16 @@
+<wxs src="../wxs/utils.wxs" module="utils" />
+<wxs src="./index.wxs" module="computed" />
+
+<view
+    class="{{ utils.bem('switch', { on: checked === activeValue, disabled }) }} custom-class"
+    style="{{ computed.rootStyle({ size, checked, activeColor, inactiveColor }) }}"
+    bind:tap="onClick"
+>
+    <view class="cw-switch__node node-class">
+        <cw-loading
+            wx:if="{{ loading }}"
+            color="{{ computed.loadingColor({ checked, activeColor, inactiveColor }) }}"
+            custom-class="cw-switch__loading"
+        />
+    </view>
+</view>

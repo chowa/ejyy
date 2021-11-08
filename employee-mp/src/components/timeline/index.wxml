@@ -1,0 +1,12 @@
+<view class="cw-timeline {{last ? 'last' : ''}} {{first ? 'first' : ''}}">
+    <view class="cw-timeline-point" />
+    <view class="cw-timeline-content">
+        <view class="cw-timeline-title" wx:if="{{title}}">
+            {{ title }}
+        </view>
+
+        <view class="cw-timeline-inner">
+            <slot />
+        </view>
+    </view>
+</view>

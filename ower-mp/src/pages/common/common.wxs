@@ -1,0 +1,69 @@
+function double(num) {
+    return num < 10 ? '0' + num : num;
+}
+function date(stamp, time = true) {
+    var d = getDate(stamp);
+
+    return (
+        d.getFullYear() +
+        '年' +
+        double(d.getMonth() + 1) +
+        '月' +
+        double(d.getDate()) +
+        '日' +
+        (time ? ' ' + double(d.getHours()) + ':' + double(d.getMinutes()) + ':' + double(d.getSeconds()) : '')
+    );
+}
+
+function building(detail, type = true) {
+    var typeName = '';
+
+    switch (detail.type) {
+        case 1:
+            typeName = '住宅';
+            break;
+
+        case 2:
+            typeName = '车位';
+            break;
+
+        case 3:
+            typeName = '仓房';
+            break;
+
+        case 4:
+            typeName = '商户';
+            break;
+
+        case 5:
+            typeName = '车库';
+            break;
+    }
+
+    return (
+        (detail.area ? detail.area : '') +
+        ' ' +
+        (detail.building ? detail.building : '') +
+        (detail.unit ? detail.unit : '') +
+        detail.number +
+        (type ? '（' + typeName + '）' : '')
+    );
+}
+
+function number(tp, stamp, id) {
+    var d = getDate(stamp);
+
+    return tp + d.getFullYear() + double(d.getMonth() + 1) + double(d.getDate()) + id;
+}
+
+function includes(arr, val) {
+    return arr.indexOf(val) > -1 ? true : false;
+}
+
+module.exports = {
+    double: double,
+    date: date,
+    building: building,
+    number: number,
+    includes: includes
+};

@@ -1,0 +1,104 @@
+{
+    "entryPagePath": "pages/home/index",
+    "pages": [
+        "pages/home/index",
+        "pages/home/convenient",
+        "pages/login/index",
+        "pages/error/network",
+        "pages/error/general",
+        "pages/notification/index",
+        "pages/notification/detail",
+        "pages/community/index",
+        "pages/community/binding",
+        "pages/community/append",
+        "pages/community/family",
+        "pages/zone/index",
+        "pages/zone/profile",
+        "pages/zone/phone",
+        "pages/zone/supplement",
+        "pages/zone/avatar",
+        "pages/zone/card",
+        "pages/car/index",
+        "pages/car/binding",
+        "pages/family/index",
+        "pages/family/detail",
+        "pages/feedback/feature",
+        "pages/feedback/index",
+        "pages/feedback/join",
+        "pages/about/index",
+        "pages/about/agreement",
+        "pages/access/index",
+        "pages/access/card",
+        "pages/complain/index",
+        "pages/complain/create",
+        "pages/complain/detail",
+        "pages/payment/index",
+        "pages/payment/order",
+        "pages/payment/detail",
+        "pages/payment/result",
+        "pages/repair/index",
+        "pages/repair/create",
+        "pages/repair/detail",
+        "pages/pet/index",
+        "pages/pet/create",
+        "pages/pet/detail",
+        "pages/pet/photo",
+        "pages/fitment/index",
+        "pages/fitment/create",
+        "pages/fitment/detail",
+        "pages/move_car/create",
+        "pages/move_car/index",
+        "pages/move_car/detail",
+        "pages/vistor/index",
+        "pages/vistor/create",
+        "pages/vistor/detail",
+        "pages/vistor/self",
+        "pages/vistor/use",
+        "pages/questionnaire/index",
+        "pages/questionnaire/answer",
+        "pages/questionnaire/detail",
+        "pages/questionnaire/self",
+        "pages/topic/detail",
+        "pages/community/apply",
+        "pages/service/index"
+    ],
+    "window": {
+        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "e家宜业",
+        "backgroundColor": "#f7f8fa",
+        "backgroundTextStyle": "light"
+    },
+    "tabBar": {
+        "custom": true,
+        "color": "#646566",
+        "selectedColor": "#1989fa",
+        "borderStyle": "white",
+        "list": [
+            {
+                "pagePath": "pages/home/index",
+                "text": "首页",
+                "iconPath": "assets/tabbar/logo.png",
+                "selectedIconPath": "assets/tabbar/logo_active.png"
+            },
+            {
+                "pagePath": "pages/service/index",
+                "text": "首页",
+                "iconPath": "assets/tabbar/service.png",
+                "selectedIconPath": "assets/tabbar/service_active.png"
+            },
+            {
+                "pagePath": "pages/zone/index",
+                "text": "设置",
+                "iconPath": "assets/tabbar/zone.png",
+                "selectedIconPath": "assets/tabbar/zone_active.png"
+            }
+        ]
+    },
+    "permission": {
+        "scope.userLocation": {
+            "desc": "您的位置信息将用于获取您附近的住宅社区"
+        }
+    },
+    "sitemapLocation": "sitemap.json"
+}

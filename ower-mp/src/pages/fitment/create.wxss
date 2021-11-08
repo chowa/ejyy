@@ -1,0 +1,54 @@
+.wrapper {
+    height: 50vh;
+    overflow-x: scroll;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #323232;
+}
+
+.paragraph {
+    line-height: 22px;
+}
+
+.paragraph.indent {
+    text-indent: 28px;
+}
+
+.unit {
+    margin-top: 12px;
+}
+
+.unit + .paragraph {
+    margin-top: 12px;
+}
+
+.title {
+    font-style: 600;
+}
+
+.item {
+    display: list-item;
+    list-style-type: disc;
+    font-size: 14px;
+    color: #454545;
+    line-height: 22px;
+    margin-left: 32px;
+}
+
+.header {
+    height: 42px;
+    font-size: 16px;
+    line-height: 42px;
+    text-align: center;
+    border-bottom: 1px solid #ebedf0;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+}
+
+.footer button {
+    width: 375rpx;
+    border-radius: 0;
+}

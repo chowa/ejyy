@@ -1,0 +1,9 @@
+{
+  "name": "ejyy-ower-mp",
+  "version": "1.0.0",
+  "description": "业主端小程序",
+  "author": "jixuecong@chowa.cn",
+  "scripts": {
+    "lint": "prettier --write src/*.js src/* src/**/* src/**/**/* src/**/**/**/* src/**/**/**/**/*"
+  }
+}

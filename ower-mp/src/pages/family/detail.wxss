@@ -1,0 +1,130 @@
+.user-info {
+    background: #2bbe8f;
+    background: linear-gradient(to top right, #2bbe8f, #5487f2);
+    margin: 20px;
+    border-radius: 4px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.loading-row {
+    margin-top: 12px;
+}
+
+.user-info .avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    flex: none;
+    margin-bottom: 8px;
+}
+
+.user-info .name {
+    font-size: 14px;
+    color: #fff;
+    line-height: 20px;
+}
+
+.user-info .signature {
+    font-size: 12px;
+    color: #eee;
+    line-height: 16px;
+    margin-top: 6px;
+}
+
+.subtitle {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    font-size: 14px;
+    color: #787878;
+    line-height: 18px;
+}
+
+.community-item {
+    background: #fff;
+    margin-bottom: 18px;
+}
+
+.community-body {
+    padding: 12px 18px;
+}
+
+.community-name {
+    font-size: 14px;
+    color: #323333;
+    line-height: 20px;
+}
+
+.community-name cw-icon {
+    color: #1989fa;
+    margin-right: 6px;
+}
+
+.community-name .community-local {
+    font-size: 12px;
+    color: #999;
+    margin-left: 12px;
+}
+
+.community-info {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.community-info text {
+    font-size: 14px;
+    color: #787878;
+    line-break: 20px;
+    width: 60px;
+    text-align: right;
+    margin-right: 12px;
+}
+
+.community-detail {
+    font-size: 14px;
+    line-height: 22px;
+    color: #454543;
+}
+
+.community-detail cw-icon {
+    margin-right: 6px;
+    color: #ff9900;
+}
+
+.community-detail .unapprove {
+    color: #d8d8d8;
+}
+
+.community-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    border-top: 1px solid #eee;
+    padding: 0 18px;
+    height: 32px;
+}
+
+.community-footer .operate-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    color: #898788;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.community-footer .operate-box text {
+    margin-left: 2px;
+}
+
+.community-footer .operate-box + .operate-box {
+    margin-left: 12px;
+}

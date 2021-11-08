@@ -1,0 +1,37 @@
+@import '../../../common/index.wxss';
+
+.cw-calendar__header {
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    box-shadow: 0 2px 10px rgba(125, 126, 128, 0.16);
+}
+
+.cw-calendar__header-subtitle,
+.cw-calendar__header-title {
+    text-align: center;
+    height: 44px;
+    font-weight: 500;
+    line-height: 44px;
+}
+
+.cw-calendar__header-title + .cw-calendar__header-title,
+.cw-calendar__header-title:empty {
+    display: none;
+}
+
+.cw-calendar__header-title:empty + .cw-calendar__header-title {
+    display: block !important;
+}
+
+.cw-calendar__weekdays {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.cw-calendar__weekday {
+    -webkit-flex: 1;
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+    line-height: 30px;
+}

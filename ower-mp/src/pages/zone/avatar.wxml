@@ -1,0 +1,18 @@
+<view class="container">
+    <cw-image-cropper
+        id="cw-image-cropper"
+        limit_move="{{true}}"
+        disable_rotate="{{true}}"
+        disable_ratio="{{true}}"
+        width="{{200}}"
+        height="{{200}}"
+        min_width="{{100}}"
+        min_height="{{100}}"
+        export_scale="{{1}}"
+        bindload="cropperload"
+        bindimageload="loadimage"
+        bindtapcut="clickcut"
+    />
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+</view>

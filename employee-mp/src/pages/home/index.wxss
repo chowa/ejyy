@@ -1,0 +1,219 @@
+.default-community {
+    color: #fff;
+}
+
+.nav-bar {
+    background-color: #1989fa !important;
+}
+
+.nav-bar-title {
+    color: #fff !important;
+}
+
+.official-account {
+    padding: 0 20px;
+}
+
+.official-account .recommand {
+    font-size: 12px;
+    line-height: 16px;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.links .feature {
+    padding: 12px 0 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.links .feature .icon {
+    font-size: 24px;
+    width: 52px;
+    height: 52px;
+    border-radius: 6px;
+    line-height: 52px;
+    text-align: center;
+    color: #fff;
+}
+
+.links .feature .label {
+    margin-top: 6px;
+    font-size: 12px;
+    color: #444;
+}
+
+.icon.repair {
+    background: #6cc;
+}
+
+.icon.complain {
+    background: #f66;
+}
+
+.icon.mission {
+    background: #393;
+}
+
+.icon.ower {
+    background: #39c;
+}
+
+.icon.virtus {
+    background: #c33;
+}
+
+.icon.vistor {
+    background: #3e9cbf;
+}
+
+.icon.fitment {
+    background: #0066cc;
+}
+
+.icon.movecar {
+    background: #66cc99;
+}
+
+.icon.inform {
+    background: #6666ff;
+}
+
+.icon.party {
+    background: #ffcc33;
+}
+
+.icon.meeting {
+    background: #999966;
+}
+
+.icon.gotowork {
+    background: #99cc66;
+}
+
+.icon.gotohome {
+    background: #cc9933;
+}
+
+.icon.connect {
+    background-color: #d6ea22;
+}
+
+.icon.warehouse {
+    background-color: #63cfbc;
+}
+
+.icon.leave {
+    background: #9cf;
+}
+
+.icon.refound {
+    background: #c39;
+}
+
+.icon.purchase {
+    background: #93c;
+}
+
+.icon.leave-apply {
+    background: #ff33cc;
+}
+
+.icon.refound-apply {
+    background: #ff9933;
+}
+
+.icon.purchase-apply {
+    background: #9999cc;
+}
+
+.recommand-desktop {
+    position: fixed;
+    right: 18px;
+    background: #fff;
+    z-index: 999;
+    border-radius: 4px;
+    width: 260px;
+    padding: 14px;
+    box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d;
+}
+
+.recommand-desktop .close {
+    position: absolute;
+    font-size: 16px;
+    color: #777;
+    top: 8px;
+    right: 12px;
+}
+
+.recommand-desktop:before {
+    position: absolute;
+    content: '';
+    border: 5px solid transparent;
+    border-bottom-color: #fff;
+    right: 47px;
+    top: -10px;
+}
+
+.recommand-desktop .text {
+    height: 28px;
+    font-size: 12px;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.recommand-desktop .text .num {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    color: #fff;
+    background-color: #1890ff;
+    margin-right: 6px;
+}
+
+.recommand-desktop .btn-mock {
+    display: inline-flex;
+    margin: 0 4px;
+    position: relative;
+    width: 20px;
+    height: 6px;
+    text-align: center;
+    line-height: 6px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.recommand-desktop .btn-mock .big-circle {
+    width: 6px;
+    height: 6px;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #464646;
+}
+
+.recommand-desktop .btn-mock:before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #464646;
+}
+
+.recommand-desktop .btn-mock:after {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #464646;
+}
+
+.recommand-img {
+    border-radius: 6px;
+    margin: 6px 0;
+}

@@ -1,0 +1,48 @@
+.brand {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 300rpx;
+    margin-top: 40px;
+}
+
+.chowa {
+    width: 160rpx;
+}
+
+.logo {
+    width: 180rpx;
+}
+
+.solgan {
+    font-size: 14px;
+    text-align: center;
+    color: #333;
+    line-height: 24px;
+}
+
+.solgan.mb {
+    margin-bottom: 40px;
+}
+
+.txt {
+    padding: 0 20px;
+    font-size: 14px;
+    color: #565656;
+    line-height: 24px;
+    margin-bottom: 8px;
+}
+
+.list {
+    padding: 10px 20px;
+}
+
+.list .item {
+    display: list-item;
+    list-style-type: disc;
+    font-size: 14px;
+    line-height: 22px;
+    color: #565656;
+    margin-left: 40px;
+}

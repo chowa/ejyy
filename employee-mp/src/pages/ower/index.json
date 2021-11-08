@@ -1,0 +1,11 @@
+{
+    "navigationBarTitleText": "业主核实",
+    "backgroundTextStyle": "dark",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "usingComponents": {
+        "cw-copyright": "../../components/copyright",
+        "cw-cell": "../../components/cell",
+        "cw-cell-group": "../../components/cell-group"
+    }
+}

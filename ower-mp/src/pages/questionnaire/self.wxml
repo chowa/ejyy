@@ -1,0 +1,33 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-list
+        fetching="{{fetching}}"
+        page_num="{{page_num}}"
+        page_amount="{{page_amount}}"
+        list="{{list}}"
+        empty="暂无已填写的问卷调查"
+        icon="question"
+    >
+        <cw-list-item
+            wx:for="{{list}}"
+            title="{{common.number('Q', item.created_at, item.id)}}"
+            status="{{item.community_name}}小区"
+            wx:key="index"
+            url="/pages/questionnaire/detail?id={{item.id}}"
+        >
+            <cw-list-item-info label="问卷名称">
+                {{item.title}}
+            </cw-list-item-info>
+            <cw-list-item-info label="开始时间">
+                {{common.date(item.published_at, false)}}
+            </cw-list-item-info>
+            <cw-list-item-info label="结束时间">
+                {{common.date(item.expire, false)}}
+            </cw-list-item-info>
+            <cw-list-item-info label="提交时间">
+                {{common.date(item.answered_at)}}
+            </cw-list-item-info>
+        </cw-list-item>
+    </cw-list>
+</view>

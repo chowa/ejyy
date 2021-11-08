@@ -1,0 +1,10 @@
+{
+    "navigationBarTitleText": "我的问卷",
+    "onReachBottomDistance": 50,
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "cw-list": "../../components/list",
+        "cw-list-item": "../../components/list-item",
+        "cw-list-item-info": "../../components/list-item-info"
+    }
+}

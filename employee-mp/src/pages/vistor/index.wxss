@@ -1,0 +1,31 @@
+.default-community {
+    color: #454545;
+}
+
+.container {
+    background-color: #fff;
+}
+
+.banner {
+    height: 605rpx;
+}
+
+.scan-btn {
+    width: 240rpx;
+    height: 240rpx;
+    border-radius: 50%;
+    background-color: #2d8cf0;
+    text-align: center;
+    margin: 40rpx auto;
+    color: #fff;
+    line-height: 240rpx;
+    font-size: 90rpx;
+}
+
+.txt {
+    padding: 0 20px;
+    line-height: 22px;
+    font-size: 12px;
+    color: #444;
+    margin-top: 8px;
+}

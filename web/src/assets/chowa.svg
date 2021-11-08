@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="393px" height="400px" viewBox="0 0 393 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>分组 3</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#679CF6" offset="0%"></stop>
+            <stop stop-color="#4072EE" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#29CB97" offset="0%"></stop>
+            <stop stop-color="#2CB589" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="组件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="横向white" transform="translate(-50.000000, -10.000000)" fill-rule="nonzero">
+            <g id="分组-3" transform="translate(50.000000, 10.000000)">
+                <path d="M0,207.03529 L81.4872189,207.03529 L145.536903,270.20995 L195.937567,217.917818 L252.178956,271.337528 L314.155307,207.03529 L391.875135,207.03529 L247.942337,351.75264 L197.331845,297.081877 L145.327075,349.370116 L0,207.03529 Z M234.851073,364.915262 L200.698027,397.176968 C198.068898,399.820428 193.806237,399.820428 191.177108,397.176968 L158.418339,362.532738 L197.331845,323.407122 L234.851073,364.915262 Z" id="形状" fill="url(#linearGradient-1)"></path>
+                <path d="M0.700674246,193.497283 L191.177108,1.98259517 C193.806237,-0.660865056 198.068898,-0.660865056 200.698027,1.98259517 L391.17446,193.497283 L312.414183,193.497283 L196.281894,76.7319759 L80.1496037,193.497283 L0.700674246,193.497283 L0.700674246,193.497283 Z" id="路径" fill="url(#linearGradient-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

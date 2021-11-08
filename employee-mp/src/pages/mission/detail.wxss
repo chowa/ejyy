@@ -1,0 +1,57 @@
+.node-detail {
+    background: #fff;
+    padding: 14px 0;
+}
+
+.node-wrapper {
+    padding: 8px 10px;
+}
+
+.node {
+    padding: 10px 6px;
+    width: 100%;
+    text-align: center;
+}
+
+.status {
+    height: 42px;
+    line-height: 42px;
+    font-size: 14px;
+}
+
+.date,
+.year {
+    font-size: 12px;
+}
+
+.node.status1 {
+    color: #eb2f96;
+    background-color: #fff0f6;
+    border-color: #ffadd2;
+}
+
+.node.status2 {
+    color: #2b2b2b;
+    background-color: #f7f7f7;
+    border-color: #e8eaec;
+}
+
+.node.status3 {
+    cursor: pointer;
+    color: #52c41a;
+    background-color: #f6ffed;
+    border-color: #b7eb8f;
+}
+
+.node.status4 {
+    cursor: pointer;
+    color: #13c2c2;
+    background-color: #e6fffb;
+    border-color: #87e8de;
+}
+
+.node.status5 {
+    color: #f5222d;
+    background-color: #fff1f0;
+    border-color: #ffa39e;
+}

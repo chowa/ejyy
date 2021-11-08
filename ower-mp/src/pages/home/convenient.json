@@ -1,0 +1,10 @@
+{
+    "navigationBarTitleText": "便民信息",
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "cw-icon": "../../components/icon",
+        "cw-empty": "../../components/empty",
+        "cw-copyright": "../../components/copyright",
+        "cw-skeleton": "../../components/skeleton"
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "navigationBarTitleText": "维修建议工单详情",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "cw-image": "../../components/image",
+        "cw-cell": "../../components/cell",
+        "cw-field": "../../components/field",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-copyright": "../../components/copyright",
+        "cw-toast": "../../components/toast",
+        "cw-notify": "../../components/notify",
+        "cw-button": "../../components/button",
+        "cw-rate": "../../components/rate",
+        "cw-skeleton": "../../components/skeleton",
+        "cw-steps": "../../components/steps",
+        "cw-uploader": "../../components/uploader"
+    }
+}

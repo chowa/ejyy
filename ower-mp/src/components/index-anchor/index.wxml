@@ -1,0 +1,11 @@
+<view class="cw-index-anchor-wrapper" style="{{ wrapperStyle }}">
+    <view
+        class="cw-index-anchor {{ active ? 'cw-index-anchor--active cw-hairline--bottom' : '' }}"
+        style="{{ anchorStyle }}"
+    >
+        <slot wx:if="{{ useSlot }}" />
+        <block wx:else>
+            <text>{{ index }}</text>
+        </block>
+    </view>
+</view>

@@ -1,0 +1,143 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-cell-group title="报销详细" wx:if="{{fetching}}">
+        <cw-cell is-detail title="流程编号：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="申请人：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="报销时间：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="报销金额：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="报销原因：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="申请时间：">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+        <cw-cell is-detail title="申请结果：" border="{{false}}">
+            <cw-skeleton in-cell row="2" />
+        </cw-cell>
+    </cw-cell-group>
+    <view wx:else>
+        <cw-cell-group title="报销详细">
+            <cw-cell
+                is-detail
+                title="流程编号："
+                value="{{common.number('RF', detail.info.created_at, detail.info.id)}}"
+            />
+            <cw-cell
+                is-detail
+                title="申请人："
+                is-link
+                wx:if="{{detail.info.created_by !== userInfo.id}}"
+                url="/pages/colleague/detail?id={{detail.info.created_by}}"
+                clickable
+                value="{{detail.info.real_name}}"
+            />
+            <cw-cell
+                is-detail
+                title="报销时间："
+                value="{{common.date(detail.info.begin_date, false)}}至{{common.date(detail.info.finish_date, false)}}"
+            />
+            <cw-cell is-detail title="报销金额：" value="{{detail.info.total}}元" />
+            <cw-cell is-detail title="报销原因：" value="{{detail.info.reason}}" />
+            <cw-cell is-detail title="申请时间：" value="{{common.date(detail.info.created_at)}}" />
+            <cw-cell is-detail title="申请结果：" border="{{detail.canceled_at ? true : false}}">
+                <block wx:if="{{detail.info.cancel}}">
+                    <cw-tag round color="#ff976a">已撤销</cw-tag>
+                </block>
+                <block wx:elif="{{detail.info.success === null}}">
+                    <cw-tag round color="#91d5ff">审批中</cw-tag>
+                </block>
+                <block wx:elif="{{!detail.info.success}}">
+                    <cw-tag round color="#ed4014">驳回</cw-tag>
+                </block>
+                <block wx:else>
+                    <cw-tag round color="#52c41a">成功</cw-tag>
+                </block>
+            </cw-cell>
+            <cw-cell
+                is-detail
+                title="撤销时间："
+                wx:if="{{detail.info.cancel}}"
+                border="{{false}}"
+                value="{{common.date(detail.info.canceled_at)}}"
+            />
+        </cw-cell-group>
+
+        <cw-cell-group title="报销项目">
+            <cw-collapse value="{{ activeCollapse }}" bind:change="onCollapseChange">
+                <cw-collapse-item
+                    wx:for="{{detail.items}}"
+                    title="项目{{index + 1}}（{{item.fee}}元）"
+                    wx:key="index"
+                    name="{{index}}"
+                >
+                    <view class="row">
+                        <view class="label">花销用途：</view>
+                        {{item.reason}}
+                    </view>
+                    <view class="row">
+                        <view class="label">发票代码：</view>
+                        {{item.code}}
+                    </view>
+                    <view class="row">
+                        <view class="label">发票号码：</view>
+                        {{item.num}}
+                    </view>
+                    <view class="row">
+                        <view class="label">开票日期：</view>
+                        {{common.date(item.date, false)}}
+                    </view>
+                    <view class="row">
+                        <view class="label">报销金额：</view>
+                        {{item.fee}}元
+                    </view>
+                    <view class="row">
+                        <view class="label">电子发票：</view>
+                        <cw-image
+                            src="{{ASSETS_HOST}}{{item.attachment_url}}"
+                            data-src="{{ASSETS_HOST}}{{item.attachment_url}}"
+                            width="80px"
+                            height="80px"
+                            bind:click="showImg"
+                        />
+                    </view>
+                </cw-collapse-item>
+            </cw-collapse>
+        </cw-cell-group>
+
+        <view
+            class="cancel-btn-box"
+            wx:if="{{!detail.info.cancel && detail.info.success === null && detail.info.created_by === userInfo.id}}"
+        >
+            <cw-button custom-class="cancel-btn" block type="warning" loading="{{canceling}}" bind:click="doCancel">
+                撤销申请
+            </cw-button>
+        </view>
+
+        <cw-cell-group title="审批流程">
+            <cw-workflow
+                steps="{{detail.steps}}"
+                info="{{detail.info}}"
+                label="报销金额"
+                userId="{{userInfo.id}}"
+                bind:approved="onApproved"
+                bind:relationed="onRelationed"
+            />
+        </cw-cell-group>
+    </view>
+
+    <cw-copyright />
+
+    <!-- 全局提示 -->
+    <cw-dialog id="cw-dialog" />
+    <cw-notify id="cw-notify" />
+    <cw-toast id="cw-toast" />
+</view>

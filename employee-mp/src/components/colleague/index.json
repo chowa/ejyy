@@ -1,0 +1,8 @@
+{
+    "component": true,
+    "usingComponents": {
+        "cw-cell": "../cell",
+        "cw-cell-group": "../cell-group",
+        "cw-popup": "../popup"
+    }
+}

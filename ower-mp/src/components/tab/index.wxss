@@ -1,0 +1,26 @@
+@import '../common/index.wxss';
+
+:host {
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    width: 100%;
+}
+
+.cw-tab__pane,
+:host {
+    box-sizing: border-box;
+}
+
+.cw-tab__pane {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.cw-tab__pane--active {
+    height: auto;
+}
+
+.cw-tab__pane--inactive {
+    height: 0;
+    overflow: visible;
+}

@@ -1,0 +1,7 @@
+@import '../common/index.wxss';
+.cw-radio-group--horizontal {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}

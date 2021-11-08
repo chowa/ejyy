@@ -1,0 +1,35 @@
+@import '../common/index.wxss';
+
+.cw-collapse-item__title .cw-cell__right-icon {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+    transition: transform 0.3s, -webkit-transform 0.3s;
+}
+
+.cw-collapse-item__title--expanded .cw-cell__right-icon {
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+.cw-collapse-item__title--disabled .cw-cell,
+.cw-collapse-item__title--disabled .cw-cell__right-icon {
+    color: #c8c9cc !important;
+}
+
+.cw-collapse-item__title--disabled .cw-cell--hover {
+    background-color: #fff !important;
+}
+
+.cw-collapse-item__wrapper {
+    overflow: hidden;
+}
+
+.cw-collapse-item__content {
+    padding: 15px;
+    color: #969799;
+    font-size: 13px;
+    line-height: 1.5;
+    background-color: #fff;
+}

@@ -1,0 +1,31 @@
+<view class="container">
+    <view class="brand">
+        <image src="../../assets/common/chowa.png" class="chowa" mode="widthFix"></image>
+        <image src="../../assets/common/logo.png" class="logo" mode="widthFix"></image>
+    </view>
+
+    <view class="solgan">助力物业服务升级</view>
+    <view class="solgan mb">用心服务万千业主</view>
+
+    <view class="txt">「e家宜业」是内蒙古卓瓦科技有限公司旗下产品。</view>
+    <view class="txt">
+        我们致力于打造物业saas生态，利用信息技术助力物业服务再次升级，解决传统物业痛点问题，帮助物业公司解决服务监管难、用户满意度跟踪难、响应不及时、通知不及时等问题，努力充实软件功能让业主少跑腿、少张嘴、少操心，一部手机把事都办了。
+    </view>
+    <view class="txt">我们正在同物业公司为业主提供以下服务：</view>
+    <view class="list">
+        <view class="item">装修报备</view>
+        <view class="item">维修维护（全流程监控、调度，满意度评价）</view>
+        <view class="item">投诉意见（自动客服响应）</view>
+        <view class="item">物业缴费</view>
+        <view class="item">访客登记（NFC、二维码入园）</view>
+        <view class="item">小区挪车</view>
+        <view class="item">小区论坛</view>
+        <view class="item">周边服务（家政、水暖、维修）</view>
+        <view class="item">即时通知（公众号、小程序实时推送）</view>
+        <view class="item">宠物登记</view>
+        <view class="item">投票系统（业主意见征询）</view>
+    </view>
+    <view class="txt">受小区物业设备限制，部分小区可能无法支持全部功能，我们正在努力解决，望请谅解。</view>
+    <view class="txt">如果您对我们的产品有意见或建议，请通过个人中心下方的反馈功能反馈，感谢您的支持。</view>
+    <cw-copyright />
+</view>

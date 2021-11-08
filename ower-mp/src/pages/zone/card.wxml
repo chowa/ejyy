@@ -1,0 +1,25 @@
+<view class="container">
+    <view class="card">
+        <view class="user-info">
+            <view class="avatar">
+                <image
+                    src="{{ ASSETS_HOST }}{{ userInfo.avatar_url }}"
+                    wx:if="{{userInfo.avatar_url}}"
+                    lazy-load="true"
+                    mode="scaleToFill"
+                />
+            </view>
+            <view class="name">
+                <text>{{ userInfo.nick_name }}</text>
+            </view>
+        </view>
+
+        <canvas class="canvas" id="canvas" type="2d"></canvas>
+
+        <view class="notice">扫一扫上面的二维码，识别业主信息</view>
+    </view>
+
+    <view class="tongxin" bindtap="toTongxin">打开通信行程卡</view>
+
+    <cw-toast id="cw-toast" />
+</view>

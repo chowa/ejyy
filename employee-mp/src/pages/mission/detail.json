@@ -1,0 +1,16 @@
+{
+    "navigationBarTitleText": "巡检详情",
+    "enablePullDownRefresh": true,
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "usingComponents": {
+        "cw-notify": "../../components/notify",
+        "cw-cell": "../../components/cell",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-skeleton": "../../components/skeleton",
+        "cw-tag": "../../components/tag",
+        "cw-copyright": "../../components/copyright",
+        "cw-row": "../../components/row",
+        "cw-col": "../../components/col"
+    }
+}

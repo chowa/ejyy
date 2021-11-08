@@ -1,0 +1,9 @@
+function canRemove(info, userId) {
+    return [].concat(info.houses, info.carports, info.warehouses).every(function(item) {
+        return item.authenticated_type === 3 && item.authenticated_user_id === userId;
+    });
+}
+
+module.exports = {
+    canRemove: canRemove
+};

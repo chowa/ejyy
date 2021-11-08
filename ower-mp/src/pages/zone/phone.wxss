@@ -1,0 +1,64 @@
+.identity {
+    width: 220px;
+    height: 220px;
+    font-size: 90px;
+    line-height: 220px;
+    border-radius: 100%;
+    color: #116bc5;
+    background-color: #fff;
+    text-align: center;
+    margin: 30px auto;
+    position: relative;
+}
+
+.identity.unable {
+    color: #999;
+}
+
+.identity .num {
+    position: absolute;
+    font-size: 14px;
+    color: #999;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 30px;
+    text-align: center;
+    line-height: 1;
+}
+
+.phone {
+    text-align: center;
+    color: #444;
+    font-size: 14px;
+    line-height: 30px;
+}
+
+.phone.unable {
+    color: #ff976a;
+}
+
+.intro {
+    padding: 30px;
+}
+
+.intro .text {
+    font-size: 12px;
+    color: #676767;
+    line-height: 18px;
+    display: list-item;
+    list-style-type: disc;
+    margin-left: 12px;
+}
+
+.intro .text + .text {
+    margin-top: 12px;
+}
+
+.btn {
+    position: fixed !important;
+    left: 0;
+    right: 0;
+    bottom: constant(safe-area-inset-bottom);
+    bottom: env(safe-area-inset-bottom);
+}

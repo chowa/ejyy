@@ -1,0 +1,21 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-cell-group title="业主信息">
+        <cw-cell is-detail title="姓名：" value="{{owerInfo.real_name}}" />
+        <cw-cell is-detail title="性别：" value="{{owerInfo.gender === 1 ? '男' : '女'}}" />
+        <cw-cell is-detail title="联系电话：" border="{{false}}" value="{{owerInfo.phone}}" />
+    </cw-cell-group>
+
+    <cw-cell-group title="固定资产">
+        <cw-cell
+            is-detail
+            wx:for="{{buildings}}"
+            wx:key="index"
+            border="{{index === buildings.length - 1 ? false : true}}"
+            title="{{common.building(item)}}"
+        />
+    </cw-cell-group>
+
+    <cw-copyright />
+</view>

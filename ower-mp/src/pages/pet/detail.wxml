@@ -1,0 +1,188 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <view wx:if="{{!fetching}}">
+        <view>
+            <view class="photo">
+                <image src="{{ASSETS_HOST}}{{detail.info.photo}}" mode="widthFix" />
+            </view>
+        </view>
+
+        <cw-cell-group title="基本信息">
+            <cw-cell title="宠物名：" value="{{detail.info.name}}" is-detail />
+            <cw-cell title="种类：" value="{{detail.info.pet_type === 1 ? '犬' : '未知'}}" is-detail />
+            <cw-cell title="性别：" value="{{detail.info.sex === 0 ? '雌' : '雄'}}" is-detail />
+            <cw-cell title="品种：" value="{{detail.info.breed}}" is-detail />
+            <cw-cell title="毛色：" value="{{detail.info.coat_color}}" is-detail />
+            <cw-cell title="所在小区：" value="{{detail.info.community_name}}" is-detail border="{{false}}" />
+        </cw-cell-group>
+
+        <cw-cell-group title="宠物登记信息" wx:if="{{!fillPetLicense}}">
+            <cw-panel use-footer-slot wx:if="{{!detail.info.pet_license}}">
+                <view class="panel-container">
+                    <view class="nodata">尚未办理宠物登记</view>
+                    <view class="notice">
+                        办理宠物登记具体请咨询小区所在居委会、派出所；根据互联网公开资料显示，办理宠物登记需持宠物免疫（接种疫苗）凭证，有完全民事能力且有固定住所（住所需在禁养区域外）的公民身份证件，携带宠物正面、侧面照片及相关信息资料办理。
+                    </view>
+                </view>
+                <view slot="footer" class="footer">
+                    <cw-button size="small" round type="info" bind:click="showPetLicense">
+                        添加宠物登记信息
+                    </cw-button>
+                </view>
+            </cw-panel>
+            <view wx:else>
+                <cw-cell title="证书编号：" value="{{detail.info.pet_license}}" is-detail border="{{false}}" />
+                <cw-cell
+                    title="发证时间："
+                    value="{{common.date(detail.info.pet_license_award_at, false)}}"
+                    is-detail
+                    border="{{false}}"
+                />
+            </view>
+        </cw-cell-group>
+        <cw-panel use-footer-slot wx:else custom-class="section" title="上传宠物登记信息">
+            <cw-field
+                label="证书编号"
+                maxlength="{{ 40 }}"
+                show-word-limit
+                model:value="{{ pet_license }}"
+                placeholder="请输入证书编号"
+            />
+            <cw-cell
+                title="发证时间"
+                value="{{!pet_license_award_at ? '请选择发证时间' : common.date(pet_license_award_at, false)}}"
+                is-link
+                clickable
+                border="{{false}}"
+                bind:click="showlicenseCalendar"
+            />
+            <view slot="footer" class="footer">
+                <cw-button size="small" round bind:click="hidePetLicense">
+                    取消
+                </cw-button>
+                <cw-button size="small" round type="info" loading="{{licenseSubmiting}}" bind:click="updatePetLicense">
+                    确认
+                </cw-button>
+            </view>
+        </cw-panel>
+
+        <cw-cell-group title="接种信息">
+            <cw-panel wx:if="{{!detail.vaccinates.length}}">
+                <view class="panel-container">
+                    <view class="nodata">暂无接种信息</view>
+                </view>
+            </cw-panel>
+            <cw-cell
+                is-link
+                wx:if="{{!fillVaccinate}}"
+                bind:click="showVaccinate"
+                border="{{detail.vaccinates.length === 0 ? false : true}}"
+                title="添加接种信息"
+            />
+            <cw-panel use-footer-slot wx:else title="上传宠物接种信息">
+                <cw-cell
+                    title="最近一次接种疫苗时间"
+                    value="{{!vaccinated_at ? '请选择接种时间' : common.date(vaccinated_at, false)}}"
+                    is-link
+                    clickable
+                    bind:click="showVaccinateCalendar"
+                />
+                <cw-field
+                    label="疫苗类型"
+                    maxlength="{{ 32 }}"
+                    show-word-limit
+                    model:value="{{ vaccine_type }}"
+                    placeholder="请输入疫苗类型"
+                    border="{{false}}"
+                />
+                <view slot="footer" class="footer">
+                    <cw-button size="small" round bind:click="hideVaccinate">
+                        取消
+                    </cw-button>
+                    <cw-button
+                        size="small"
+                        round
+                        type="info"
+                        loading="{{vaccianteSubmiting}}"
+                        bind:click="updateVaccinate"
+                    >
+                        确认
+                    </cw-button>
+                </view>
+            </cw-panel>
+            <cw-cell
+                wx:for="{{detail.vaccinates}}"
+                wx:key="index"
+                border="{{false}}"
+                title="{{common.date(item.vaccinated_at, false)}}接种"
+                border="{{index !== detail.vaccinates.length - 1}}"
+                label="{{item.vaccine_type}}"
+            />
+        </cw-cell-group>
+
+        <view class="remove-btn-wrapper">
+            <cw-button block type="danger" bind:click="showRemoveAction">注销宠物</cw-button>
+        </view>
+    </view>
+    <view wx:else>
+        <view>
+            <view class="photo" />
+        </view>
+
+        <cw-cell-group title="基本信息" wx:if="{{fetching}}">
+            <cw-cell is-detail title="宠物名：" border="{{false}}">
+                <cw-skeleton in-cell row="2" />
+            </cw-cell>
+            <cw-cell is-detail title="种类：" border="{{false}}">
+                <cw-skeleton in-cell row="1" />
+            </cw-cell>
+            <cw-cell is-detail title="性别：" border="{{false}}">
+                <cw-skeleton in-cell row="1" />
+            </cw-cell>
+            <cw-cell is-detail title="品种：" border="{{false}}">
+                <cw-skeleton in-cell row="1" />
+            </cw-cell>
+            <cw-cell is-detail title="毛色：" border="{{false}}">
+                <cw-skeleton in-cell row="1" />
+            </cw-cell>
+        </cw-cell-group>
+
+        <cw-cell-group title="宠物登记信息" wx:if="{{fetching}}">
+            <cw-cell is-detail title="证书编号：" border="{{false}}">
+                <cw-skeleton in-cell row="1" />
+            </cw-cell>
+            <cw-cell is-detail title="发证时间：" border="{{false}}">
+                <cw-skeleton in-cell row="1" />
+            </cw-cell>
+        </cw-cell-group>
+    </view>
+
+    <cw-copyright />
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+
+    <cw-action-sheet
+        title="注销原因"
+        close-on-click-overlay="{{true}}"
+        show="{{removeActionVisible}}"
+        bind:close="hideRemoveAction"
+        bind:select="onRemoveReasonChange"
+        actions="{{removeActions}}"
+    />
+
+    <cw-calendar
+        show="{{licenseCalendarVisible}}"
+        max-date="{{stamp}}"
+        min-date="{{stamp - 1000 * 60 * 60 * 24 * 365}}"
+        bind:close="hidelicenseCalendar"
+        bind:confirm="onLicenseDateChange"
+    />
+    <cw-calendar
+        show="{{accinateCalendarVisible}}"
+        max-date="{{stamp}}"
+        min-date="{{stamp - 1000 * 60 * 60 * 24 * 365}}"
+        bind:close="hideVaccinateCalendar"
+        bind:confirm="onVaccinateDateChange"
+    />
+</view>

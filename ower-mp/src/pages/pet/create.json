@@ -1,0 +1,17 @@
+{
+    "navigationBarTitleText": "宠物登记",
+    "usingComponents": {
+        "cw-notify": "../../components/notify",
+        "cw-toast": "../../components/toast",
+        "cw-button": "../../components/button",
+        "cw-copyright": "../../components/copyright",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-field": "../../components/field",
+        "cw-cell": "../../components/cell",
+        "cw-switch": "../../components/switch",
+        "cw-icon": "../../components/icon",
+        "cw-radio": "../../components/radio",
+        "cw-radio-group": "../../components/radio-group",
+        "cw-calendar": "../../components/calendar"
+    }
+}

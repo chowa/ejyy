@@ -1,0 +1,74 @@
+@import '../common/index.wxss';
+
+.cw-nav-bar {
+    position: relative;
+    text-align: center;
+    -webkit-user-select: none;
+    user-select: none;
+    height: 46px;
+    line-height: 46px;
+    background-color: #fff;
+}
+
+.cw-nav-bar__content {
+    position: relative;
+    height: 100%;
+}
+
+.cw-nav-bar__text {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 -16px;
+    padding: 0 16px;
+    color: #232323;
+}
+
+.cw-nav-bar__text--hover {
+    background-color: #f2f3f5;
+}
+
+.cw-nav-bar__arrow {
+    vertical-align: middle;
+    font-size: 16px !important;
+    color: #232323 !important;
+}
+
+.cw-nav-bar__arrow + .cw-nav-bar__text {
+    margin-left: -20px;
+    padding-left: 25px;
+}
+
+.cw-nav-bar--fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.cw-nav-bar__title {
+    max-width: 60%;
+    margin: 0 auto;
+    color: #323233;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.cw-nav-bar__left,
+.cw-nav-bar__right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+.cw-nav-bar__left {
+    left: 16px;
+}
+
+.cw-nav-bar__right {
+    right: 16px;
+}

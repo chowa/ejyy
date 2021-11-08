@@ -1,0 +1,31 @@
+.card {
+    margin: 40rpx auto;
+    width: 700rpx;
+    height: 452rpx;
+    position: relative;
+    background: #fff;
+}
+
+.card .bg {
+    border-radius: 20rpx;
+    width: 100%;
+    height: 100%;
+}
+
+.card .name {
+    position: absolute;
+    color: #fff;
+    font-size: 28rpx;
+    bottom: 60rpx;
+    left: 60rpx;
+    right: 60rpx;
+}
+
+.card .house {
+    position: absolute;
+    color: #fff;
+    font-size: 32rpx;
+    bottom: 120rpx;
+    left: 60rpx;
+    right: 60rpx;
+}

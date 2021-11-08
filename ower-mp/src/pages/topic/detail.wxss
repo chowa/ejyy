@@ -1,0 +1,6 @@
+.container {
+    background-color: #fff;
+    padding-top: 20px;
+    padding-left: 18px;
+    padding-right: 18px;
+}

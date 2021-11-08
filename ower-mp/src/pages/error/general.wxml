@@ -1,0 +1,13 @@
+<view class="container">
+    <cw-empty icon="errgeneral" description="{{ message }}" fixed="{{false}}" />
+
+    <view class="hint">如需技术支持，请发送邮件至concat@chowa.cn</view>
+
+    <cw-button type="info" round bind:tap="checkError" block custom-class="btn">检测问题</cw-button>
+
+    <cw-copyright />
+    <!-- 全局提示 -->
+    <cw-toast id="cw-toast"></cw-toast>
+
+    <cw-dialog id="cw-dialog"></cw-dialog>
+</view>

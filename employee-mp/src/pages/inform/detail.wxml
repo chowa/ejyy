@@ -1,0 +1,21 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <view wx:if="{{ !fetching }}">
+        <view class="title">{{ detail.title }}</view>
+        <view class="sub-info">撰稿人：{{ detail.real_name }}</view>
+        <view class="sub-info">发稿人：{{ detail.published_real_name }}</view>
+        <view class="sub-info">发布时间：{{ common.date(detail.published_at) }}</view>
+
+        <view class="main-body">
+            <cw-rich-text detail="{{detail.content}}" />
+        </view>
+    </view>
+
+    <view class="loading" wx:else>
+        <cw-skeleton title row="{{ 3 }}" row-width="60%" />
+        <cw-skeleton row="{{ 7 }}" custom-class="loading-gutter" />
+    </view>
+
+    <cw-copyright />
+</view>

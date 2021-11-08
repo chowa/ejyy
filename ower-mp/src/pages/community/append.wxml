@@ -1,0 +1,50 @@
+<view class="container">
+    <cw-cell-group>
+        <cw-field
+            label="小区名称"
+            maxlength="{{ 56 }}"
+            auto-focus
+            show-word-limit
+            model:value="{{ community_name }}"
+            placeholder="请输入小区名称"
+        />
+        <cw-field
+            label="住宅信息"
+            maxlength="{{ 56 }}"
+            show-word-limit
+            model:value="{{ house }}"
+            placeholder="请输入住宅栋数、楼层、门牌号"
+        />
+        <cw-field
+            label="车位信息"
+            maxlength="{{ 56 }}"
+            show-word-limit
+            model:value="{{ carport }}"
+            placeholder="请输入车位编号"
+        />
+        <cw-field
+            label="仓房信息"
+            maxlength="{{ 56 }}"
+            show-word-limit
+            border="{{ false }}"
+            model:value="{{ warehouse }}"
+            placeholder="请输入仓房编号"
+        />
+    </cw-cell-group>
+
+    <navigator url="/pages/community/apply" class="link">认证历史？</navigator>
+
+    <view class="notice">
+        <view class="item">本功能每日限用一次。</view>
+        <view class="item">您提交的信息需要物业审核后方可生效。</view>
+        <view class="item">如果小区不存在，您提交的信息将会被搁置。</view>
+    </view>
+
+    <cw-button custom-class="btn" loading="{{submiting}}" block type="info" bind:click="save">
+        提交
+    </cw-button>
+    <cw-copyright />
+    <cw-notify id="cw-notify" />
+    <cw-toast id="cw-toast" />
+    <cw-dialog id="cw-dialog" />
+</view>

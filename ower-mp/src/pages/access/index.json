@@ -1,0 +1,14 @@
+{
+    "navigationBarTitleText": "门禁出入",
+    "usingComponents": {
+        "cw-copyright": "../../components/copyright",
+        "cw-toast": "../../components/toast",
+        "cw-notify": "../../components/notify",
+        "cw-empty": "../../components/empty",
+        "cw-tab": "../../components/tab",
+        "cw-tabs": "../../components/tabs",
+        "cw-cell": "../../components/cell",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-skeleton": "../../components/skeleton"
+    }
+}

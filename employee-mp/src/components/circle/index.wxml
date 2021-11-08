@@ -1,0 +1,15 @@
+<wxs src="../wxs/utils.wxs" module="utils" />
+
+<view class="cw-circle">
+    <canvas
+        class="cw-circle__canvas"
+        type="{{ type }}"
+        style="width: {{ utils.addUnit(size) }};height:{{ utils.addUnit(size) }}"
+        id="cw-circle"
+        canvas-id="cw-circle"
+    ></canvas>
+    <view wx:if="{{ !text }}" class="cw-circle__text">
+        <slot></slot>
+    </view>
+    <cover-view wx:else class="cw-circle__text">{{ text }}</cover-view>
+</view>

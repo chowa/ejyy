@@ -1,0 +1,11 @@
+{
+    "component": true,
+    "usingComponents": {
+        "cw-skeleton": "../skeleton",
+        "cw-divider": "../divider",
+        "cw-loading": "../loading",
+        "cw-empty": "../empty",
+        "cw-copyright": "../copyright",
+        "cw-list-item": "../list-item"
+    }
+}

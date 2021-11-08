@@ -1,0 +1,39 @@
+@import '../common/index.wxss';
+.cw-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.cw-empty.fixed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: constant(safe-area-inset-bottom);
+    bottom: env(safe-area-inset-bottom);
+}
+
+.cw-empty.with-copyright {
+    padding-bottom: 122px;
+}
+
+.cw-empty__icon {
+    font-size: 154px;
+    color: #d8d8d8;
+    line-height: 1;
+}
+
+.cw-empty__description {
+    margin-top: 16px;
+    padding: 0 60px;
+    color: #989899;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.cw-empty__bottom {
+    margin-top: 24px;
+}

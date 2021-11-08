@@ -1,0 +1,21 @@
+.item + .item {
+    margin-top: 12px;
+}
+
+.inner {
+    padding: 12px 20px;
+}
+
+.inner .text {
+    font-size: 14px;
+    line-height: 26px;
+    color: #323233;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.header {
+    padding: 6px 20px;
+    border-bottom: 1px solid #ebedf0;
+}

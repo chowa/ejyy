@@ -1,0 +1,43 @@
+.item {
+    background-color: #fff;
+    padding: 12px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.item .info {
+    flex: auto;
+    overflow: hidden;
+    padding-right: 12px;
+}
+
+.item .phone {
+    flex: none;
+    font-size: 18px;
+    color: #1989fa;
+}
+
+.item .info .title {
+    font-size: 14px;
+    color: #323232;
+    line-height: 20px;
+    margin-bottom: 8px;
+}
+
+.item .info .txt {
+    font-size: 14px;
+    color: #676767;
+    line-height: 16px;
+}
+
+.item + .item:before {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    right: 20px;
+    content: '';
+    border-top: 1px solid #ebedf0;
+}

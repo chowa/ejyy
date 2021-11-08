@@ -1,0 +1,89 @@
+@import '../common/index.wxss';
+
+.cw-dialog {
+    top: 45% !important;
+    overflow: hidden;
+    width: 320px;
+    font-size: 16px;
+    border-radius: 16px;
+    background-color: #fff;
+}
+
+@media (max-width: 321px) {
+    .cw-dialog {
+        width: 90%;
+    }
+}
+
+.cw-dialog__header {
+    text-align: center;
+    padding-top: 24px;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.cw-dialog__header--isolated {
+    padding: 24px 0;
+}
+
+.cw-dialog__message {
+    overflow-y: auto;
+    text-align: center;
+    -webkit-overflow-scrolling: touch;
+    font-size: 14px;
+    line-height: 20px;
+    max-height: 60vh;
+    padding: 24px;
+}
+
+.cw-dialog__message-text {
+    word-wrap: break-word;
+}
+
+.cw-dialog__message--hasTitle {
+    padding-top: 8px;
+    color: #646566;
+}
+
+.cw-dialog__message--round-button {
+    padding-bottom: 16px;
+    color: #323233;
+}
+
+.cw-dialog__message--left {
+    text-align: left;
+}
+
+.cw-dialog__message--right {
+    text-align: right;
+}
+
+.cw-dialog__footer {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.cw-dialog__footer--round-button {
+    position: relative !important;
+    padding: 8px 24px 16px !important;
+}
+
+.cw-dialog__button {
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+.cw-dialog__cancel,
+.cw-dialog__confirm {
+    border: 0 !important;
+}
+
+.cw-dialog-bounce-enter {
+    transform: translate3d(-50%, -50%, 0) scale(0.7);
+    opacity: 0;
+}
+
+.cw-dialog-bounce-leave-active {
+    transform: translate3d(-50%, -50%, 0) scale(0.9);
+    opacity: 0;
+}

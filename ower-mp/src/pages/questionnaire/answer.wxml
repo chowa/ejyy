@@ -1,0 +1,57 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <view wx:if="{{!fetching}}">
+        <view class="title">{{title}}</view>
+        <view class="expire">截止至{{common.date(expire, false)}}</view>
+
+        <view class="question" wx:for="{{questions}}" wx:key="index">
+            <view class="question-title">{{index + 1}}.{{item.title}}</view>
+
+            <block wx:if="{{item.type === 1}}">
+                <cw-radio-group data-index="{{index}}" value="{{answers[index]}}" bind:change="onQuestionChange">
+                    <cw-radio
+                        wx:for="{{item.options}}"
+                        wx:for-item="option"
+                        wx:for-index="key"
+                        wx:key="key"
+                        name="{{option.id}}"
+                        custom-class="option"
+                    >
+                        {{option.option_val}}
+                    </cw-radio>
+                </cw-radio-group>
+            </block>
+            <block wx:else>
+                <cw-checkbox-group data-index="{{index}}" value="{{answers[index]}}" bind:change="onQuestionChange">
+                    <cw-checkbox
+                        wx:for="{{item.options}}"
+                        wx:for-item="option"
+                        wx:for-index="key"
+                        wx:key="key"
+                        name="{{option.id}}"
+                        shape="square"
+                        custom-class="option"
+                    >
+                        {{option.option_val}}
+                    </cw-checkbox>
+                </cw-checkbox-group>
+            </block>
+        </view>
+
+        <cw-button type="info" block round loading="{{submiting}}" bind:click="submit" custom-class="btn">
+            提交
+        </cw-button>
+    </view>
+    <view wx:else>
+        <cw-skeleton row="{{ 1 }}" title />
+
+        <view class="question" wx:for="{{4}}" wx:key="index">
+            <cw-skeleton row="{{ 3 }}" title />
+        </view>
+    </view>
+
+    <cw-copyright />
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+</view>

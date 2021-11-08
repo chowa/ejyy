@@ -1,0 +1,13 @@
+{
+    "navigationBarTitleText": "家人详情",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark",
+    "usingComponents": {
+        "cw-notify": "../../components/notify",
+        "cw-dialog": "../../components/dialog",
+        "cw-copyright": "../../components/copyright",
+        "cw-skeleton": "../../components/skeleton",
+        "cw-icon": "../../components/icon",
+        "cw-empty": "../../components/empty"
+    }
+}

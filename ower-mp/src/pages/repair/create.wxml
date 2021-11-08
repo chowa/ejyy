@@ -1,0 +1,71 @@
+<view class="container">
+    <cw-cell-group>
+        <cw-cell
+            title="所在小区"
+            title-width="100px"
+            value="{{communityInfo.current.name}}小区"
+            is-link
+            is-detail
+            url="/pages/community/index"
+        />
+        <cw-cell
+            title="维修位置"
+            clickable
+            is-link
+            is-detail="{{repairLocalName ? true : false}}"
+            title-width="100px"
+            value="{{repairLocalName ? repairLocalName : '请选择'}}"
+            bind:click="showRepairLocalAction"
+        />
+        <cw-cell
+            title="维修类型"
+            title-width="100px"
+            clickable
+            is-link
+            is-detail="{{repairTypeName ? true : false}}"
+            value="{{repairTypeName ? repairTypeName : '请选择'}}"
+            bind:click="showRepairTypeAction"
+        />
+        <cw-field
+            label="问题描述"
+            type="textarea"
+            maxlength="{{ 200 }}"
+            show-word-limit
+            autosize
+            model:value="{{ description }}"
+            placeholder="请输入问题描述"
+        />
+        <cw-cell title="现场照片" border="{{ false }}" title-class="upload-title" value-class="upload-cell">
+            <cw-uploader
+                file-list="{{uploadImgList}}"
+                bind:delete="deleteImg"
+                bind:after-read="afterRead"
+                max-count="{{4}}"
+            />
+        </cw-cell>
+    </cw-cell-group>
+
+    <cw-button custom-class="btn" block loading="{{submiting}}" type="info" bind:click="submit">
+        立即报修
+    </cw-button>
+
+    <cw-action-sheet
+        title="维修位置"
+        close-on-click-overlay="{{true}}"
+        show="{{repairLocalActionVisible}}"
+        bind:close="hideRepairLocalAction"
+        bind:select="onRepairLocalChange"
+        actions="{{repairLocalActions}}"
+    />
+    <cw-action-sheet
+        title="维修类型"
+        close-on-click-overlay="{{true}}"
+        show="{{repairTypeActionVisible}}"
+        bind:close="hideRepairTypeAction"
+        bind:select="onRepairTypeChange"
+        actions="{{repairTypeActions}}"
+    />
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+    <cw-copyright />
+</view>

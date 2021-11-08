@@ -1,0 +1,79 @@
+<wxs src="../common/common.wxs" module="common" />
+<wxs src="./index.wxs" module="payment" />
+
+<view class="container">
+    <cw-list
+        fetching="{{fetching}}"
+        page_num="{{page_num}}"
+        page_amount="{{page_amount}}"
+        list="{{list}}"
+        empty="暂无缴费记录"
+        icon="pay"
+    >
+        <cw-list-item
+            wx:for="{{list}}"
+            title="{{payment.tradeNo(item.created_at, item.order_id)}}"
+            wx:key="index"
+            status="{{item.community_name}}小区"
+            url="/pages/payment/detail?id={{item.id}}"
+            useFooterSlot="{{curStamp - payExpire < item.created_at && !item.cancel && !item.paid}}"
+        >
+            <cw-list-item-info label="缴费年度">
+                {{item.start_year}}至{{item.end_year}}年
+            </cw-list-item-info>
+            <cw-list-item-info label="缴费金额">
+                {{payment.yuan(item.fee)}}元
+            </cw-list-item-info>
+            <cw-list-item-info label="订单状态">
+                <block wx:if="{{item.cancel}}">
+                    <cw-tag round color="#ff9900">已取消</cw-tag>
+                </block>
+                <block wx:elif="{{item.refunding && !item.refunded}}">
+                    <cw-tag round color="#CB51CB">待退款</cw-tag>
+                </block>
+                <block wx:elif="{{item.refunding && item.refunded}}">
+                    <cw-tag round color="#51C6CB">{{ item.paid_fee == 0 ? '完全退款成功' : '部分退款成功' }}</cw-tag>
+                </block>
+                <block wx:elif="{{item.paid}}">
+                    <cw-tag round color="#00cc66">已支付</cw-tag>
+                </block>
+                <block wx:elif="{{curStamp - payExpire >= item.created_at}}">
+                    <cw-tag round color="#ff3300">已超时</cw-tag>
+                </block>
+                <block wx:else>
+                    <cw-tag round color="#3399ff">待支付</cw-tag>
+                </block>
+            </cw-list-item-info>
+            <cw-list-item-info label="退款金额" wx:if="{{item.fee !== item.paid_fee && item.paid}}">
+                {{payment.yuan(item.fee - item.paid_fee)}}元
+            </cw-list-item-info>
+            <cw-list-item-info label="交易单号" wx:if="{{item.transaction_id}}">
+                {{item.transaction_id}}
+            </cw-list-item-info>
+            <cw-list-item-info label="订单时间">
+                {{common.date(item.created_at)}}
+            </cw-list-item-info>
+
+            <view slot="footer">
+                <cw-button size="small" round type="warning" data-id="{{item.order_id}}" catch:tap="cancelOrder">
+                    取消订单
+                </cw-button>
+                <cw-button
+                    size="small"
+                    round
+                    custom-class="btn-ml"
+                    type="danger"
+                    class="btn"
+                    data-id="{{item.order_id}}"
+                    catch:tap="payOrder"
+                >
+                    支付
+                </cw-button>
+            </view>
+        </cw-list-item>
+    </cw-list>
+
+    <cw-dialog id="cw-dialog" />
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+</view>

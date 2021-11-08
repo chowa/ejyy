@@ -1,0 +1,51 @@
+/**
+ * +----------------------------------------------------------------------
+ * | 「e家宜业」 —— 助力物业服务升级，用心服务万千业主
+ * +----------------------------------------------------------------------
+ * | Copyright (c) 2020~2021 https://www.chowa.com All rights reserved.
+ * +----------------------------------------------------------------------
+ * | Licensed 未经许可不能去掉「e家宜业」和「卓瓦科技」相关版权
+ * +----------------------------------------------------------------------
+ * | Author: jixuecong@chowa.cn
+ * +----------------------------------------------------------------------
+ */
+
+// .ivu-table-wrapper {
+//     margin: 0 -16px;
+// }
+
+.ivu-table th {
+    border-bottom: 1px solid #f5f5f5 !important;
+}
+
+.ivu-table td {
+    border-bottom: none !important;
+}
+
+.ivu-table-cell {
+    white-space: pre-line !important;
+}
+
+.ivu-table:before {
+    display: none !important;
+}
+
+.ivu-table {
+    font-size: 12px!important;
+
+    tbody {
+        tr:last-child td {
+            border-bottom: none !important;
+        }
+
+        td {
+            a + a {
+                margin-left: 6px;
+            }
+        }
+    }
+}
+
+.ivu-table-fixed::before, .ivu-table-fixed-right::before {
+    background-color: transparent !important;
+}

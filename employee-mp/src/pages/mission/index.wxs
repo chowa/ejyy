@@ -1,0 +1,27 @@
+function statusText(num) {
+    switch (num) {
+        case 1:
+            return '任务取消';
+
+        case 2:
+            return '日期未到';
+
+        case 3:
+            return '已完成';
+
+        case 4:
+            return '巡检中';
+
+        case 5:
+            return '未完成';
+    }
+}
+
+function like(likes, total) {
+    return Math.round((likes / total) * 100);
+}
+
+module.exports = {
+    statusText: statusText,
+    like: like
+};

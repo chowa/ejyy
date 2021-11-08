@@ -1,0 +1,12 @@
+<view class="container">
+    <view class="result {{success ? 'success' : ''}}">
+        <cw-icon name="logo" custom-class="logo" />
+        <view>{{ success ? '支付成功' : '正在获取支付结果……' }}</view>
+    </view>
+
+    <view class="btn">
+        <cw-button block type="info" bind:click="goDetail">确定</cw-button>
+    </view>
+
+    <cw-copyright />
+</view>

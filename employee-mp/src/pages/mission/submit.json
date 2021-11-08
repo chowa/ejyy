@@ -1,0 +1,19 @@
+{
+    "navigationBarTitleText": "巡检上报",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "usingComponents": {
+        "cw-cell": "../../components/cell",
+        "cw-icon": "../../components/icon",
+        "cw-field": "../../components/field",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-skeleton": "../../components/skeleton",
+        "cw-copyright": "../../components/copyright",
+        "cw-toast": "../../components/toast",
+        "cw-notify": "../../components/notify",
+        "cw-button": "../../components/button",
+        "cw-switch": "../../components/switch",
+        "cw-steps": "../../components/steps",
+        "cw-uploader": "../../components/uploader"
+    }
+}

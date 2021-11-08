@@ -1,0 +1,38 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-list
+        fetching="{{fetching}}"
+        page_num="{{page_num}}"
+        page_amount="{{page_amount}}"
+        list="{{list}}"
+        empty="暂无行政通知"
+        icon="inform"
+    >
+        <cw-list-item
+            wx:for="{{list}}"
+            wx:key="index"
+            title="{{common.number('IA', item.created_at, item.id)}}"
+            url="/pages/party/detail?id={{item.id}}"
+        >
+            <cw-list-item-info label="文章标题">
+                {{item.title}}
+            </cw-list-item-info>
+            <cw-list-item-info label="封面图片" wx:if="{{item.carousel}}">
+                <image src="{{ASSETS_HOST}}{{item.cover_img}}" mode="widthFix" />
+            </cw-list-item-info>
+            <cw-list-item-info label="发布时间">
+                {{ common.date(item.published_at) }}
+            </cw-list-item-info>
+            <cw-list-item-info label="撰写人">
+                {{ item.real_name }}
+            </cw-list-item-info>
+        </cw-list-item>
+    </cw-list>
+
+    <cw-dialog id="cw-dialog" />
+
+    <!-- 全局提示 -->
+    <cw-notify id="cw-notify" />
+    <cw-toast id="cw-toast" />
+</view>

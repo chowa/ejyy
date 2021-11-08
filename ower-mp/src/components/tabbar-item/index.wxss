@@ -1,0 +1,36 @@
+@import '../common/index.wxss';
+
+:host {
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+.cw-tabbar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #646566;
+    font-size: 12px;
+    line-height: 1;
+}
+
+.cw-tabbar-item__icon {
+    position: relative;
+    margin-bottom: 4px;
+    font-size: 22px;
+}
+
+.cw-tabbar-item__icon__inner {
+    display: block;
+    min-width: 1em;
+}
+
+.cw-tabbar-item--active {
+    color: #1989fa;
+}
+
+.cw-tabbar-item__info {
+    margin-top: 2px;
+}

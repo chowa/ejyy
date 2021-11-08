@@ -1,0 +1,53 @@
+<wxs src="../wxs/utils.wxs" module="utils" />
+
+<view class="custom-class cw-card">
+    <view class="{{ utils.bem('card__header', { center: centered }) }}">
+        <view class="cw-card__thumb" bind:tap="onClickThumb">
+            <image
+                wx:if="{{ thumb }}"
+                src="{{ thumb }}"
+                mode="{{ thumbMode }}"
+                lazy-load="{{ lazyLoad }}"
+                class="cw-card__img thumb-class"
+            />
+            <slot wx:else name="thumb" />
+            <cw-tag wx:if="{{ tag }}" mark type="danger" custom-class="cw-card__tag">
+                {{ tag }}
+            </cw-tag>
+            <slot wx:else name="tag" />
+        </view>
+
+        <view class="cw-card__content {{ utils.bem('card__content', { center: centered }) }}">
+            <view>
+                <view wx:if="{{ title }}" class="cw-card__title title-class">{{ title }}</view>
+                <slot wx:else name="title" />
+
+                <view wx:if="{{ desc }}" class="cw-card__desc desc-class">{{ desc }}</view>
+                <slot wx:else name="desc" />
+
+                <slot name="tags" />
+            </view>
+
+            <view class="cw-card__bottom">
+                <slot name="price-top" />
+                <view wx:if="{{ price || price === 0 }}" class="cw-card__price price-class">
+                    <text>{{ currency }}</text>
+                    <text class="cw-card__price-integer">{{ integerStr }}</text>
+                    <text class="cw-card__price-decimal">{{ decimalStr }}</text>
+                </view>
+                <slot wx:else name="price" />
+                <view wx:if="{{ originPrice || originPrice === 0 }}" class="cw-card__origin-price origin-price-class">
+                    {{ currency }} {{ originPrice }}
+                </view>
+                <slot wx:else name="origin-price" />
+                <view wx:if="{{ num }}" class="cw-card__num num-class">x {{ num }}</view>
+                <slot wx:else name="num" />
+                <slot name="bottom" />
+            </view>
+        </view>
+    </view>
+
+    <view class="cw-card__footer">
+        <slot name="footer" />
+    </view>
+</view>

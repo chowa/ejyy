@@ -1,0 +1,122 @@
+.loading-wrapper {
+    padding: 12px 0;
+}
+
+.footer {
+    text-align: right;
+}
+
+.panel-container {
+    padding: 12px 20px;
+}
+
+.nocar {
+    font-size: 12px;
+    color: #999;
+    line-height: 22px;
+    text-align: center;
+}
+
+.car-number {
+    width: 440rpx;
+    height: 140rpx;
+    border-radius: 10rpx;
+    position: relative;
+    font-size: 72rpx;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 16rpx;
+}
+
+.car-number.new-energy {
+    width: 480rpx;
+}
+.car-number .province {
+    flex: none;
+    padding-left: 10rpx;
+}
+
+.car-number .point {
+    flex: none;
+    padding-left: 8rpx;
+}
+
+.car-number .number {
+    flex: auto;
+    padding: 0 8rpx;
+    height: 108rpx;
+}
+
+.car-number:before {
+    position: absolute;
+    top: 6rpx;
+    left: 6rpx;
+    bottom: 6rpx;
+    right: 6rpx;
+    content: '';
+    border-radius: 10rpx;
+    border: 2px solid transparent;
+}
+
+.car-number.blue {
+    background: #1075f7;
+    color: #fff;
+}
+
+.car-number.blue:before {
+    border-color: #fff;
+}
+
+.car-number.yellow {
+    background: #ffbd05;
+    color: #000;
+}
+
+.car-number.yellow:before {
+    border-color: #000;
+}
+
+.car-number.blue.new-energy {
+    background: linear-gradient(to bottom, #fff, #54b156);
+    color: #000;
+}
+
+.car-number.blue.new-energy:before {
+    border-color: #000;
+}
+
+.car-number.yellow.new-energy .number {
+    background: #54b156;
+}
+
+.car-number-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.status {
+    font-size: 12px;
+    margin-top: 2px;
+    line-height: 20px;
+}
+
+.status.success {
+    color: #19be6b;
+}
+
+.status.wait {
+    color: #999;
+}
+
+.car-number-wrapper + .car-number-wrapper {
+    margin-top: 24px;
+}
+
+.unbinding {
+    color: #999;
+}

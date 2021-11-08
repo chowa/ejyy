@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "用户协议",
+    "usingComponents": {
+        "cw-copyright": "../../components/copyright"
+    }
+}

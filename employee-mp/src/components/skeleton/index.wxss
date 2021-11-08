@@ -1,0 +1,60 @@
+@import '../common/index.wxss';
+
+.cw-skeleton {
+    display: -webkit-flex;
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px 16px;
+}
+
+.cw-skeleton--cell {
+    padding: 0;
+}
+
+.cw-skeleton__avatar {
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    margin-right: 16px;
+    background-color: #f2f3f5;
+}
+
+.cw-skeleton__avatar--round {
+    border-radius: 100%;
+}
+
+.cw-skeleton__content {
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+.cw-skeleton__avatar + .cw-skeleton__content {
+    padding-top: 8px;
+}
+
+.cw-skeleton__row,
+.cw-skeleton__title {
+    height: 16px;
+    background-color: #f2f3f5;
+}
+
+.cw-skeleton__title {
+    margin: 0;
+}
+
+.cw-skeleton__row:not(:first-child) {
+    margin-top: 12px;
+}
+
+.cw-skeleton__title + .cw-skeleton__row {
+    margin-top: 20px;
+}
+
+.cw-skeleton--animate {
+    animation: cw-skeleton-blink 1.2s ease-in-out infinite;
+}
+@keyframes cw-skeleton-blink {
+    50% {
+        opacity: 0.6;
+    }
+}

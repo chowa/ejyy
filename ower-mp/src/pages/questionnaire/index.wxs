@@ -1,0 +1,11 @@
+function percentage(val, total) {
+    if (!val) {
+        return 0;
+    }
+
+    return Math.round((val / total) * 100);
+}
+
+module.exports = {
+    percentage: percentage
+};

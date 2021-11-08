@@ -1,0 +1,20 @@
+<view class="cw-panel cw-hairline--top-bottom custom-class">
+    <cw-cell
+        wx:if="{{ title || desc || status }}"
+        title="{{ title }}"
+        label="{{ desc }}"
+        value="{{ status }}"
+        border="{{true}}"
+        custom-class="cw-panel__header {{clickable? 'cw-panel__clickable' : ''}} header-class"
+        value-class="cw-panel__header-value"
+    />
+    <slot wx:else name="header" />
+
+    <view class="cw-panel__content">
+        <slot />
+    </view>
+
+    <view wx:if="{{ useFooterSlot }}" class="cw-panel__footer cw-hairline--top footer-class">
+        <slot name="footer" />
+    </view>
+</view>

@@ -1,0 +1,6 @@
+<view class="list-item-info">
+    <view class="list-item-info-label" wx:if="{{label}}">{{ label }}：</view>
+    <view class="list-item-info-content">
+        <slot />
+    </view>
+</view>

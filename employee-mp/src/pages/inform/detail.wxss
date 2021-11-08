@@ -1,0 +1,31 @@
+.container {
+    padding-top: 12px;
+    padding-left: 18px;
+    padding-right: 18px;
+    background-color: #fff;
+}
+
+.title {
+    font-size: 16px;
+    color: #343434;
+    line-height: 28px;
+    margin-bottom: 6px;
+}
+
+.sub-info {
+    font-size: 12px;
+    color: #343434;
+    line-height: 18px;
+}
+
+.main-body {
+    padding: 16px 0 4px 0;
+}
+
+.loading {
+    padding-top: 24px;
+}
+
+.loading-gutter {
+    margin-top: 22px;
+}

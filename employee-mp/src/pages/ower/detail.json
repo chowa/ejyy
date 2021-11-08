@@ -1,0 +1,12 @@
+{
+    "navigationBarTitleText": "业主信息",
+    "enablePullDownRefresh": true,
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "usingComponents": {
+        "cw-cell": "../../components/cell",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-copyright": "../../components/copyright",
+        "cw-skeleton": "../../components/skeleton"
+    }
+}

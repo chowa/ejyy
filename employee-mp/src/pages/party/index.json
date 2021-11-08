@@ -1,0 +1,13 @@
+{
+    "navigationBarTitleText": "党建党讯",
+    "enablePullDownRefresh": true,
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "onReachBottomDistance": 50,
+    "usingComponents": {
+        "cw-tag": "../../components/tag",
+        "cw-list": "../../components/list",
+        "cw-list-item": "../../components/list-item",
+        "cw-list-item-info": "../../components/list-item-info"
+    }
+}

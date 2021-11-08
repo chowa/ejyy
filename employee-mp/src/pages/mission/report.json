@@ -1,0 +1,16 @@
+{
+    "navigationBarTitleText": "巡检报告",
+    "enablePullDownRefresh": true,
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "usingComponents": {
+        "cw-notify": "../../components/notify",
+        "cw-skeleton": "../../components/skeleton",
+        "cw-tag": "../../components/tag",
+        "cw-timeline": "../../components/timeline",
+        "cw-copyright": "../../components/copyright",
+        "cw-image": "../../components/image",
+        "cw-row": "../../components/row",
+        "cw-col": "../../components/col"
+    }
+}

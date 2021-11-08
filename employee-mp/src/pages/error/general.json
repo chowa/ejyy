@@ -1,0 +1,10 @@
+{
+    "navigationBarTitleText": "出错了",
+    "usingComponents": {
+        "cw-button": "../../components/button",
+        "cw-toast": "../../components/toast",
+        "cw-dialog": "../../components/dialog",
+        "cw-copyright": "../../components/copyright",
+        "cw-empty": "../../components/empty"
+    }
+}

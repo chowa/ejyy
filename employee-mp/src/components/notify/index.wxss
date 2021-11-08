@@ -1,0 +1,33 @@
+@import '../common/index.wxss';
+
+.cw-notify {
+    text-align: center;
+    word-wrap: break-word;
+    padding: 6px 15px;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.cw-notify__container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.cw-notify--primary {
+    background-color: #1989fa;
+}
+
+.cw-notify--success {
+    background-color: #07c160;
+}
+
+.cw-notify--danger {
+    background-color: #ee0a24;
+}
+
+.cw-notify--warning {
+    background-color: #ff976a;
+}

@@ -1,0 +1,64 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-dropdown-menu>
+        <cw-dropdown-item bind:change="onCategoryChange" value="{{ category }}" options="{{ categoryOptions }}" />
+        <cw-dropdown-item bind:change="onRadiuChange" value="{{ radius }}" options="{{ radiusOptions }}" />
+    </cw-dropdown-menu>
+
+    <cw-list
+        fetching="{{fetching}}"
+        page_num="{{page_num}}"
+        page_amount="{{page_amount}}"
+        list="{{list}}"
+        empty="未检索到所需的服务"
+        icon="service"
+        withFilter
+        inTabPage
+    >
+        <cw-list-item
+            wx:for="{{list}}"
+            title="{{item.title}}"
+            status="{{communityInfo.current.name}}小区"
+            wx:key="index"
+            useFooterSlot
+        >
+            <cw-list-item-info label="详细地址">
+                {{ item.address }}
+            </cw-list-item-info>
+            <cw-list-item-info label="距离小区">
+                {{ item._distance }}米
+            </cw-list-item-info>
+            <cw-list-item-info label="联系电话" wx:if="{{item.tel}}">
+                {{ item.tel }}
+            </cw-list-item-info>
+
+            <view slot="footer">
+                <cw-button
+                    size="small"
+                    round
+                    type="default"
+                    data-title="{{item.title}}"
+                    data-location="{{item.location}}"
+                    bind:click="openMap"
+                >
+                    打开地图
+                </cw-button>
+                <cw-button
+                    size="small"
+                    round
+                    type="info"
+                    data-tel="{{item.tel}}"
+                    custom-class="btn-ml"
+                    wx:if="{{item.tel}}"
+                    bind:click="makeCall"
+                >
+                    拨打电话
+                </cw-button>
+            </view>
+        </cw-list-item>
+    </cw-list>
+
+    <!-- 全局提示 -->
+    <cw-notify id="cw-notify" />
+</view>

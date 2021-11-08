@@ -1,0 +1,14 @@
+<wxs src="../wxs/utils.wxs" module="utils" />
+
+<view class="custom-class cw-empty {{ fixed ? 'fixed' : ''}} {{ withCopyright ? 'with-copyright' : '' }}">
+    <view class="cw-empty__icon">
+        <cw-icon name="{{ icon }}" />
+    </view>
+
+    <view class="cw-empty__description">
+        {{ description }}
+    </view>
+    <view class="cw-empty__bottom">
+        <slot></slot>
+    </view>
+</view>

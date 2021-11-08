@@ -1,0 +1,54 @@
+<view class="container">
+    <cw-nav-bar
+        title="授权登录"
+        fixed
+        border="{{ false }}"
+        custom-class="nav-bar"
+        title-class="nav-bar-title"
+        z-index="100"
+        custom-style="height:{{ systemInfo.navBarHeight + systemInfo.statusBarHeight }}px;padding-top:{{ systemInfo.statusBarHeight }}px"
+    />
+
+    <view style="height:{{ systemInfo.navBarHeight + systemInfo.statusBarHeight }}px" />
+
+    <view class="logo-wrapper">
+        <view class="logo">
+            <image src="../../assets/common/logo.png" mode="scaleToFill"></image>
+        </view>
+
+        <view class="txt">助力物业服务升级</view>
+        <view class="txt">用心服务万千业主</view>
+    </view>
+
+    <cw-button type="info" disabled="{{loading}}" custom-class="btn" block bind:click="login">
+        <cw-loading type="spinner" size="32rpx" custom-class="loading" wx:if="{{loading}}" />
+        <text>{{loading ? '登录中' : '登录'}}</text>
+    </cw-button>
+
+    <view class="notice">
+        <view class="title">卓瓦科技友情提示：</view>
+        <view class="item">
+            <cw-icon name="success" class="icon" />
+            注意保护业主隐私，泄露公民隐私数据属于违法行为
+        </view>
+        <view class="item">
+            <cw-icon name="success" class="icon" />
+            互联网不是法外之地，请对您的网络言行负责
+        </view>
+        <view class="item">
+            <cw-icon name="success" class="icon" />
+            合理合法沟通，减少小区矛盾
+        </view>
+    </view>
+
+    <view class="who-can-use">
+        <view>仅供e家宜业物业员工使用</view>
+        <view>内蒙古卓瓦科技有限公司版权所有</view>
+    </view>
+
+    <view class="welcome">
+        <image src="../../assets/login/welcome.jpg" mode="heightFix"></image>
+    </view>
+
+    <cw-notify id="cw-notify" />
+</view>

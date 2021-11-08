@@ -1,0 +1,56 @@
+@import '../common/index.wxss';
+
+.cw-calendar {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+    background-color: #fff;
+}
+
+.cw-calendar__close-icon {
+    top: 11px;
+}
+
+.cw-calendar__popup--bottom,
+.cw-calendar__popup--top {
+    height: 80%;
+}
+
+.cw-calendar__popup--left,
+.cw-calendar__popup--right {
+    height: 100%;
+}
+
+.cw-calendar__body {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.cw-calendar__footer {
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    padding: 0 16px;
+}
+
+.cw-calendar__footer--safe-area-inset-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.cw-calendar__footer + .cw-calendar__footer,
+.cw-calendar__footer:empty {
+    display: none;
+}
+
+.cw-calendar__footer:empty + .cw-calendar__footer {
+    display: block !important;
+}
+
+.cw-calendar__confirm {
+    height: 36px !important;
+    margin: 7px 0 !important;
+    line-height: 34px !important;
+}

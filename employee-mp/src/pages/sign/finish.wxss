@@ -1,0 +1,157 @@
+.calendar {
+    background-color: #fff;
+    margin-bottom: 8px;
+}
+
+.full-date {
+    font-size: 14px;
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    border-bottom: 1px solid #f5f5f5;
+    color: #333;
+}
+
+.weeks {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 0;
+}
+
+.weeks .week-item {
+    width: 14.28%;
+    flex: none;
+    text-align: center;
+    color: #777;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.weeks .week-item .week {
+    font-size: 12px;
+    padding-bottom: 8px;
+}
+
+.weeks .week-item .date {
+    font-size: 13px;
+    color: #333;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 50%;
+}
+
+.weeks .week-item.active .date {
+    background-color: #1989fa;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.records {
+    background-color: #fff;
+}
+
+.records .no-data {
+    height: 80px;
+    font-size: 12px;
+    color: #999;
+    text-align: center;
+    line-height: 80px;
+}
+
+.record-item + .record-item {
+    border-top: 1px solid #f5f5f5;
+}
+
+.record {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 12px;
+    height: 38px;
+    padding: 0 18px;
+    color: #444;
+}
+
+.record .point {
+    width: 10px;
+    height: 10px;
+    margin-right: 12px;
+    border-radius: 50%;
+}
+
+.record.finish + .record.begin {
+    border-top: 1px solid #f5f5f5;
+}
+
+.record.finish .point {
+    background-color: #1989fa;
+}
+.record.begin .point {
+    background-color: #07c160;
+}
+
+.sign-btn {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    z-index: 10;
+    border-radius: 50%;
+    background-color: #1989fa;
+    margin: 46px auto 0;
+    color: #fff;
+}
+
+.sign-btn .time {
+    font-size: 16px;
+    text-align: center;
+    padding-top: 26px;
+}
+
+.sign-btn .text {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    padding-top: 14px;
+}
+
+.sign-btn:before {
+    content: '';
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: #1989fa;
+    opacity: 0.6;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    z-index: -1;
+}
+
+.sign-btn:after {
+    content: '';
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background-color: #1989fa;
+    opacity: 0.2;
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    z-index: -10;
+}
+
+.sign-btn.disabled {
+    background-color: #ddd;
+}
+
+.sign-btn.disabled:before {
+    background-color: #ddd;
+}
+
+.sign-btn.disabled:after {
+    background-color: #ddd;
+}

@@ -1,0 +1,89 @@
+<view class="container">
+    <cw-notice-bar left-icon="voice" text="行程码显示黄色、红色应尽快通知社区或疫情防控指挥部" />
+
+    <cw-cell-group>
+        <cw-cell title="所在小区" title-width="100px" value="{{community_name}}小区" is-detail />
+        <cw-cell title="业主姓名" title-width="100px" value="{{real_name}}" is-detail />
+        <cw-cell
+            title="出入住所"
+            clickable
+            is-link
+            is-detail="{{building_id ? true : false}}"
+            title-width="100px"
+            value="{{building_id ? building_label : '请选择'}}"
+            bind:click="showBuildingAction"
+        />
+        <cw-field
+            label="当前体温"
+            type="digit"
+            maxlength="{{ 6 }}"
+            show-word-limit
+            model:value="{{ temperature }}"
+            placeholder="请输入当前体温"
+        />
+        <cw-cell
+            title="行程码颜色"
+            title-width="100px"
+            clickable
+            is-link
+            is-detail="{{tour_code ? true : false}}"
+            bind:click="showTourAction"
+        >
+            <cw-tag wx:if="{{tour_code === 1}}" size="large" round type="success">{{ tour_label }}</cw-tag>
+            <cw-tag wx:if="{{tour_code === 2}}" size="large" round type="warning">{{ tour_label }}</cw-tag>
+            <cw-tag wx:if="{{tour_code === 3}}" size="large" round type="danger">{{ tour_label }}</cw-tag>
+        </cw-cell>
+        <cw-cell title="外部返回" title-width="100px" border="{{ !!return_hometown }}" is-detail>
+            <cw-switch
+                checked="{{ return_hometown }}"
+                bind:change="onReturnChange"
+                active-value="{{1}}"
+                inactive-value="{{0}}"
+            />
+        </cw-cell>
+        <cw-cell
+            wx:if="{{return_hometown}}"
+            border="{{false}}"
+            title="返回地"
+            value="{{return_from_province ? return_from_province + return_from_city + return_from_district : '请选择地址'}}"
+            bind:click="showPicker"
+            is-link
+        />
+    </cw-cell-group>
+
+    <cw-button custom-class="btn" block loading="{{submiting}}" type="info" bind:click="submit">
+        登记
+    </cw-button>
+
+    <cw-action-sheet
+        title="出入住所"
+        close-on-click-overlay="{{true}}"
+        show="{{buildingActionVisible}}"
+        bind:close="hideBuildingAction"
+        bind:select="onBuildingChange"
+        actions="{{buildingActions}}"
+    />
+
+    <cw-action-sheet
+        title="行程码颜色"
+        close-on-click-overlay="{{true}}"
+        show="{{tourActionVisible}}"
+        bind:close="hideTourAction"
+        bind:select="onTourChange"
+        actions="{{tourActions}}"
+    />
+
+    <cw-popup show="{{pickerVisible}}" position="bottom">
+        <cw-picker
+            columns="{{ columns }}"
+            bind:change="onLocationChange"
+            bind:confirm="confirmLocation"
+            bind:cancel="cancelLocation"
+            show-toolbar="{{true}}"
+        />
+    </cw-popup>
+
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+    <cw-copyright />
+</view>

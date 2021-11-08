@@ -1,0 +1,12 @@
+{
+    "navigationBarTitleText": "授权登录",
+    "navigationStyle": "custom",
+    "usingComponents": {
+        "cw-nav-bar": "../../components/nav-bar",
+        "cw-notify": "../../components/notify",
+        "cw-icon": "../../components/icon",
+        "cw-loading": "../../components/loading",
+        "cw-button": "../../components/button",
+        "cw-checkbox": "../../components/checkbox"
+    }
+}

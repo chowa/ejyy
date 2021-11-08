@@ -1,0 +1,151 @@
+.nav-bar {
+    background-color: transparent !important;
+}
+
+.card {
+    margin: 40rpx auto;
+    width: 700rpx;
+    height: 452rpx;
+    position: relative;
+    background: #fff;
+}
+
+.card .bg {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 4;
+    border-radius: 20rpx;
+}
+
+.card .name {
+    position: absolute;
+    color: #fff;
+    font-size: 28rpx;
+    bottom: 60rpx;
+    left: 60rpx;
+    right: 60rpx;
+    z-index: 5;
+}
+
+.card .house {
+    position: absolute;
+    color: #fff;
+    font-size: 32rpx;
+    bottom: 120rpx;
+    left: 60rpx;
+    right: 60rpx;
+    z-index: 5;
+}
+
+@keyframes broadcast {
+    0% {
+        width: 452rpx;
+        height: 452rpx;
+        background-color: rgba(94, 185, 249, 0.2);
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.2;
+        width: 1400rpx;
+        height: 1400rpx;
+    }
+}
+
+.broadcast-1,
+.broadcast-2 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    animation: broadcast 2.8s ease-in-out infinite;
+}
+
+.broadcast-2 {
+    animation-delay: 1.4s;
+}
+
+.content {
+    position: absolute;
+    top: 532rpx;
+    bottom: calc(constant(safe-area-inset-bottom) + 20px);
+    bottom: calc(env(safe-area-inset-bottom) + 20px);
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding-bottom: 120rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #676767;
+    line-height: 24px;
+    text-align: center;
+}
+
+.content .icon {
+    font-size: 48px;
+    padding-bottom: 20px;
+    color: #898989;
+}
+
+.content .canvas {
+    width: 150px;
+    height: 150px;
+    z-index: 5;
+    margin-bottom: 12px;
+}
+
+.tab {
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 120rpx;
+    bottom: calc(constant(safe-area-inset-bottom) + 20px);
+    bottom: calc(env(safe-area-inset-bottom) + 20px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+}
+
+.tab .nfc,
+.tab .qrcode {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    line-height: 120rpx;
+    color: #676767;
+}
+
+.tab .nfc {
+    font-size: 72rpx;
+}
+
+.tab .qrcode {
+    margin-left: 60rpx;
+    font-size: 38rpx;
+}
+
+.tab .nfc.active,
+.tab .qrcode.active {
+    color: #fff;
+    background-color: #5487f2;
+}
+
+.bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}

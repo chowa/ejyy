@@ -1,0 +1,16 @@
+{
+    "navigationBarTitleText": "投诉工单",
+    "enablePullDownRefresh": true,
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "onReachBottomDistance": 50,
+    "usingComponents": {
+        "cw-dropdown-menu": "../../components/dropdown-menu",
+        "cw-dropdown-item": "../../components/dropdown-item",
+        "cw-notify": "../../components/notify",
+        "cw-tag": "../../components/tag",
+        "cw-list": "../../components/list",
+        "cw-list-item": "../../components/list-item",
+        "cw-list-item-info": "../../components/list-item-info"
+    }
+}

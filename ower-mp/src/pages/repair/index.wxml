@@ -1,0 +1,68 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-list
+        fetching="{{fetching}}"
+        page_num="{{page_num}}"
+        page_amount="{{page_amount}}"
+        list="{{list}}"
+        empty="暂无维修记录"
+        icon="maintain"
+    >
+        <cw-list-item
+            wx:for="{{list}}"
+            title="{{common.number('R', item.created_at, item.id)}}"
+            status="{{item.community_name}}小区"
+            wx:key="index"
+            url="/pages/repair/detail?id={{item.id}}"
+        >
+            <cw-list-item-info label="维修位置">
+                <block wx:if="{{item.building_id === 0}}">
+                    公共设施/区域
+                </block>
+                <block wx:else>
+                    {{common.building(item)}}
+                </block>
+            </cw-list-item-info>
+            <cw-list-item-info label="维修类型">
+                <block wx:if="{{item.repair_type === 1}}">
+                    水暖
+                </block>
+                <block wx:elif="{{item.repair_type === 2}}">
+                    电路
+                </block>
+                <block wx:elif="{{item.repair_type === 3}}">
+                    门窗
+                </block>
+                <block wx:elif="{{item.repair_type === 4}}">
+                    公共设施
+                </block>
+            </cw-list-item-info>
+            <cw-list-item-info label="问题描述">
+                {{ item.description }}
+            </cw-list-item-info>
+            <cw-list-item-info label="当前进度">
+                <block wx:if="{{item.merge_id}}">
+                    <cw-tag round color="#52c41a">已完成</cw-tag>
+                </block>
+                <block wx:else>
+                    <block wx:if="{{item.step === 1}}">
+                        <cw-tag round color="#13c2c2">待分配工单</cw-tag>
+                    </block>
+                    <block wx:elif="{{item.step === 2}}">
+                        <cw-tag round color="#eb2f96">待工程确认</cw-tag>
+                    </block>
+                    <block wx:elif="{{item.step === 3}}">
+                        <cw-tag round color="#ffe58f">待维修</cw-tag>
+                    </block>
+                    <block wx:elif="{{item.step === 4}}">
+                        <cw-tag round color="#52c41a">已完成</cw-tag>
+                    </block>
+                </block>
+            </cw-list-item-info>
+            <cw-list-item-info label="报修时间">
+                {{ common.date(item.created_at) }}
+            </cw-list-item-info>
+        </cw-list-item>
+    </cw-list>
+</view>

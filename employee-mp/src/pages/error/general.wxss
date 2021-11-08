@@ -1,0 +1,14 @@
+.container {
+    padding: 60rpx 30rpx 0;
+    text-align: center;
+}
+
+.container .hint {
+    font-size: 12px;
+    line-height: 20px;
+    color: #989898;
+}
+
+.container .btn {
+    margin-top: 60px;
+}

@@ -1,0 +1,72 @@
+@import '../common/index.wxss';
+
+.cw-share-sheet__options {
+    position: relative;
+    display: -webkit-flex;
+    display: flex;
+    padding: 16px 0 16px 8px;
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+}
+
+.cw-share-sheet__options--border:before {
+    position: absolute;
+    box-sizing: border-box;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    content: ' ';
+    pointer-events: none;
+    top: 0;
+    right: 0;
+    left: 16px;
+    border-top: 1px solid #ebedf0;
+    transform: scaleY(0.5);
+}
+
+.cw-share-sheet__options::-webkit-scrollbar {
+    height: 0;
+}
+
+.cw-share-sheet__option {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+}
+
+.cw-share-sheet__option:active {
+    opacity: 0.7;
+}
+
+.cw-share-sheet__button {
+    height: auto;
+    padding: 0;
+    line-height: inherit;
+    background-color: initial;
+    border: 0;
+}
+
+.cw-share-sheet__button:after {
+    border: 0;
+}
+
+.cw-share-sheet__icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 16px;
+}
+
+.cw-share-sheet__name {
+    margin-top: 8px;
+    padding: 0 4px;
+    color: #646566;
+    font-size: 12px;
+}
+
+.cw-share-sheet__option-description {
+    padding: 0 4px;
+    color: #c8c9cc;
+    font-size: 12px;
+}

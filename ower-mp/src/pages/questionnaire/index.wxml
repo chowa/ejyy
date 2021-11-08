@@ -1,0 +1,33 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-list
+        fetching="{{fetching}}"
+        page_num="{{page_num}}"
+        page_amount="{{page_amount}}"
+        list="{{list}}"
+        empty="暂无来自{{communityInfo.current.name}}小区的问卷调查"
+        icon="question"
+        useEmptySlot
+    >
+        <cw-list-item
+            wx:for="{{list}}"
+            title="{{common.number('Q', item.created_at, item.id)}}"
+            status="{{communityInfo.current.name}}小区"
+            wx:key="index"
+            url="/pages/questionnaire/answer?id={{item.id}}"
+        >
+            <cw-list-item-info label="问卷名称">
+                {{item.title}}
+            </cw-list-item-info>
+            <cw-list-item-info label="开始时间">
+                {{common.date(item.published_at, false)}}
+            </cw-list-item-info>
+            <cw-list-item-info label="结束时间">
+                {{common.date(item.expire, false)}}
+            </cw-list-item-info>
+        </cw-list-item>
+
+        <navigator url="/pages/community/index" class="link" slot="empty">切换默认小区？</navigator>
+    </cw-list>
+</view>

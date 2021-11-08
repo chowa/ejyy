@@ -1,0 +1,17 @@
+<cw-popup show="{{ show }}" closeable round position="bottom" custom-style="height: 80%" bind:close="onClose">
+    <cw-cell-group wx:for="{{map}}" wx:key="index" title="{{item.name}}">
+        <cw-cell
+            wx:for="{{item.users}}"
+            wx:for-index="key"
+            wx:for-item="row"
+            wx:key="key"
+            title="{{row.real_name}}"
+            border="{{key === item.users.length - 1 ? false : true}}"
+            value="{{row.job}}"
+            clickable
+            data-id="{{row.id}}"
+            data-name="{{row.real_name}}"
+            bind:click="select"
+        />
+    </cw-cell-group>
+</cw-popup>

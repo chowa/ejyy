@@ -1,0 +1,73 @@
+.container {
+    padding-bottom: 0;
+    background: #fff;
+}
+
+.nav-bar {
+    background-color: transparent !important;
+    transform: background-color 0.2s ease-in-out;
+}
+
+.nav-bar.half-opacity {
+    background-color: rgba(55, 122, 227, 0.75) !important;
+}
+
+.nav-bar.full-opacity {
+    background-color: rgba(55, 122, 227, 1) !important;
+}
+
+.nav-bar.half-opacity .nav-bar-title,
+.nav-bar.full-opacity .nav-bar-title {
+    color: #fff !important;
+}
+
+.home-btn {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #232323;
+    font-size: 14px;
+    line-height: 26px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.bg-pic {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.notification {
+    position: relative;
+    z-index: 10;
+    padding: 0 18px;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.notification .title {
+    font-size: 16px;
+    color: #343434;
+    line-height: 28px;
+    padding-top: 24px;
+    margin-bottom: 6px;
+}
+
+.notification .sub-info {
+    font-size: 14px;
+    color: #343434;
+    line-height: 24px;
+}
+
+.notification .main-body {
+    padding: 16px 0 4px 0;
+}
+
+.loading {
+    padding-top: 24px;
+}
+
+.loading-gutter {
+    margin-top: 22px;
+}

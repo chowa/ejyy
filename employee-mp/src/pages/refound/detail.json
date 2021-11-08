@@ -1,0 +1,21 @@
+{
+    "navigationBarTitleText": "报销详情",
+    "enablePullDownRefresh": true,
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "usingComponents": {
+        "cw-image": "../../components/image",
+        "cw-notify": "../../components/notify",
+        "cw-toast": "../../components/toast",
+        "cw-cell": "../../components/cell",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-button": "../../components/button",
+        "cw-dialog": "../../components/dialog",
+        "cw-collapse": "../../components/collapse",
+        "cw-collapse-item": "../../components/collapse-item",
+        "cw-skeleton": "../../components/skeleton",
+        "cw-tag": "../../components/tag",
+        "cw-workflow": "../../components/workflow",
+        "cw-copyright": "../../components/copyright"
+    }
+}

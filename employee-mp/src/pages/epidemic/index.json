@@ -1,0 +1,20 @@
+{
+    "navigationBarTitleText": "防控登记",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "usingComponents": {
+        "cw-field": "../../components/field",
+        "cw-action-sheet": "../../components/action-sheet",
+        "cw-cell": "../../components/cell",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-copyright": "../../components/copyright",
+        "cw-toast": "../../components/toast",
+        "cw-notify": "../../components/notify",
+        "cw-tag": "../../components/tag",
+        "cw-switch": "../../components/switch",
+        "cw-popup": "../../components/popup",
+        "cw-picker": "../../components/picker",
+        "cw-button": "../../components/button",
+        "cw-notice-bar": "../../components/notice-bar"
+    }
+}

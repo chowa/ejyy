@@ -1,0 +1,56 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-cell-group>
+        <cw-cell
+            title="采购物料"
+            value="{{!material_id ? '请选采购物料' : materialName}}"
+            is-link
+            clickable
+            is-detail="{{material_id ? true : false}}"
+            bind:click="showMaterialAction"
+        />
+        <cw-cell
+            title="供应商"
+            value="{{!supplier_id ? '请选供应商' : supplierName}}"
+            is-link
+            clickable
+            is-detail="{{supplier_id ? true : false}}"
+            bind:click="showSupplierAction"
+        />
+        <cw-field label="采购数量" type="number" model:value="{{ total }}" placeholder="请输入采购数量" />
+        <cw-field
+            label="采购总金额"
+            type="digit"
+            model:value="{{ fee }}"
+            border="{{false}}"
+            placeholder="请输入采购总金额"
+        />
+    </cw-cell-group>
+
+    <view class="btns-box">
+        <cw-button block bind:click="cancel">取消</cw-button>
+        <cw-button custom-class="btn" block type="info" bind:click="submit">确认</cw-button>
+    </view>
+
+    <cw-action-sheet
+        title="选择采购物料"
+        show="{{ showMaterial }}"
+        actions="{{ materialActions }}"
+        bind:close="onMaterialCloseAction"
+        bind:select="onMaterialSelectAction"
+    />
+
+    <cw-action-sheet
+        title="选择采购商"
+        show="{{ showSupplier }}"
+        actions="{{ supplierActions }}"
+        bind:close="onSupplierCloseAction"
+        bind:select="onSupplierSelectAction"
+    />
+
+    <cw-copyright />
+
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+</view>

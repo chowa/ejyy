@@ -1,0 +1,26 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-list
+        fetching="{{fetching}}"
+        page_num="{{page_num}}"
+        page_amount="{{page_amount}}"
+        list="{{list}}"
+        empty="暂无访客登记"
+        icon="vistor"
+    >
+        <cw-list-item
+            wx:for="{{list}}"
+            title="{{common.number('V', item.created_at, item.id)}}"
+            status="{{item.community_name}}小区"
+            wx:key="index"
+            url="/pages/vistor/detail?id={{item.id}}"
+        >
+            <cw-list-item-info label="访客称呼">{{item.vistor_name}}</cw-list-item-info>
+            <cw-list-item-info label="到访位置">{{common.building(item)}}</cw-list-item-info>
+            <cw-list-item-info label="到访日期">{{common.date(item.expire, false)}}</cw-list-item-info>
+            <cw-list-item-info label="登记日期">{{common.date(item.created_at, false)}}</cw-list-item-info>
+            <cw-list-item-info label="登记来源">{{item.check_in ? '物业登记' : '业主登记'}}</cw-list-item-info>
+        </cw-list-item>
+    </cw-list>
+</view>

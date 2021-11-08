@@ -1,0 +1,69 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-list
+        fetching="{{fetching}}"
+        page_num="{{page_num}}"
+        page_amount="{{page_amount}}"
+        list="{{list}}"
+        empty="暂无反馈记录"
+        icon="report"
+    >
+        <cw-list-item
+            wx:for="{{list}}"
+            title="{{common.number('C', item.created_at, item.id)}}"
+            status="{{item.community_name}}小区"
+            wx:key="index"
+            url="/pages/complain/detail?id={{item.id}}"
+        >
+            <cw-list-item-info label="反馈类型">
+                <block wx:if="{{item.category === 1}}">
+                    卫生
+                </block>
+                <block wx:elif="{{item.category === 2}}">
+                    噪音
+                </block>
+                <block wx:elif="{{item.category === 3}}">
+                    服务态度
+                </block>
+                <block wx:elif="{{item.category === 4}}">
+                    违建
+                </block>
+                <block wx:elif="{{item.category === 5}}">
+                    占用消防通道
+                </block>
+                <block wx:elif="{{item.category === 6}}">
+                    小区设施
+                </block>
+                <block wx:elif="{{item.category === 7}}">
+                    其他
+                </block>
+            </cw-list-item-info>
+            <cw-list-item-info label="问题描述">
+                {{ item.description }}
+            </cw-list-item-info>
+            <cw-list-item-info label="当前进度">
+                <block wx:if="{{item.merge_id}}">
+                    <cw-tag round color="#722ed1">工单已合并</cw-tag>
+                </block>
+                <block wx:else>
+                    <block wx:if="{{item.step === 1}}">
+                        <cw-tag round color="#13c2c2">待指定处理人员</cw-tag>
+                    </block>
+                    <block wx:elif="{{item.step === 2}}">
+                        <cw-tag round color="#eb2f96">待处理人员确认</cw-tag>
+                    </block>
+                    <block wx:elif="{{item.step === 3}}">
+                        <cw-tag round color="#ffe58f">待处理人员答复</cw-tag>
+                    </block>
+                    <block wx:elif="{{item.step === 4}}">
+                        <cw-tag round color="#52c41a">已答复</cw-tag>
+                    </block>
+                </block>
+            </cw-list-item-info>
+            <cw-list-item-info label="反馈时间">
+                {{ common.date(item.created_at) }}
+            </cw-list-item-info>
+        </cw-list-item>
+    </cw-list>
+</view>

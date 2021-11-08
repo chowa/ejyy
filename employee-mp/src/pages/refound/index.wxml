@@ -1,0 +1,163 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-tabs active="{{ activeTabIndex }}" bind:change="onTabChange">
+        <cw-tab title="报销申请">
+            <cw-cell-group>
+                <cw-cell
+                    title="报销时间"
+                    value="{{range.length === 0 ? '请选择报销时间' : common.date(range[0], false) + '至' + common.date(range[1], false)}}"
+                    is-link
+                    clickable
+                    is-detail="{{begin_date ? true : false}}"
+                    bind:click="showCalendar"
+                />
+                <cw-cell title="报销金额" is-detail value="{{total}}" />
+                <cw-field
+                    label="报销原因"
+                    type="textarea"
+                    maxlength="{{ 128 }}"
+                    show-word-limit
+                    autosize
+                    border="{{false}}"
+                    model:value="{{ reason }}"
+                    placeholder="请输入报销原因"
+                />
+            </cw-cell-group>
+
+            <cw-cell-group title="报销项目" wx:if="{{items.length}}">
+                <cw-collapse value="{{ activeCollapse }}" bind:change="onCollapseChange">
+                    <cw-collapse-item
+                        wx:for="{{items}}"
+                        title="项目{{index + 1}}（{{item.fee}}元）"
+                        wx:key="index"
+                        name="{{index}}"
+                    >
+                        <view class="row">
+                            <view class="label">花销用途：</view>
+                            {{item.reason}}
+                        </view>
+                        <view class="row">
+                            <view class="label">发票代码：</view>
+                            {{item.code}}
+                        </view>
+                        <view class="row">
+                            <view class="label">发票号码：</view>
+                            {{item.num}}
+                        </view>
+                        <view class="row">
+                            <view class="label">开票日期：</view>
+                            {{common.date(item.date, false)}}
+                        </view>
+                        <view class="row">
+                            <view class="label">报销金额：</view>
+                            {{item.fee}}元
+                        </view>
+                        <view class="row">
+                            <view class="label">电子发票：</view>
+                            <cw-image
+                                src="{{ASSETS_HOST}}{{item.attachment_url}}"
+                                data-src="{{ASSETS_HOST}}{{item.attachment_url}}"
+                                width="80px"
+                                height="80px"
+                                bind:click="showImg"
+                            />
+                        </view>
+                        <view class="footer">
+                            <cw-button size="small" round type="danger" data-index="{{index}}" bind:click="remove">
+                                删除
+                            </cw-button>
+                            <cw-button
+                                size="small"
+                                custom-class="btn-ml"
+                                round
+                                type="info"
+                                data-index="{{index}}"
+                                bind:click="update"
+                            >
+                                修改
+                            </cw-button>
+                        </view>
+                    </cw-collapse-item>
+                </cw-collapse>
+            </cw-cell-group>
+
+            <view class="append-btn-box">
+                <cw-button block round bind:click="appendItem">添加报销项目</cw-button>
+            </view>
+
+            <cw-calendar
+                title="费用产生时间"
+                type="range"
+                default-date="{{range}}"
+                show="{{show}}"
+                min-date="{{now - 1000 * 60 * 60 * 24 * 180}}"
+                max-date="{{now}}"
+                bind:close="hideCalendar"
+                bind:confirm="onDateChange"
+            />
+
+            <cw-button
+                custom-class="btn"
+                block
+                wx:if="{{activeTabIndex === 0}}"
+                loading="{{submiting}}"
+                type="info"
+                bind:click="submit"
+            >
+                提交申请
+            </cw-button>
+
+            <cw-copyright />
+        </cw-tab>
+
+        <cw-tab title="历史申请">
+            <cw-list
+                fetching="{{fetching}}"
+                page_num="{{page_num}}"
+                page_amount="{{page_size}}"
+                list="{{list}}"
+                empty="暂无报销申请"
+                icon="refound"
+                withFilter
+            >
+                <cw-list-item
+                    wx:for="{{list}}"
+                    title="{{common.number('RF', item.created_at, item.id)}}"
+                    wx:key="index"
+                    url="/pages/refound/detail?id={{item.id}}"
+                >
+                    <cw-list-item-info label="报销时间">
+                        {{ common.date(item.begin_date, false) }}至{{ common.date(item.finish_date, false) }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="报销金额">
+                        {{ item.total }}元
+                    </cw-list-item-info>
+                    <cw-list-item-info label="报销原因">
+                        {{ item.reason }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="申请结果">
+                        <block wx:if="{{item.cancel}}">
+                            <cw-tag round color="#ff976a">已取消</cw-tag>
+                        </block>
+                        <block wx:elif="{{item.success === null}}">
+                            <cw-tag round color="#91d5ff">审批中</cw-tag>
+                        </block>
+                        <block wx:elif="{{!item.success}}">
+                            <cw-tag round color="#ed4014">驳回</cw-tag>
+                        </block>
+                        <block wx:else>
+                            <cw-tag round color="#52c41a">成功</cw-tag>
+                        </block>
+                    </cw-list-item-info>
+                    <cw-list-item-info label="申请时间">
+                        {{ common.date(item.created_at) }}
+                    </cw-list-item-info>
+                </cw-list-item>
+            </cw-list>
+        </cw-tab>
+    </cw-tabs>
+
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+</view>

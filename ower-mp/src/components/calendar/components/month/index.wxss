@@ -1,0 +1,132 @@
+@import '../../../common/index.wxss';
+
+.cw-calendar {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+    background-color: #fff;
+}
+
+.cw-calendar__month-title {
+    text-align: center;
+    height: 44px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 44px;
+}
+
+.cw-calendar__days {
+    position: relative;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.cw-calendar__month-mark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 0;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    color: rgba(242, 243, 245, 0.8);
+    font-size: 160px;
+}
+
+.cw-calendar__day,
+.cw-calendar__selected-day {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.cw-calendar__day {
+    position: relative;
+    width: 14.285%;
+    height: 64px;
+    font-size: 16px;
+}
+
+.cw-calendar__day--end,
+.cw-calendar__day--multiple-middle,
+.cw-calendar__day--multiple-selected,
+.cw-calendar__day--start,
+.cw-calendar__day--start-end {
+    color: #fff;
+    background-color: #ee0a24;
+}
+
+.cw-calendar__day--start {
+    border-radius: 4px 0 0 4px;
+}
+
+.cw-calendar__day--end {
+    border-radius: 0 4px 4px 0;
+}
+
+.cw-calendar__day--multiple-selected,
+.cw-calendar__day--start-end {
+    border-radius: 4px;
+}
+
+.cw-calendar__day--middle {
+    color: #ee0a24;
+}
+
+.cw-calendar__day--middle:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: currentColor;
+    content: '';
+    opacity: 0.1;
+}
+
+.cw-calendar__day--disabled {
+    cursor: default;
+    color: #c8c9cc;
+}
+
+.cw-calendar__bottom-info,
+.cw-calendar__top-info {
+    position: absolute;
+    right: 0;
+    left: 0;
+    font-size: 10px;
+    line-height: 14px;
+}
+
+@media (max-width: 350px) {
+    .cw-calendar__bottom-info,
+    .cw-calendar__top-info {
+        font-size: 9px;
+    }
+}
+
+.cw-calendar__top-info {
+    top: 6px;
+}
+
+.cw-calendar__bottom-info {
+    bottom: 6px;
+}
+
+.cw-calendar__selected-day {
+    width: 54px;
+    height: 54px;
+    color: #fff;
+    background-color: #ee0a24;
+    border-radius: 4px;
+}

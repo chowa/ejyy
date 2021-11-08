@@ -1,0 +1,11 @@
+{
+    "navigationBarTitleText": "我的家人",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark",
+    "usingComponents": {
+        "cw-notify": "../../components/notify",
+        "cw-copyright": "../../components/copyright",
+        "cw-skeleton": "../../components/skeleton",
+        "cw-empty": "../../components/empty"
+    }
+}

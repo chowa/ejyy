@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "cw-popup": "../popup/index",
+        "options": "./options"
+    }
+}

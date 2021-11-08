@@ -1,0 +1,14 @@
+{
+    "navigationBarTitleText": "物业缴费",
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "cw-panel": "../../components/panel",
+        "cw-cell": "../../components/cell",
+        "cw-copyright": "../../components/copyright",
+        "cw-toast": "../../components/toast",
+        "cw-notify": "../../components/notify",
+        "cw-empty": "../../components/empty",
+        "cw-skeleton": "../../components/skeleton",
+        "cw-button": "../../components/button"
+    }
+}

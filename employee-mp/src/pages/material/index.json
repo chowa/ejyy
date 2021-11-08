@@ -1,0 +1,16 @@
+{
+    "navigationBarTitleText": "物品领用",
+    "backgroundTextStyle": "dark",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "usingComponents": {
+        "cw-button": "../../components/button",
+        "cw-copyright": "../../components/copyright",
+        "cw-field": "../../components/field",
+        "cw-toast": "../../components/toast",
+        "cw-notify": "../../components/notify",
+        "cw-cell": "../../components/cell",
+        "cw-colleague": "../../components/colleague",
+        "cw-cell-group": "../../components/cell-group"
+    }
+}

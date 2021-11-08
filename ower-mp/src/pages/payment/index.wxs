@@ -1,0 +1,101 @@
+var common = require('../common/common.wxs');
+
+function yuan(num) {
+    return parseFloat(Math.floor(num / 100) + '.' + common.double(num % 100));
+}
+
+function label(detail, fee) {
+    var fen;
+    var computed_by_area;
+
+    if (detail.type === 1) {
+        fen = fee.house_fee;
+        computed_by_area = fee.computed_house_fee_by_area;
+    } else if (detail.type === 2) {
+        fen = fee.carport_fee;
+        computed_by_area = fee.computed_carport_fee_by_area;
+    } else if (detail.type === 3) {
+        fen = fee.warehoure_fee;
+        computed_by_area = fee.computed_warehouse_fee_by_area;
+    } else if (detail.type === 4) {
+        fen = fee.merchant_fee;
+        computed_by_area = fee.computed_merchant_fee_by_area;
+    } else if (detail.type === 5) {
+        fen = fee.garage_fee;
+        computed_by_area = fee.computed_garage_fee_by_area;
+    }
+
+    if (!computed_by_area) {
+        return '收取年度物业费' + yuan(fen) + '元';
+    }
+
+    return (
+        '建筑面积' +
+        detail.construction_area +
+        '㎡，每平米收取' +
+        yuan(fen) +
+        '元，总计：' +
+        yuan(Math.floor(detail.construction_area * fen)) +
+        '元'
+    );
+}
+
+function total(buildings, fee) {
+    var ret = 0;
+
+    buildings.forEach(function(item) {
+        var fen;
+        var computed_by_area;
+
+        if (item.type === 1) {
+            fen = fee.house_fee;
+            computed_by_area = fee.computed_house_fee_by_area;
+        } else if (item.type === 2) {
+            fen = fee.carport_fee;
+            computed_by_area = fee.computed_carport_fee_by_area;
+        } else if (item.type === 3) {
+            fen = fee.warehoure_fee;
+            computed_by_area = fee.computed_warehouse_fee_by_area;
+        } else if (item.type === 4) {
+            fen = fee.merchant_fee;
+            computed_by_area = fee.computed_merchant_fee_by_area;
+        } else if (item.type === 5) {
+            fen = fee.garage_fee;
+            computed_by_area = fee.computed_garage_fee_by_area;
+        }
+
+        if (!computed_by_area) {
+            ret += Math.floor(fen);
+        } else {
+            ret += Math.floor(item.construction_area * fen);
+        }
+    });
+
+    return yuan(ret);
+}
+
+function tradeNo(stamp, id) {
+    var d = getDate(stamp);
+
+    return d.getFullYear() + '' + common.double(d.getMonth() + 1) + common.double(d.getDate()) + id;
+}
+
+function countDown(created_at, payExpire, curStamp) {
+    if (curStamp - payExpire >= created_at) {
+        return '订单已超时';
+    }
+
+    var hour = Math.floor((created_at + payExpire - curStamp) / (1000 * 60 * 60));
+    var mintue = Math.floor((created_at + payExpire - curStamp - hour * 1000 * 60 * 60) / (1000 * 60));
+    var second = Math.floor((created_at + payExpire - curStamp - hour * 1000 * 60 * 60 - mintue * 1000 * 60) / 1000);
+
+    return common.double(hour) + ':' + common.double(mintue) + ':' + common.double(second);
+}
+
+module.exports = {
+    yuan: yuan,
+    label: label,
+    total: total,
+    tradeNo: tradeNo,
+    countDown: countDown
+};

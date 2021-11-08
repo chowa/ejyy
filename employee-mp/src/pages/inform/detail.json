@@ -1,0 +1,10 @@
+{
+    "navigationBarTitleText": "行政通知详情",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "usingComponents": {
+        "cw-rich-text": "../../components/rich-text",
+        "cw-copyright": "../../components/copyright",
+        "cw-skeleton": "../../components/skeleton"
+    }
+}

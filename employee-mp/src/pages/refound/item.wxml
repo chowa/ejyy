@@ -1,0 +1,52 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-cell-group>
+        <cw-field label="花销用途" model:value="{{ reason }}" placeholder="请输入花销用途" />
+        <cw-field label="发票代码" model:value="{{ code }}" placeholder="请输入发票代码" />
+        <cw-field label="发票号码" model:value="{{ num }}" placeholder="请输入发票号码" />
+        <cw-cell
+            title="开票日期"
+            value="{{!date ? '请选开票日期' : common.date(date, false)}}"
+            is-link
+            clickable
+            is-detail="{{date ? true : false}}"
+            bind:click="showCalendar"
+        />
+        <cw-cell title="电子发票">
+            <cw-uploader
+                file-list="{{uploadImgList}}"
+                bind:delete="deleteImg"
+                bind:after-read="afterRead"
+                max-count="{{1}}"
+            />
+        </cw-cell>
+        <cw-field
+            label="报销金额"
+            border="{{false}}"
+            type="digit"
+            model:value="{{ fee }}"
+            placeholder="请输入报销金额"
+        />
+    </cw-cell-group>
+
+    <view class="btns-box">
+        <cw-button block bind:click="cancel">取消</cw-button>
+        <cw-button custom-class="btn" block type="info" bind:click="submit">确认</cw-button>
+    </view>
+
+    <cw-calendar
+        title="开票日期"
+        default-date="{{date}}"
+        show="{{show}}"
+        min-date="{{now - 1000 * 60 * 60 * 24 * 180}}"
+        max-date="{{now}}"
+        bind:close="hideCalendar"
+        bind:confirm="onDateChange"
+    />
+
+    <cw-copyright />
+
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+</view>

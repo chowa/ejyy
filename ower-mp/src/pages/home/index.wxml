@@ -1,0 +1,402 @@
+<wxs src="./index.wxs" module="community" />
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-nav-bar
+        title="e家宜业"
+        fixed
+        border="{{ false }}"
+        custom-class="{{ navBarClass }}"
+        title-class="nav-bar-title"
+        z-index="100"
+        custom-style="height:{{ systemInfo.navBarHeight + systemInfo.statusBarHeight }}px;padding-top:{{ systemInfo.statusBarHeight }}px"
+    />
+
+    <view
+        class="recommand-desktop"
+        wx:if="{{showRecommand}}"
+        style="top: {{systemInfo.navBarHeight + systemInfo.statusBarHeight}}px;"
+    >
+        <view class="close" bind:tap="hideRecommand">
+            <cw-icon name="cross" />
+        </view>
+        <view class="text">
+            <view class="num">1</view>
+            点击上方
+            <view class="btn-mock">
+                <view class="big-circle" />
+            </view>
+            按钮
+        </view>
+        <view class="text">
+            <view class="num">2</view>
+            点击「添加到桌面」
+        </view>
+        <image src="../../assets/recommand.jpg" class="recommand-img" mode="widthFix" />
+        <view class="text">
+            <view class="num">3</view>
+            桌面打开「e家宜业」，服务更贴心
+        </view>
+    </view>
+
+    <!-- 头部 -->
+    <view class="banner">
+        <view class="placeholder" style="height:{{ systemInfo.navBarHeight + systemInfo.statusBarHeight }}px"></view>
+        <image
+            class="bg-pic"
+            wx:if="{{communityInfo.current}}"
+            src="{{ ASSETS_HOST }}{{ communityInfo.current.banner }}"
+            mode="scaleToFill"
+        />
+
+        <view class="operate">
+            <view class="quick">
+                <navigator url="/pages/community/index">
+                    <cw-icon name="menu" />
+                </navigator>
+                <navigator url="/pages/notification/index">
+                    <cw-icon name="notice" info="{{ unread_amount === 0 ? '' : unread_amount }}" />
+                </navigator>
+                <navigator url="/pages/home/convenient">
+                    <cw-icon name="convenient" />
+                </navigator>
+            </view>
+
+            <view class="user-info">
+                <view class="avatar">
+                    <image
+                        src="{{ ASSETS_HOST }}{{ userInfo.avatar_url }}"
+                        wx:if="{{userInfo.avatar_url}}"
+                        lazy-load="true"
+                        mode="scaleToFill"
+                    />
+                </view>
+
+                <view>
+                    <view class="name">
+                        <text>{{ userInfo.nick_name }}</text>
+                        <cw-icon name="identity" custom-class="identity" wx:if="{{ userInfo.phone }}" />
+                    </view>
+                    <view class="signature">{{ userInfo.signature }}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <!-- 工具栏 -->
+    <view class="tools-wrapper">
+        <view class="tools">
+            <view class="house">
+                <cw-icon name="home" custom-class="home"></cw-icon>
+                <cw-icon name="approve" custom-class="approve" wx:if="{{ community.approve(communityInfo) }}"></cw-icon>
+                <text>{{ community.title(communityInfo) }}</text>
+            </view>
+
+            <view class="tools-list">
+                <cw-row>
+                    <cw-col span="6">
+                        <view class="tool-item" bindtap="connectService">
+                            <cw-icon name="phone" custom-class="phone"></cw-icon>
+                            <view>联系客服</view>
+                        </view>
+                    </cw-col>
+
+                    <cw-col span="6">
+                        <navigator class="tool-item" url="/pages/access/index">
+                            <cw-icon name="access" custom-class="access"></cw-icon>
+                            <view>门禁出入</view>
+                        </navigator>
+                    </cw-col>
+
+                    <cw-col span="6">
+                        <navigator class="tool-item" url="/pages/repair/create">
+                            <cw-icon name="maintain" custom-class="maintain"></cw-icon>
+                            <view>维修上报</view>
+                        </navigator>
+                    </cw-col>
+
+                    <cw-col span="6">
+                        <navigator class="tool-item" url="/pages/complain/create">
+                            <cw-icon name="report" custom-class="report"></cw-icon>
+                            <view>投诉建议</view>
+                        </navigator>
+                    </cw-col>
+                </cw-row>
+                <cw-row>
+                    <cw-col span="6">
+                        <navigator class="tool-item" url="/pages/payment/order">
+                            <cw-icon name="pay" custom-class="pay"></cw-icon>
+                            <view>物业缴费</view>
+                        </navigator>
+                    </cw-col>
+
+                    <cw-col span="6">
+                        <navigator class="tool-item" url="/pages/car/index">
+                            <cw-icon name="park" custom-class="park"></cw-icon>
+                            <view>车位车辆</view>
+                        </navigator>
+                    </cw-col>
+
+                    <cw-col span="6">
+                        <navigator class="tool-item" url="/pages/pet/create">
+                            <cw-icon name="pet" custom-class="pet"></cw-icon>
+                            <view>宠物登记</view>
+                        </navigator>
+                    </cw-col>
+
+                    <cw-col span="6">
+                        <navigator class="tool-item" url="/pages/fitment/create">
+                            <cw-icon name="fitment" custom-class="fitment"></cw-icon>
+                            <view>装修报备</view>
+                        </navigator>
+                    </cw-col>
+                </cw-row>
+
+                <cw-row>
+                    <cw-col span="6">
+                        <navigator class="tool-item" url="/pages/move_car/create">
+                            <cw-icon name="movecar" custom-class="movecar"></cw-icon>
+                            <view>小区挪车</view>
+                        </navigator>
+                    </cw-col>
+
+                    <cw-col span="6">
+                        <navigator class="tool-item" url="/pages/vistor/create">
+                            <cw-icon name="footprint" custom-class="footprint"></cw-icon>
+                            <view>访客登记</view>
+                        </navigator>
+                    </cw-col>
+
+                    <cw-col span="6">
+                        <navigator class="tool-item" url="/pages/vistor/self">
+                            <cw-icon name="vistor" custom-class="vistor"></cw-icon>
+                            <view>访客通行</view>
+                        </navigator>
+                    </cw-col>
+
+                    <cw-col span="6">
+                        <navigator class="tool-item" url="/pages/questionnaire/index">
+                            <cw-icon name="question" custom-class="question"></cw-icon>
+                            <view>问卷调查</view>
+                        </navigator>
+                    </cw-col>
+                </cw-row>
+            </view>
+        </view>
+    </view>
+
+    <view wx:if="{{ !userInfo.subscribed && showOaComponent }}" class="section official-account">
+        <view class="recommand">关注官方公众号第一时间接收物业消息</view>
+        <official-account binderror="onOALoadFail" />
+    </view>
+
+    <!-- 小区通知 -->
+    <cw-panel title="小区通知" custom-class="section">
+        <view class="notice-wrapper">
+            <block wx:if="{{fetching}}">
+                <view class="notice-item" wx:for="{{3}}" wx:key="index">
+                    <cw-skeleton custom-class="notice-loading" title row="1" />
+                </view>
+            </block>
+            <block wx:else>
+                <view class="notice-empty" wx:if="{{notice.length === 0}}">
+                    暂无通知消息
+                </view>
+                <block wx:else>
+                    <navigator
+                        class="notice-item"
+                        wx:for="{{notice}}"
+                        wx:key="index"
+                        url="/pages/notification/detail?id={{item.id}}&unread=0"
+                    >
+                        <view class="notice-title">{{ item.title }}</view>
+                        <view class="notice-overview">{{ item.overview }}</view>
+                        <view class="notice-time">{{ common.date(item.created_at) }}</view>
+                    </navigator>
+                </block>
+            </block>
+        </view>
+    </cw-panel>
+
+    <!-- 肺炎 -->
+    <cw-panel title="全国疫情数据（含港澳台）" custom-class="section">
+        <cw-row>
+            <cw-col span="8">
+                <view class="virus-item">
+                    <view class="type">境外输入</view>
+                    <cw-skeleton row="{{ 1 }}" row-class="virus-loading" loading="{{ fetching }}" />
+                    <view class="amount virus-input" wx:if="{{ !fetching }}">
+                        {{ virus.total.input }}
+                    </view>
+                    <view class="increase">
+                        较昨日
+                        <view wx:if="{{ !virus.today.input && virus.today.input !== 0 }}">待公布</view>
+                        <view class="virus-input" wx:else>
+                            {{ virus.today.input >= 0 ? '+' : '' }}{{ virus.today.input }}
+                        </view>
+                    </view>
+                </view>
+            </cw-col>
+
+            <cw-col span="8">
+                <view class="virus-item">
+                    <view class="type">无症状感染者</view>
+                    <cw-skeleton row="{{ 1 }}" row-class="virus-loading" loading="{{ fetching }}" />
+                    <view class="amount virus-confirm" wx:if="{{ !fetching }}">
+                        {{ virus.extData.noSymptom }}
+                    </view>
+                    <view class="increase">
+                        较昨日
+                        <view wx:if="{{ !virus.extData.incrNoSymptom && virus.extData.incrNoSymptom !== 0 }}">
+                            待公布
+                        </view>
+                        <view class="virus-confirm" wx:else>
+                            {{ virus.extData.incrNoSymptom >= 0 ? '+' : '' }}{{ virus.extData.incrNoSymptom }}
+                        </view>
+                    </view>
+                </view>
+            </cw-col>
+
+            <cw-col span="8">
+                <view class="virus-item">
+                    <view class="type">现有确诊</view>
+                    <cw-skeleton row="{{ 1 }}" row-class="virus-loading" loading="{{ fetching }}" />
+                    <view class="amount virus-today-confirm" wx:if="{{ !fetching }}">
+                        {{ virus.total.confirm - virus.total.dead - virus.total.heal }}
+                    </view>
+                    <view class="increase">
+                        较昨日
+                        <view wx:if="{{ !virus.today.storeConfirm && virus.today.storeConfirm !== 0 }}">
+                            待公布
+                        </view>
+                        <view class="virus-today-confirm" wx:else>
+                            {{ virus.today.storeConfirm >= 0 ? '+' : '' }}{{ virus.today.storeConfirm }}
+                        </view>
+                    </view>
+                </view>
+            </cw-col>
+        </cw-row>
+        <cw-row>
+            <cw-col span="8">
+                <view class="virus-item">
+                    <view class="type">累计确诊</view>
+                    <cw-skeleton row="{{ 1 }}" row-class="virus-loading" loading="{{ fetching }}" />
+                    <view class="amount virus-confirm" wx:if="{{ !fetching }}">
+                        {{ virus.total.confirm }}
+                    </view>
+                    <view class="increase">
+                        较昨日
+                        <view wx:if="{{ !virus.today.confirm && virus.today.confirm !== 0 }}">待公布</view>
+                        <view class="virus-confirm" wx:else>
+                            {{ virus.today.confirm >= 0 ? '+' : '' }}{{ virus.today.confirm }}
+                        </view>
+                    </view>
+                </view>
+            </cw-col>
+
+            <cw-col span="8">
+                <view class="virus-item">
+                    <view class="type">累计死亡</view>
+                    <cw-skeleton row="{{ 1 }}" row-class="virus-loading" loading="{{ fetching }}" />
+                    <view class="amount" wx:if="{{ !fetching }}">{{ virus.total.dead }}</view>
+                    <view class="increase">
+                        较昨日
+                        <view wx:if="{{ !virus.today.dead && virus.today.dead !== 0 }}">待公布</view>
+                        <view wx:else>
+                            {{ virus.today.dead >= 0 ? '+' : '' }}{{ virus.today.dead }}
+                        </view>
+                    </view>
+                </view>
+            </cw-col>
+
+            <cw-col span="8">
+                <view class="virus-item">
+                    <view class="type">累计治愈</view>
+                    <cw-skeleton row="{{ 1 }}" row-class="virus-loading" loading="{{ fetching }}" />
+                    <view class="amount virus-heal" wx:if="{{ !fetching }}">
+                        {{ virus.total.heal }}
+                    </view>
+                    <view class="increase">
+                        较昨日
+                        <view wx:if="{{ !virus.today.heal && virus.today.heal !== 0 }}">待公布</view>
+                        <view class="virus-heal" wx:else>
+                            {{ virus.today.heal >= 0 ? '+' : '' }}{{ virus.today.heal }}
+                        </view>
+                    </view>
+                </view>
+            </cw-col>
+        </cw-row>
+
+        <view class="last-update-time">
+            截至 {{ fetching ? '数据获取中……' : virus.lastUpdateTime }} 数据源自网易新闻
+        </view>
+    </cw-panel>
+
+    <!-- 广告 -->
+    <swiper
+        class="swiper"
+        indicator-dots="{{ true }}"
+        autoplay="{{ true }}"
+        indicator-color="rgba(25, 137, 250, 0.4)"
+        indicator-active-color="rgba(25, 137, 250, 0.8)"
+        interval="{{ 5000 }}"
+        style="height: {{ windowWidth / 3}}px"
+        duration="{{ 300 }}"
+    >
+        <swiper-item wx:for="{{topic}}" wx:key="index">
+            <navigator url="/pages/topic/detail?id={{item.id}}">
+                <image src="{{ASSETS_HOST}}{{item.banner_img}}" lazy-load mode="widthFix" />
+            </navigator>
+        </swiper-item>
+    </swiper>
+
+    <!-- 热聊 -->
+    <!-- <cw-panel title="小区热议" custom-class="section">
+        <block wx:for="{{[1,2,3]}}" wx:key="item">
+            <view class="bbs-item">
+                <view class="bbs-inner">
+                    <view class="title">小区绿化越来越差劲了，满地的树叶{{item}}</view>
+                    <view class="tags">
+                        <cw-tag type="primary">环境</cw-tag>
+                        <cw-tag type="success">绿化</cw-tag>
+                    </view>
+                    <view class="paragraph">
+                        小区绿化越来越差劲了，满地的树叶小区绿化越来越差劲了，满地的树叶小区绿化越来越差劲了，满地的树叶小区绿化越来越差劲了，满地的树叶
+                    </view>
+                    <view class="statistic">
+                        <view class="publish">
+                            <view class="avatar">
+                                <image
+                                    class="bg-pic"
+                                    src="../../assets/home/avatar.jpg"
+                                    lazy-load
+                                    mode="scaleToFill"
+                                ></image>
+                            </view>
+                            <text>2020-08-08</text>
+                        </view>
+                        <view class="interact">
+                            <view>
+                                <cw-icon name="view"></cw-icon>
+                                <text>100</text>
+                            </view>
+                            <view>
+                                <cw-icon name="comment"></cw-icon>
+                                <text>66</text>
+                            </view>
+                            <view>
+                                <cw-icon name="like"></cw-icon>
+                                <text>3</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </cw-panel> -->
+
+    <cw-divider contentPosition="center">更多内容敬请期待</cw-divider>
+
+    <!-- 全局提示 -->
+    <cw-toast id="cw-toast"></cw-toast>
+</view>

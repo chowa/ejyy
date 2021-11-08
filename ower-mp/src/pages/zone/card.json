@@ -1,0 +1,9 @@
+{
+    "navigationBarTitleText": "业主名片",
+    "disableScroll": true,
+    "usingComponents": {
+        "cw-toast": "../../components/toast",
+        "cw-icon": "../../components/icon",
+        "cw-copyright": "../../components/copyright"
+    }
+}

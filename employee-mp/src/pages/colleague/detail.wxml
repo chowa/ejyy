@@ -1,0 +1,50 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-cell-group wx:if="{{fetching}}">
+        <cw-cell is-detail title="姓名：" border="{{false}}">
+            <cw-skeleton in-cell row="1" />
+        </cw-cell>
+        <cw-cell is-detail title="性别：" border="{{false}}">
+            <cw-skeleton in-cell row="1" />
+        </cw-cell>
+        <cw-cell is-detail title="联系电话：" border="{{false}}">
+            <cw-skeleton in-cell row="1" />
+        </cw-cell>
+        <cw-cell is-detail title="昵称：" border="{{false}}">
+            <cw-skeleton in-cell row="1" />
+        </cw-cell>
+        <cw-cell is-detail title="签名：" border="{{false}}">
+            <cw-skeleton in-cell row="1" />
+        </cw-cell>
+    </cw-cell-group>
+
+    <view wx:else>
+        <cw-cell-group>
+            <cw-cell is-detail title="姓名：" border="{{false}}" value="{{detail.info.real_name}}" />
+            <cw-cell is-detail title="性别：" border="{{false}}" value="{{detail.info.gender === 1 ? '男' : '女'}}" />
+            <cw-cell
+                is-detail
+                title="联系电话："
+                border="{{false}}"
+                value="{{detail.info.phone}}"
+                is-link
+                bind:click="makePhone"
+                clickable
+                data-phone="{{detail.info.phone}}"
+            />
+            <cw-cell is-detail title="部门：" border="{{false}}" value="{{detail.info.department}}" />
+            <cw-cell is-detail title="岗位：" border="{{false}}" value="{{detail.info.job}}" />
+            <cw-cell
+                is-detail
+                title="入职时间："
+                border="{{false}}"
+                value="{{common.date(detail.info.join_company_at)}}"
+            />
+        </cw-cell-group>
+    </view>
+
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+    <cw-copyright />
+</view>

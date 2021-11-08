@@ -1,0 +1,53 @@
+<wxs src="../wxs/utils.wxs" module="utils" />
+<wxs src="./index.wxs" module="computed" />
+
+<button
+    id="{{ id }}"
+    data-detail="{{ dataset }}"
+    class="custom-class {{ utils.bem('button', [type, size, { block, round, plain, square, loading, disabled, hairline, unclickable: disabled || loading }]) }} {{ hairline ? 'cw-hairline--surround' : '' }}"
+    hover-class="cw-button--active hover-class"
+    lang="{{ lang }}"
+    form-type="{{ formType }}"
+    style="{{ computed.rootStyle({ plain, color, customStyle }) }}"
+    open-type="{{ disabled ? '' : openType }}"
+    business-id="{{ businessId }}"
+    session-from="{{ sessionFrom }}"
+    send-message-title="{{ sendMessageTitle }}"
+    send-message-path="{{ sendMessagePath }}"
+    send-message-img="{{ sendMessageImg }}"
+    show-message-card="{{ showMessageCard }}"
+    app-parameter="{{ appParameter }}"
+    aria-label="{{ ariaLabel }}"
+    bindtap="{{ !disabled ? 'onClick' : 'noop' }}"
+    bindgetuserinfo="bindGetUserInfo"
+    bindcontact="bindContact"
+    bindgetphonenumber="bindGetPhoneNumber"
+    binderror="bindError"
+    bindlaunchapp="bindLaunchApp"
+    bindopensetting="bindOpenSetting"
+>
+    <block wx:if="{{ loading }}">
+        <cw-loading
+            custom-class="loading-class"
+            size="{{ loadingSize }}"
+            type="{{ loadingType }}"
+            color="{{ computed.loadingColor({ type, color, plain }) }}"
+        />
+        <view wx:if="{{ loadingText }}" class="cw-button__loading-text">
+            {{ loadingText }}
+        </view>
+    </block>
+    <block wx:else>
+        <cw-icon
+            wx:if="{{ icon }}"
+            size="1.2em"
+            name="{{ icon }}"
+            class-prefix="{{ classPrefix }}"
+            class="cw-button__icon"
+            custom-style="line-height: inherit;"
+        />
+        <view class="cw-button__text">
+            <slot />
+        </view>
+    </block>
+</button>

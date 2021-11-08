@@ -1,0 +1,8 @@
+{
+    "navigationBarTitleText": "支付结果",
+    "usingComponents": {
+        "cw-copyright": "../../components/copyright",
+        "cw-button": "../../components/button",
+        "cw-icon": "../../components/icon"
+    }
+}

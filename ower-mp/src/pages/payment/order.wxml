@@ -1,0 +1,99 @@
+<wxs src="../common/common.wxs" module="common" />
+<wxs src="./index.wxs" module="payment" />
+
+<view class="container">
+    <cw-empty
+        icon="pay"
+        description="{{communityInfo.current.name}}小区物业费用已缴清"
+        wx:if="{{!fetching && list.length === 0}}"
+        with-copyright
+    >
+        <navigator url="/pages/community/index" class="link">切换默认小区？</navigator>
+    </cw-empty>
+
+    <view wx:if="{{fetching}}">
+        <view wx:for="{{3}}" wx:key="index">
+            <cw-panel custom-class="{{index === 0 ? '' : 'section'}}" use-footer-slot>
+                <view class="header">
+                    <cw-skeleton row="{{ 1 }}" solt="title" row-width="40%" />
+                </view>
+                <cw-skeleton row="{{ 5 }}" />
+            </cw-panel>
+        </view>
+    </view>
+    <view wx:else>
+        <view wx:for="{{list}}" wx:key="index">
+            <cw-panel
+                title="{{item.fee.start_year}}至{{item.fee.end_year}}年{{item.fee.community_name}}物业费"
+                wx:if="{{item.unpayOrder.length > 0}}"
+                custom-class="{{index === 0 ? '' : 'section'}}"
+                use-footer-slot
+            >
+                <cw-cell
+                    wx:for="{{item.unpayOrder}}"
+                    wx:for-item="detail"
+                    wx:for-index="key"
+                    wx:key="key"
+                    border="{{false}}"
+                    title="{{ common.building(detail) }}"
+                    label="{{ payment.label(detail, item.fee) }}"
+                />
+                <view class="footer" slot="footer">
+                    <view class="price">
+                        共计：
+                        <view class="total">{{ payment.total(item.unpayOrder, item.fee) }}</view>
+                        元
+                    </view>
+                    <cw-button
+                        size="small"
+                        round
+                        type="danger"
+                        data-id="{{item.unpayOrder[0].id}}"
+                        bind:click="goPayment"
+                    >
+                        立即支付
+                    </cw-button>
+                </view>
+            </cw-panel>
+
+            <cw-panel
+                title="{{item.fee.start_year}}至{{item.fee.end_year}}年{{item.fee.community_name}}物业费"
+                wx:if="{{item.uncreateOrder.length > 0}}"
+                custom-class="section"
+                custom-class="{{index === 0 && item.unpayOrder.length === 0 ? '' : 'section'}}"
+                use-footer-slot
+            >
+                <cw-cell
+                    wx:for="{{item.uncreateOrder}}"
+                    wx:for-item="detail"
+                    wx:for-index="key"
+                    wx:key="key"
+                    border="{{false}}"
+                    title="{{ common.building(detail) }}"
+                    label="{{ payment.label(detail, item.fee) }}"
+                />
+                <view class="footer" slot="footer">
+                    <view class="price">
+                        共计：
+                        <view class="total">{{ payment.total(item.uncreateOrder, item.fee) }}</view>
+                        元
+                    </view>
+                    <cw-button
+                        size="small"
+                        type="danger"
+                        round
+                        data-data="{{item.uncreateOrder}}"
+                        data-id="{{item.fee.id}}"
+                        bind:click="doCreate"
+                    >
+                        确认并支付
+                    </cw-button>
+                </view>
+            </cw-panel>
+        </view>
+    </view>
+
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+    <cw-copyright fixed="{{!fetching && list.length === 0}}" />
+</view>

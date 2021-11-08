@@ -1,0 +1,69 @@
+<view class="container">
+    <cw-cell-group>
+        <cw-cell
+            title="所在小区"
+            title-width="100px"
+            value="{{communityInfo.current.name}}小区"
+            is-link
+            is-detail
+            url="/pages/community/index"
+        />
+        <cw-cell
+            title="反馈类型"
+            clickable
+            is-link
+            is-detail="{{complainTypeName ? true : false}}"
+            value="{{complainTypeName ? complainTypeName : '请选择'}}"
+            bind:click="showComplainTypeAction"
+        />
+        <cw-cell
+            title="反馈分类"
+            clickable
+            is-link
+            is-detail="{{complainCateogryName ? true : false}}"
+            value="{{complainCateogryName ? complainCateogryName : '请选择'}}"
+            bind:click="showComplainCategoryAction"
+        />
+        <cw-field
+            label="问题描述"
+            type="textarea"
+            maxlength="{{ 200 }}"
+            show-word-limit
+            autosize
+            model:value="{{ description }}"
+            placeholder="请输入问题描述"
+        />
+        <cw-cell title="现场照片" border="{{ false }}" title-class="upload-title" value-class="upload-cell">
+            <cw-uploader
+                file-list="{{uploadImgList}}"
+                bind:delete="deleteImg"
+                bind:after-read="afterRead"
+                max-count="{{4}}"
+            />
+        </cw-cell>
+    </cw-cell-group>
+
+    <cw-button custom-class="btn" block loading="{{submiting}}" type="info" bind:click="submit">
+        立即反馈
+    </cw-button>
+
+    <cw-action-sheet
+        title="反馈类型"
+        close-on-click-overlay="{{true}}"
+        show="{{complainTypeActionVisible}}"
+        bind:close="hideComplainTypeAction"
+        bind:select="onComplainTypeChange"
+        actions="{{complainTypeActions}}"
+    />
+    <cw-action-sheet
+        title="反馈分类"
+        close-on-click-overlay="{{true}}"
+        show="{{complainCateogryActionVisible}}"
+        bind:close="hideComplainCategoryAction"
+        bind:select="onComplainCategoryChange"
+        actions="{{complainCateogryActions}}"
+    />
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+    <cw-copyright />
+</view>

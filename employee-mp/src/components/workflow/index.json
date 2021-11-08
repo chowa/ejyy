@@ -1,0 +1,15 @@
+{
+    "component": true,
+    "usingComponents": {
+        "cw-icon": "../icon",
+        "cw-button": "../button",
+        "cw-field": "../field",
+        "cw-toast": "../toast",
+        "cw-panel": "../panel",
+        "cw-cell": "../cell",
+        "cw-cell-group": "../cell-group",
+        "cw-colleague": "../colleague",
+        "cw-radio": "../radio",
+        "cw-radio-group": "../radio-group"
+    }
+}

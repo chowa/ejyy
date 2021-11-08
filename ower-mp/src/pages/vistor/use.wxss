@@ -1,0 +1,119 @@
+.nav-bar {
+    background-color: transparent !important;
+    transform: background-color 0.2s ease-in-out;
+}
+
+.nav-bar.half-opacity {
+    background-color: rgba(55, 122, 227, 0.75) !important;
+}
+
+.nav-bar.full-opacity {
+    background-color: rgba(55, 122, 227, 1) !important;
+}
+
+.avatar {
+    position: relative;
+    z-index: 10;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    margin: 30px auto 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar image {
+    width: 86px;
+    height: 86px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.wrapper {
+    width: 640rpx;
+    min-height: 40vh;
+    padding-top: 60px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 4px;
+    margin: -48px auto 0;
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.name {
+    font-size: 16px;
+    color: #32323;
+    line-height: 24px;
+    height: 24px;
+}
+
+.vistor {
+    font-size: 14px;
+    margin-top: 6px;
+    color: #787878;
+    line-height: 20px;
+    height: 20px;
+}
+
+.local {
+    color: #fff;
+    background-color: #1989fa;
+    height: 28px;
+    line-height: 28px;
+    margin-top: 16px;
+    border-radius: 24px;
+    padding: 0 24px;
+    font-size: 14px;
+}
+
+.notice {
+    font-size: 12px;
+    color: #999;
+    padding: 20px 0 12px;
+}
+
+.canWrapper {
+    position: relative;
+    width: 260px;
+    height: 260px;
+    overflow: hidden;
+    margin-top: 16px;
+    margin-bottom: 30px;
+}
+
+.canvas {
+    width: 260px;
+    height: 260px;
+    background-color: #fff;
+    z-index: 5;
+}
+
+.used {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 8;
+    background-color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    line-height: 260px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}

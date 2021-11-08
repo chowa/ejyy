@@ -1,0 +1,27 @@
+@import '../common/index.wxss';
+
+.cw-rate {
+    display: -webkit-inline-flex;
+    display: inline-flex;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.cw-rate__item {
+    position: relative;
+    padding: 0 2px;
+}
+
+.cw-rate__icon {
+    display: block;
+    height: 1em;
+    font-size: 20px;
+}
+
+.cw-rate__icon--half {
+    position: absolute;
+    top: 0;
+    width: 0.5em;
+    overflow: hidden;
+    left: 2px;
+}

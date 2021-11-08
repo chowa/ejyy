@@ -1,0 +1,7 @@
+.btns-box {
+    margin-top: 16px;
+    padding: 0 16px;
+}
+.btns-box .btn {
+    margin-top: 8px;
+}

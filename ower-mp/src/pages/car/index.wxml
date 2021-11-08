@@ -1,0 +1,88 @@
+<wxs src="./index.wxs" module="cnumber" />
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <view wx:if="{{ fetching }}">
+        <cw-panel>
+            <view class="loading-wrapper">
+                <cw-skeleton row="{{ 3 }}" title />
+            </view>
+        </cw-panel>
+        <cw-panel custom-class="section">
+            <view class="loading-wrapper">
+                <cw-skeleton row="{{ 3 }}" title />
+            </view>
+        </cw-panel>
+        <cw-panel custom-class="section">
+            <view class="loading-wrapper">
+                <cw-skeleton row="{{ 3 }}" title />
+            </view>
+        </cw-panel>
+    </view>
+
+    <view wx:else>
+        <cw-empty
+            description="暂无{{communityInfo.current.name}}小区车位信息"
+            icon="park"
+            wx:if="{{ !fetching && list.length === 0}}"
+            with-copyright
+        >
+            <navigator url="/pages/community/index" class="link">切换默认小区？</navigator>
+        </cw-empty>
+        <cw-panel
+            wx:for="{{ list }}"
+            wx:key="index"
+            use-footer-slot
+            title="{{common.building(item)}}"
+            status="{{communityInfo.current.name}}小区"
+            custom-class="{{ index === 0 ? '' : 'section' }}"
+        >
+            <view class="panel-container">
+                <view wx:if="{{ item.cars.length === 0 }}" class="nocar">
+                    未绑定车辆
+                </view>
+                <view wx:else>
+                    <view
+                        wx:for="{{ item.cars }}"
+                        wx:for-item="car"
+                        wx:for-index="cindex"
+                        wx:key="cindex"
+                        class="car-number-wrapper"
+                    >
+                        <view>
+                            <view
+                                class="car-number {{ car.car_type === 1 ? 'blue' : 'yellow' }} {{ car.is_new_energy ? 'new-energy' : '' }}"
+                            >
+                                <view class="province">{{ cnumber.province(car.car_number) }}</view>
+                                <view class="point">·</view>
+                                <view class="number">{{ cnumber.number(car.car_number) }}</view>
+                            </view>
+                            <view class="status {{car.sync ? 'success' : 'wait'}}">
+                                {{car.sync ? '已同步，可以车牌识别抬杆入场' : '待同步，不可车牌识别抬杆入场'}}
+                            </view>
+                        </view>
+                        <view
+                            class="unbinding"
+                            data-id="{{car.car_id}}"
+                            data-index="{{index}}"
+                            data-car-index="{{cindex}}"
+                            bindtap="unbindingCar"
+                        >
+                            <cw-icon name="edit-remove" />
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+            <view slot="footer" class="footer">
+                <cw-button size="small" round type="info" data-id="{{ item.building_id }}" bind:click="bindingCar">
+                    添加车辆
+                </cw-button>
+            </view>
+        </cw-panel>
+    </view>
+
+    <cw-notify id="cw-notify" />
+    <cw-dialog id="cw-dialog" />
+    <cw-copyright fixed="{{ !fetching && list.length === 0 }}" />
+</view>

@@ -1,0 +1,48 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-list
+        fetching="{{fetching}}"
+        page_num="{{page_num}}"
+        page_amount="{{page_amount}}"
+        list="{{list}}"
+        empty="暂无装修记录"
+        icon="fitment"
+    >
+        <cw-list-item
+            wx:for="{{list}}"
+            title="{{common.number('F', item.created_at, item.id)}}"
+            wx:key="index"
+            url="/pages/fitment/detail?id={{item.id}}"
+        >
+            <cw-list-item-info label="装修地址">
+                {{common.building(item)}}
+            </cw-list-item-info>
+            <cw-list-item-info label="当前进度">
+                <block wx:if="{{item.step === 1}}">
+                    <cw-tag round color="#13c2c2">待物业公司许可</cw-tag>
+                </block>
+                <block wx:elif="{{item.step === 2}}">
+                    <cw-tag round color="#eb2f96">待装修完工</cw-tag>
+                </block>
+                <block wx:elif="{{item.step === 3}}">
+                    <cw-tag round color="#ffe58f">待物业公司验收</cw-tag>
+                </block>
+                <block wx:elif="{{item.step === 4}}">
+                    <cw-tag round color="#52c41a">已验收</cw-tag>
+                </block>
+            </cw-list-item-info>
+            <cw-list-item-info label="退款状态" wx:if="{{item.step === 4 && item.fitment_pledge}}">
+                <block wx:if="{{!item.is_return_cash_deposit}}">
+                    <cw-tag round color="#eb2f96">待退还</cw-tag>
+                </block>
+                <block wx:else>
+                    <cw-tag round color="#52c41a">已退还</cw-tag>
+                </block>
+            </cw-list-item-info>
+            <cw-list-item-info label="报备时间">
+                {{ common.date(item.created_at) }}
+            </cw-list-item-info>
+        </cw-list-item>
+    </cw-list>
+</view>

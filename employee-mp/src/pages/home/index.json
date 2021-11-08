@@ -1,0 +1,17 @@
+{
+    "navigationStyle": "custom",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark",
+    "navigationBarTextStyle": "white",
+    "usingComponents": {
+        "cw-copyright": "../../components/copyright",
+        "cw-nav-bar": "../../components/nav-bar",
+        "cw-icon": "../../components/icon",
+        "cw-panel": "../../components/panel",
+        "cw-action-sheet": "../../components/action-sheet",
+        "cw-row": "../../components/row",
+        "cw-col": "../../components/col",
+        "cw-toast": "../../components/toast",
+        "cw-notify": "../../components/notify"
+    }
+}

@@ -1,0 +1,67 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-dropdown-menu>
+        <cw-dropdown-item bind:change="onStatusChange" value="{{ status }}" options="{{ statusOptions }}" />
+    </cw-dropdown-menu>
+
+    <cw-list
+        fetching="{{fetching}}"
+        page_num="{{page_num}}"
+        page_amount="{{page_amount}}"
+        list="{{list}}"
+        empty="暂无维修工单"
+        icon="maintain"
+        withFilter
+    >
+        <cw-list-item
+            wx:for="{{list}}"
+            url="/pages/repair/detail?id={{item.id}}"
+            title="{{common.number('R', item.created_at, item.id)}}"
+            wx:key="index"
+        >
+            <cw-list-item-info label="报修位置">
+                <block wx:if="{{item.building_id === 0}}">
+                    公共设施/区域
+                </block>
+                <block wx:else>
+                    {{common.building(item)}}
+                </block>
+            </cw-list-item-info>
+            <cw-list-item-info label="维修类型">
+                <block wx:if="{{item.repair_type === 1}}">
+                    水暖
+                </block>
+                <block wx:elif="{{item.repair_type === 2}}">
+                    电路
+                </block>
+                <block wx:elif="{{item.repair_type === 3}}">
+                    门窗
+                </block>
+                <block wx:elif="{{item.repair_type === 4}}">
+                    公共设施
+                </block>
+            </cw-list-item-info>
+            <cw-list-item-info label="问题描述">
+                {{ item.description }}
+            </cw-list-item-info>
+            <cw-list-item-info label="当前进度">
+                <block wx:if="{{item.step === 2}}">
+                    <cw-tag round color="#eb2f96">待确认工单</cw-tag>
+                </block>
+                <block wx:elif="{{item.step === 3}}">
+                    <cw-tag round color="#ffe58f">待工单完成</cw-tag>
+                </block>
+                <block wx:elif="{{item.step === 4}}">
+                    <cw-tag round color="#52c41a">工单已完成</cw-tag>
+                </block>
+            </cw-list-item-info>
+            <cw-list-item-info label="报修时间">
+                {{ common.date(item.created_at) }}
+            </cw-list-item-info>
+        </cw-list-item>
+    </cw-list>
+
+    <!-- 全局提示 -->
+    <cw-notify id="cw-notify" />
+</view>

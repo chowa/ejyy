@@ -1,0 +1,40 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <view class="calendar">
+        <view class="full-date">{{ date }}</view>
+
+        <view class="weeks">
+            <view wx:for="{{dates}}" wx:key="index" class="week-item {{index === 3 ? 'active' : ''}}">
+                <view class="week">{{ weeks[item.day] }}</view>
+                <view class="date">{{ item.date }}</view>
+            </view>
+        </view>
+    </view>
+
+    <cw-skeleton row="{{4}}" wx:if="{{fetching}}" />
+    <view class="records" wx:else>
+        <view wx:for="{{list}}" wx:key="index" class="record-item">
+            <view class="record finish" wx:if="{{item.finish}}">
+                <view class="point" />
+                下班打卡时间：{{ common.date(item.finish) }}
+            </view>
+            <view class="record begin" wx:if="{{item.begin}}">
+                <view class="point" />
+                上班打卡时间：{{ common.date(item.begin) }}
+            </view>
+        </view>
+        <view wx:if="{{list.length === 0 && !fetching}}" class="no-data">
+            暂无本日打卡记录
+        </view>
+    </view>
+
+    <view class="sign-btn {{disabled ? 'disabled' : ''}}" bind:tap="submit">
+        <view class="time">{{ time }}</view>
+        <view class="text">打卡</view>
+    </view>
+
+    <cw-toast id="cw-toast" />
+    <cw-notify id="cw-notify" />
+    <cw-copyright />
+</view>

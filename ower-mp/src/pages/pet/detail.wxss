@@ -1,0 +1,40 @@
+.photo {
+    margin: 12px 18px 0;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #eee;
+    min-height: 80px;
+}
+
+.nodata {
+    font-size: 12px;
+    color: #999;
+    line-height: 22px;
+    text-align: center;
+}
+
+.panel-container {
+    padding: 12px 20px;
+}
+
+.notice {
+    font-size: 12px;
+    color: #999;
+    line-height: 18px;
+    margin-top: 8px;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.footer button {
+    margin-left: 8px;
+}
+
+.remove-btn-wrapper {
+    margin: 20px 18px;
+}

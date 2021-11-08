@@ -1,0 +1,42 @@
+var common = require('../common/common.wxs');
+
+function title(communityInfo) {
+    if (!communityInfo.current) {
+        return '';
+    }
+
+    if (communityInfo.current.houses.length > 0) {
+        var house = communityInfo.current.houses[0];
+
+        return communityInfo.current.name + ' ' + common.building(house);
+    }
+
+    if (communityInfo.current.carports.length > 0) {
+        var carport = communityInfo.current.carports[0];
+
+        return communityInfo.current.name + ' ' + common.building(carport);
+    }
+
+    if (communityInfo.current.warehouses.length > 0) {
+        var warehouse = communityInfo.current.warehouses[0];
+
+        return communityInfo.current.name + ' ' + common.building(warehouse);
+    }
+}
+
+function approve(communityInfo) {
+    if (!communityInfo.current) {
+        return false;
+    }
+
+    return []
+        .concat(communityInfo.current.houses, communityInfo.current.carports, communityInfo.current.warehouses)
+        .every(function(building) {
+            return building.authenticated === 1;
+        });
+}
+
+module.exports = {
+    title: title,
+    approve: approve
+};

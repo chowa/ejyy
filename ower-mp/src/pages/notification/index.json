@@ -1,0 +1,11 @@
+{
+    "navigationBarTitleText": "消息中心",
+    "onReachBottomDistance": 50,
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark",
+    "usingComponents": {
+        "cw-tabs": "../../components/tabs",
+        "cw-tab": "../../components/tab",
+        "cw-list": "../../components/list"
+    }
+}

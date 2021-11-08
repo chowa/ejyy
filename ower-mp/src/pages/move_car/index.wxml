@@ -1,0 +1,91 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-tabs active="{{ activeTabIndex }}" bind:change="onTabChange">
+        <cw-tab title="我申请挪车的">
+            <cw-list
+                fetching="{{my_fetching}}"
+                page_num="{{my_page_num}}"
+                page_amount="{{my_page_amount}}"
+                list="{{my_list}}"
+                empty="暂无我申请的挪车记录"
+                icon="movecar"
+                withFilter
+            >
+                <cw-list-item
+                    wx:for="{{my_list}}"
+                    title="{{common.number('M', item.created_at, item.id)}}"
+                    status="{{item.community_name}}小区"
+                    wx:key="index"
+                    url="/pages/move_car/detail?id={{item.id}}"
+                >
+                    <cw-list-item-info label="车牌号码">
+                        {{ item.car_number }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="挪车原因">
+                        <block wx:if="{{item.move_reason === 1}}">阻碍通行</block>
+                        <block wx:elif="{{item.move_reason === 2}}">占用消防通道</block>
+                        <block wx:elif="{{item.move_reason === 3}}">阻挡出入口</block>
+                        <block wx:elif="{{item.move_reason === 4}}">影响施工</block>
+                        <block wx:elif="{{item.move_reason === 5}}">占用车位</block>
+                    </cw-list-item-info>
+                    <cw-list-item-info label="当前进度">
+                        <block wx:if="{{!item.responsed_at}}">
+                            <cw-tag round color="#ff976a">处理中</cw-tag>
+                        </block>
+                        <block wx:else>
+                            <cw-tag round color="#52c41a">已处理</cw-tag>
+                        </block>
+                    </cw-list-item-info>
+                    <cw-list-item-info label="提交时间">
+                        {{ common.date(item.created_at) }}
+                    </cw-list-item-info>
+                </cw-list-item>
+            </cw-list>
+        </cw-tab>
+
+        <cw-tab title="需要我挪车的">
+            <cw-list
+                fetching="{{need_fetching}}"
+                page_num="{{need_page_num}}"
+                page_amount="{{need_page_amount}}"
+                list="{{need_list}}"
+                empty="暂无需要我挪车的记录"
+                icon="movecar"
+                withFilter
+            >
+                <cw-list-item
+                    wx:for="{{need_list}}"
+                    title="{{common.number('M', item.created_at, item.id)}}"
+                    status="{{item.community_name}}小区"
+                    wx:key="index"
+                >
+                    <cw-list-item-info label="挪车小区">
+                        {{ item.community_name }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="车牌号码">
+                        {{ item.car_number }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="挪车原因">
+                        <block wx:if="{{item.move_reason === 1}}">阻碍通行</block>
+                        <block wx:elif="{{item.move_reason === 2}}">占用消防通道</block>
+                        <block wx:elif="{{item.move_reason === 3}}">阻挡出入口</block>
+                        <block wx:elif="{{item.move_reason === 4}}">影响施工</block>
+                        <block wx:elif="{{item.move_reason === 5}}">占用车位</block>
+                    </cw-list-item-info>
+                    <cw-list-item-info label="当前进度">
+                        <block wx:if="{{!item.responsed_at}}">
+                            <cw-tag round color="#ff976a">处理中</cw-tag>
+                        </block>
+                        <block wx:else>
+                            <cw-tag round color="#52c41a">已处理</cw-tag>
+                        </block>
+                    </cw-list-item-info>
+                    <cw-list-item-info label="申请时间">
+                        {{ common.date(item.created_at) }}
+                    </cw-list-item-info>
+                </cw-list-item>
+            </cw-list>
+        </cw-tab>
+    </cw-tabs>
+</view>

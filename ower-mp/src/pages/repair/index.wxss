@@ -1,0 +1,31 @@
+.item + .item {
+    margin-top: 12px;
+}
+
+.inner {
+    padding: 12px 20px;
+}
+
+.inner .local {
+    font-size: 16px;
+    line-height: 30px;
+    color: #454545;
+}
+
+.inner .text {
+    font-size: 14px;
+    line-height: 26px;
+    color: #323233;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.header {
+    padding: 6px 20px;
+    border-bottom: 1px solid #ebedf0;
+}
+
+.local-icon {
+    color: #ff9900;
+}

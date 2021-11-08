@@ -1,0 +1,64 @@
+<view class="container">
+    <!-- <map
+        class="map"
+        id="map"
+        layer-style="1"
+        subkey="LX6BZ-FCACJ-6VIFY-K3NBM-HKPKJ-R2BWU"
+        skew="30"
+        longitude="118.871132"
+        latitude="42.242043"
+        show-location
+        show-compass
+        enable-overlooking
+        enable-building/> -->
+    <cw-cell-group>
+        <cw-cell
+            title="所在小区"
+            title-width="100px"
+            value="{{communityInfo.current.name}}小区"
+            is-link
+            is-detail
+            url="/pages/community/index"
+        />
+        <cw-cell
+            title="挪车原因"
+            clickable
+            is-link
+            is-detail="{{move_reason_text ? true : false}}"
+            value="{{move_reason_text ? move_reason_text : '请选择'}}"
+            bind:click="showAction"
+        />
+        <cw-cell title="是否新能源">
+            <cw-switch bind:change="updateNewEnergy" checked="{{is_new_energy}}" />
+        </cw-cell>
+        <cw-cell custom-class="number-cell">
+            <view slot="title">车牌号码</view>
+            <cw-car-number is-new-energy="{{is_new_energy}}" id="car-number" bind:change="onCarNumberChange" />
+        </cw-cell>
+        <cw-cell title="现场照片" border="{{ false }}" title-class="upload-title" value-class="upload-cell">
+            <cw-uploader
+                file-list="{{uploadImgList}}"
+                bind:delete="deleteImg"
+                bind:after-read="afterRead"
+                max-count="{{1}}"
+            />
+        </cw-cell>
+    </cw-cell-group>
+
+    <cw-button custom-class="btn" block loading="{{submiting}}" type="info" bind:click="submit">
+        立即挪车
+    </cw-button>
+
+    <cw-action-sheet
+        title="挪车原因"
+        close-on-click-overlay="{{true}}"
+        show="{{actionVisible}}"
+        bind:close="hideAction"
+        bind:select="onReasonChange"
+        actions="{{actions}}"
+    />
+    <cw-toast id="cw-toast" />
+    <cw-dialog id="cw-dialog" />
+    <cw-notify id="cw-notify" />
+    <cw-copyright />
+</view>

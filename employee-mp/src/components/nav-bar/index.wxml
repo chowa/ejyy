@@ -1,0 +1,41 @@
+<wxs src="../wxs/utils.wxs" module="utils" />
+<wxs src="./index.wxs" module="computed" />
+
+<view wx:if="{{ fixed && placeholder }}" style="height: {{ height }}px;" />
+
+<view
+    class="{{ utils.bem('nav-bar', { fixed }) }} custom-class {{ border ? 'cw-hairline--bottom' : '' }}"
+    style="{{ computed.barStyle({ zIndex, statusBarHeight, safeAreaInsetTop }) }}; {{ customStyle }}"
+>
+    <view class="cw-nav-bar__content">
+        <view class="cw-nav-bar__left" bind:tap="onClickLeft">
+            <block wx:if="{{ leftArrow || leftText }}">
+                <cw-icon wx:if="{{ leftArrow }}" size="16px" name="arrow-left" custom-class="cw-nav-bar__arrow" />
+                <view
+                    wx:if="{{ leftText }}"
+                    class="cw-nav-bar__text"
+                    hover-class="cw-nav-bar__text--hover"
+                    hover-stay-time="70"
+                >
+                    {{ leftText }}
+                </view>
+            </block>
+            <slot wx:else name="left" />
+        </view>
+        <view class="cw-nav-bar__title title-class cw-ellipsis">
+            <block wx:if="{{ title }}">{{ title }}</block>
+            <slot wx:else name="title" />
+        </view>
+        <view class="cw-nav-bar__right" bind:tap="onClickRight">
+            <view
+                wx:if="{{ rightText }}"
+                class="cw-nav-bar__text"
+                hover-class="cw-nav-bar__text--hover"
+                hover-stay-time="70"
+            >
+                {{ rightText }}
+            </view>
+            <slot wx:else name="right" />
+        </view>
+    </view>
+</view>

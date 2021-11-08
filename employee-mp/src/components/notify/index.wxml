@@ -1,0 +1,15 @@
+<wxs src="../wxs/utils.wxs" module="utils" />
+<wxs src="./index.wxs" module="computed" />
+
+<cw-transition
+    name="slide-down"
+    show="{{ show }}"
+    custom-class="cw-notify__container"
+    custom-style="{{ computed.rootStyle({ zIndex, top }) }}"
+    bind:tap="onTap"
+>
+    <view wx:if="{{ customNavBar }}" style="height: {{ offsetTop }}px" />
+    <view class="cw-notify cw-notify--{{ type }}" style="{{ computed.notifyStyle({ background, color }) }}">
+        <text>{{ message }}</text>
+    </view>
+</cw-transition>

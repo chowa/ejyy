@@ -1,0 +1,17 @@
+{
+    "navigationBarTitleText": "家政",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#1989fa",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50,
+    "usingComponents": {
+        "cw-dropdown-menu": "../../components/dropdown-menu",
+        "cw-dropdown-item": "../../components/dropdown-item",
+        "cw-notify": "../../components/notify",
+        "cw-button": "../../components/button",
+        "cw-list": "../../components/list",
+        "cw-list-item": "../../components/list-item",
+        "cw-list-item-info": "../../components/list-item-info",
+        "cw-icon": "../../components/icon"
+    }
+}

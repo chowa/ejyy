@@ -1,0 +1,13 @@
+{
+    "navigationBarTitleText": "完善个人信息",
+    "usingComponents": {
+        "cw-field": "../../components/field",
+        "cw-cell": "../../components/cell",
+        "cw-notice-bar": "../../components/notice-bar",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-copyright": "../../components/copyright",
+        "cw-toast": "../../components/toast",
+        "cw-notify": "../../components/notify",
+        "cw-button": "../../components/button"
+    }
+}

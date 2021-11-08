@@ -1,0 +1,14 @@
+.photo {
+    min-height: 160px;
+}
+
+.nodata {
+    font-size: 12px;
+    color: #999;
+    line-height: 22px;
+    text-align: center;
+}
+
+.panel-container {
+    padding: 12px 20px;
+}

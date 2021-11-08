@@ -1,0 +1,30 @@
+@import '../common/index.wxss';
+
+.cw-dropdown-item {
+    position: fixed;
+    right: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.cw-dropdown-item__option {
+    text-align: left;
+}
+
+.cw-dropdown-item__option--active .cw-dropdown-item__icon,
+.cw-dropdown-item__option--active .cw-dropdown-item__title {
+    color: #ee0a24;
+}
+
+.cw-dropdown-item--up {
+    top: 0;
+}
+
+.cw-dropdown-item--down {
+    bottom: 0;
+}
+
+.cw-dropdown-item__icon {
+    display: block;
+    line-height: inherit;
+}

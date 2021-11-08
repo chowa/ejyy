@@ -1,0 +1,110 @@
+<wxs src="../common/common.wxs" module="common" />
+
+<view class="container">
+    <cw-tabs active="{{ activeTabIndex }}" bind:change="onTabChange">
+        <cw-tab title="需要我审批的">
+            <cw-list
+                fetching="{{approver_fetching}}"
+                page_num="{{approver_page_num}}"
+                page_amount="{{approver_page_amount}}"
+                list="{{approver_list}}"
+                empty="暂无需要我审批的流程"
+                icon="refound"
+                withFilter
+            >
+                <cw-list-item
+                    wx:for="{{approver_list}}"
+                    title="{{common.number('RF', item.created_at, item.id)}}"
+                    wx:key="index"
+                    url="/pages/refound/detail?id={{item.id}}"
+                    useFooterSlot="{{!item.cancel && item.success === null}}"
+                >
+                    <cw-list-item-info label="申请人">
+                        {{ item.real_name }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="报销时间">
+                        {{ common.date(item.begin_date, false) }}至{{ common.date(item.finish_date, false) }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="报销金额">
+                        {{ item.total }}元
+                    </cw-list-item-info>
+                    <cw-list-item-info label="报销原因">
+                        {{ item.reason }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="申请结果">
+                        <block wx:if="{{item.cancel}}">
+                            <cw-tag round color="#ff976a">已撤销</cw-tag>
+                        </block>
+                        <block wx:elif="{{item.success === null}}">
+                            <cw-tag round color="#91d5ff">审批中</cw-tag>
+                        </block>
+                        <block wx:elif="{{!item.success}}">
+                            <cw-tag round color="#ed4014">驳回</cw-tag>
+                        </block>
+                        <block wx:else>
+                            <cw-tag round color="#52c41a">成功</cw-tag>
+                        </block>
+                    </cw-list-item-info>
+                    <cw-list-item-info label="申请时间">
+                        {{ common.date(item.created_at) }}
+                    </cw-list-item-info>
+
+                    <view slot="footer">
+                        <cw-button size="small" round type="info">
+                            立即审批
+                        </cw-button>
+                    </view>
+                </cw-list-item>
+            </cw-list>
+        </cw-tab>
+
+        <cw-tab title="抄送给我的">
+            <cw-list
+                fetching="{{notice_fetching}}"
+                page_num="{{notice_page_num}}"
+                page_amount="{{notice_page_amount}}"
+                list="{{notice_list}}"
+                empty="暂无抄送给我的申请"
+                icon="refound"
+                withFilter
+            >
+                <cw-list-item
+                    wx:for="{{notice_list}}"
+                    title="{{common.number('RF', item.created_at, item.id)}}"
+                    wx:key="index"
+                    url="/pages/refound/detail?id={{item.id}}"
+                >
+                    <cw-list-item-info label="申请人">
+                        {{ item.real_name }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="报销时间">
+                        {{ common.date(item.begin_date, false) }}至{{ common.date(item.finish_date, false) }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="报销金额">
+                        {{ item.total }}元
+                    </cw-list-item-info>
+                    <cw-list-item-info label="报销原因">
+                        {{ item.reason }}
+                    </cw-list-item-info>
+                    <cw-list-item-info label="申请结果">
+                        <block wx:if="{{item.cancel}}">
+                            <cw-tag round color="#ff976a">已取消</cw-tag>
+                        </block>
+                        <block wx:elif="{{item.success === null}}">
+                            <cw-tag round color="#91d5ff">审批中</cw-tag>
+                        </block>
+                        <block wx:elif="{{!item.success}}">
+                            <cw-tag round color="#ed4014">驳回</cw-tag>
+                        </block>
+                        <block wx:else>
+                            <cw-tag round color="#52c41a">成功</cw-tag>
+                        </block>
+                    </cw-list-item-info>
+                    <cw-list-item-info label="申请时间">
+                        {{ common.date(item.created_at) }}
+                    </cw-list-item-info>
+                </cw-list-item>
+            </cw-list>
+        </cw-tab>
+    </cw-tabs>
+</view>

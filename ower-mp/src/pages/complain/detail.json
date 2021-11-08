@@ -1,0 +1,19 @@
+{
+    "navigationBarTitleText": "投诉建议详情",
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "cw-image": "../../components/image",
+        "cw-cell": "../../components/cell",
+        "cw-field": "../../components/field",
+        "cw-cell-group": "../../components/cell-group",
+        "cw-copyright": "../../components/copyright",
+        "cw-toast": "../../components/toast",
+        "cw-notify": "../../components/notify",
+        "cw-button": "../../components/button",
+        "cw-rate": "../../components/rate",
+        "cw-skeleton": "../../components/skeleton",
+        "cw-steps": "../../components/steps",
+        "cw-employee": "../../components/employee",
+        "cw-notice-bar": "../../components/notice-bar"
+    }
+}

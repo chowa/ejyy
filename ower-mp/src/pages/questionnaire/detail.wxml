@@ -1,0 +1,51 @@
+<wxs src="../common/common.wxs" module="common" />
+<wxs src="./index.wxs" module="questionnaire" />
+
+<view class="container">
+    <view wx:if="{{!fetching}}">
+        <view class="title">{{title}}</view>
+        <view class="expire">截止至{{common.date(expire, false)}}，共有{{statistics.total}}位业主参与问卷调查。</view>
+
+        <view class="question" wx:for="{{questions}}" wx:key="index">
+            <view class="question-title">{{index + 1}}.{{item.title}}</view>
+
+            <block wx:if="{{item.type === 1}}">
+                <cw-radio-group value="{{item.answers[0]}}">
+                    <view wx:for="{{item.options}}" wx:for-item="option" wx:for-index="key" wx:key="key">
+                        <cw-radio name="{{option.id}}" custom-class="option">
+                            {{option.option_val}}
+                        </cw-radio>
+                        <cw-progress
+                            color="#7232dd"
+                            custom-class="progress"
+                            percentage="{{questionnaire.percentage(statistics.options[option.id], statistics.total)}}"
+                        />
+                    </view>
+                </cw-radio-group>
+            </block>
+            <block wx:else>
+                <cw-checkbox-group value="{{item.answers}}">
+                    <view wx:for="{{item.options}}" wx:for-item="option" wx:for-index="key" wx:key="key">
+                        <cw-checkbox name="{{option.id}}" shape="square" custom-class="option">
+                            {{option.option_val}}
+                        </cw-checkbox>
+                        <cw-progress
+                            color="#7232dd"
+                            custom-class="progress"
+                            percentage="{{questionnaire.percentage(statistics.options[option.id], statistics.total)}}"
+                        />
+                    </view>
+                </cw-checkbox-group>
+            </block>
+        </view>
+    </view>
+    <view wx:else>
+        <cw-skeleton row="{{ 1 }}" title />
+
+        <view class="question" wx:for="{{4}}" wx:key="index">
+            <cw-skeleton row="{{ 3 }}" title />
+        </view>
+    </view>
+
+    <cw-copyright />
+</view>

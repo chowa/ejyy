@@ -1,0 +1,40 @@
+.container {
+    background: #fff;
+    padding: 20px;
+    color: #343434;
+}
+
+.paragraph {
+    font-size: 15px;
+    line-height: 26px;
+}
+
+.paragraph + .paragraph {
+    margin-top: 8px;
+}
+
+.section-title {
+    font-size: 16px;
+    line-height: 28px;
+    margin-top: 14px;
+    margin-bottom: 8px;
+}
+
+.text-level-2 {
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.text-level-2 + .text-level-2 {
+    margin-top: 8px;
+}
+
+.text-level-3 {
+    font-size: 14px;
+    line-height: 22px;
+    padding-left: 24px;
+}
+
+.text-level-3 + .text-level-3 {
+    margin-top: 6px;
+}

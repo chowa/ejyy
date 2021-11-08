@@ -1,0 +1,59 @@
+@import '../common/index.wxss';
+
+.cw-toast {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: initial;
+    color: #fff;
+    font-size: 14px;
+    line-height: 20px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+}
+
+.cw-toast__container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: -webkit-fit-content;
+    width: fit-content;
+    transform: translate(-50%, -50%);
+    max-width: 70%;
+}
+
+.cw-toast--text {
+    min-width: 96px;
+    padding: 8px 12px;
+}
+
+.cw-toast--icon {
+    width: 88px;
+    min-height: 88px;
+    padding: 16px;
+}
+
+.cw-toast--icon .cw-toast__icon {
+    font-size: 36px;
+}
+
+.cw-toast--icon .cw-toast__text {
+    padding-top: 8px;
+}
+
+.cw-toast__loading {
+    margin: 10px 0;
+}
+
+.cw-toast--top {
+    -webkit-transform: translateY(-30vh);
+    transform: translateY(-30vh);
+}
+
+.cw-toast--bottom {
+    -webkit-transform: translateY(30vh);
+    transform: translateY(30vh);
+}

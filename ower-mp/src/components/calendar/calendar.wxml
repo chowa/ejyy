@@ -1,0 +1,48 @@
+<view class="cw-calendar">
+    <header title="{{ title }}" showTitle="{{ showTitle }}" subtitle="{{ subtitle }}" showSubtitle="{{ showSubtitle }}">
+        <slot name="title" slot="title"></slot>
+    </header>
+
+    <scroll-view class="cw-calendar__body" scroll-y scroll-into-view="{{ scrollIntoView }}">
+        <month
+            wx:for="{{ computed.getMonths(minDate, maxDate) }}"
+            wx:key="index"
+            id="month{{ index }}"
+            class="month"
+            data-date="{{ item }}"
+            date="{{ item }}"
+            type="{{ type }}"
+            color="{{ color }}"
+            minDate="{{ minDate }}"
+            maxDate="{{ maxDate }}"
+            showMark="{{ showMark }}"
+            formatter="{{ formatter }}"
+            rowHeight="{{ rowHeight }}"
+            currentDate="{{ currentDate }}"
+            showSubtitle="{{ showSubtitle }}"
+            allowSameDay="{{ allowSameDay }}"
+            showMonthTitle="{{ index !== 0 || !showSubtitle }}"
+            bind:click="onClickDay"
+        />
+    </scroll-view>
+
+    <view class="{{ utils.bem('calendar__footer', { safeAreaInsetBottom }) }}">
+        <slot name="footer"></slot>
+    </view>
+
+    <view class="{{ utils.bem('calendar__footer', { safeAreaInsetBottom }) }}">
+        <cw-button
+            wx:if="{{ showConfirm }}"
+            round
+            block
+            type="danger"
+            color="{{ color }}"
+            custom-class="cw-calendar__confirm"
+            disabled="{{ computed.getButtonDisabled(type, currentDate) }}"
+            nativeType="text"
+            bind:click="onConfirm"
+        >
+            {{ computed.getButtonDisabled(type, currentDate) ? confirmDisabledText : confirmText }}
+        </cw-button>
+    </view>
+</view>

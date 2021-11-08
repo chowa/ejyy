@@ -1,0 +1,39 @@
+<view class="container">
+    <cw-cell-group>
+        <cw-field
+            label="功能主旨"
+            maxlength="{{ 20 }}"
+            auto-focus
+            show-word-limit
+            model:value="{{ subject }}"
+            placeholder="请输入功能主旨"
+        />
+        <cw-field
+            label="功能描述"
+            type="textarea"
+            maxlength="{{ 200 }}"
+            show-word-limit
+            autosize
+            model:value="{{ content }}"
+            placeholder="请输入功能描述"
+            border="{{ false }}"
+        />
+    </cw-cell-group>
+
+    <view class="notice">
+        <view class="item">本功能每日限用一次。</view>
+        <view class="item">
+            软件在设计及开发过程中肯定会存在使用不便捷、功能不完善的情况，希望您能及时指正并帮助我们为广大业主提供更好的服务。
+        </view>
+        <view class="item">您的功能意见一旦采纳，将会受到我们送出的精美小礼物一份。</view>
+        <view class="item">发布恶意、不实信息将会冻结账号。</view>
+    </view>
+
+    <cw-button custom-class="btn" loading="{{submiting}}" block type="info" bind:click="save">
+        提交功能建议
+    </cw-button>
+    <cw-copyright />
+    <cw-notify id="cw-notify" />
+    <cw-toast id="cw-toast" />
+    <cw-dialog id="cw-dialog" />
+</view>

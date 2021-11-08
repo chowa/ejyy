@@ -1,0 +1,21 @@
+<view wx:if="{{ showToolbar }}" class="cw-picker__toolbar toolbar-class">
+    <view
+        class="cw-picker__cancel"
+        hover-class="cw-picker__cancel--hover"
+        hover-stay-time="70"
+        data-type="cancel"
+        bindtap="emit"
+    >
+        {{ cancelButtonText }}
+    </view>
+    <view wx:if="{{ title }}" class="cw-picker__title cw-ellipsis">{{ title }}</view>
+    <view
+        class="cw-picker__confirm"
+        hover-class="cw-picker__confirm--hover"
+        hover-stay-time="70"
+        data-type="confirm"
+        bindtap="emit"
+    >
+        {{ confirmButtonText }}
+    </view>
+</view>

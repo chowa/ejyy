@@ -1,0 +1,29 @@
+<wxs src="../wxs/utils.wxs" module="utils" />
+
+<view class="cw-collapse-item custom-class {{ index !== 0 ? 'cw-hairline--top' : '' }}">
+    <cw-cell
+        title="{{ title }}"
+        title-class="title-class"
+        icon="{{ icon }}"
+        value="{{ value }}"
+        label="{{ label }}"
+        is-link="{{ isLink }}"
+        clickable="{{ clickable }}"
+        border="{{ border && expanded }}"
+        class="{{ utils.bem('collapse-item__title', { disabled, expanded }) }}"
+        right-icon-class="cw-cell__right-icon"
+        custom-class="cw-cell"
+        hover-class="cw-cell--hover"
+        bind:click="onClick"
+    >
+        <slot name="title" slot="title" />
+        <slot name="icon" slot="icon" />
+        <slot name="value" />
+        <slot name="right-icon" slot="right-icon" />
+    </cw-cell>
+    <view class="{{ utils.bem('collapse-item__wrapper') }}" style="height: 0;" animation="{{ animation }}">
+        <view class="cw-collapse-item__content content-class">
+            <slot />
+        </view>
+    </view>
+</view>

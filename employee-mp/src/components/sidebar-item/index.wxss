@@ -1,0 +1,48 @@
+@import '../common/index.wxss';
+
+.cw-sidebar-item {
+    display: block;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-left: 3px solid transparent;
+    -webkit-user-select: none;
+    user-select: none;
+    padding: 20px 12px 20px 8px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #323233;
+    background-color: #f7f8fa;
+}
+
+.cw-sidebar-item__text {
+    position: relative;
+    display: inline-block;
+    word-break: break-all;
+}
+
+.cw-sidebar-item--hover:not(.cw-sidebar-item--disabled) {
+    background-color: #f2f3f5;
+}
+
+.cw-sidebar-item:after {
+    border-bottom-width: 1px;
+}
+
+.cw-sidebar-item--selected {
+    color: #323233;
+    font-weight: 500;
+    border-color: #ee0a24;
+}
+
+.cw-sidebar-item--selected:after {
+    border-right-width: 1px;
+}
+
+.cw-sidebar-item--selected,
+.cw-sidebar-item--selected.cw-sidebar-item--hover {
+    background-color: #fff;
+}
+
+.cw-sidebar-item--disabled {
+    color: #c8c9cc;
+}

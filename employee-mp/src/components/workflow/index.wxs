@@ -1,0 +1,35 @@
+function judge(item, departmentName, label) {
+    if (item.category === 1) {
+        return '属于' + departmentName;
+    } else if (item.category === 2) {
+        switch (item.opt) {
+            case 1:
+                return label + ' 小于 ' + item.value[0];
+
+            case 2:
+                return label + ' 大于 ' + item.value[0];
+
+            case 3:
+                return label + ' 小于等于 ' + item.value[0];
+
+            case 4:
+                return label + ' 等于 ' + item.value[0];
+
+            case 5:
+                return label + ' 大于等于 ' + item.value[0];
+
+            case 6:
+                return (
+                    item.value[0] +
+                    (item.opt_first_equal ? ' 小于等于 ' : ' 小于 ') +
+                    label +
+                    (item.opt_second_equal ? ' 小于等于 ' : ' 小于 ') +
+                    item.value[1]
+                );
+        }
+    }
+}
+
+module.exports = {
+    judge: judge
+};

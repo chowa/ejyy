@@ -1,0 +1,140 @@
+/* 虚拟键盘 */
+.cw-keyboard {
+    height: auto;
+    background: #d1d5d9;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+    z-index: 60;
+}
+
+.cw-keyboard-item {
+    padding: 10rpx 0 5rpx 0;
+    position: relative;
+    display: block;
+}
+
+/* 关闭虚拟键盘 */
+.cw-keyboard-close {
+    height: 70rpx;
+    background-color: #eee;
+    overflow: hidden;
+}
+
+.cw-keyboard-close-btn {
+    float: right;
+    line-height: 70rpx;
+    font-size: 20px;
+    padding-right: 30rpx;
+}
+
+/* 虚拟键盘-省缩写 */
+/* 虚拟键盘-行 */
+.cw-keyboard-line {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.cw-iscarnumber .cw-keyboard-line {
+    text-align: left;
+    margin-left: 5rpx;
+}
+
+/* 虚拟键盘-单个按钮 */
+.cw-keyboard-btn {
+    font-size: 17px;
+    color: #333333;
+    background: #fff;
+    display: inline-block;
+    padding: 18rpx 0;
+    width: 63rpx;
+    text-align: center;
+    box-shadow: 0 2rpx 0 0 #999999;
+    border-radius: 10rpx;
+    margin: 5rpx 6rpx;
+}
+
+.cw-keyboard-btn:active {
+    background: #f5f5f5;
+}
+
+/* 虚拟键盘-删除按钮 */
+.cw-keyboard-del {
+    font-size: 22px;
+    color: #333333;
+    background: #a7b0bc;
+    display: inline-block;
+    padding: 8rpx 0;
+    text-align: center;
+    width: 96rpx;
+    box-shadow: 0 2rpx 0 0 #999999;
+    border-radius: 10rpx;
+    margin: 5rpx;
+    position: absolute;
+    bottom: 5rpx;
+    right: 6rpx;
+}
+
+.cw-keyboard-del-font {
+    font-size: 25px;
+}
+
+/* 车牌号码 */
+.cw-car-number-items {
+    text-align: left;
+    color: #323232;
+}
+
+.cw-car-number-items-box {
+    width: 152rpx;
+    height: 90rpx;
+    border: 2rpx solid #cccccc;
+    border-radius: 4rpx;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    margin-right: 30rpx;
+    text-align: right;
+}
+
+.cw-car-number-items-box-list {
+    width: 72rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    text-align: center;
+    display: inline-block;
+    font-size: 18px;
+    margin: 10rpx 0;
+    vertical-align: middle;
+}
+
+.cw-car-number-items-province {
+    border-right: 1rpx solid #ccc;
+}
+
+.cw-car-number-items-box::after {
+    content: '';
+    width: 6rpx;
+    height: 6rpx;
+    position: absolute;
+    right: -22rpx;
+    top: 40rpx;
+    border-radius: 50%;
+    background-color: #ccc;
+}
+
+.cw-car-number-item {
+    width: 76rpx;
+    height: 90rpx;
+    font-size: 18px;
+    text-align: center;
+    border: 2rpx solid #cccccc;
+    border-radius: 4rpx;
+    line-height: 90rpx;
+    display: inline-block;
+    margin: 0 4rpx;
+    vertical-align: middle;
+}

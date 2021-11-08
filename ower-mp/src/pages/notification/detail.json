@@ -1,0 +1,10 @@
+{
+    "navigationStyle": "custom",
+    "usingComponents": {
+        "cw-icon": "../../components/icon",
+        "cw-nav-bar": "../../components/nav-bar",
+        "cw-rich-text": "../../components/rich-text",
+        "cw-copyright": "../../components/copyright",
+        "cw-skeleton": "../../components/skeleton"
+    }
+}
