@@ -53,3 +53,7 @@
     margin: 10px 0 10px 20px;
     padding: 0;
 }
+
+.cw-rich-text .img {
+    max-width: 100%;
+}
