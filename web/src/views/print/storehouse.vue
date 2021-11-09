@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="title">{{ title }}仓库</div>
+        <div class="title">{{ title }}</div>
         <canvas ref="canvas" />
     </div>
 </template>
