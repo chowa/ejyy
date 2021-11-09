@@ -57,7 +57,7 @@ const NotifyWechatPayAction = <NotifyAction>{
         const xml = await RawBody(ctx.req, {
             length: ctx.request.length,
             limit: '1mb',
-            encoding: ctx.request.charset && 'utf-8'
+            encoding: ctx.request.charset || 'utf-8'
         });
 
         const notify = <WechatPayNotify>await wechatService.parseXML(xml);
