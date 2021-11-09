@@ -115,17 +115,19 @@ function PcModule(appRouter: KoaRouter) {
                 }
             }
 
-            if (validatorService(ctx, validator)) {
+            const vs = validatorService(ctx, validator);
+
+            if (!vs.success) {
                 return (ctx.body = {
                     code: PARAMS_ERROR,
-                    message: '参数错误'
+                    message: vs.message
                 });
             }
 
             await response.apply(this, [ctx, next]);
         });
 
-        if (process.env.NODE_ENV !== 'production') {
+        if (config.debug) {
             cwlog.info(`${name} mounted and request from ${path.posix.join('/pc', router.path)} by ${router.method}`);
         }
     }

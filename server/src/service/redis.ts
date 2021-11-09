@@ -11,40 +11,16 @@
  */
 
 import redis from 'redis';
-import Knex from 'knex';
-import WebSocket from 'ws';
-import http from 'http';
-import quertString from 'query-string';
-import { CwWebSocket } from '~/types/ws';
+import wss, { PcData } from '~/wss';
 import config from '~/config';
-import { Role } from '~/constant/role_access';
 
-const pub = process.env.NODE_ENV === 'production' ? redis.createClient(config.redis) : null;
-const sub = process.env.NODE_ENV === 'production' ? redis.createClient(config.redis) : null;
-
-let wss = null;
+const pub = config.debug ? null : redis.createClient(config.redis);
+const sub = config.debug ? null : redis.createClient(config.redis);
 
 export const WS_NOTICE_TO_PROPERTY_COMPANY = 'WS_NOTICE_TO_PROPERTY_COMPANY';
 export const WS_NOTICE_TO_REMOTE_SERVER = 'WS_NOTICE_TO_REMOTE_SERVER';
 
-interface PcData {
-    id: number;
-    community_id: number;
-    type: Role;
-    urge: boolean;
-}
-
-function sendToPc(data: PcData) {
-    if (!(wss instanceof WebSocket.Server)) {
-        return;
-    }
-    wss.clients.forEach((client: CwWebSocket) => {
-        if (client.readyState === WebSocket.OPEN && client.access.includes(data.type)) {
-            client.send(JSON.stringify(data));
-        }
-    });
-}
-
+// todo
 interface RsData {
     remote_id: number;
     door_id: number;
@@ -57,7 +33,7 @@ function sendToRs(data: RsData) {
 function dispatch(channel: string, data: Object) {
     switch (channel) {
         case WS_NOTICE_TO_PROPERTY_COMPANY:
-            return sendToPc(data as PcData);
+            return wss.sendToPc(data as PcData);
 
         case WS_NOTICE_TO_REMOTE_SERVER:
             return sendToRs(data as RsData);
@@ -65,50 +41,15 @@ function dispatch(channel: string, data: Object) {
 }
 
 export function pubish(channel: string, data: Object) {
-    if (process.env.NODE_ENV === 'production') {
+    if (!config.debug) {
         pub.publish(channel, JSON.stringify(data));
     } else {
         dispatch(channel, data);
     }
 }
 
-export function subscribe(model: Knex, w: WebSocket.Server) {
-    wss = w;
-
-    wss.on('connection', async (ws: CwWebSocket, request: http.IncomingMessage) => {
-        const {
-            query: { token }
-        } = quertString.parseUrl(request.url);
-
-        if (!token) {
-            return ws.close();
-        }
-
-        const pcUserInfo = await model
-            .table('ejyy_property_company_auth')
-            .leftJoin(
-                'ejyy_property_company_user',
-                'ejyy_property_company_user.id',
-                'ejyy_property_company_auth.property_company_user_id'
-            )
-            .leftJoin(
-                'ejyy_property_company_access',
-                'ejyy_property_company_access.id',
-                'ejyy_property_company_user.access_id'
-            )
-            .where('ejyy_property_company_auth.token', token)
-            .select('ejyy_property_company_user.id', 'ejyy_property_company_access.content as access')
-            .first();
-
-        if (!pcUserInfo) {
-            return ws.close();
-        }
-
-        ws.user_id = pcUserInfo.id;
-        ws.access = pcUserInfo.access;
-    });
-
-    if (process.env.NODE_ENV === 'production') {
+export async function subscribe() {
+    if (!config.debug) {
         sub.subscribe(WS_NOTICE_TO_PROPERTY_COMPANY);
         sub.subscribe(WS_NOTICE_TO_REMOTE_SERVER);
 

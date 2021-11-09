@@ -9,22 +9,15 @@
  * | Author: jixuecong@chowa.cn
  * +----------------------------------------------------------------------
  */
-import { MpUserInfo, PcUserInfo, OaUserInfo } from './user-info';
 
-interface InterfaceBody {
-    code: number;
-    message?: string;
-    data?: Object;
+import { Middleware, DefaultState, DefaultContext } from 'koa';
+
+function IpMiddleware(): Middleware<DefaultState, DefaultContext> {
+    return async (ctx, next) => {
+        ctx.request.ip = (ctx.request.header['x-real-ip'] as string) || ctx.request.ip;
+
+        await next();
+    };
 }
 
-declare module 'koa' {
-    interface BaseContext {
-        mpUserInfo: MpUserInfo;
-        pcUserInfo: PcUserInfo;
-        OaUserInfo: OaUserInfo;
-    }
-
-    interface ContextDelegatedResponse {
-        body: InterfaceBody | string;
-    }
-}
+export default IpMiddleware;

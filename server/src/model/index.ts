@@ -9,22 +9,17 @@
  * | Author: jixuecong@chowa.cn
  * +----------------------------------------------------------------------
  */
-import { MpUserInfo, PcUserInfo, OaUserInfo } from './user-info';
 
-interface InterfaceBody {
-    code: number;
-    message?: string;
-    data?: Object;
-}
+import Knex from 'knex';
+import config from '~/config';
 
-declare module 'koa' {
-    interface BaseContext {
-        mpUserInfo: MpUserInfo;
-        pcUserInfo: PcUserInfo;
-        OaUserInfo: OaUserInfo;
+const model = Knex({
+    client: 'mysql',
+    connection: config.mysqlConfig,
+    pool: {
+        min: 0,
+        max: 200
     }
+});
 
-    interface ContextDelegatedResponse {
-        body: InterfaceBody | string;
-    }
-}
+export default model;

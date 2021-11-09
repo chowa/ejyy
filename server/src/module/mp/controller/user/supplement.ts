@@ -49,7 +49,8 @@ const MpUserSupplementAction = <Action>{
             {
                 name: 'idcard',
                 required: true,
-                validator: val => utils.idcard.verify(val)
+                validator: val => utils.idcard.verify(val),
+                message: '身份证号码验证失败'
             },
             {
                 name: 'avatar_url',

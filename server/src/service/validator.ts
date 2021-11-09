@@ -11,80 +11,88 @@
  */
 
 import { Context } from 'koa';
-import { ValidatorDeclare } from '~/types/action';
-import config from '~/config';
-import cwlog from 'chowa-log';
+import { ValidatorDeclare, FieldVerifyDeclare } from '~/types/action';
 
-function validatorService(ctx: Context, validator: ValidatorDeclare): boolean {
-    if (!validator) {
-        return false;
+interface ValidatorResult {
+    success: boolean;
+    message?: string;
+}
+
+interface FieldVeirfy extends FieldVerifyDeclare {
+    value: any;
+}
+
+function validatorService(ctx: Context, validatorDeclare: ValidatorDeclare): ValidatorResult {
+    if (!validatorDeclare) {
+        return { success: true };
     }
 
-    return !['body', 'params', 'query', 'files'].every(refer => {
-        const origin = validator[refer];
+    const fileds: FieldVeirfy[] = [];
 
-        if (!Array.isArray(origin)) {
-            return true;
+    ['body', 'params', 'query', 'files'].forEach((refer: 'body' | 'params' | 'query' | 'files') => {
+        if (!Array.isArray(validatorDeclare[refer])) {
+            return;
         }
 
-        return origin.every(({ name, required, length, min, max, regex, validator }) => {
-            let value = undefined;
-
-            if (refer === 'params') {
-                value = ctx.params[name];
-            } else {
-                value = ctx.request[refer][name];
-            }
-
-            if (
-                required === true &&
-                ((Array.isArray(value) && value.length === 0) ||
-                    (!Array.isArray(value) && (value == undefined || value === '')))
-            ) {
-                if (config.debug) {
-                    cwlog.warning(`${name} 字段必须`);
-                }
-                return false;
-            }
-
-            if (length && value && value.length !== length) {
-                if (config.debug) {
-                    cwlog.warning(`${name} 长度必须等于 ${length}，当前值：${value}`);
-                }
-                return false;
-            }
-
-            if (min && value && value.length < min) {
-                if (config.debug) {
-                    cwlog.warning(`${name} 长度必须小于 ${min}，当前值：${value}`);
-                }
-                return false;
-            }
-
-            if (max && value && value.length > max) {
-                if (config.debug) {
-                    cwlog.warning(`${name} 长度必须大于 ${max}，当前值：${value}`);
-                }
-                return false;
-            }
-
-            if (regex && value && !regex.test(value)) {
-                if (config.debug) {
-                    cwlog.warning(`${name} 必须满足正则 ${regex}，当前值：${value}`);
-                }
-                return false;
-            }
-
-            if (validator && value && !validator(value)) {
-                if (config.debug) {
-                    cwlog.warning(`${name} 自定义验证未通过，当前值：${value}`);
-                }
-                return false;
-            }
-
-            return true;
+        validatorDeclare[refer].forEach(declare => {
+            fileds.push({
+                value: refer === 'params' ? ctx.params[declare.name] : ctx.request[refer][declare.name],
+                ...declare
+            });
         });
     });
+
+    for (let i = 0; i < fileds.length; i++) {
+        const { name, required, length, min, max, regex, validator, value, message } = fileds[i];
+
+        if (
+            required === true &&
+            ((Array.isArray(value) && value.length === 0) ||
+                (!Array.isArray(value) && (value == undefined || value === '')))
+        ) {
+            return {
+                success: false,
+                message: message ? message : `参数错误，${name}字段是必填字段`
+            };
+        }
+
+        if (length && value && value.length !== length) {
+            return {
+                success: false,
+                message: message ? message : `参数错误，${name}字段长度必须等于 ${length}`
+            };
+        }
+
+        if (min && value && value.length < min) {
+            return {
+                success: false,
+                message: message ? message : `参数错误，${name}字段长度必须大于 ${min}`
+            };
+        }
+
+        if (max && value && value.length > max) {
+            return {
+                success: false,
+                message: message ? message : `参数错误，${name}字段长度必须小于 ${max}`
+            };
+        }
+
+        if (regex && value && !regex.test(value)) {
+            return {
+                success: false,
+                message: message ? message : `参数错误，${name}字段必须满足正则 ${regex}`
+            };
+        }
+
+        if (validator && value && !validator(value)) {
+            return {
+                success: false,
+                message: message ? message : `参数错误，${name}字段验证未通过`
+            };
+        }
+    }
+
+    return { success: true };
 }
 
 export default validatorService;

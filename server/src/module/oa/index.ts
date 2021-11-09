@@ -18,6 +18,7 @@ import * as OaModuleRouter from './router';
 import cwlog from 'chowa-log';
 import * as wechatService from '~/service/wechat';
 import menu from './menu';
+import config from '~/config';
 
 async function OaModule(appRouter: KoaRouter) {
     for (const name in OaModuleRouter) {
@@ -27,7 +28,7 @@ async function OaModule(appRouter: KoaRouter) {
             await response.apply(this, [ctx, next]);
         });
 
-        if (process.env.NODE_ENV !== 'production') {
+        if (config.debug) {
             cwlog.info(`${name} mounted and request from ${path.posix.join('/oa', router.path)} by ${router.method}`);
         }
     }

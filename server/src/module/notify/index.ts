@@ -16,6 +16,7 @@ import { NotifyAction } from '~/types/action';
 import KoaRouter from 'koa-router';
 import * as NotifyModuleRouter from './router';
 import cwlog from 'chowa-log';
+import config from '~/config';
 
 function MpModule(appRouter: KoaRouter) {
     for (const name in NotifyModuleRouter) {
@@ -25,7 +26,7 @@ function MpModule(appRouter: KoaRouter) {
             await response.apply(this, [ctx, next]);
         });
 
-        if (process.env.NODE_ENV !== 'production') {
+        if (config.debug) {
             cwlog.info(
                 `${name} mounted and request from ${path.posix.join('/notify', router.path)} by ${router.method}`
             );

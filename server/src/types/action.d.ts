@@ -32,6 +32,7 @@ declare namespace Action {
         min?: number;
         max?: number;
         regex?: RegExp;
+        message?: string;
         validator?: (value: any) => boolean;
     }
 

@@ -9,22 +9,23 @@
  * | Author: jixuecong@chowa.cn
  * +----------------------------------------------------------------------
  */
-import { MpUserInfo, PcUserInfo, OaUserInfo } from './user-info';
 
-interface InterfaceBody {
-    code: number;
-    message?: string;
-    data?: Object;
-}
+import { Middleware, DefaultState, DefaultContext } from 'koa';
+import Knex from 'knex';
+import model from '~/model';
 
 declare module 'koa' {
     interface BaseContext {
-        mpUserInfo: MpUserInfo;
-        pcUserInfo: PcUserInfo;
-        OaUserInfo: OaUserInfo;
-    }
-
-    interface ContextDelegatedResponse {
-        body: InterfaceBody | string;
+        model: Knex;
     }
 }
+
+function ModelMiddleware(): Middleware<DefaultState, DefaultContext> {
+    return async (ctx, next) => {
+        ctx.model = model;
+
+        await next();
+    };
+}
+
+export default ModelMiddleware;

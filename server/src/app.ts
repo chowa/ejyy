@@ -19,9 +19,6 @@ import KoaBodyMiddleware from 'koa-body';
 import KoaSessionMilddleware from 'koa-session';
 import KoaLogMiddleware from 'koa-logger';
 import MysqlSessionStore from '~/store/mysql-session';
-import Knex from 'knex';
-import WebSocket from 'ws';
-import * as redisService from '~/service/redis';
 import http from 'http';
 import cwlog from 'chowa-log';
 import config from '~/config';
@@ -30,8 +27,11 @@ import MpModule from '~/module/mp';
 import PcModule from '~/module/pc';
 import NotifyModule from '~/module/notify';
 import OaModule from '~/module/oa';
-import utils from '~/utils';
-import { SYSTEMT_NOT_INIT } from '~/constant/code';
+import wss from '~/wss';
+import * as redisService from '~/service/redis';
+import ModelMiddleware from '~/middleware/model';
+import IpMiddleware from '~/middleware/ip';
+import HeaderMiddleware from '~/middleware/header';
 
 if (cluster.isMaster) {
     cwlog.success(`main process ${process.pid}`);
@@ -43,16 +43,7 @@ if (cluster.isMaster) {
     const app = new Koa();
     const router = new KoaRouter();
     const server = http.createServer(app.callback());
-    const wss = new WebSocket.Server({ server, path: '/cws' });
-    const model = Knex({
-        client: 'mysql',
-        connection: config.mysqlConfig,
-        pool: {
-            min: 0,
-            max: 200
-        }
-    });
-    console.log(config);
+
     cwlog.setProject(`${config.name}-${process.pid}`);
     cwlog.displayDate();
 
@@ -65,87 +56,33 @@ if (cluster.isMaster) {
     NotifyModule(router);
     OaModule(router);
 
-    // for socket
-    redisService.subscribe(model, wss);
-
-    app.use(KoaBodyMiddleware({ multipart: true }));
-    app.use(
-        KoaLogMiddleware({
-            transporter: str => {
-                cwlog.log(`${str}`);
-            }
-        })
-    );
-    app.use(
-        KoaSessionMilddleware(
-            {
-                store: new MysqlSessionStore(model),
-                ...config.session
-            },
-            app
+    app.use(KoaBodyMiddleware({ multipart: true }))
+        .use(
+            KoaLogMiddleware({
+                transporter: str => {
+                    cwlog.log(`${str}`);
+                }
+            })
         )
-    );
-    app.use(async (ctx, next) => {
-        ctx.model = model;
-        ctx.request.ip = (ctx.request.header['x-real-ip'] as string) || ctx.request.ip;
+        .use(
+            KoaSessionMilddleware(
+                {
+                    store: new MysqlSessionStore(),
+                    ...config.session
+                },
+                app
+            )
+        )
+        .use(ModelMiddleware())
+        .use(IpMiddleware())
+        .use(HeaderMiddleware())
+        .use(router.routes());
 
-        ctx.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+    // WebSocket
+    wss.init(server);
 
-        if (ctx.method == 'OPTIONS') {
-            ctx.body = '';
-            ctx.status = 204;
-        } else {
-            const isInitAction = /^\/pc\/init\/\w+$/.test(ctx.request.path);
-
-            if (!config.inited && !/^\/pc\/upload\/sign$/.test(ctx.request.path)) {
-                const total = utils.sql.countReader(await ctx.model.from('ejyy_property_company_admin').count());
-
-                if (total === 0) {
-                    if (!isInitAction) {
-                        return (ctx.body = {
-                            code: SYSTEMT_NOT_INIT,
-                            message: '系统未初始化'
-                        });
-                    }
-                } else {
-                    config.inited = true;
-                }
-            } else {
-                if (isInitAction) {
-                    ctx.redirect('https://www.chowa.cn');
-                }
-            }
-
-            try {
-                await next();
-            } catch (error) {
-                ctx.status = 500;
-
-                if (config.debug) {
-                    cwlog.error('===============错误捕捉开始=================');
-                    console.log(error);
-                    cwlog.error('===============错误捕捉结束=================');
-                } else {
-                    utils.mail.send({
-                        subject: `错误捕获`,
-                        content: [
-                            `访问地址：${ctx.request.path}`,
-                            `进程号：${process.pid}`,
-                            `body参数： ${JSON.stringify(ctx.request.body)}`,
-                            `params参数： ${JSON.stringify(ctx.params)}`,
-                            `进程号：${process.pid}`,
-                            `错误原因：${error}`
-                        ]
-                    });
-                }
-            }
-        }
-
-        if (ctx.status === 404) {
-            ctx.redirect('https://www.chowa.cn');
-        }
-    });
-    app.use(router.routes());
+    // for socket
+    redisService.subscribe();
 
     const port = process.env.port ? parseInt(process.env.port, 10) : config.server.port;
 

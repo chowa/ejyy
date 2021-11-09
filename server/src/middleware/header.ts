@@ -9,22 +9,20 @@
  * | Author: jixuecong@chowa.cn
  * +----------------------------------------------------------------------
  */
-import { MpUserInfo, PcUserInfo, OaUserInfo } from './user-info';
 
-interface InterfaceBody {
-    code: number;
-    message?: string;
-    data?: Object;
+import { Middleware, DefaultState, DefaultContext } from 'koa';
+
+function HeaderMiddleware(): Middleware<DefaultState, DefaultContext> {
+    return async (ctx: DefaultContext, next) => {
+        ctx.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+
+        if (ctx.method == 'OPTIONS') {
+            ctx.body = '';
+            return (ctx.status = 204);
+        }
+
+        await next();
+    };
 }
 
-declare module 'koa' {
-    interface BaseContext {
-        mpUserInfo: MpUserInfo;
-        pcUserInfo: PcUserInfo;
-        OaUserInfo: OaUserInfo;
-    }
-
-    interface ContextDelegatedResponse {
-        body: InterfaceBody | string;
-    }
-}
+export default HeaderMiddleware;

@@ -10,7 +10,7 @@
  * +----------------------------------------------------------------------
  */
 
-import Knex from 'knex';
+import model from '~/model';
 import { Session } from 'koa-session';
 
 const FORTY_FIVE_MINUTES = 45 * 60 * 1000;
@@ -34,14 +34,8 @@ function getExpiresOn(session: Session, ttl: number): number {
 }
 
 class MysqlSessionStore {
-    constructor(model: Knex) {
-        this.model = model;
-    }
-
-    model = <Knex>null;
-
     async get(sid: string): Promise<Session> {
-        const row = await this.model
+        const row = await model
             .from('ejyy_session_store')
             .where('id', sid)
             .where('expire', '>', Date.now())
@@ -60,14 +54,14 @@ class MysqlSessionStore {
         let expire = getExpiresOn(session, ttl).valueOf();
         let data = JSON.stringify(session);
 
-        await this.model.raw(
+        await model.raw(
             'INSERT INTO ejyy_session_store (id, expire, data) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE expire=?, data =?',
             [sid, expire, data, expire, data]
         );
     }
 
     async destroy(sid: string) {
-        await this.model
+        await model
             .from('ejyy_session_store')
             .where('id', sid)
             .delete();
