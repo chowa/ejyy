@@ -117,7 +117,7 @@ export default {
 
         return {
             getting: true,
-            labelWidth: 120,
+            labelWidth: 140,
             options: {
                 department: [],
                 job: [],
