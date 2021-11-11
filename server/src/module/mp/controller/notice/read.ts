@@ -68,7 +68,7 @@ const MpNoticeReadAction = <Action>{
             const exit = await ctx.model
                 .from('ejyy_notice_to_user_readed')
                 .where('wechat_mp_user_id', ctx.mpUserInfo.id)
-                .andWhere('id', id)
+                .andWhere('notice_id', id)
                 .first();
 
             if (!exit) {
