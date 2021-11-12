@@ -1,6 +1,6 @@
 ![输入图片说明](readme/logo.jpg)
 
-<h1 align="center">🔥🔥🔥「e家宜业」开源物业管理系统</h1>
+<h1 align="center">🔥🔥🔥「e家宜业」智慧物业平台</h1>
 <p align="center">    
     <b>无加密，无阉割，喜欢的话就点右上角 "Star" 支持一下吧，每一个"Star"，都是我们持续更新的动力！</b>  
 </p>
@@ -12,6 +12,7 @@
 希望通过开源促进产品的发展，能够结识有趣的灵魂，有想法的朋友。
 
 官网地址：[https://ejyy.chowa.cn](https://ejyy.chowa.cn)
+
 QQ交流群：786743759
 
 ## 技术亮点
