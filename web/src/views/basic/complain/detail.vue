@@ -304,6 +304,8 @@ export default {
                 community_id: this.postInfo.default_community_id
             };
 
+            this.fetching = true;
+
             utils.request
                 .post('/complain/detail', data)
                 .then(res => {
@@ -460,6 +462,9 @@ export default {
             if (cur.params.id !== old.params.id) {
                 this.getDetail();
             }
+        },
+        '$route.params.id'() {
+            this.getDetail();
         }
     },
     components: {
