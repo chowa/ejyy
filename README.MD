@@ -135,7 +135,7 @@ QQ交流群：786743759
 
 ## 常见问题
 
-![windows下开发可能回到的问题](readme/windows.MD)
+[windows下开发可能回到的问题](readme/windows.MD)
 
 ## 定制和二次开发
 
