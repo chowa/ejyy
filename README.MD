@@ -133,6 +133,10 @@ QQ交流群：786743759
 [欢迎反馈问题](https://github.com/chowa/ejyy/issues)
 [欢迎提交代码](https://github.com/chowa/ejyy/pulls)
 
+## 常见问题
+
+![windows下开发可能回到的问题](readme/windows.MD)
+
 ## 定制和二次开发
 
 > 请加微信，请备注来意！不备注来意恕难区分敌友。使用问题或者bug请加QQ群786743759或者提交issues
