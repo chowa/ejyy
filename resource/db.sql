@@ -1169,10 +1169,6 @@ ALTER TABLE `ejyy_ask_for_leave_flow`
   ADD KEY `parent_id` (`parent_id`),
   ADD KEY `step` (`step`);
 
-ALTER TABLE `ejyy_building_access`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `building_id` (`building_id`);
-
 ALTER TABLE `ejyy_building_info`
   ADD PRIMARY KEY (`id`),
   ADD KEY `community_id` (`community_id`);
@@ -1626,9 +1622,6 @@ ALTER TABLE `ejyy_ask_for_leave`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `ejyy_ask_for_leave_flow`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
-ALTER TABLE `ejyy_building_access`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `ejyy_building_info`

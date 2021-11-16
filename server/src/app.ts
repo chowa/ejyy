@@ -33,6 +33,7 @@ import ModelMiddleware from '~/middleware/model';
 import IpMiddleware from '~/middleware/ip';
 import HeaderMiddleware from '~/middleware/header';
 import WatcherMiddleware from '~/middleware/watcher';
+import InitMiddleware from '~/middleware/init';
 import * as iot from '~/iot';
 
 if (cluster.isMaster) {
@@ -87,6 +88,7 @@ if (cluster.isMaster) {
         .use(ModelMiddleware())
         .use(IpMiddleware())
         .use(HeaderMiddleware())
+        .use(InitMiddleware())
         .use(router.routes())
         .use(WatcherMiddleware());
 
