@@ -178,9 +178,17 @@ export default {
         this.onResize();
 
         window.addEventListener('resize', this.onResize, false);
+        document.addEventListener('fullscreenchange', this.onFullScreenChange, false);
+        document.addEventListener('mozfullscreenchange', this.onFullScreenChange, false);
+        document.addEventListener('webkitfullscreenchange', this.onFullScreenChange, false);
+        document.addEventListener('msfullscreenchange', this.onFullScreenChange, false);
     },
     beforeDestroy() {
         window.removeEventListener('resize', this.onResize);
+        document.removeEventListener('fullscreenchange', this.onFullScreenChange);
+        document.removeEventListener('mozfullscreenchange', this.onFullScreenChange);
+        document.removeEventListener('webkitfullscreenchange', this.onFullScreenChange);
+        document.removeEventListener('msfullscreenchange', this.onFullScreenChange);
     },
     methods: {
         ...mapActions({
@@ -205,6 +213,15 @@ export default {
                 this.menuIndex = Math.floor(width / 110);
                 this.showMenu = true;
             });
+        },
+        onFullScreenChange() {
+            this.inFullScreen = !!(
+                document.fullscreen ||
+                document.mozFullScreen ||
+                document.webkitIsFullScreen ||
+                document.webkitFullScreen ||
+                document.msFullScreen
+            );
         },
         updateCollapse() {
             if (this.mediaQuery === 'xs') {
@@ -243,8 +260,6 @@ export default {
                 } else if (document.msExitFullscreen) {
                     document.msExitFullscreen();
                 }
-
-                this.inFullScreen = false;
             } else {
                 const el = document.documentElement;
                 const rfs =
@@ -254,7 +269,6 @@ export default {
                     el.msRequestFullScreen;
 
                 rfs.call(el);
-                this.inFullScreen = true;
             }
         },
         logout() {
