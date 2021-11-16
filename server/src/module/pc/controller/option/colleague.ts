@@ -13,6 +13,7 @@
 import { Action } from '~/types/action';
 import { SUCCESS } from '~/constant/code';
 import * as ROLE from '~/constant/role_access';
+import { FALSE } from '~/constant/status';
 
 interface RequestBody {
     community_id: number;
@@ -51,6 +52,7 @@ const PcOptionColleagueAction = <Action>{
                     .where('community_id', community_id)
                     .select('property_company_user_id');
             })
+            .andWhere('ejyy_property_company_user.leave_office', FALSE)
             .select(
                 'ejyy_property_company_department.name as department',
                 'ejyy_property_company_user.department_id',
