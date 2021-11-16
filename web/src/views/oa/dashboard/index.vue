@@ -251,7 +251,7 @@ export default {
                             {
                                 on: {
                                     click: () => {
-                                        this.$router.push(`/meeting/detail/${p.row.id}`);
+                                        this.$router.push(`/oa/meeting/detail/${p.row.id}`);
                                     }
                                 }
                             },
