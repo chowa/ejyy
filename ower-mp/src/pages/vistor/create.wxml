@@ -10,7 +10,7 @@
             is-detail
             url="/pages/community/index"
         />
-        <cw-cell is-link clickable title="在通讯录中选择访客" bind:click="chooseContact"/>
+        <cw-cell is-link clickable title="在通讯录中选择访客" bind:click="chooseContact" />
         <cw-field
             label="访客称呼"
             maxlength="{{ 8 }}"

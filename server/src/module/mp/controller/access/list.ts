@@ -12,6 +12,8 @@
 
 import { Action } from '~/types/action';
 import { SUCCESS } from '~/constant/code';
+import utils from '~/utils';
+import { SELF_ACCESS_QRCODE } from '~/constant/open_access';
 
 interface RequestBody {
     building_ids: number[];
@@ -43,11 +45,22 @@ const MpAccessListAction = <Action>{
     response: async ctx => {
         const { building_ids, community_id } = <RequestBody>ctx.request.body;
 
-        const cardList = await ctx.model
-            .from('ejyy_building_access')
-            .whereIn('building_id', building_ids)
-            .select('building_id', 'uid')
-            .orderBy('id', 'desc');
+        const buildings = await ctx.model
+            .from('ejyy_user_building')
+            .leftJoin('ejyy_building_info', 'ejyy_building_info.id', 'ejyy_user_building.building_id')
+            .where('ejyy_building_info.community_id', community_id)
+            .whereIn('ejyy_user_building.building_id', building_ids)
+            .select('ejyy_user_building.building_id')
+            .orderBy('ejyy_user_building.id', 'desc');
+
+        const cardList = [];
+
+        buildings.forEach(({ building_id }) => {
+            cardList.push({
+                building_id,
+                uid: utils.access.encrypt(ctx.mpUserInfo.id, building_id, SELF_ACCESS_QRCODE)
+            });
+        });
 
         const entranceList = await ctx.model
             .from('ejyy_iot_entrance')

@@ -45,7 +45,7 @@ const PcVistorScanAction = <Action>{
     },
     response: async ctx => {
         const { uid, community_id } = <RequestBody>ctx.request.body;
-        const { id, building_id, type, success } = utils.openAccess.decode(uid);
+        const { id, building_id, type, success } = utils.access.decrypt(uid);
 
         if (!success || type !== VISTOR_ACCESS_QRCODE) {
             return (ctx.body = {

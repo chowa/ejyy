@@ -10,8 +10,7 @@
  * +----------------------------------------------------------------------
  */
 
-import crypto from 'crypto';
-import config from '~/config';
+import * as crypto from './crypto';
 import { AUTHENTICTED_BY_PROPERTY_COMPANY, AUTHENTICTED_BY_FAMILY } from '~/constant/authenticated_type';
 
 interface DecodeResult {
@@ -106,7 +105,7 @@ function fake(len: number): string {
     return ret.join('');
 }
 
-export function encode(
+export function encrypt(
     building_ids: number[],
     authenticated_type: typeof AUTHENTICTED_BY_PROPERTY_COMPANY | typeof AUTHENTICTED_BY_FAMILY,
     user_id: number
@@ -120,25 +119,16 @@ export function encode(
 
     ret.push(fake(8));
 
-    const cipher = crypto.createCipheriv('aes-256-cbc', config.crypto.key, config.crypto.iv);
-    let crypted = cipher.update(ret.join(''), 'utf8', 'base64');
-
-    crypted += cipher.final('base64');
-
     return {
-        text: crypted,
+        text: crypto.encrypt(ret.join('')),
         stamp
     };
 }
 
-export function decode(text: string): DecodeResult {
-    let str = null;
+export function decrypt(text: string): DecodeResult {
+    let str = crypto.decrypt(text);
 
-    try {
-        const cipher = crypto.createDecipheriv('aes-256-cbc', config.crypto.key, config.crypto.iv);
-        let decrypted = cipher.update(text, 'base64', 'utf8');
-        str = decrypted + cipher.final('utf8');
-    } catch (e) {
+    if (!str) {
         return { success: false };
     }
 

@@ -41,7 +41,7 @@ const MpCommunityBindingByFamliyAction = <Action>{
     response: async ctx => {
         const { qrcontent } = <RequestBody>ctx.request.body;
 
-        const qrInfo = utils.community.decode(qrcontent);
+        const qrInfo = utils.community.decrypt(qrcontent);
 
         if (
             !qrInfo.success ||

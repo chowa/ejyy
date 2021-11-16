@@ -17,8 +17,6 @@ import { NORMAL_STATUS, TRUE, BINDING_BUILDING } from '~/constant/status';
 import { HOUSE, CARPORT, WAREHOUSE, MERCHANT, GARAGE } from '~/constant/building';
 import * as ROLE from '~/constant/role_access';
 import utils from '~/utils';
-import config from '~/config';
-import crypto from 'crypto';
 
 interface RequestBody {
     uid: string;
@@ -57,20 +55,16 @@ const PcOptionCardAction = <Action>{
     },
     response: async ctx => {
         const { uid, community_id } = <RequestBody>ctx.request.body;
-        let userId = null;
-        let stamp = null;
+        const origin = utils.crypto.decrypt(uid);
 
-        try {
-            const cipher = crypto.createDecipheriv('aes-256-cbc', config.crypto.key, config.crypto.iv);
-            const decrypted = cipher.update(uid, 'hex', 'utf8');
-            const origin = decrypted + cipher.final('utf8');
-            [userId, stamp] = origin.split('-');
-        } catch (e) {
+        if (!origin) {
             return (ctx.body = {
                 code: QUERY_ILLEFAL,
                 message: '非法业主名片'
             });
         }
+
+        const [userId, stamp] = origin.split('-');
 
         if (!/^\d+$/.test(userId) || !/^\d{13}$/.test(stamp)) {
             return (ctx.body = {

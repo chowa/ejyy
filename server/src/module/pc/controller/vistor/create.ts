@@ -110,16 +110,11 @@ const PcVistorCreateAction = <Action>{
             created_at: Date.now()
         });
 
-        const uid = utils.openAccess.encode(id, building_id, VISTOR_ACCESS_QRCODE);
-
-        await ctx.model
-            .from('ejyy_vistor')
-            .update({ uid })
-            .where('id', id);
-
         if (vistorInfo) {
             vistorService.pushAccessToVistor(ctx.model, vistorInfo, id, expire);
         }
+
+        const uid = utils.access.encrypt(id, building_id, VISTOR_ACCESS_QRCODE);
 
         ctx.body = {
             code: SUCCESS,

@@ -39,7 +39,7 @@ const MpCommunityBindingByPropertyAction = <Action>{
     },
     response: async ctx => {
         const { qrcontent } = <RequestBody>ctx.request.body;
-        const qrInfo = utils.community.decode(qrcontent);
+        const qrInfo = utils.community.decrypt(qrcontent);
 
         if (!qrInfo.success || qrInfo.authenticated_type !== AUTHENTICTED_BY_PROPERTY_COMPANY) {
             return (ctx.body = {

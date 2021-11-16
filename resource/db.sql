@@ -32,13 +32,6 @@ CREATE TABLE `ejyy_ask_for_leave_flow` (
   `finished_at` bigint(13) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `ejyy_building_access` (
-  `id` bigint(20) NOT NULL,
-  `building_id` bigint(20) NOT NULL,
-  `uid` varchar(128) DEFAULT NULL,
-  `created_at` bigint(13) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 CREATE TABLE `ejyy_building_info` (
   `id` int(11) NOT NULL,
   `community_id` bigint(20) NOT NULL,
@@ -1092,7 +1085,6 @@ CREATE TABLE `ejyy_vistor` (
   `vistor_phone` varchar(11) NOT NULL,
   `car_number` varchar(8) DEFAULT NULL,
   `have_vistor_info` tinyint(1) NOT NULL DEFAULT 0,
-  `uid` varchar(128) DEFAULT NULL,
   `expire` bigint(13) NOT NULL,
   `used_at` bigint(13) DEFAULT NULL,
   `scan_by` bigint(20) DEFAULT NULL,

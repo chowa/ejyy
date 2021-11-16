@@ -41,7 +41,7 @@ const MpCommunityFamliyCodeAction = <Action>{
     response: async ctx => {
         const { building_ids } = <RequestBody>ctx.request.body;
 
-        const content = utils.community.encode(building_ids, AUTHENTICTED_BY_FAMILY, ctx.mpUserInfo.id);
+        const content = utils.community.encrypt(building_ids, AUTHENTICTED_BY_FAMILY, ctx.mpUserInfo.id);
 
         ctx.body = {
             code: SUCCESS,

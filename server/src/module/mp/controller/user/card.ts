@@ -12,8 +12,7 @@
 
 import { Action } from '~/types/action';
 import { SUCCESS } from '~/constant/code';
-import config from '~/config';
-import crypto from 'crypto';
+import utils from '~/utils';
 
 const MpUserCardAction = <Action>{
     router: {
@@ -24,15 +23,10 @@ const MpUserCardAction = <Action>{
     },
 
     response: async ctx => {
-        const cipher = crypto.createCipheriv('aes-256-cbc', config.crypto.key, config.crypto.iv);
-        let crypted = cipher.update(`${ctx.mpUserInfo.id}-${Date.now()}`, 'utf8', 'hex');
-
-        crypted += cipher.final('hex');
-
         ctx.body = {
             code: SUCCESS,
             data: {
-                uid: crypted
+                uid: utils.crypto.encrypt(`${ctx.mpUserInfo.id}-${Date.now()}`)
             }
         };
     }

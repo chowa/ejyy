@@ -15,7 +15,6 @@ import { SUCCESS } from '~/constant/code';
 import * as ROLE from '~/constant/role_access';
 import utils from '~/utils';
 import { HOUSE, CARPORT, WAREHOUSE, MERCHANT, GARAGE } from '~/constant/building';
-import { SELF_ACCESS_QRCODE } from '~/constant/open_access';
 
 interface Building {
     type: typeof HOUSE | typeof CARPORT | typeof WAREHOUSE;
@@ -125,18 +124,6 @@ const PcBuildingImportAction = <Action>{
                     created_by: ctx.pcUserInfo.id,
                     created_at
                 });
-            }
-
-            if (type === HOUSE) {
-                const [accessId] = await ctx.model.from('ejyy_building_access').insert({
-                    building_id: insertId,
-                    created_at
-                });
-                const uid = utils.openAccess.encode(accessId, insertId, SELF_ACCESS_QRCODE);
-                await ctx.model
-                    .from('ejyy_building_access')
-                    .update({ uid })
-                    .where('id', accessId);
             }
 
             ids.push(insertId);

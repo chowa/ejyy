@@ -12,6 +12,8 @@
 
 import { Action } from '~/types/action';
 import { SUCCESS } from '~/constant/code';
+import { VISTOR_ACCESS_QRCODE } from '~/constant/open_access';
+import utils from '~/utils';
 
 interface RequestParams {
     id: number;
@@ -47,6 +49,7 @@ const MpVistorUseAction = <Action>{
                 'ejyy_vistor.expire',
                 'ejyy_vistor.used_at',
                 'ejyy_vistor.created_at',
+                'ejyy_vistor.building_id',
                 'ejyy_building_info.type',
                 'ejyy_building_info.area',
                 'ejyy_building_info.building',
@@ -59,10 +62,13 @@ const MpVistorUseAction = <Action>{
             .where('ejyy_vistor.id', id)
             .first();
 
+        const uid = utils.access.encrypt(detail.id, detail.building_id, VISTOR_ACCESS_QRCODE);
+
         ctx.body = {
             code: SUCCESS,
             data: {
-                ...detail
+                ...detail,
+                uid
             }
         };
     }

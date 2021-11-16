@@ -33,6 +33,7 @@ import ModelMiddleware from '~/middleware/model';
 import IpMiddleware from '~/middleware/ip';
 import HeaderMiddleware from '~/middleware/header';
 import WatcherMiddleware from '~/middleware/watcher';
+import * as iot from '~/iot';
 
 if (cluster.isMaster) {
     cwlog.success(`main process ${process.pid}`);
@@ -57,6 +58,15 @@ if (cluster.isMaster) {
     NotifyModule(router);
     OaModule(router);
 
+    // WebSocket
+    wss.init(server);
+
+    // for socket
+    redisService.subscribe();
+
+    // 物联网
+    iot.init(router);
+
     app.use(KoaBodyMiddleware({ multipart: true }))
         .use(
             KoaLogMiddleware({
@@ -79,12 +89,6 @@ if (cluster.isMaster) {
         .use(HeaderMiddleware())
         .use(router.routes())
         .use(WatcherMiddleware());
-
-    // WebSocket
-    wss.init(server);
-
-    // for socket
-    redisService.subscribe();
 
     const port = process.env.port ? parseInt(process.env.port, 10) : config.server.port;
 

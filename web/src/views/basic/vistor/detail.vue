@@ -151,7 +151,8 @@ export default {
             fetching: true,
             detail: {
                 info: {},
-                registrant: {}
+                registrant: {},
+                uid: ''
             },
             now: Date.now()
         };
@@ -175,7 +176,7 @@ export default {
                     this.detail = res.data;
 
                     this.$nextTick(() => {
-                        qrcode.toCanvas(this.$refs.canvas, res.data.info.uid, {
+                        qrcode.toCanvas(this.$refs.canvas, res.data.uid, {
                             width: 220,
                             height: 220,
                             margin: 2

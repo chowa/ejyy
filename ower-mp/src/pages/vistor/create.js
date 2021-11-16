@@ -97,7 +97,7 @@ CwPage({
     },
     chooseContact() {
         wx.chooseContact({
-            success: (res) => {
+            success: res => {
                 this.setData({
                     vistor_name: res.displayName,
                     vistor_phone: res.phoneNumber

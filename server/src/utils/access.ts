@@ -10,39 +10,32 @@
  * +----------------------------------------------------------------------
  */
 
-import crypto from 'crypto';
-import config from '~/config';
+import * as crypto from './crypto';
+
 import { SELF_ACCESS_QRCODE, VISTOR_ACCESS_QRCODE } from '~/constant/open_access';
 
-interface DecodeResult {
+interface DecryptResult {
     id?: number;
     building_id?: number;
     type?: typeof SELF_ACCESS_QRCODE | typeof VISTOR_ACCESS_QRCODE;
+    stamp?: number;
     success: boolean;
 }
 
 // 区分访客二维码和自己的二维码
-export function encode(
+// 访客二维码 id 为 vistor_id 自己的二维码为user_id
+export function encrypt(
     id: number,
     building_id: number,
     type: typeof SELF_ACCESS_QRCODE | typeof VISTOR_ACCESS_QRCODE
 ): string {
-    const cipher = crypto.createCipheriv('aes-256-cbc', config.crypto.key, config.crypto.iv);
-    let crypted = cipher.update(`${id}#${building_id}#${type}`, 'utf8', 'hex');
-
-    crypted += cipher.final('hex');
-
-    return crypted;
+    return crypto.encrypt(`${id}#${building_id}#${type}${Date.now()}`);
 }
 
-export function decode(uid: string): DecodeResult {
-    let origin = null;
+export function decrypt(uid: string): DecryptResult {
+    const origin = crypto.decrypt(uid);
 
-    try {
-        const cipher = crypto.createDecipheriv('aes-256-cbc', config.crypto.key, config.crypto.iv);
-        const decrypted = cipher.update(uid, 'hex', 'utf8');
-        origin = decrypted + cipher.final('utf8');
-    } catch (e) {
+    if (!origin) {
         return { success: false };
     }
 
@@ -50,9 +43,15 @@ export function decode(uid: string): DecodeResult {
     const id = parseInt(arr[0], 10);
     const building_id = parseInt(arr[1], 10);
     const type = <typeof SELF_ACCESS_QRCODE | typeof VISTOR_ACCESS_QRCODE>parseInt(arr[2], 10);
+    const stamp = parseInt(arr[3], 10);
     let success = true;
 
-    if ((type !== SELF_ACCESS_QRCODE && type !== VISTOR_ACCESS_QRCODE) || building_id === NaN || id === NaN) {
+    if (
+        (type !== SELF_ACCESS_QRCODE && type !== VISTOR_ACCESS_QRCODE) ||
+        building_id === NaN ||
+        id === NaN ||
+        /^\d{13}$/.test(stamp.toString())
+    ) {
         success = false;
     }
 
@@ -60,6 +59,7 @@ export function decode(uid: string): DecodeResult {
         id,
         building_id,
         type,
+        stamp,
         success
     };
 }

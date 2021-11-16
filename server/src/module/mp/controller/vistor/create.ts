@@ -13,7 +13,6 @@
 import { Action } from '~/types/action';
 import { SUCCESS, STATUS_ERROR } from '~/constant/code';
 import { BINDING_BUILDING, TRUE, FALSE } from '~/constant/status';
-import { VISTOR_ACCESS_QRCODE } from '~/constant/open_access';
 import utils from '~/utils';
 import * as vistorService from '~/service/vistor';
 import moment from 'moment';
@@ -116,13 +115,6 @@ const MpVistorCreateAction = <Action>{
                 .valueOf(),
             created_at: Date.now()
         });
-
-        const uid = utils.openAccess.encode(id, building_id, VISTOR_ACCESS_QRCODE);
-
-        await ctx.model
-            .from('ejyy_vistor')
-            .update({ uid })
-            .where('id', id);
 
         if (vistorInfo) {
             vistorService.pushAccessToVistor(ctx.model, vistorInfo, id, expire);

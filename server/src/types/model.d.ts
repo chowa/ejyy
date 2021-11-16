@@ -415,13 +415,6 @@ declare namespace EjyyModel {
         replyed_at?: number;
     }
 
-    interface EjyyBuildingAccess {
-        id?: number;
-        building_id: number;
-        uid?: string;
-        created_at: number;
-    }
-
     interface EjyyRepair {
         id?: number;
         wechat_mp_user_id?: number;
@@ -656,7 +649,6 @@ declare namespace EjyyModel {
         vistor_phone: string;
         car_number?: string;
         have_vistor_info: typeof TRUE | typeof FALSE;
-        uid?: string;
         expire: number;
         used_at?: number;
         scan_by?: number;
@@ -1355,7 +1347,6 @@ declare module 'knex/types/tables' {
         ejyy_notice_to_user_readed: EjyyModel.EjyyNoticeToUserReaded;
         ejyy_notice_tpl: EjyyModel.EjyyNoticeTpl;
         ejyy_feedback: EjyyModel.EjyyFeedback;
-        ejyy_building_access: EjyyModel.EjyyBuildingAccess;
         ejyy_repair: EjyyModel.EjyyRepair;
         ejyy_repair_urge: EjyyModel.EjyyRepairUrge;
         ejyy_complain: EjyyModel.EjyyComplain;

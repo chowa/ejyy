@@ -148,3 +148,19 @@ export const PARK_NAME_EXIST = -171;
 export const PARK_BLACKLIST_EXIST = -172;
 // 预警中控名称存在
 export const WARNING_NAME_EXIST = -173;
+// 门禁非法
+export const IOT_ENTRANCE_ILLEGAL = -174;
+// 梯控非法
+export const IOT_ELEVATOR_ILLEGAL = -175;
+// 灯控非法
+export const IOT_LAMP_ILLEGAL = -176;
+// 中继器非法
+export const IOT_REPEATER_ILLEGAL = -177;
+// 仪表非法
+export const IOT_METER_ILLEGAL = -178;
+// 停车差非法
+export const IOT_PARK_ILLEGAL = -179;
+// 预警中控非法
+export const IOT_WARNING_ILLEGAL = -180;
+// 物联网设备秘钥错误
+export const IOT_SECRET_ERROR = -181;

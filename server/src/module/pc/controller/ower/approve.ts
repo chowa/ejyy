@@ -61,7 +61,7 @@ const PcOwerApproveAction = <Action>{
             });
         }
 
-        const res = utils.community.encode(building_ids, AUTHENTICTED_BY_PROPERTY_COMPANY, ctx.pcUserInfo.id);
+        const res = utils.community.encrypt(building_ids, AUTHENTICTED_BY_PROPERTY_COMPANY, ctx.pcUserInfo.id);
 
         ctx.body = {
             code: SUCCESS,
