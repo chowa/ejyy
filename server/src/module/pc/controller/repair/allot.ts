@@ -133,7 +133,7 @@ const PcRepairAllotAction = <Action>{
                 template_id: OA_NOTICE_TO_PROPERTY_COMPANY_USER,
                 miniprogram: {
                     appid: config.wechat.pmp.appid,
-                    pagepath: `/pages/home/repair?id=${id}`
+                    pagepath: `/pages/repair/detail?id=${id}`
                 },
                 data: {
                     first: {
