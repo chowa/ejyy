@@ -71,6 +71,7 @@ const PcHrDetailAction = <Action>{
                 'ejyy_property_company_user.leave_office',
                 'ejyy_property_company_user.access_id',
                 'ejyy_property_company_user.created_by',
+                'ejyy_property_company_user.created_at',
                 'ejyy_property_company_department.name as department',
                 'ejyy_property_company_job.name as job',
                 'ejyy_wechat_official_accounts_user.subscribed',
