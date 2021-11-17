@@ -14,8 +14,9 @@
 官网地址：<https://ejyy.chowa.cn>
 
 ### QQ交流群
-
-![qq](readme/qq.jpg)
+<p align="center" >
+<img src="readme/qq.jpg" width="320"/>
+</p>
 
 ## 技术亮点
 
