@@ -13,7 +13,9 @@
 
 官网地址：<https://ejyy.chowa.cn>
 
-QQ交流群：786743759
+### QQ交流群
+
+![qq](readme/qq.jpg)
 
 ## 技术亮点
 
