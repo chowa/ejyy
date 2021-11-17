@@ -20,12 +20,12 @@ export default {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
 
-        canvas.width = 332;
-        canvas.height = 186;
+        canvas.width = 664;
+        canvas.height = 372;
 
         ctx.translate(0, canvas.height / 3);
         ctx.rotate((-20 * Math.PI) / 180);
-        ctx.font = '14px STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑"';
+        ctx.font = '28px STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑"';
         ctx.fillStyle = 'rgba(0, 0, 0, 0.12)';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'Middle';
