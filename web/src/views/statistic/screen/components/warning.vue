@@ -288,7 +288,7 @@ export default {
                 border: 10px solid transparent;
                 border-top-color: rgba(255, 255, 255, 0.2);
                 top: 15%;
-                left: 50%;
+                right: 5%;
                 transform: rotate(45deg);
                 border-radius: 50%;
             }

@@ -60,6 +60,8 @@ export default {
     width: 100%;
     height: 100%;
     position: relative;
+    flex: auto;
+    overflow: hidden;
 
     &.gutter {
         margin-top: -2.3vw;
@@ -81,6 +83,9 @@ export default {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         i {
             font-style: normal;
@@ -99,6 +104,9 @@ export default {
         justify-content: center;
         font-size: 0.6vw;
         color: #999;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 </style>
