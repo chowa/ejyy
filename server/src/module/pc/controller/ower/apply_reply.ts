@@ -102,7 +102,7 @@ const PcOwerApplyReplyAction = <Action>{
                 .from('ejyy_building_info')
                 .leftJoin('ejyy_user_building', 'ejyy_user_building.building_id', 'ejyy_building_info.id')
                 .whereIn('ejyy_building_info.id', building_ids)
-                .where('ejyy_user_building.building_id', null)
+                .whereNull('ejyy_user_building.building_id')
                 .select('ejyy_building_info.id');
 
             if (buildingsInfo.length === 0) {
