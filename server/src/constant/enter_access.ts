@@ -10,5 +10,5 @@
  * +----------------------------------------------------------------------
  */
 
-export const SELF_ACCESS_QRCODE = 1;
-export const VISTOR_ACCESS_QRCODE = 2;
+export const SELF_ACCESS_CODE = 1;
+export const VISTOR_ACCESS_CODE = 2;

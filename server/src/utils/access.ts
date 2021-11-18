@@ -12,12 +12,12 @@
 
 import * as crypto from './crypto';
 
-import { SELF_ACCESS_QRCODE, VISTOR_ACCESS_QRCODE } from '~/constant/open_access';
+import { SELF_ACCESS_CODE, VISTOR_ACCESS_CODE } from '~/constant/enter_access';
 
 interface DecryptResult {
     id?: number;
     building_id?: number;
-    type?: typeof SELF_ACCESS_QRCODE | typeof VISTOR_ACCESS_QRCODE;
+    type?: typeof SELF_ACCESS_CODE | typeof VISTOR_ACCESS_CODE;
     stamp?: number;
     success: boolean;
 }
@@ -27,7 +27,7 @@ interface DecryptResult {
 export function encrypt(
     id: number,
     building_id: number,
-    type: typeof SELF_ACCESS_QRCODE | typeof VISTOR_ACCESS_QRCODE
+    type: typeof SELF_ACCESS_CODE | typeof VISTOR_ACCESS_CODE
 ): string {
     return crypto.encrypt(`${id}#${building_id}#${type}${Date.now()}`);
 }
@@ -42,12 +42,12 @@ export function decrypt(uid: string): DecryptResult {
     const arr = origin.split('#');
     const id = parseInt(arr[0], 10);
     const building_id = parseInt(arr[1], 10);
-    const type = <typeof SELF_ACCESS_QRCODE | typeof VISTOR_ACCESS_QRCODE>parseInt(arr[2], 10);
+    const type = <typeof SELF_ACCESS_CODE | typeof VISTOR_ACCESS_CODE>parseInt(arr[2], 10);
     const stamp = parseInt(arr[3], 10);
     let success = true;
 
     if (
-        (type !== SELF_ACCESS_QRCODE && type !== VISTOR_ACCESS_QRCODE) ||
+        (type !== SELF_ACCESS_CODE && type !== VISTOR_ACCESS_CODE) ||
         building_id === NaN ||
         id === NaN ||
         /^\d{13}$/.test(stamp.toString())

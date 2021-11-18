@@ -13,7 +13,7 @@
 import { Action } from '~/types/action';
 import { SUCCESS } from '~/constant/code';
 import utils from '~/utils';
-import { SELF_ACCESS_QRCODE } from '~/constant/open_access';
+import { SELF_ACCESS_CODE } from '~/constant/enter_access';
 
 interface RequestBody {
     building_ids: number[];
@@ -58,7 +58,7 @@ const MpAccessListAction = <Action>{
         buildings.forEach(({ building_id }) => {
             cardList.push({
                 building_id,
-                uid: utils.access.encrypt(ctx.mpUserInfo.id, building_id, SELF_ACCESS_QRCODE)
+                uid: utils.access.encrypt(ctx.mpUserInfo.id, building_id, SELF_ACCESS_CODE)
             });
         });
 

@@ -13,7 +13,7 @@
 import moment from 'moment';
 import Knex from 'Knex';
 import { EjyyIotEntrance } from '~/types/model';
-import { SELF_ACCESS_QRCODE, VISTOR_ACCESS_QRCODE } from '~/constant/open_access';
+import { SELF_ACCESS_CODE, VISTOR_ACCESS_CODE } from '~/constant/enter_access';
 import utils from '~/utils';
 import { IOT_METHOD_QRCODE, IOT_METHOD_NFC, IOT_METHOD_ICCARD } from '~/constant/iot';
 
@@ -104,8 +104,8 @@ async function accessMethod(params: AccessParams, entranceInfo: EjyyIotEntrance,
         }
 
         await model.from('ejyy_iot_entrance_log').insert({
-            wechat_mp_user_id: reuslt.type === SELF_ACCESS_QRCODE ? reuslt.id : null,
-            vistor_id: reuslt.type === VISTOR_ACCESS_QRCODE ? reuslt.id : null,
+            wechat_mp_user_id: reuslt.type === SELF_ACCESS_CODE ? reuslt.id : null,
+            vistor_id: reuslt.type === VISTOR_ACCESS_CODE ? reuslt.id : null,
             entrance_id: entranceInfo.id,
             method,
             created_at: mom.valueOf()

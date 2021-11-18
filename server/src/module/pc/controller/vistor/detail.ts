@@ -13,7 +13,7 @@
 import { Action } from '~/types/action';
 import { SUCCESS, QUERY_ILLEFAL } from '~/constant/code';
 import * as ROLE from '~/constant/role_access';
-import { VISTOR_ACCESS_QRCODE } from '~/constant/open_access';
+import { VISTOR_ACCESS_CODE } from '~/constant/enter_access';
 import utils from '~/utils';
 
 interface RequestBody {
@@ -96,7 +96,7 @@ const PcVistorDetailAction = <Action>{
 
         delete info.property_company_user_id;
 
-        const uid = utils.access.encrypt(info.id, info.building_id, VISTOR_ACCESS_QRCODE);
+        const uid = utils.access.encrypt(info.id, info.building_id, VISTOR_ACCESS_CODE);
 
         ctx.body = {
             code: SUCCESS,

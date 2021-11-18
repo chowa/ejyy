@@ -14,7 +14,7 @@ import { Action } from '~/types/action';
 import { SUCCESS, VISTOR_QRCODE_ERROR, VISTOR_QRCODE_EXPIRED, VISTOR_QRCODE_USED } from '~/constant/code';
 import * as ROLE from '~/constant/role_access';
 import utils from '~/utils';
-import { VISTOR_ACCESS_QRCODE } from '~/constant/open_access';
+import { VISTOR_ACCESS_CODE } from '~/constant/enter_access';
 
 interface RequestBody {
     community_id: number;
@@ -47,7 +47,7 @@ const PcVistorScanAction = <Action>{
         const { uid, community_id } = <RequestBody>ctx.request.body;
         const { id, building_id, type, success } = utils.access.decrypt(uid);
 
-        if (!success || type !== VISTOR_ACCESS_QRCODE) {
+        if (!success || type !== VISTOR_ACCESS_CODE) {
             return (ctx.body = {
                 code: VISTOR_QRCODE_ERROR,
                 message: '非法访客二维码'

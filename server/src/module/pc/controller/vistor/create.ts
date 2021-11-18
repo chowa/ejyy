@@ -13,7 +13,7 @@
 import { Action } from '~/types/action';
 import { SUCCESS, STATUS_ERROR } from '~/constant/code';
 import { TRUE, FALSE } from '~/constant/status';
-import { VISTOR_ACCESS_QRCODE } from '~/constant/open_access';
+import { VISTOR_ACCESS_CODE } from '~/constant/enter_access';
 import utils from '~/utils';
 import * as vistorService from '~/service/vistor';
 import moment from 'moment';
@@ -114,7 +114,7 @@ const PcVistorCreateAction = <Action>{
             vistorService.pushAccessToVistor(ctx.model, vistorInfo, id, expire);
         }
 
-        const uid = utils.access.encrypt(id, building_id, VISTOR_ACCESS_QRCODE);
+        const uid = utils.access.encrypt(id, building_id, VISTOR_ACCESS_CODE);
 
         ctx.body = {
             code: SUCCESS,
