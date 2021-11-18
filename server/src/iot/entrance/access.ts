@@ -104,8 +104,8 @@ async function accessMethod(params: AccessParams, entranceInfo: EjyyIotEntrance,
         }
 
         await model.from('ejyy_iot_entrance_log').insert({
-            wechat_mp_user_id: reuslt.type === VISTOR_ACCESS_QRCODE ? null : reuslt.id,
-            vistor_id: reuslt.type === SELF_ACCESS_QRCODE ? null : reuslt.id,
+            wechat_mp_user_id: reuslt.type === SELF_ACCESS_QRCODE ? reuslt.id : null,
+            vistor_id: reuslt.type === VISTOR_ACCESS_QRCODE ? reuslt.id : null,
             entrance_id: entranceInfo.id,
             method,
             created_at: mom.valueOf()
