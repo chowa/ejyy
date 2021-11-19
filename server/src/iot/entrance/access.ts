@@ -95,6 +95,16 @@ async function accessMethod(params: AccessParams, entranceInfo: EjyyIotEntrance,
             return { AcsRes: CLOSE };
         }
 
+        if (reuslt.type === VISTOR_ACCESS_CODE) {
+            const vistorInfo = await model.from('ejyy_vistor')
+                .where('id', reuslt.id)
+                .first();
+
+            if (!vistorInfo || vistorInfo.expire > Date.now()) {
+                return { AcsRes: CLOSE };
+            }
+        }
+
         let method: typeof IOT_METHOD_NFC | typeof IOT_METHOD_ICCARD | typeof IOT_METHOD_QRCODE = IOT_METHOD_QRCODE;
 
         if (params.type === TYPE_CARD) {
