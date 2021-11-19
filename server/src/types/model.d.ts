@@ -197,6 +197,7 @@ declare namespace EjyyModel {
         department_id?: number;
         job_id?: number;
         access_id?: number;
+        admin?: typeof TRUE | typeof FALSE;
         join_company_at?: number;
         // 用户可能会有重复的情况，因为涉及到离职问题，只有非离职状态记录为1
         leave_office: typeof TRUE | typeof FALSE;
@@ -242,11 +243,6 @@ declare namespace EjyyModel {
         id?: number;
         name: string;
         content: string | typeof Role[];
-    }
-
-    interface EjyyPropertyCompanyAdmin {
-        id?: number;
-        property_company_user_id: number;
     }
 
     interface EjyyPropertyCompanyBuildingRegistered {
@@ -1331,7 +1327,6 @@ declare module 'knex/types/tables' {
         ejyy_property_company_user_default_community: EjyyModel.EjyyPropertyCompanyUserDefaultCommunity;
         ejyy_property_company_user_access_community: EjyyModel.EjyyPropertyCompanyUserAccessCommunity;
         ejyy_property_company_access: EjyyModel.EjyyPropertyCompanyAccess;
-        ejyy_property_company_admin: EjyyModel.EjyyPropertyCompanyAdmin;
         ejyy_property_company_building_registered: EjyyModel.EjyyPropertyCompanyBuildingRegistered;
         ejyy_community_info: EjyyModel.EjyyCommunityInfo;
         ejyy_community_setting: EjyyModel.EjyyCommunitySetting;

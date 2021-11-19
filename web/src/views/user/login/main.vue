@@ -5,7 +5,7 @@
                 <img src="../../../assets/logo.svg" alt="logo" class="img-logo" />
                 <div class="title">
                     <img src="../../../assets/logo_txt.svg" alt="e家宜业" class="text-logo" />
-                    <h1>卓瓦科技旗下物业Saas平台</h1>
+                    <h1><a href="https://github.com/chowa/ejyy" target="_blank">卓瓦科技开源产品</a></h1>
                 </div>
             </div>
 

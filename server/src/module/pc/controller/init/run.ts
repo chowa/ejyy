@@ -190,7 +190,12 @@ const PcInitRunAction = <Action>{
             });
         }
 
-        const total = utils.sql.countReader(await ctx.model.from('ejyy_property_company_admin').count());
+        const total = utils.sql.countReader(
+            await ctx.model
+                .from('ejyy_property_company_user')
+                .where('admin', TRUE)
+                .count()
+        );
 
         if (total > 0) {
             return (ctx.body = {
@@ -211,13 +216,10 @@ const PcInitRunAction = <Action>{
             gender: utils.idcard.gender(idcard),
             avatar_url,
             phone,
+            admin: TRUE,
             join_company_at: created_at,
             created_at,
             leave_office: FALSE
-        });
-
-        await ctx.model.from('ejyy_property_company_admin').insert({
-            property_company_user_id: user_id
         });
 
         const [community_id] = await ctx.model.from('ejyy_community_info').insert({

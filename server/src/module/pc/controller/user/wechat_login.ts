@@ -76,11 +76,6 @@ const PcUserWechatLoginAction = <Action>{
                 'ejyy_property_company_access.id',
                 'ejyy_property_company_user.access_id'
             )
-            .leftJoin(
-                'ejyy_property_company_admin',
-                'ejyy_property_company_admin.property_company_user_id',
-                'ejyy_property_company_user.id'
-            )
             .where('ejyy_property_company_user.leave_office', FALSE)
             .where('ejyy_property_company_user.open_id', webUserInfo.data.openid)
             .select(
@@ -90,6 +85,7 @@ const PcUserWechatLoginAction = <Action>{
                 'ejyy_property_company_user.gender',
                 'ejyy_property_company_user.avatar_url',
                 'ejyy_property_company_user.phone',
+                'ejyy_property_company_user.admin',
                 'ejyy_property_company_user.department_id',
                 'ejyy_property_company_user.job_id',
                 'ejyy_property_company_user.join_company_at',
@@ -97,7 +93,6 @@ const PcUserWechatLoginAction = <Action>{
                 'ejyy_wechat_official_accounts_user.subscribed',
                 'ejyy_property_company_access.content'
             )
-            .select(ctx.model.raw('IF(ejyy_property_company_admin.property_company_user_id, 1, 0) as admin'))
             .first();
 
         if (!pcUserInfo) {

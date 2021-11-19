@@ -13,6 +13,7 @@
 import { Middleware, DefaultState, DefaultContext } from 'koa';
 import config from '~/config';
 import utils from '~/utils';
+import { TRUE } from '~/constant/status';
 import { SYSTEMT_NOT_INIT } from '~/constant/code';
 
 function InitMiddleware(): Middleware<DefaultState, DefaultContext> {
@@ -20,7 +21,12 @@ function InitMiddleware(): Middleware<DefaultState, DefaultContext> {
         const isInitAction = /^\/pc\/init\/\w+$/.test(ctx.request.path);
 
         if (!config.inited && !/^\/pc\/upload\/sign$/.test(ctx.request.path)) {
-            const total = utils.sql.countReader(await ctx.model.from('ejyy_property_company_admin').count());
+            const total = utils.sql.countReader(
+                await ctx.model
+                    .from('ejyy_property_company_user')
+                    .where('admin', TRUE)
+                    .count()
+            );
 
             if (total === 0) {
                 if (!isInitAction) {

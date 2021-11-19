@@ -724,11 +724,6 @@ CREATE TABLE `ejyy_property_company_access` (
   `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`content`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `ejyy_property_company_admin` (
-  `id` bigint(20) NOT NULL,
-  `property_company_user_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 CREATE TABLE `ejyy_property_company_auth` (
   `id` bigint(20) NOT NULL,
   `property_company_user_id` bigint(20) NOT NULL,
@@ -771,6 +766,7 @@ CREATE TABLE `ejyy_property_company_user` (
   `department_id` bigint(20) DEFAULT NULL,
   `job_id` bigint(20) DEFAULT NULL,
   `access_id` bigint(20) DEFAULT NULL,
+  `admin` tinyint(1) NOT NULL DEFAULT 0,
   `join_company_at` bigint(13) DEFAULT NULL,
   `leave_office` tinyint(1) NOT NULL DEFAULT 0,
   `created_by` bigint(20) DEFAULT NULL,
