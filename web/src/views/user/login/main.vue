@@ -153,6 +153,8 @@ export default {
                 this.state = res.data.state;
                 this.ready = true;
 
+                clearTimeout(this.stateTimer);
+
                 this.stateTimer = setTimeout(() => {
                     this.expired = true;
                 }, res.data.expire);
@@ -163,6 +165,9 @@ export default {
                 .get('/user/captcha')
                 .then(res => {
                     this.captchaImg = res.data.img;
+
+                    clearTimeout(this.capatchTimer);
+
                     this.capatchTimer = setTimeout(() => {
                         this.getCaptcha();
                     }, res.data.expire);
