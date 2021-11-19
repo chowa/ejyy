@@ -100,7 +100,7 @@ async function accessMethod(params: AccessParams, entranceInfo: EjyyIotEntrance,
                 .where('id', reuslt.id)
                 .first();
 
-            if (!vistorInfo || vistorInfo.expire > Date.now()) {
+            if (!vistorInfo || vistorInfo.expire < Date.now()) {
                 return { AcsRes: CLOSE };
             }
         }
