@@ -103,7 +103,7 @@
 
 微信扫描下方二维码，关注公众号后，输入“e家宜业”获取体验账号和密码
 
-![oa](readme/chowa-qrcode.jpg)
+![chowa](readme/chowa-qrcode.jpg)
 
 | :warning: 注意                |
 | --------------------------- |
