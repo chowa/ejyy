@@ -13,6 +13,7 @@
 import { Action } from '~/types/action';
 import { SUCCESS } from '~/constant/code';
 import utils from '~/utils';
+import { BINDING_BUILDING } from '~/constant/status';
 import { SELF_ACCESS_CODE } from '~/constant/enter_access';
 
 interface RequestBody {
@@ -50,6 +51,8 @@ const MpAccessListAction = <Action>{
             .leftJoin('ejyy_building_info', 'ejyy_building_info.id', 'ejyy_user_building.building_id')
             .where('ejyy_building_info.community_id', community_id)
             .whereIn('ejyy_user_building.building_id', building_ids)
+            .andWhere('ejyy_user_building.wechat_mp_user_id', ctx.mpUserInfo.id)
+            .andWhere('ejyy_user_building.status', BINDING_BUILDING)
             .select('ejyy_user_building.building_id')
             .orderBy('ejyy_user_building.id', 'desc');
 
