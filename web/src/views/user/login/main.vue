@@ -220,17 +220,17 @@ export default {
 .login {
     width: 100%;
     height: 100%;
-    min-height: 624px;
-    position: relative;
     background-repeat: no-repeat;
     background-position: 50%;
-    background-size: 100%;
-    background-image: url(~@/assets/login.svg);
+    background-size: cover;
+    background-image: url(~@/assets/login.jpg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     &-form {
         width: 300px;
-        margin: auto;
-        padding-top: 90px;
 
         .logo {
             display: flex;

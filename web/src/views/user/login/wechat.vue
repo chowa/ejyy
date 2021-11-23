@@ -74,6 +74,10 @@ export default {
     mounted() {
         const { code, state } = this.$route.query;
 
+        if (!code || !state) {
+            return this.$router.replace('/user/login');
+        }
+
         utils.request
             .post('/user/wechat_login', { code, state })
             .then(res => {
@@ -96,13 +100,16 @@ export default {
     height: 100%;
     background-repeat: no-repeat;
     background-position: 50%;
-    background-size: 100%;
-    background-image: url(~@/assets/login.svg);
+    background-size: cover;
+    background-image: url(~@/assets/login.jpg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     &-body {
         width: 320px;
         margin: auto;
-        padding-top: 90px;
 
         .hands {
             line-height: 88px;
