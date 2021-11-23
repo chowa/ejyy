@@ -797,7 +797,7 @@ CREATE TABLE `ejyy_property_company_user_login` (
   `id` int(11) NOT NULL,
   `property_company_user_id` bigint(20) NOT NULL,
   `ip` varchar(64) NOT NULL,
-  `user_agent` varchar(256) DEFAULT NULL,
+  `user_agent` varchar(512) DEFAULT NULL,
   `login_at` bigint(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
