@@ -135,6 +135,6 @@
 
 [windows下开发可能遇到的问题](readme/windows.MD)
 
-## Linense
+## License
 
 ![AGPL](readme/agplv3.png)
