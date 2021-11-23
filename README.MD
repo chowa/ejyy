@@ -18,6 +18,14 @@
 <img src="readme/qq.jpg" width="320"/>
 </p>
 
+### 微信交流群
+
+> 由于微信群二维码有时效性，所以请添加这个小号微信，小号会拉你入群
+
+<p align="center" >
+<img src="readme/wechat-group.jpg" width="320"/>
+</p>
+
 ## 技术亮点
 
 -   自主独立研发，无阉割、无加密、真正的开源
