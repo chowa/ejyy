@@ -12,6 +12,7 @@
 
 import { Action } from '~/types/action';
 import { SUCCESS, QUERY_ILLEFAL } from '~/constant/code';
+import { FALSE } from '~/constant/status';
 import * as ROLE from '~/constant/role_access';
 
 interface RequestBody {
@@ -96,10 +97,19 @@ const PcOwerDetailAction = <Action>{
             );
 
         if (buildings.length === 0) {
-            return (ctx.body = {
-                code: QUERY_ILLEFAL,
-                message: '非法获取用户信息'
-            });
+            const existApply = await ctx.model
+                .from('ejyy_ower_apply')
+                .where('community_id', community_id)
+                .andWhere('wechat_mp_user_id', id)
+                .andWhere('success', FALSE)
+                .first();
+
+            if (!existApply) {
+                return (ctx.body = {
+                    code: QUERY_ILLEFAL,
+                    message: '非法获取用户信息'
+                });
+            }
         }
 
         const cars = await ctx.model

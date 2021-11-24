@@ -96,7 +96,8 @@ async function accessMethod(params: AccessParams, entranceInfo: EjyyIotEntrance,
         }
 
         if (reuslt.type === VISTOR_ACCESS_CODE) {
-            const vistorInfo = await model.from('ejyy_vistor')
+            const vistorInfo = await model
+                .from('ejyy_vistor')
                 .where('id', reuslt.id)
                 .first();
 

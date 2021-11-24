@@ -64,7 +64,11 @@ const MpVistorCreateAction = <Action>{
             {
                 name: 'expire',
                 regex: /^\d{13}$/,
-                validator: val => Date.now() < moment(val).endOf('day').valueOf(),
+                validator: val =>
+                    Date.now() <
+                    moment(val)
+                        .endOf('day')
+                        .valueOf(),
                 required: true
             }
         ]
