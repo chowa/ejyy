@@ -77,7 +77,8 @@ const PcHrCreateAction = <Action>{
             {
                 name: 'idcard',
                 required: true,
-                validator: val => utils.idcard.verify(val)
+                validator: val => utils.idcard.verify(val),
+                message: '身份证校验失败'
             },
             {
                 name: 'avatar_url',
