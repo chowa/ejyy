@@ -116,8 +116,8 @@
 
 ## 使用手册
 
-- [中台使用手册](resource/web.pdf)
-- [业主小程序使用手册](resource/ower.pdf)
+- [中台使用手册](resource/manual_web.pdf)
+- [业主小程序使用手册](resource/manual_ower.pdf)
 
 ## 如何部署
 
