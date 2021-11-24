@@ -77,26 +77,6 @@
 <img src="readme/pc5.jpg" width="320"/>
 </p>
 
-## 如何部署
-
-### 服务器环境推荐要求
-
--   Nignx
--   Node.js 12.1.0
--   MySQL  5.7
--   Redis
-
-### 部署文档
-
--   [部署前的准备](resource/README.MD)
--   [服务端部署](server/README.MD)
--   [web端部署](web/README.MD)
--   [业主端小程序](ower-mp/README.MD)
--   [员工端小程序](employee-mp/README.MD)
--   [公众号模板消息](oa/README.MD)
--   [短信消息模板](sms/README.MD)
--   [小区硬件接入](iot/README.MD)
-
 ## 演示
 
 ### web中台
@@ -132,6 +112,32 @@
 ### 微信公众号
 
 <img src="readme/oa-qrcode.jpg" width="215"/>
+
+
+## 使用手册
+
+- [中台使用手册](resource/web.pdf)
+- [业主小程序使用手册](resource/ower.pdf)
+
+## 如何部署
+
+### 服务器环境推荐要求
+
+-   Nignx
+-   Node.js 12.1.0
+-   MySQL  5.7
+-   Redis
+
+### 部署文档
+
+-   [部署前的准备](resource/README.MD)
+-   [服务端部署](server/README.MD)
+-   [web端部署](web/README.MD)
+-   [业主端小程序](ower-mp/README.MD)
+-   [员工端小程序](employee-mp/README.MD)
+-   [公众号模板消息](oa/README.MD)
+-   [短信消息模板](sms/README.MD)
+-   [小区硬件接入](iot/README.MD)
 
 ## 参与开发
 
