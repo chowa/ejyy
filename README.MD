@@ -23,7 +23,7 @@
 > 由于微信群二维码有时效性，所以请添加这个小号微信，小号会拉你入群
 
 <p align="center" >
-<img src="readme/wechat-group.jpg" width="320"/>
+<img src="readme/wechat-group.jpg" width="215"/>
 </p>
 
 ## 技术亮点
@@ -109,9 +109,11 @@
 
 <https://pc.ejyy.chowa.cn>
 
-微信扫描下方二维码，关注公众号后，输入“e家宜业”获取体验账号和密码
+微信扫描下方这个紧挨着的二维码，关注公众号后，输入“e家宜业”获取体验账号和密码（之前把帐号密码写在文档里，有很多坏小子老搞破坏，才出此下策；这个公众号不会有垃圾推送的，请放心）。
 
-![chowa](readme/chowa-qrcode.jpg)
+如果你想有用一个独立账号体验系统、给别人演示，登录后可以在【协同办公】->【人力资源】-> 【员工入职】中自己开通一个，开通后，你就可以通过自己的微信扫码登录中台了~也可以用自己的微信访问【业主小程序】了。
+
+<img src="readme/chowa-qrcode.jpg" width="215"/>
 
 | :warning: 注意                |
 | --------------------------- |
@@ -122,17 +124,18 @@
 
 > 如果无法访问，请查看是否被封了IP，[封禁IP列表](readme/ip.MD)
 
-### 微信公众号
-
-![oa](readme/oa-qrcode.jpg)
 
 ### 业主小程序
 
-![oa](readme/ump-qrcode.jpg)
+<img src="readme/ump-qrcode.jpg" width="215"/>
 
 ### 物业员工小程序
 
-![oa](readme/pmp-qrcode.jpg)
+<img src="readme/pmp-qrcode.jpg" width="215"/>
+
+### 微信公众号
+
+<img src="readme/a-qrcode.jpg" width="215"/>
 
 ## 参与开发
 
