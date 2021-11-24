@@ -1,9 +1,9 @@
-![输入图片说明](readme/logo.jpg)
-
 <h1 align="center">🔥🔥🔥「e家宜业」智慧物业平台</h1>
 <p align="center">    
     <b>无加密，无阉割，喜欢的话就点右上角 "Star" 支持一下吧，每一个"Star"，都是我们持续更新的动力！</b>  
 </p>
+
+![logo](readme/logo.jpg)
 
 ## 项目介绍
 
@@ -135,7 +135,7 @@
 
 ### 微信公众号
 
-<img src="readme/a-qrcode.jpg" width="215"/>
+<img src="readme/oa-qrcode.jpg" width="215"/>
 
 ## 参与开发
 
