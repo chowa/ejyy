@@ -11,7 +11,7 @@
  */
 
 import moment from 'moment';
-import Knex from 'Knex';
+import Knex from 'knex';
 import { EjyyIotEntrance } from '~/types/model';
 import { SELF_ACCESS_CODE, VISTOR_ACCESS_CODE } from '~/constant/enter_access';
 import utils from '~/utils';
