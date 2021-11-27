@@ -108,9 +108,9 @@
         oss:
             # 篮子名称
             bucket:        ''
-            # 域
+            # 域，在阿里云OSS中台中找“地域节点”
             region:        ''
-            # 自定义域名
+            # 你的bucket的访问域名，如：https://ejyy.qingdao.aliyuncs.com
             host:          ''
     # 各类可以解密加密
     crypto:

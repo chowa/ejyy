@@ -26,7 +26,7 @@ export const HOST_NAME = '';
 // 默认分页取多少条数据
 export const DEGAULT_PAGE_SIZE = 10;
 
-// 对象存储域名
+// 对象存储域名，和server配置中aliyun.oss.host一样
 export const ASSET_HOST = '';
 
 // 表单label响应宽度
