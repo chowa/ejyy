@@ -1413,10 +1413,6 @@ ALTER TABLE `ejyy_pet_vaccinate`
 ALTER TABLE `ejyy_property_company_access`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `ejyy_property_company_admin`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `property_company_user_id` (`property_company_user_id`);
-
 ALTER TABLE `ejyy_property_company_auth`
   ADD PRIMARY KEY (`id`),
   ADD KEY `property_company_user_id` (`property_company_user_id`);
@@ -1792,9 +1788,6 @@ ALTER TABLE `ejyy_pet_vaccinate`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `ejyy_property_company_access`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
-ALTER TABLE `ejyy_property_company_admin`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `ejyy_property_company_auth`
