@@ -13,7 +13,7 @@
             wx:for="{{list}}"
             wx:key="index"
             title="{{common.number('IA', item.created_at, item.id)}}"
-            url="/pages/party/detail?id={{item.id}}"
+            url="/pages/inform/detail?id={{item.id}}"
         >
             <cw-list-item-info label="文章标题">
                 {{item.title}}
