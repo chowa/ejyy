@@ -87,7 +87,7 @@
                             </view>
                         </cw-panel>
                         <cw-panel
-                            wx:elif="item.applicant_assign && !item.relation_user_id"
+                            wx:elif="{{item.applicant_assign && !item.relation_user_id}}"
                             title="指定审批人"
                             useFooterSlot
                         >

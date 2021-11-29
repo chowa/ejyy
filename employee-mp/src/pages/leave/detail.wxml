@@ -89,4 +89,5 @@
     <!-- 全局提示 -->
     <cw-notify id="cw-notify" />
     <cw-toast id="cw-toast" />
+    <cw-dialog id="cw-dialog" />
 </view>

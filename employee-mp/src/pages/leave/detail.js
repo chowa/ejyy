@@ -142,7 +142,7 @@ CwPage({
                 this.setData({ canceling: true });
                 utils
                     .request({
-                        url: '/refound/cancel',
+                        url: '/leave/cancel',
                         method: 'post',
                         data: {
                             id: this.data.id,
