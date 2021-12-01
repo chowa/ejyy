@@ -79,6 +79,7 @@
 
 - [web中台使用手册](resource/manual_web.pdf)
 - [业主小程序使用手册](resource/manual_ower.pdf)
+- 物业员工小程序使用手册正在整理中，敬请期待
 
 ## 系统演示
 
