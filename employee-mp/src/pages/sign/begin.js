@@ -165,7 +165,19 @@ CwPage({
 
         wx.getSetting({
             success: res => {
-                if (res.authSetting['scope.userLocation']) {
+                if (res.authSetting['scope.userLocation'] === undefined) {
+                    wx.authorize({
+                        scope: 'scope.userLocation',
+                        success: () => {
+                            getLocationAndSend();
+                        },
+                        fail: () => {
+                            $toast.fail({
+                                message: '请授权位置'
+                            });
+                        }
+                    });
+                } else if (res.authSetting['scope.userLocation'] === true) {
                     getLocationAndSend();
                 } else {
                     wx.openSetting({
@@ -176,9 +188,14 @@ CwPage({
                                 $toast.clear();
 
                                 $toast.fail({
-                                    message: '不能使用位置'
+                                    message: '请打开位置'
                                 });
                             }
+                        },
+                        fail: () => {
+                            $toast.fail({
+                                message: '请授权位置'
+                            });
                         }
                     });
                 }

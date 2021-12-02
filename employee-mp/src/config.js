@@ -24,4 +24,4 @@ export const WECHAT_VERSION = '7.0.0';
 
 export const SDK_VERSION = '2.16.0';
 
-export const VERSION = '1.1.11';
+export const VERSION = '1.1.12';
