@@ -50,7 +50,7 @@ export function decrypt(uid: string): DecryptResult {
         (type !== SELF_ACCESS_CODE && type !== VISTOR_ACCESS_CODE) ||
         building_id === NaN ||
         id === NaN ||
-        /^\d{13}$/.test(stamp.toString())
+        !/^\d{13}$/.test(stamp.toString())
     ) {
         success = false;
     }
