@@ -2,6 +2,8 @@
 
 > 开发测试环境可以不配置redis，生产环境必须配置redis。
 
+[windows下开发可能遇到的问题](readme/windows.MD)
+
 ### 创建配置文件
 
 - 开发环境请在`ejyy/server`目录下创建 `.ejyyrc`文件

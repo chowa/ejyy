@@ -168,19 +168,6 @@
 [欢迎反馈问题](https://github.com/chowa/ejyy/issues)
 [欢迎提交代码](https://github.com/chowa/ejyy/pulls)
 
-## 常见问题
-
-[windows下开发可能遇到的问题](readme/windows.MD)
-
-## 特别感谢
-
-> 排名不分先后
-
-- Monk JC（我的好兄弟，视觉交互专家，为我们的logo、商标、UI视觉层面做出了很大的贡献）
-- 余总 (凯帕思经理，为我们提供了大量的技术资料和建议)
-- 红薯（开源中国创始人，对于我们的开源之路给出了很重要的建议）
-- 丹尼欧德（我的好兄弟，资深码农，目前就职于快手）
-
 ## License
 
 ![AGPL](readme/agplv3.png)
