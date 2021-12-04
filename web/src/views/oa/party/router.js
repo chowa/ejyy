@@ -25,7 +25,7 @@ module.exports = {
     component: () => import('./index'),
     children: [
         {
-            path: 'main',
+            path: '',
             meta: {
                 title: '全部文章',
                 authRequired: true,
