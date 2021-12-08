@@ -126,7 +126,7 @@
 
 ### 服务器环境推荐要求
 
-- Nignx
+- Nginx
 - Node.js 12.1.0
 - MySQL  5.7
 - Redis
