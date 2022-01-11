@@ -97,7 +97,6 @@ const PcOwerListAction = <Action>{
                 'ejyy_wechat_mp_user.real_name',
                 'ejyy_wechat_mp_user.nick_name',
                 'ejyy_wechat_mp_user.gender',
-                'ejyy_wechat_mp_user.status',
                 'ejyy_wechat_mp_user.intact',
                 'ejyy_wechat_mp_user.created_at',
                 'ejyy_wechat_official_accounts_user.subscribed'

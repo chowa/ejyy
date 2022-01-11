@@ -66,16 +66,6 @@
                 </Col>
                 <Col :lg="8" :sm="12" :xs="24">
                     <span class="detail-label">
-                        账号状态
-                    </span>
-                    <div class="detail-content">
-                        <Tag :color="detail.info.status ? 'success' : 'error'">
-                            {{ detail.info.status ? '正常' : '冻结' }}
-                        </Tag>
-                    </div>
-                </Col>
-                <Col :lg="8" :sm="12" :xs="24">
-                    <span class="detail-label">
                         是否关注公众号
                     </span>
                     <div class="detail-content">

@@ -118,12 +118,6 @@ export default {
                         )
                 },
                 {
-                    title: '账号状态',
-                    minWidth: 80,
-                    render: (h, p) =>
-                        h(Tag, { props: { color: p.row.status ? 'success' : 'error' } }, p.row.status ? '正常' : '冻结')
-                },
-                {
                     title: '关注公众号',
                     minWidth: 80,
                     render: (h, p) =>

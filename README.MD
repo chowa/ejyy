@@ -147,6 +147,10 @@
 [欢迎反馈问题](https://github.com/chowa/ejyy/issues)
 [欢迎提交代码](https://github.com/chowa/ejyy/pulls)
 
+## 特别声明
+
+禁止将本项目的代码和资源进行任何形式的出售，产生的一切后果由侵权者自负!!
+
 ## License
 
 ![AGPL](readme/agplv3.png)

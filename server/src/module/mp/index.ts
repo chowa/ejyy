@@ -18,7 +18,6 @@ import * as MpModuleRouter from './router';
 import config from '~/config';
 import validatorService from '~/service/validator';
 import { PARAMS_ERROR, USER_INFO_UNINTACT } from '~/constant/code';
-import { FREEZE_STATUS } from '~/constant/status';
 import cwlog from 'chowa-log';
 
 function MpModule(appRouter: KoaRouter) {
@@ -51,14 +50,13 @@ function MpModule(appRouter: KoaRouter) {
                         'ejyy_wechat_mp_user.gender',
                         'ejyy_wechat_mp_user.avatar_url',
                         'ejyy_wechat_mp_user.signature',
-                        'ejyy_wechat_mp_user.status',
                         'ejyy_wechat_mp_user.intact',
                         'ejyy_wechat_mp_user.created_at',
                         'ejyy_wechat_official_accounts_user.subscribed'
                     )
                     .first();
 
-                if (!ctx.mpUserInfo || ctx.mpUserInfo.status === FREEZE_STATUS) {
+                if (!ctx.mpUserInfo) {
                     return (ctx.status = 401);
                 }
 

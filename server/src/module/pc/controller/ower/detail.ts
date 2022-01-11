@@ -62,7 +62,6 @@ const PcOwerDetailAction = <Action>{
                 'ejyy_wechat_mp_user.avatar_url',
                 'ejyy_wechat_mp_user.signature',
                 'ejyy_wechat_mp_user.gender',
-                'ejyy_wechat_mp_user.status',
                 'ejyy_wechat_mp_user.intact',
                 'ejyy_wechat_mp_user.created_at',
                 'ejyy_wechat_official_accounts_user.subscribed'

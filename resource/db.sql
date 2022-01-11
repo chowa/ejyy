@@ -1104,7 +1104,6 @@ CREATE TABLE `ejyy_wechat_mp_user` (
   `avatar_url` varchar(256) DEFAULT '/avatar/default.png',
   `gender` tinyint(1) NOT NULL DEFAULT 0 COMMENT '1 男 2女	',
   `signature` varchar(56) NOT NULL DEFAULT '不一定每天都很好，但每天都会有些小美好在等你',
-  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 正常 0冻结',
   `intact` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0 身份信息未补全； 1补全',
   `created_at` bigint(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
