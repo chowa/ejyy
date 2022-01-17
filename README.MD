@@ -1,4 +1,4 @@
-![logo](readme/logo.jpg)
+![logo](docs/images/logo.jpg)
 
 ## 项目介绍
 
@@ -8,39 +8,39 @@
 
 ### web中台
 
-![web1](readme/web1.png)
-![web2](readme/web2.jpg)
-![web3](readme/web3.jpg)
-![web4](readme/web4.jpg)
-![web5](readme/web5.jpg)
-![web6](readme/web6.jpg)
-![web7](readme/web7.jpg)
-![web8](readme/web8.jpg)
-![web9](readme/web9.jpg)
-![web10](readme/web10.jpg)
-![web11](readme/web11.jpg)
+![web1](docs/images/web1.png)
+![web2](docs/images/web2.jpg)
+![web3](docs/images/web3.jpg)
+![web4](docs/images/web4.jpg)
+![web5](docs/images/web5.jpg)
+![web6](docs/images/web6.jpg)
+![web7](docs/images/web7.jpg)
+![web8](docs/images/web8.jpg)
+![web9](docs/images/web9.jpg)
+![web10](docs/images/web10.jpg)
+![web11](docs/images/web11.jpg)
 
 ### 业主端小程序
 
 <p align="center" >
-<img src="readme/ower1.jpg" width="320"/>
-<img src="readme/ower2.jpg" width="320"/>
-<img src="readme/ower3.jpg" width="320"/>
-<img src="readme/ower4.jpg" width="320"/>
-<img src="readme/ower5.jpg" width="320"/>
-<img src="readme/ower6.jpg" width="320"/>
-<img src="readme/ower7.jpg" width="320"/>
-<img src="readme/ower8.jpg" width="320"/>
+<img src="docs/images/ower1.jpg" width="320"/>
+<img src="docs/images/ower2.jpg" width="320"/>
+<img src="docs/images/ower3.jpg" width="320"/>
+<img src="docs/images/ower4.jpg" width="320"/>
+<img src="docs/images/ower5.jpg" width="320"/>
+<img src="docs/images/ower6.jpg" width="320"/>
+<img src="docs/images/ower7.jpg" width="320"/>
+<img src="docs/images/ower8.jpg" width="320"/>
 </p>
 
 ### 员工端小程序
 
 <p align="center" >
-<img src="readme/pc1.jpg" width="320"/>
-<img src="readme/pc2.jpg" width="320"/>
-<img src="readme/pc3.jpg" width="320"/>
-<img src="readme/pc4.jpg" width="320"/>
-<img src="readme/pc5.jpg" width="320"/>
+<img src="docs/images/pc1.jpg" width="320"/>
+<img src="docs/images/pc2.jpg" width="320"/>
+<img src="docs/images/pc3.jpg" width="320"/>
+<img src="docs/images/pc4.jpg" width="320"/>
+<img src="docs/images/pc5.jpg" width="320"/>
 </p>
 
 ## 技术亮点
@@ -73,7 +73,7 @@
 
 如果你想有一个自己的账号体验系统、给别人演示，登录后可以在【协同办公】->【人力资源】-> 【员工入职】中自己开通一个，开通后，你就可以通过自己的微信扫码登录中台了~也可以用自己的微信访问【物业员工小程序】了。
 
-<img src="readme/chowa-qrcode.jpg" width="215"/>
+<img src="docs/images/chowa-qrcode.jpg" width="215"/>
 
 | :warning: 注意                |
 | --------------------------- |
@@ -82,24 +82,24 @@
 | 不要在体验环境中发垃圾信息！尤其是一串随意敲打的英文和数字！！！   |
 | 请勿在环境中添加、发布不良信息！发布不良信息会封IP |
 
-> 如果无法访问，请查看是否被封了IP，[封禁IP列表](readme/ip.MD)
+> 如果无法访问，请查看是否被封了IP，[封禁IP列表](docs/ip.MD)
 
 
 ### 业主小程序
 
-<img src="readme/ump-qrcode.jpg" width="215"/>
+<img src="docs/images/ump-qrcode.jpg" width="215"/>
 
 ### 物业员工小程序
 
 > 访问员工小程序需要将自己的微信和账号关联的。登录web中台后在【协同办公】->【人力资源】-> 【员工入职】中自己开通一个账号即可体验。
 
-<img src="readme/pmp-qrcode.jpg" width="215"/>
+<img src="docs/images/pmp-qrcode.jpg" width="215"/>
 
 ### 微信公众号
 
 > 对于业主主要是为了群发和单点通知；对于物业公司员工是为了提供工单、流程通知
 
-<img src="readme/oa-qrcode.jpg" width="215"/>
+<img src="docs/images/oa-qrcode.jpg" width="215"/>
 
 ## 如何部署
 
@@ -114,14 +114,14 @@
 
 > 认真仔细看文档，会少走很多弯路
 
-- [部署前的准备](resource/README.MD)
+- [部署前的准备](docs/start.MD)
 - [服务端部署](server/README.MD)
 - [web端部署](web/README.MD)
 - [业主端小程序](ower-mp/README.MD)
 - [员工端小程序](employee-mp/README.MD)
-- [公众号模板消息](oa/README.MD)
-- [短信消息模板](sms/README.MD)
-- [小区硬件接入](iot/README.MD)
+- [公众号模板消息](docs/oa.MD)
+- [短信消息模板](docs/sms.MD)
+- [小区硬件接入](docs/iot.MD)
 
 ## 交流
 
@@ -131,7 +131,7 @@
 
 ### QQ交流群
 <p align="center" >
-    <img src="readme/qq.jpg" width="320"/>
+    <img src="docs/images/qq.jpg" width="320"/>
 </p>
 
 ### 微信交流群
@@ -139,7 +139,7 @@
 > 由于微信群二维码有时效性，所以请添加这个小号微信，小号会拉你入群，添加时请备注“e家宜业”。
 
 <p align="center" >
-    <img src="readme/wechat-group.jpg" width="215"/>
+    <img src="docs/images/wechat-group.jpg" width="215"/>
 </p>
 
 ## 参与开发
@@ -154,4 +154,4 @@
 
 ## License
 
-![AGPL](readme/agplv3.png)
+![AGPL](docs/images/agplv3.png)
