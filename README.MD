@@ -114,7 +114,7 @@
 
 > 认真仔细看文档，会少走很多弯路
 
-- [部署前的准备](docs/start.MD)
+- [部署前的准备](docs/README.MD)
 - [服务端部署](server/README.MD)
 - [web端部署](web/README.MD)
 - [业主端小程序](ower-mp/README.MD)
