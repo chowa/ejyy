@@ -57,9 +57,9 @@
 
 ## 使用手册
 
-- [web中台使用手册](resource/manual_web.pdf)
-- [业主小程序使用手册](resource/manual_ower.pdf)
-- [物业员工小程序使用手册](resource/manual_employee.pdf)
+- [web中台使用手册](docs/resource/manual_web.pdf)
+- [业主小程序使用手册](docs/resource/manual_ower.pdf)
+- [物业员工小程序使用手册](docs/resource/manual_employee.pdf)
 
 ## 系统演示
 
