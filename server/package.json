@@ -21,7 +21,7 @@
     "lint": "prettier --write src/*.ts src/**/*.ts src/**/**/*.ts src/**/**/**/*.ts",
     "dist": "webpack --config webpack.config.js"
   },
-  "author": "jixuecong@chowa.cn",
+  "author": "concat@chowa.cn",
   "dependencies": {
     "@alicloud/dysmsapi20170525": "^2.0.2",
     "@alicloud/openapi-client": "^0.3.5",
