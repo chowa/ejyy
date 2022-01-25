@@ -29,7 +29,7 @@ export function encrypt(
     building_id: number,
     type: typeof SELF_ACCESS_CODE | typeof VISTOR_ACCESS_CODE
 ): string {
-    return crypto.encrypt(`${id}#${building_id}#${type}${Date.now()}`);
+    return crypto.encrypt(`${id}#${building_id}#${type}#${Date.now()}`);
 }
 
 export function decrypt(uid: string): DecryptResult {
