@@ -2,11 +2,11 @@
  * +----------------------------------------------------------------------
  * | 「e家宜业」 —— 助力物业服务升级，用心服务万千业主
  * +----------------------------------------------------------------------
- * | Copyright (c) 2020~2021 https://www.chowa.com All rights reserved.
+ * | Copyright (c) 2020-2022 https://www.chowa.cn All rights reserved.
  * +----------------------------------------------------------------------
  * | Licensed 未经许可不能去掉「e家宜业」和「卓瓦科技」相关版权
  * +----------------------------------------------------------------------
- * | Author: jixuecong@chowa.cn
+ * | Author: concat@chowa.cn
  * +----------------------------------------------------------------------
  */
 
@@ -29,7 +29,7 @@ export function encrypt(
     building_id: number,
     type: typeof SELF_ACCESS_CODE | typeof VISTOR_ACCESS_CODE
 ): string {
-    return crypto.encrypt(`${id}#${building_id}#${type}${Date.now()}`);
+    return crypto.encrypt(`${id}#${building_id}#${type}#${Date.now()}`);
 }
 
 export function decrypt(uid: string): DecryptResult {
