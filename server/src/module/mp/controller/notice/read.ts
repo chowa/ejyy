@@ -12,6 +12,7 @@
 
 import { Action } from '~/types/action';
 import { SUCCESS, QUERY_ILLEFAL } from '~/constant/code';
+import { TRUE } from '~/constant/status';
 
 interface RequestParams {
     id: number;
@@ -48,6 +49,7 @@ const MpNoticeReadAction = <Action>{
             .table('ejyy_notice_to_user')
             .leftJoin('ejyy_community_info', 'ejyy_community_info.id', 'ejyy_notice_to_user.community_id')
             .andWhere('ejyy_notice_to_user.id', id)
+            .andWhere('ejyy_notice_to_user.published', TRUE)
             .select(
                 'ejyy_notice_to_user.id',
                 'ejyy_notice_to_user.title',

@@ -68,6 +68,7 @@ const MpHomeMainAction = <Action>{
         const notice = await ctx.model
             .from('ejyy_notice_to_user')
             .where('community_id', community_id)
+            .andWhere('published', TRUE)
             .limit(3)
             .offset(0)
             .select('id', 'title', 'overview', 'created_at')
