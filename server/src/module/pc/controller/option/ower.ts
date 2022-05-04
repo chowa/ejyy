@@ -59,7 +59,6 @@ const PcOptionOwerAction = <Action>{
         const owerInfo = await ctx.model
             .from('ejyy_wechat_mp_user')
             .where('phone', phone)
-            .andWhere('status', NORMAL_STATUS)
             .andWhere('intact', TRUE)
             .select('id', 'real_name', 'phone', 'avatar_url')
             .first();
