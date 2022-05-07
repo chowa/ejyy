@@ -299,12 +299,13 @@ Component({
          */
         upload() {
             let that = this;
-            wx.chooseImage({
+            wx.chooseMedia({
                 count: 1,
+                mediaType: ['image'],
                 sizeType: ['original', 'compressed'],
                 sourceType: ['album', 'camera'],
                 success: res => {
-                    const tempFilePaths = res.tempFilePaths[0];
+                    const tempFilePaths = res.tempFiles[0].tempFilePath;
                     that.pushImg(tempFilePaths);
                 },
                 fail: () => {

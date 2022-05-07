@@ -125,15 +125,18 @@ App({
                     communityInfo: res.data.communityInfo,
                     globalFetching: false
                 });
-
-                if (!res.data.userInfo.intact) {
+                var pages = getCurrentPages() //获取加载的页面
+                var currentPage = pages[pages.length - 1].route //获取当前页面的对象 修改数量可以获取之前跳转页面的地址
+                if (currentPage !== 'pages/zone/avatar') {
+                  if (!res.data.userInfo.intact) {
                     wx.redirectTo({
                         url: '/pages/zone/supplement'
                     });
-                } else if (res.data.communityInfo.list.length === 0) {
-                    wx.redirectTo({
-                        url: '/pages/community/binding'
-                    });
+                  } else if (res.data.communityInfo.list.length === 0) {
+                      wx.redirectTo({
+                          url: '/pages/community/binding'
+                      });
+                  }
                 }
             });
     },
