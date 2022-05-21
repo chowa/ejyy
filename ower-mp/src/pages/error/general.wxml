@@ -1,7 +1,7 @@
 <view class="container">
     <cw-empty icon="errgeneral" description="{{ message }}" fixed="{{false}}" />
 
-    <view class="hint">如需技术支持，请发送邮件至concat@chowa.cn</view>
+    <view class="hint">如需技术支持，请发送邮件至contact@chowa.cn</view>
 
     <cw-button type="info" round bind:tap="checkError" block custom-class="btn">检测问题</cw-button>
 

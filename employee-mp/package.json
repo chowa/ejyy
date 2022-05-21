@@ -2,7 +2,7 @@
   "name": "ejyy-employee-mp",
   "version": "1.0.0",
   "description": "员工端小程序",
-  "author": "concat@chowa.cn",
+  "author": "contact@chowa.cn",
   "scripts": {
     "lint": "prettier --write src/*.js src/* src/**/* src/**/**/* src/**/**/**/* src/**/**/**/**/*"
   }
