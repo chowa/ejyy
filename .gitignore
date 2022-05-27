@@ -9,4 +9,3 @@ dist
 .ejyyrc
 project.config.json
 project.private.config.json
-package-lock.json
