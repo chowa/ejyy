@@ -189,6 +189,9 @@
 * wangshichao@chowa.cn
 * renqinghua@chowa.cn
 
+## Java版开源地址
+* https://gitee.com/iotkit-open-source/jejyy
+
 **温馨提示：谨防上当受骗！不要相信非官方人员、淘宝商铺和代码贩子！！！**
 
 ## License
