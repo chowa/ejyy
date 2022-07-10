@@ -68,18 +68,6 @@
 
 <img src="docs/images/chowa-qrcode.jpg" width="215"/>
 
-### 业主小程序
-
-<img src="docs/images/ump-qrcode.jpg" width="215"/>
-
-### 物业员工小程序
-
-<img src="docs/images/pmp-qrcode.jpg" width="215"/>
-
-### 微信公众号
-
-<img src="docs/images/oa-qrcode.jpg" width="215"/>
-
 ## 如何部署
 
 ### 服务器环境推荐要求
