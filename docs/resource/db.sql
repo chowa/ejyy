@@ -653,7 +653,7 @@ CREATE TABLE `ejyy_notice_tpl` (
   `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`content`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `ejyy_ower_apply` (
+CREATE TABLE `ejyy_owner_apply` (
   `id` bigint(20) NOT NULL,
   `wechat_mp_user_id` bigint(20) NOT NULL,
   `community_name` varchar(56) NOT NULL,
@@ -671,7 +671,7 @@ CREATE TABLE `ejyy_ower_apply` (
   `created_at` bigint(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `ejyy_ower_detail_log` (
+CREATE TABLE `ejyy_owner_detail_log` (
   `id` bigint(20) NOT NULL,
   `wechat_mp_user_id` bigint(20) NOT NULL,
   `property_company_user_id` bigint(20) NOT NULL,
@@ -1386,12 +1386,12 @@ ALTER TABLE `ejyy_notice_to_user_readed`
 ALTER TABLE `ejyy_notice_tpl`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `ejyy_ower_apply`
+ALTER TABLE `ejyy_owner_apply`
   ADD PRIMARY KEY (`id`),
   ADD KEY `wechat_mp_user_id` (`wechat_mp_user_id`),
   ADD KEY `community_id` (`community_id`);
 
-ALTER TABLE `ejyy_ower_detail_log`
+ALTER TABLE `ejyy_owner_detail_log`
   ADD PRIMARY KEY (`id`),
   ADD KEY `wechat_mp_user_id` (`wechat_mp_user_id`),
   ADD KEY `property_company_user_id` (`property_company_user_id`);
@@ -1771,10 +1771,10 @@ ALTER TABLE `ejyy_notice_to_user_readed`
 ALTER TABLE `ejyy_notice_tpl`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `ejyy_ower_apply`
+ALTER TABLE `ejyy_owner_apply`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `ejyy_ower_detail_log`
+ALTER TABLE `ejyy_owner_detail_log`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `ejyy_party`

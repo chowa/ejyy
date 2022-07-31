@@ -30,14 +30,14 @@
 ### 业主端小程序
 
 <p align="center" >
-<img src="docs/images/ower1.jpg" width="320"/>
-<img src="docs/images/ower2.jpg" width="320"/>
-<img src="docs/images/ower3.jpg" width="320"/>
-<img src="docs/images/ower4.jpg" width="320"/>
-<img src="docs/images/ower5.jpg" width="320"/>
-<img src="docs/images/ower6.jpg" width="320"/>
-<img src="docs/images/ower7.jpg" width="320"/>
-<img src="docs/images/ower8.jpg" width="320"/>
+<img src="docs/images/owner1.jpg" width="320"/>
+<img src="docs/images/owner2.jpg" width="320"/>
+<img src="docs/images/owner3.jpg" width="320"/>
+<img src="docs/images/owner4.jpg" width="320"/>
+<img src="docs/images/owner5.jpg" width="320"/>
+<img src="docs/images/owner6.jpg" width="320"/>
+<img src="docs/images/owner7.jpg" width="320"/>
+<img src="docs/images/owner8.jpg" width="320"/>
 </p>
 
 ### 员工端小程序
@@ -82,10 +82,10 @@
 > 认真仔细看文档，会少走很多弯路
 
 - [部署前的准备](docs/README.MD)
-- [服务端部署](server/README.MD)
-- [web端部署](web/README.MD)
-- [业主端小程序](ower-mp/README.MD)
-- [员工端小程序](employee-mp/README.MD)
+- [服务端部署](api-server/README.MD)
+- [web中台部署](console-web/README.MD)
+- [业主端小程序](owner-mp/README.MD)
+- [员工端小程序](property-mp/README.MD)
 - [公众号模板消息](docs/oa.MD)
 - [短信消息模板](docs/sms.MD)
 - [小区硬件接入](docs/iot.MD)
