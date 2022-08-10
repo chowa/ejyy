@@ -76,9 +76,9 @@ QQ扫描下方二维码加好友，邀请入群获取体体验方式。
 
 微信扫描下方二维码加好友，邀请入群获取体体验方式。
 
-<img src="docs/images/wechat1.jpg" width="215"/>
+<img src="docs/images/wechat1.jpeg" width="215"/>
 
-<img src="docs/images/wechat2.jpg" width="215"/>
+<img src="docs/images/wechat2.jpeg" width="215"/>
 
 ## 如何部署
 
