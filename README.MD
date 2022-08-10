@@ -68,6 +68,18 @@
 
 <img src="docs/images/chowa-qrcode.jpg" width="215"/>
 
+## 联系方式
+
+QQ扫描下方二维码加好友，邀请入群获取体体验方式。
+
+<img src="docs/images/qq.png" width="215"/>
+
+微信扫描下方二维码加好友，邀请入群获取体体验方式。
+
+<img src="docs/images/wechat1.jpg" width="215"/>
+
+<img src="docs/images/wechat2.jpg" width="215"/>
+
 ## 如何部署
 
 ### 服务器环境推荐要求
