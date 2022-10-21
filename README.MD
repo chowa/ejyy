@@ -70,11 +70,11 @@
 
 ## 联系方式
 
-QQ扫描下方二维码加好友，邀请入群获取体体验方式。
+QQ交流群
 
 <img src="docs/images/qq.png" width="215"/>
 
-微信扫描下方二维码加好友，邀请入群获取体体验方式。
+## 商业版购买、二开、授权咨询
 
 <p align="left" >
 <img src="docs/images/wechat1.jpeg" width="215"/>  

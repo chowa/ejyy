@@ -4,7 +4,7 @@
 
 ### 创建配置文件
 
-- 开发环境请在`ejyy/server`目录下创建 `.ejyyrc`文件
+- 开发环境请在`ejyy/api-server`目录下创建 `.ejyyrc`文件
 - 生产环境请在`ejyy_server.js`同级目录下创建`.ejyyrc`文件
 
 并按照下面格式，修改为对应的配置后保存
