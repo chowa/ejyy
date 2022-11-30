@@ -60,6 +60,7 @@ const PcBuildingParseAction = <Action>{
     },
     response: async ctx => {
         const { file } = ctx.request.files;
+        const { community_id } = <RequestBody>ctx.request.body;
 
         const sheetData = xlsx.parse((<File>file).path);
         const dataIndex = sheetData.findIndex(item => item.name === '固定资产数据');
@@ -126,7 +127,8 @@ const PcBuildingParseAction = <Action>{
                 area: area ? area : null,
                 building: building ? building : null,
                 unit: unit ? unit : null,
-                number
+                number,
+                community_id
             };
 
             const haveDefineOwerValue = [name, idcard, phone].some(val => val);
