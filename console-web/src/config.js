@@ -22,6 +22,6 @@ export const FORM_ADAPT_WIDTH = 992;
 
 export const HOST_NAME = '';
 
-export const ASSET_HOST = 'https://assets.ejyy.chowa.cn';
+export const ASSET_HOST = '';
 
 export const MAP_KEY = '';
