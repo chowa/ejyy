@@ -78,7 +78,7 @@ QQ交流群
 
 ## 如何部署
 
-**文档完善中，即将发布**
+[查看文档](https://gj4h0z80f2.feishu.cn/docx/H62ndDuUhodT7dx0QIJc1sMFnfc)
 
 ## 参与开发
 
