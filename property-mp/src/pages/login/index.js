@@ -17,7 +17,8 @@ import utils from '../../utils/index';
 CwPage({
     data: {
         loading: false,
-        redirect: null
+        redirect: null,
+        loginCode: undefined
     },
     onLoad(opts) {
         this.setData({
@@ -28,72 +29,88 @@ CwPage({
         if (wx.canIUse('hideHomeButton')) {
             wx.hideHomeButton();
         }
+
+        this.getLoginCode();
     },
-    login() {
+    getLoginCode() {
+        wx.login({
+            success: ({ code }) => {
+                this.setData({ loginCode: code });
+
+                if (!this.data.phone) {
+                    timer = setTimeout(() => {
+                        this.getLoginCode();
+                    }, 4.5 * 60 * 10000);
+                } else {
+                    this.clearGetLoginCode();
+                }
+            }
+        });
+    },
+    getPhoneNumber(e) {
         const { loading } = this.data;
 
         if (loading) {
             return;
         }
 
+        if (e.detail.errMsg !== 'getPhoneNumber:ok') {
+            return $notify({
+                customNavBar: true,
+                type: 'danger',
+                message: '登录失败，请重试'
+            });
+        }
+
         this.setData({
             loading: true
         });
 
-        wx.login({
-            success: ({ code }) => {
-                const { brand, model, system, platform } = this.data.systemInfo;
+        const { brand, model, system, platform } = this.data.systemInfo;
 
-                utils
-                    .request({
-                        url: '/user/mp_login',
-                        method: 'post',
-                        data: {
-                            code,
-                            brand,
-                            model,
-                            system,
-                            platform
-                        }
-                    })
-                    .then(
-                        res => {
-                            this.setData({
-                                loading: false
-                            });
+        utils
+            .request({
+                url: '/user/mp_login',
+                method: 'post',
+                data: {
+                    brand,
+                    model,
+                    system,
+                    platform,
+                    code: this.data.loginCode,
+                    encryptedData: e.detail.encryptedData,
+                    iv: e.detail.iv
+                }
+            })
+            .then(
+                res => {
+                    this.setData({
+                        loading: false
+                    });
 
-                            this.bridge.updateData({
-                                userInfo: res.data.userInfo,
-                                postInfo: res.data.postInfo,
-                                globalFetching: false
-                            });
+                    this.bridge.updateData({
+                        userInfo: res.data.userInfo,
+                        postInfo: res.data.postInfo,
+                        globalFetching: false
+                    });
 
-                            utils.storage.login(res.data.token);
-                            utils.storage.setUserId(res.data.userInfo.id);
+                    utils.storage.login(res.data.token);
+                    utils.storage.setUserId(res.data.userInfo.id);
 
-                            wx.redirectTo({
-                                url: this.data.redirect == null ? '/pages/home/index' : this.data.redirect
-                            });
-                        },
-                        res => {
-                            this.setData({
-                                loading: false
-                            });
-                            return $notify({
-                                customNavBar: true,
-                                type: 'danger',
-                                message: res.message
-                            });
-                        }
-                    );
-            },
-            fail: res => {
-                return $notify({
-                    customNavBar: true,
-                    type: 'danger',
-                    message: '登录失败，请重试'
-                });
-            }
-        });
+                    wx.redirectTo({
+                        url: this.data.redirect == null ? '/pages/home/index' : this.data.redirect
+                    });
+                },
+                res => {
+                    this.setData({
+                        loading: false
+                    });
+                    return $notify({
+                        customNavBar: true,
+                        type: 'danger',
+                        message: res.message
+                    });
+                }
+            );
     }
 });

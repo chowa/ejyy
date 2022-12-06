@@ -11,7 +11,6 @@
  */
 
 export { default as PcUserStateAction } from './controller/user/state';
-export { default as PcUserWechatLoginAction } from './controller/user/wechat_login';
 export { default as PcUserLogoutAction } from './controller/user/logout';
 export { default as PcUserInfoAction } from './controller/user/info';
 export { default as PcUserMpLoginAction } from './controller/user/mp_login';
@@ -143,7 +142,6 @@ export { default as PcHrLeaveAction } from './controller/hr/leave';
 export { default as PcHrListAction } from './controller/hr/list';
 export { default as PcHrRecoverAction } from './controller/hr/recover';
 export { default as PcHrUpdateAction } from './controller/hr/update';
-export { default as PcHrStateAction } from './controller/hr/state';
 export { default as PcHrCreateAction } from './controller/hr/create';
 export { default as PcHrAssignAction } from './controller/hr/assign';
 export { default as PcHrResetAction } from './controller/hr/reset';
@@ -345,5 +343,4 @@ export { default as PcTopicUpdateAction } from './controller/topic/update';
 export { default as PcTopicDetailAction } from './controller/topic/detail';
 export { default as PcTopicListAction } from './controller/topic/list';
 
-export { default as PcInitStateAction } from './controller/init/state';
 export { default as PcInitRunAction } from './controller/init/run';

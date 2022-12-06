@@ -81,17 +81,6 @@ module.exports = {
             component: () => import('./main/sign')
         },
         {
-            path: 'supplement',
-            meta: {
-                title: '创建人事资料',
-                authRequired: true,
-                layout: 'sider',
-                nav: false,
-                roles: [ROLES.RLZY]
-            },
-            component: () => import('./main/supplement')
-        },
-        {
             path: 'colleague',
             meta: {
                 title: '通讯录',

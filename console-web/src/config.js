@@ -18,14 +18,14 @@ export const USER_ID = 'EJYY_PC_USER_ID';
 
 export const SITE_TITLE = 'e家宜业';
 
+export const DEGAULT_PAGE_SIZE = 10;
+
+export const FORM_ADAPT_WIDTH = 992;
+
 export const WECHAT_WEB_APPID = '';
 
 export const HOST_NAME = '';
 
-export const DEGAULT_PAGE_SIZE = 10;
-
-export const ASSET_HOST = '';
-
-export const FORM_ADAPT_WIDTH = 992;
+export const ASSET_HOST = 'https://assets.ejyy.chowa.cn';
 
 export const MAP_KEY = '';

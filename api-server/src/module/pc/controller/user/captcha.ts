@@ -26,11 +26,12 @@ const PcUserCaptchaAction = <Action>{
         const captcha = svgCaptcha.create({
             size: 4,
             ignoreChars: '0o1il',
-            noise: 4,
+            noise: 1,
             color: true,
             background: '#fff',
-            height: 36,
-            width: 120
+            height: 72,
+            width: 240,
+            fontSize: 66
         });
 
         ctx.session.loginCaptcha = captcha.text.toLowerCase();

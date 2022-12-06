@@ -13,13 +13,14 @@
 import https from 'https';
 import fs from 'fs';
 import axios from 'axios';
-import pip from 'public-ip';
+import { v4 } from 'public-ip';
 import moment from 'moment';
 import config from '~/config';
 import utils from '~/utils';
 import { PAY_SUCCESS, PAY_FAIL } from '~/constant/pay';
 import * as wechatService from '~/service/wechat';
 // 文档 参考 https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_sl_api.php?chapter=9_16
+// const pip = await import('public-ip/index.js');
 
 interface Good {
     // building_id
@@ -278,7 +279,7 @@ export async function unifiedOrder({
         attach: attachEncode(order_id),
         out_trade_no: tradeNo(created_at, order_id),
         total_fee: config.debug ? 101 : total_fee,
-        spbill_create_ip: await pip.v4(),
+        spbill_create_ip: await v4(),
         time_start: moment(created_at).format('YYYYMMDDHHmmss'),
         time_expire: moment(created_at + config.wechat.pay.payExpire).format('YYYYMMDDHHmmss'),
         notify_url: `${config.debug ? config.wechat.pay.devHost : config.wechat.pay.prodHost}/notify/wechat/pay`,

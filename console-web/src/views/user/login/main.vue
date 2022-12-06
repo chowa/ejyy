@@ -11,65 +11,40 @@
 
             <h2 class="slogan">助力物业服务升级，用心服务万千业主</h2>
 
-            <Tabs class="tabs">
-                <TabPane label="账号密码登录">
-                    <Form :model="form" ref="form" @submit.native.prevent :rules="rules">
-                        <FormItem prop="account">
-                            <Input
-                                placeholder="请输入账号"
-                                prefix="ios-contact"
-                                size="large"
-                                @on-enter="submit"
-                                v-model="form.account"
-                            />
-                        </FormItem>
-                        <FormItem prop="password">
-                            <Input
-                                placeholder="请输入密码"
-                                prefix="ios-lock"
-                                size="large"
-                                type="password"
-                                @on-enter="submit"
-                                v-model="form.password"
-                            />
-                        </FormItem>
+            <Form :model="form" ref="form" @submit.native.prevent :rules="rules">
+                <FormItem prop="account">
+                    <Input
+                        placeholder="请输入账号"
+                        prefix="ios-contact"
+                        size="large"
+                        @on-enter="submit"
+                        v-model="form.account"
+                    />
+                </FormItem>
+                <FormItem prop="password">
+                    <Input
+                        placeholder="请输入密码"
+                        prefix="ios-lock"
+                        size="large"
+                        type="password"
+                        @on-enter="submit"
+                        v-model="form.password"
+                    />
+                </FormItem>
 
-                        <FormItem prop="captcha">
-                            <Row :gutter="12">
-                                <Col :span="14">
-                                    <Input
-                                        placeholder="验证码"
-                                        size="large"
-                                        v-model="form.captcha"
-                                        @on-enter="submit"
-                                    />
-                                </Col>
-                                <Col :span="10">
-                                    <img :src="captchaImg" @click="getCaptcha" v-if="captchaImg" />
-                                </Col>
-                            </Row>
-                        </FormItem>
+                <FormItem prop="captcha">
+                    <Row :gutter="12">
+                        <Col :span="14">
+                            <Input placeholder="验证码" size="large" v-model="form.captcha" @on-enter="submit" />
+                        </Col>
+                        <Col :span="10">
+                            <img :src="captchaImg" @click="getCaptcha" v-if="captchaImg" />
+                        </Col>
+                    </Row>
+                </FormItem>
 
-                        <Button type="primary" long :loading="submiting" @click="submit" size="large">登录</Button>
-                    </Form>
-                </TabPane>
-                <TabPane label="微信扫码登录">
-                    <div class="wechat-qrcode">
-                        <Spin size="large" fixed v-if="!ready" />
-                        <WechatLogin
-                            v-if="ready"
-                            :appid="appid"
-                            scope="snsapi_login"
-                            :redirect_uri="redirect_uri"
-                            :state="state"
-                            theme="black"
-                        />
-                        <div class="expired" v-if="expired">
-                            <a @click="getState">二维码已过期，点击重新获取</a>
-                        </div>
-                    </div>
-                </TabPane>
-            </Tabs>
+                <Button type="primary" long :loading="submiting" @click="submit" size="large">登录</Button>
+            </Form>
         </div>
         <Copyright class="copyright" />
     </section>
@@ -90,23 +65,13 @@
 
 import { mapActions } from 'vuex';
 import { Spin, Tabs, TabPane, Form, FormItem, Input, Button, Row, Col, Message } from 'view-design';
-import { Copyright, WechatLogin } from '@/components';
-import * as config from '@/config';
+import { Copyright } from '@/components';
 import * as utils from '@/utils';
 
 export default {
     name: 'UserLoginMain',
     data() {
         return {
-            ready: false,
-            appid: config.WECHAT_WEB_APPID,
-            state: null,
-            redirect_uri: encodeURIComponent(
-                `${config.HOST_NAME}/user/login/wechat${
-                    this.$route.query.redirect ? '?redirect=' + this.$route.query.redirect : ''
-                }`
-            ),
-            expired: false,
             form: {
                 account: '',
                 password: '',
@@ -203,7 +168,6 @@ export default {
     components: {
         Spin,
         Copyright,
-        WechatLogin,
         Tabs,
         TabPane,
         Form,
@@ -220,6 +184,7 @@ export default {
 .login {
     width: 100%;
     height: 100%;
+    padding-bottom: 10vh;
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: cover;
@@ -269,56 +234,6 @@ export default {
             color: #2b2b2b;
             text-align: center;
             font-weight: 400;
-        }
-
-        .tabs {
-            .ivu-tabs-bar {
-                border-bottom: none !important;
-            }
-
-            .ivu-tabs-nav {
-                width: 100%;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-around;
-
-                .ivu-tabs-tab {
-                    margin-right: 0 !important;
-                }
-            }
-
-            .ivu-tabs-ink-bar {
-                margin-left: 26px !important;
-            }
-        }
-
-        .wechat-qrcode {
-            width: 300px;
-            margin: auto;
-            height: 406px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-
-            .expired {
-                position: absolute;
-                top: 47px;
-                left: 9px;
-                bottom: 77px;
-                right: 9px;
-                z-index: 100;
-                background: rgba(0, 0, 0, 0.7);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                a {
-                    color: #fff;
-                    cursor: pointer;
-                }
-            }
         }
     }
 

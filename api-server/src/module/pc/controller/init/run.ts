@@ -11,11 +11,10 @@
  */
 
 import { Action } from '~/types/action';
-import { SUCCESS, WECHAT_STATE_ILLEGAL, WEHCAT_WEB_LOGIN_FAIL, SYSTEMT_ALREADY_INIT } from '~/constant/code';
+import { SUCCESS, SYSTEMT_ALREADY_INIT } from '~/constant/code';
 import config from '~/config';
 import { TRUE, FALSE } from '~/constant/status';
 import utils from '~/utils';
-import * as wechatService from '~/service/wechat';
 
 interface RequestBody {
     name: string;
@@ -36,9 +35,6 @@ interface RequestBody {
     avatar_url: string;
     phone: string;
     idcard: string;
-    // wechat
-    code: string;
-    state: string;
 }
 
 const PcInitRunAction = <Action>{
@@ -136,16 +132,6 @@ const PcInitRunAction = <Action>{
                 name: 'phone',
                 required: true,
                 regex: /^1\d{10}$/
-            },
-            {
-                name: 'code',
-                required: true,
-                regex: /^[0-9a-zA-Z]{32}$/
-            },
-            {
-                name: 'state',
-                required: true,
-                regex: /^[0-9a-zA-Z]{8}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{12}$/
             }
         ]
     },
@@ -162,8 +148,6 @@ const PcInitRunAction = <Action>{
             access_qrcode,
             carport_max_car,
             fitment_pledge,
-            code,
-            state,
             account,
             password,
             real_name,
@@ -171,24 +155,6 @@ const PcInitRunAction = <Action>{
             avatar_url,
             phone
         } = <RequestBody>ctx.request.body;
-
-        if (!ctx.session.initState || ctx.session.initState !== state) {
-            return (ctx.body = {
-                code: WECHAT_STATE_ILLEGAL,
-                message: '授权码错误'
-            });
-        }
-
-        delete ctx.session.initState;
-
-        const webUserInfo = await wechatService.getWebUserInfo(code);
-
-        if (!webUserInfo.success) {
-            return (ctx.body = {
-                code: WEHCAT_WEB_LOGIN_FAIL,
-                message: webUserInfo.message
-            });
-        }
 
         const total = utils.sql.countReader(
             await ctx.model
@@ -209,8 +175,6 @@ const PcInitRunAction = <Action>{
         const [user_id] = await ctx.model.from('ejyy_property_company_user').insert({
             account,
             password: utils.crypto.md5(password),
-            open_id: webUserInfo.data.openid,
-            union_id: webUserInfo.data.unionid,
             real_name,
             idcard,
             gender: utils.idcard.gender(idcard),

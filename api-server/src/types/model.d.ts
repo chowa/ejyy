@@ -187,8 +187,8 @@ declare namespace EjyyModel {
         id?: number;
         account?: string;
         password?: string;
-        open_id: string;
-        union_id: string;
+        open_id?: string;
+        union_id?: string;
         real_name?: string;
         idcard?: string;
         gender: Gender;

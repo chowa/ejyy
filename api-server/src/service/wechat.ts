@@ -25,6 +25,8 @@ interface WechatMpPhoneInfo {
     phoneNumber: string;
     purePhoneNumber: string;
     countryCode: string;
+    openid: string;
+    unionid: string;
 }
 
 export interface WechatMpSessionInfoResponse {
@@ -68,34 +70,6 @@ export interface SendOaTemplateMessageParams {
 interface SendSubscribeMessageResponse {
     errcode: number;
     errmsg?: string;
-}
-
-interface WechatWebAccessInfo {
-    access_token: string;
-    expires_in: number;
-    refresh_token: string;
-    openid: string;
-    scope: string;
-}
-
-interface WechatWebAccessInfoResponse {
-    success?: boolean;
-    message?: string;
-    data?: WechatWebAccessInfo;
-}
-
-interface WechatWebUserInfo {
-    openid: string;
-    nickname: string;
-    headimgurl: string;
-    privilege: string[];
-    unionid: string;
-}
-
-interface WechatWebUserInfoResponse {
-    success?: boolean;
-    message?: string;
-    data?: WechatWebUserInfo;
 }
 
 export interface WechatOaUserInfo {
@@ -189,7 +163,16 @@ export async function getUserMpPhone(
         };
     }
 
-    return <WechatMpPhoneInfoResponse>decode(mpSessionInfo.data.session_key, iv, encryptedData);
+    const ret = decode(mpSessionInfo.data.session_key, iv, encryptedData);
+
+    return {
+        success: ret.success,
+        data: {
+            ...ret.data,
+            openid: mpSessionInfo.data.openid,
+            unionid: mpSessionInfo.data.unionid
+        }
+    };
 }
 
 // 用户小程序接口凭证
@@ -299,63 +282,6 @@ export async function sendOaTemplateMessage({
     });
 
     return res.data;
-}
-
-// web登录相关
-export async function getWebAccessToken(code: string): Promise<WechatWebAccessInfoResponse> {
-    const res = await axios.request({
-        url: 'https://api.weixin.qq.com/sns/oauth2/access_token',
-        method: 'GET',
-        params: {
-            ...config.wechat.web,
-            code,
-            grant_type: 'authorization_code'
-        }
-    });
-
-    if (res.data.errcode) {
-        return {
-            success: false,
-            message: res.data.errmsg
-        };
-    }
-
-    return {
-        success: true,
-        data: res.data
-    };
-}
-
-export async function getWebUserInfo(code: string): Promise<WechatWebUserInfoResponse> {
-    const accessInfo = await getWebAccessToken(code);
-
-    if (!accessInfo.success) {
-        return {
-            success: false,
-            message: accessInfo.message
-        };
-    }
-
-    const res = await axios.request({
-        url: 'https://api.weixin.qq.com/sns/userinfo',
-        method: 'GET',
-        params: {
-            access_token: accessInfo.data.access_token,
-            openid: accessInfo.data.openid
-        }
-    });
-
-    if (res.data.errcode) {
-        return {
-            success: false,
-            message: res.data.errmsg
-        };
-    }
-
-    return {
-        success: true,
-        data: res.data
-    };
 }
 
 export interface XmlData {

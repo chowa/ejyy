@@ -20,7 +20,7 @@
         <view class="txt">用心服务万千业主</view>
     </view>
 
-    <cw-button type="info" disabled="{{loading}}" custom-class="btn" block bind:click="login">
+    <cw-button type="info" disabled="{{loading}}" custom-class="btn" block open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
         <cw-loading type="spinner" size="32rpx" custom-class="loading" wx:if="{{loading}}" />
         <text>{{loading ? '登录中' : '登录'}}</text>
     </cw-button>

@@ -21,29 +21,5 @@ module.exports = {
         nav: false,
         roles: [ROLES.ANYONE]
     },
-    component: () => import('./index'),
-    children: [
-        {
-            path: '',
-            meta: {
-                title: '管理员扫码',
-                authRequired: false,
-                layout: null,
-                nav: false,
-                roles: [ROLES.ANYONE]
-            },
-            component: () => import('./scan')
-        },
-        {
-            path: 'fill',
-            meta: {
-                title: '初始化信息',
-                authRequired: false,
-                layout: null,
-                nav: false,
-                roles: [ROLES.ANYONE]
-            },
-            component: () => import('./fill')
-        }
-    ]
+    component: () => import('./index')
 };

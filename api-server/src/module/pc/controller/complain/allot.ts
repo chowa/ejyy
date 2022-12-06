@@ -128,7 +128,7 @@ const PcComplainAllotAction = <Action>{
             }
         }
 
-        if (disposedInfo.subscribed) {
+        if (disposedInfo.subscribed && disposedInfo.open_id) {
             const res = await wechatService.sendOaTemplateMessage({
                 touser: disposedInfo.open_id,
                 template_id: OA_NOTICE_TO_PROPERTY_COMPANY_USER,

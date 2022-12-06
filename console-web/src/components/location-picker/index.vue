@@ -91,7 +91,6 @@ export default {
             this.marker = null;
             this.map = new window.qq.maps.Map(this.$refs.map, {
                 backgroundColor: '#f7f7f7',
-                mapStyleId: 'style2',
                 zoom: 18,
                 mapTypeControl: false,
                 draggableCursor: 'crosshair'

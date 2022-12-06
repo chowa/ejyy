@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "git+https://gitee.com/chowa/ejyy.git"
+    "url": "git+https://github.com/chowa/ejyy.git"
   },
   "keywords": [
     "typescript",
@@ -70,6 +70,7 @@
     "@types/ws": "^7.4.0",
     "@types/xml2js": "^0.4.8",
     "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
     "ts-loader": "^8.0.17",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.3",
@@ -81,7 +82,7 @@
     "~": "src/"
   },
   "bugs": {
-    "url": "https://gitee.com/chowa/ejyy/issues"
+    "url": "https://github.com/chowa/ejyy/issues"
   },
-  "homepage": "https://gitee.com/chowa/ejyy"
+  "homepage": "https://github.com/chowa/ejyy"
 }

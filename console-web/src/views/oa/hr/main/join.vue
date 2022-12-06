@@ -1,23 +1,12 @@
 <template>
     <section>
-        <Header back />
+        <Header />
 
-        <div class="wechat-register">
-            <h3>入职二维码</h3>
-            <WechatLogin
-                v-if="!fetching"
-                :appid="appid"
-                scope="snsapi_login"
-                :redirect_uri="redirect_uri"
-                :state="state"
-                theme="black"
-                min
-            />
+        <Alert show-icon v-if="msg" type="error">
+            {{ msg }}
+        </Alert>
 
-            <p>引导员工，使用微信扫描此二维码完成入职流程。</p>
-        </div>
-
-        <Spin size="large" fix v-if="fetching" />
+        <Editor :onSubmit="submit" />
     </section>
 </template>
 
@@ -34,59 +23,45 @@
  * +----------------------------------------------------------------------
  */
 
-import { Spin } from 'view-design';
-import { Header, WechatLogin } from '@/components';
+import { Message, Alert } from 'view-design';
+import { Header } from '@/components';
+import Editor from './components/editor';
 import * as utils from '@/utils';
-import * as config from '@/config';
 
 export default {
     name: 'OaHrJoin',
+    components: {
+        Header,
+        Editor,
+        Message,
+        Alert
+    },
     data() {
         return {
-            fetching: true,
-            appid: config.WECHAT_WEB_APPID,
-            state: null,
-            redirect_uri: encodeURIComponent(`${config.HOST_NAME}/oa/hr/supplement`)
+            msg: null
         };
     },
-    mounted() {
-        this.getState();
-    },
-    beforeDestroy() {
-        clearTimeout(this.timer);
-    },
     methods: {
-        getState() {
-            this.fetching = true;
+        submit(data) {
+            return new Promise((resolve, reject) => {
+                const { code, state } = this.$route.query;
 
-            utils.request.get('/hr/state').then(res => {
-                this.fetching = false;
-                this.state = res.data.state;
+                data.code = code;
+                data.state = state;
 
-                this.timer = setTimeout(() => {
-                    this.getState();
-                }, res.data.expire);
+                utils.request
+                    .post('/hr/create', data)
+                    .then(res => {
+                        Message.success('人事信息创建成功');
+                        this.$router.push(`/oa/hr/detail/${res.data.id}`);
+                        resolve();
+                    })
+                    .catch(res => {
+                        this.msg = res.message;
+                        reject();
+                    });
             });
         }
-    },
-    components: {
-        Spin,
-        Header,
-        WechatLogin
     }
 };
 </script>
-
-<style lang="less">
-.wechat-register {
-    padding-top: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    p {
-        margin-top: 20px;
-    }
-}
-</style>

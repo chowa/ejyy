@@ -135,7 +135,6 @@ export default {
             let marker = null;
             this.map = new window.qq.maps.Map(this.$refs.map, {
                 backgroundColor: '#f7f7f7',
-                mapStyleId: 'style2',
                 zoom: 16,
                 mapTypeControlOptions: {
                     mapTypeIds: []

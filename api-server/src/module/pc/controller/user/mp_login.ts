@@ -23,6 +23,8 @@ interface RequestBody {
     model?: string;
     system?: string;
     platform?: string;
+    encryptedData: string;
+    iv: string;
 }
 
 const PcUserMpLoginAction = <Action>{
@@ -54,19 +56,27 @@ const PcUserMpLoginAction = <Action>{
             {
                 name: 'platform',
                 required: true
+            },
+            {
+                name: 'encryptedData',
+                required: true
+            },
+            {
+                name: 'iv',
+                required: true
             }
         ]
     },
 
     response: async ctx => {
-        const { code, brand, model, system, platform } = <RequestBody>ctx.request.body;
+        const { code, encryptedData, iv, brand, model, system, platform } = <RequestBody>ctx.request.body;
 
-        const pcSessionInfo = await wechatService.getPcMpSession(code);
+        const phoneInfo = await wechatService.getUserMpPhone(code, iv, encryptedData);
 
-        if (!pcSessionInfo.success) {
+        if (!phoneInfo.success) {
             return (ctx.body = {
                 code: WEHCAT_MP_LOGIN_ERROR,
-                message: pcSessionInfo.message
+                message: phoneInfo.message
             });
         }
 
@@ -83,7 +93,7 @@ const PcUserMpLoginAction = <Action>{
                 'ejyy_property_company_user.access_id'
             )
             .where('ejyy_property_company_user.leave_office', FALSE)
-            .where('ejyy_property_company_user.union_id', pcSessionInfo.data.unionid)
+            .where('ejyy_property_company_user.phone', phoneInfo.data.purePhoneNumber)
             .select(
                 'ejyy_property_company_user.id',
                 'ejyy_property_company_user.account',
@@ -106,11 +116,19 @@ const PcUserMpLoginAction = <Action>{
             });
         }
 
+        await ctx.model
+            .from('ejyy_property_company_user')
+            .update({
+                open_id: phoneInfo.data.openid,
+                union_id: phoneInfo.data.unionid
+            })
+            .where('id', pcUserInfo.id);
+
         pcUserInfo.phone = utils.phone.hide(pcUserInfo.phone);
         pcUserInfo.access = pcUserInfo.content ? pcUserInfo.content : [];
         delete pcUserInfo.content;
 
-        const token = utils.crypto.md5(`${pcSessionInfo.data.openid}${Date.now()}`);
+        const token = utils.crypto.md5(`${phoneInfo.data.openid}${Date.now()}`);
         await ctx.model
             .from('ejyy_property_company_auth')
             .where({ property_company_user_id: pcUserInfo.id })

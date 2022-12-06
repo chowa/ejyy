@@ -29,6 +29,5 @@ export { default as MultipleImageUpload } from './multiple-image-upload';
 export { default as Result } from './result';
 export { default as SimpleHeader } from './simple-header';
 export { default as WaterMark } from './water-mark';
-export { default as WechatLogin } from './wechat-login';
 export { default as Workflow } from './workflow';
 export { default as WorkflowTimeline } from './workflow-timeline';

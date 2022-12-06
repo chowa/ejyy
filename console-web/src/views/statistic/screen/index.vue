@@ -9,7 +9,7 @@
                 <div class="big-screen-header-title">
                     <img src="../../../assets/screen/title.png" class="big-screen-header-title-bg" />
 
-                    <img src="../../../assets/chowa.svg" class="big-screen-header-title-logo" />
+                    <img src="../../../assets/logo.svg" class="big-screen-header-title-logo" />
 
                     <div class="text">
                         <b>{{ community_name }}小区 — 智慧物业调度与统计中心</b>

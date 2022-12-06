@@ -8,13 +8,19 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
     <script type="text/javascript">
-        if (window.navigator.userAgent.indexOf('compatible') > -1 && window.navigator.userAgent.indexOf('MSIE') > -1) {
-            var match = window.navigator.userAgent.match(/MSIE\s+(\d+\.\d+)/);
+        (function() {
+            if (window.navigator.userAgent.indexOf('compatible') > -1 && window.navigator.userAgent.indexOf('MSIE') > -1) {
+                var match = window.navigator.userAgent.match(/MSIE\s+(\d+\.\d+)/);
 
-            if (match && parseInt(match[1], 10) < 10) {
-                window.location.href = 'https://www.chowa.cn/update-browser.html';
+                if (match && parseInt(match[1], 10) < 10) {
+                    window.location.href = 'https://www.chowa.cn/update-browser.html';
+                }
             }
-        }
+            var hm = document.createElement('script');
+            hm.src = 'https://hm.baidu.com/hm.js?393724405eb41f41d19e18eaa8926d94';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
     </script>
 </head>
 

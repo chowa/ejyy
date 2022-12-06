@@ -1,4 +1,4 @@
-![logo](docs/images/logo.jpg)
+![logo](resources/images/logo.jpg)
 
 ## 项目介绍
 
@@ -7,7 +7,7 @@
 ## 严重声明
 
 - 「e家宜业」已获得《软件著作权登记证书》，全部知识产权归卓瓦科技所有。
-- 未经卓瓦科技授权，本产品及衍生产品不得用于任何形式的商业用途！！
+- 未经卓瓦科技授权，本产品及衍生产品不得用于任何形式的商业用途。
 - 禁止将本项目的代码和资源进行任何形式的出售和盈利，产生的一切后果由侵权者自负！！对违约者我们将保留诉诸法律的权利！！
 - 转载本文请保留「e家宜业」相关名称和版权信息，并标明出处！！禁止将本文中涉及到的示例图片修改后传播！！坚决抵制各种未声明产品名称，赚流量、博眼球的行为！！
 
@@ -15,39 +15,39 @@
 
 ### web中台
 
-![web1](docs/images/web1.png)
-![web2](docs/images/web2.jpg)
-![web3](docs/images/web3.jpg)
-![web4](docs/images/web4.jpg)
-![web5](docs/images/web5.jpg)
-![web6](docs/images/web6.jpg)
-![web7](docs/images/web7.jpg)
-![web8](docs/images/web8.jpg)
-![web9](docs/images/web9.jpg)
-![web10](docs/images/web10.jpg)
-![web11](docs/images/web11.jpg)
+![web1](resources/images/web1.png)
+![web2](resources/images/web2.jpg)
+![web3](resources/images/web3.jpg)
+![web4](resources/images/web4.jpg)
+![web5](resources/images/web5.jpg)
+![web6](resources/images/web6.jpg)
+![web7](resources/images/web7.jpg)
+![web8](resources/images/web8.jpg)
+![web9](resources/images/web9.jpg)
+![web10](resources/images/web10.jpg)
+![web11](resources/images/web11.jpg)
 
 ### 业主端小程序
 
 <p align="center" >
-<img src="docs/images/owner1.jpg" width="320"/>
-<img src="docs/images/owner2.jpg" width="320"/>
-<img src="docs/images/owner3.jpg" width="320"/>
-<img src="docs/images/owner4.jpg" width="320"/>
-<img src="docs/images/owner5.jpg" width="320"/>
-<img src="docs/images/owner6.jpg" width="320"/>
-<img src="docs/images/owner7.jpg" width="320"/>
-<img src="docs/images/owner8.jpg" width="320"/>
+<img src="resources/images/owner1.jpg" width="320"/>
+<img src="resources/images/owner2.jpg" width="320"/>
+<img src="resources/images/owner3.jpg" width="320"/>
+<img src="resources/images/owner4.jpg" width="320"/>
+<img src="resources/images/owner5.jpg" width="320"/>
+<img src="resources/images/owner6.jpg" width="320"/>
+<img src="resources/images/owner7.jpg" width="320"/>
+<img src="resources/images/owner8.jpg" width="320"/>
 </p>
 
 ### 员工端小程序
 
 <p align="center" >
-<img src="docs/images/pc1.jpg" width="320"/>
-<img src="docs/images/pc2.jpg" width="320"/>
-<img src="docs/images/pc3.jpg" width="320"/>
-<img src="docs/images/pc4.jpg" width="320"/>
-<img src="docs/images/pc5.jpg" width="320"/>
+<img src="resources/images/pc1.jpg" width="320"/>
+<img src="resources/images/pc2.jpg" width="320"/>
+<img src="resources/images/pc3.jpg" width="320"/>
+<img src="resources/images/pc4.jpg" width="320"/>
+<img src="resources/images/pc5.jpg" width="320"/>
 </p>
 
 ## 技术亮点
@@ -66,48 +66,29 @@
 
 QQ交流群
 
-<img src="docs/images/qq.png" width="215"/>
+<img src="resources/images/qq.png" width="215"/>
 
 ## 商业版购买、二开、授权咨询
 
+**添加好友请备注来意**
+
 <p align="left" >
-<img src="docs/images/wechat1.jpeg" width="215"/>  
-<img src="docs/images/wechat.jpeg" width="215"/>
+<img src="resources/images/wechat1.jpeg" width="215"/>  
+<img src="resources/images/wechat.jpeg" width="215"/>
 </p>
 
 
 ## 如何部署
 
-### 服务器环境推荐要求
-
-- Nginx
-- Node.js 12.1.0
-- MySQL  5.7
-- Redis
-
-### 部署文档
-
-> 认真仔细看文档，会少走很多弯路
-
-- [部署前的准备](docs/README.MD)
-- [服务端部署](api-server/README.MD)
-- [web中台部署](console-web/README.MD)
-- [业主端小程序](owner-mp/README.MD)
-- [员工端小程序](property-mp/README.MD)
-- [公众号模板消息](docs/oa.MD)
-- [短信消息模板](docs/sms.MD)
-- [小区硬件接入](docs/iot.MD)
+**文档完善中，即将发布**
 
 ## 参与开发
 
 [欢迎反馈问题](https://github.com/chowa/ejyy/issues)
 [欢迎提交代码](https://github.com/chowa/ejyy/pulls)
 
-## Java版开源地址
-* https://gitee.com/iotkit-open-source/jejyy
-
 **温馨提示：谨防上当受骗！不要相信非官方人员、淘宝商铺和代码贩子！！！**
 
 ## License
 
-![AGPL](docs/images/agplv3.png)
+![AGPL](resources/images/agplv3.png)

@@ -78,7 +78,7 @@
  */
 
 import { mapActions, mapGetters } from 'vuex';
-import { Layout, Sider, Header, Content, Drawer, Notice, Modal } from 'view-design';
+import { Layout, Sider, Header, Content, Drawer, Notice } from 'view-design';
 import Nav from './components/nav';
 import Topbar from './components/topbar';
 import Setting from './components/setting';
@@ -145,16 +145,7 @@ export default {
                 timer = setTimeout(() => {
                     ws.send('ping');
                     heartCheck();
-                }, 30000);
-            };
-            const showDisconnectModal = () => {
-                clearTimeout(timer);
-                Modal.confirm({
-                    title: '网络异常',
-                    content: '网络异常，请点击「确定」重新加载网络',
-                    onOk: () => window.location.reload(),
-                    onCancel: () => {}
-                });
+                }, 3000);
             };
 
             ws.onopen = () => {
@@ -230,12 +221,8 @@ export default {
 
             ws.onclose = e => {
                 if (e.code !== 1000 && e.code !== 1005) {
-                    showDisconnectModal();
+                    this.connect();
                 }
-            };
-
-            ws.onerror = () => {
-                showDisconnectModal();
             };
 
             window.onbeforeunload = () => {

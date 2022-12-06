@@ -11,22 +11,12 @@
  */
 
 import { Action } from '~/types/action';
-import {
-    SUCCESS,
-    WECHAT_STATE_ILLEGAL,
-    WEHCAT_WEB_LOGIN_FAIL,
-    STATUS_ERROR,
-    ACCOUNT_EXIST,
-    QUERY_ILLEFAL
-} from '~/constant/code';
+import { SUCCESS, STATUS_ERROR, ACCOUNT_EXIST, QUERY_ILLEFAL } from '~/constant/code';
 import * as ROLE from '~/constant/role_access';
 import { FALSE } from '~/constant/status';
 import utils from '~/utils';
-import * as wechatService from '~/service/wechat';
 
 interface RequestBody {
-    code: string;
-    state: string;
     account: string;
     password: string;
     real_name: string;
@@ -48,16 +38,6 @@ const PcHrCreateAction = <Action>{
     },
     validator: {
         body: [
-            {
-                name: 'code',
-                required: true,
-                regex: /^[0-9a-zA-Z]{32}$/
-            },
-            {
-                name: 'state',
-                required: true,
-                regex: /^[0-9a-zA-Z]{8}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{4}-[0-9a-zA-Z]{12}$/
-            },
             {
                 name: 'account',
                 required: true,
@@ -116,8 +96,6 @@ const PcHrCreateAction = <Action>{
     },
     response: async ctx => {
         const {
-            code,
-            state,
             account,
             password,
             real_name,
@@ -130,27 +108,9 @@ const PcHrCreateAction = <Action>{
             community_access
         } = <RequestBody>ctx.request.body;
 
-        if (!ctx.session.hrState || ctx.session.hrState !== state) {
-            return (ctx.body = {
-                code: WECHAT_STATE_ILLEGAL,
-                message: '授权码错误'
-            });
-        }
-
-        delete ctx.session.hrState;
-
-        const webUserInfo = await wechatService.getWebUserInfo(code);
-
-        if (!webUserInfo.success) {
-            return (ctx.body = {
-                code: WEHCAT_WEB_LOGIN_FAIL,
-                message: webUserInfo.message
-            });
-        }
-
         const joinRecord = await ctx.model
             .from('ejyy_property_company_user')
-            .where('open_id', webUserInfo.data.openid)
+            .where('phone', phone)
             .select();
 
         if (joinRecord.length === 1) {
@@ -235,8 +195,6 @@ const PcHrCreateAction = <Action>{
         const [id] = await ctx.model.from('ejyy_property_company_user').insert({
             account,
             password: utils.crypto.md5(password),
-            open_id: webUserInfo.data.openid,
-            union_id: webUserInfo.data.unionid,
             real_name,
             idcard,
             gender: utils.idcard.gender(idcard),

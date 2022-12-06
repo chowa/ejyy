@@ -54,10 +54,6 @@ interface Config {
             key: string;
             certPath: string;
         };
-        web: {
-            appid: string;
-            secret: string;
-        };
         pmp: {
             appid: string;
             secret: string;
@@ -177,12 +173,6 @@ function generateConfig(): Config {
                 key: '',
                 certPath: '',
                 ...(customConfig.wechat ? customConfig.wechat.pay : {})
-            },
-            // 物业web
-            web: {
-                appid: '',
-                secret: '',
-                ...(customConfig.wechat ? customConfig.wechat.web : {})
             },
             // 物业端小程序
             pmp: {
