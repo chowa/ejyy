@@ -18,8 +18,6 @@ export const TOKEN_NAME = 'EJYY-TOKEN';
 
 export const USER_ID = 'USER_ID';
 
-export const AUTH_HEADER_NAME = 'ejyy-pc-token';
-
 export const WECHAT_VERSION = '7.0.0';
 
 export const SDK_VERSION = '2.16.0';

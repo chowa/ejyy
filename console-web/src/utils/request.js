@@ -13,7 +13,6 @@
 import axios from 'axios';
 import { Message } from 'view-design';
 import router from '@/router';
-import * as config from '@/config';
 import * as utils from '@/utils';
 
 const service = axios.create({
@@ -47,7 +46,7 @@ service.interceptors.request.use(
         const token = utils.auth.getToken();
 
         if (token) {
-            options.headers[config.AUTH_HEADER_NAME] = token;
+            options.headers['ejyy-pc-token'] = token;
         }
 
         options.url = `/pc${options.url}`;

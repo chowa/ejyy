@@ -18,7 +18,7 @@ function request({ url, data, method }) {
         wx.request({
             url: `${config.API_HOST}/pc${url}`,
             header: {
-                [config.AUTH_HEADER_NAME]: storage.token(),
+                ['ejyy-pc-token']: storage.token(),
                 ['wechat-mp-request']: true
             },
             data,

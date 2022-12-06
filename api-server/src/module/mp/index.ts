@@ -26,7 +26,7 @@ function MpModule(appRouter: KoaRouter) {
 
         appRouter[router.method](path.posix.join('/mp', router.path), async (ctx: Context, next) => {
             if (router.authRequired) {
-                const token = ctx.request.header[config.token.mp];
+                const token = ctx.request.header['ejyy-mp-token'];
 
                 if (!token) {
                     return (ctx.status = 401);

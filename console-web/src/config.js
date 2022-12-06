@@ -10,8 +10,6 @@
  * +----------------------------------------------------------------------
  */
 
-export const AUTH_HEADER_NAME = 'ejyy-pc-token';
-
 export const TOKEN_ID = 'EJYY_PC_TOKEN';
 
 export const USER_ID = 'EJYY_PC_USER_ID';
@@ -21,8 +19,6 @@ export const SITE_TITLE = 'e家宜业';
 export const DEGAULT_PAGE_SIZE = 10;
 
 export const FORM_ADAPT_WIDTH = 992;
-
-export const WECHAT_WEB_APPID = '';
 
 export const HOST_NAME = '';
 

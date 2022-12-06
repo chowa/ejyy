@@ -29,7 +29,7 @@ function PcModule(appRouter: KoaRouter) {
 
         appRouter[router.method](path.posix.join('/pc', router.path), async (ctx: Context, next) => {
             if (router.authRequired) {
-                const token = ctx.request.header[config.token.pc];
+                const token = ctx.request.header['ejyy-pc-token'];
 
                 if (!token) {
                     return (ctx.status = 401);

@@ -30,10 +30,6 @@ interface Config {
         port: number;
         password: string;
     };
-    token: {
-        mp: string;
-        pc: string;
-    };
     wechat: {
         ump: {
             appid: string;
@@ -140,11 +136,6 @@ function generateConfig(): Config {
             port: 6379,
             password: '',
             ...customConfig.redis
-        },
-        token: {
-            mp: 'ejyy-mp-token',
-            pc: 'ejyy-pc-token',
-            ...customConfig.token
         },
         wechat: {
             // 小程序
