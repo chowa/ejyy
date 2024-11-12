@@ -9,3 +9,6 @@ dist
 .ejyyrc
 project.config.json
 project.private.config.json
+*.zip
+*.pem
+*.env
