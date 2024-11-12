@@ -32,7 +32,7 @@
     </view>
 
     <view class="notice">
-        <view class="title">卓瓦科技友情提示：</view>
+        <view class="title">卓佤科技友情提示：</view>
         <view class="item">
             <cw-icon name="success" class="icon" />
             注意账号安全，请勿将账号转借他人使用
@@ -49,7 +49,7 @@
 
     <view class="who-can-use">
         <view>仅供e家宜业小区业主使用</view>
-        <view>内蒙古卓瓦科技有限公司版权所有</view>
+        <view>内蒙古卓佤科技有限公司版权所有</view>
     </view>
 
     <view class="welcome">

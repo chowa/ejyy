@@ -5,7 +5,7 @@
                 <img src="../../../assets/logo.svg" alt="logo" class="img-logo" />
                 <div class="title">
                     <img src="../../../assets/logo_txt.svg" alt="e家宜业" class="text-logo" />
-                    <h1><a href="https://github.com/chowa/ejyy" target="_blank">卓瓦科技开源产品</a></h1>
+                    <h1><a href="https://github.com/chowa/ejyy" target="_blank">卓佤科技开源产品</a></h1>
                 </div>
             </div>
 
@@ -53,11 +53,11 @@
 <script>
 /**
  * +----------------------------------------------------------------------
- * | 「e家宜业」 —— 助力物业服务升级，用心服务万千业主
+ * | 「e家宜业」
  * +----------------------------------------------------------------------
- * | Copyright (c) 2020-2022 https://www.chowa.cn All rights reserved.
+ * | Copyright (c) 2020-2024 https://www.chowa.cn All rights reserved.
  * +----------------------------------------------------------------------
- * | Licensed 未经许可不能去掉「e家宜业」和「卓瓦科技」相关版权
+ * | Licensed 未经授权禁止移除「e家宜业」和「卓佤科技」相关版权
  * +----------------------------------------------------------------------
  * | Author: contact@chowa.cn
  * +----------------------------------------------------------------------

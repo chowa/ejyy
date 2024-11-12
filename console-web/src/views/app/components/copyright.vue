@@ -1,7 +1,7 @@
 <template>
     <div class="copyright">
         <a href="https://www.chowa.cn" target="_blank">
-            Copyright &copy; 2020-{{ new Date().getFullYear() }} 内蒙古卓瓦科技有限公司版权所有 All rights reserved。
+            Copyright &copy; 2020-{{ new Date().getFullYear() }} 内蒙古卓佤科技有限公司版权所有 All rights reserved。
         </a>
     </div>
 </template>
@@ -9,11 +9,11 @@
 <script>
 /**
  * +----------------------------------------------------------------------
- * | 「e家宜业」 —— 助力物业服务升级，用心服务万千业主
+ * | 「e家宜业」
  * +----------------------------------------------------------------------
- * | Copyright (c) 2020-2022 https://www.chowa.cn All rights reserved.
+ * | Copyright (c) 2020-2024 https://www.chowa.cn All rights reserved.
  * +----------------------------------------------------------------------
- * | Licensed 未经许可不能去掉「e家宜业」和「卓瓦科技」相关版权
+ * | Licensed 未经授权禁止移除「e家宜业」和「卓佤科技」相关版权
  * +----------------------------------------------------------------------
  * | Author: contact@chowa.cn
  * +----------------------------------------------------------------------
