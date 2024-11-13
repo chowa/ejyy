@@ -40,8 +40,6 @@
 
 [查看文档](https://gj4h0z80f2.feishu.cn/docx/H62ndDuUhodT7dx0QIJc1sMFnfc)
 
-**温馨提示：谨防上当受骗！不要相信非官方人员、淘宝商铺和代码贩子！！！**
-
 ## SASS版及定制
 
 > 微信添加好友请备注来意，谢谢。
