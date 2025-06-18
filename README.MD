@@ -40,12 +40,6 @@
 
 [查看文档](https://gj4h0z80f2.feishu.cn/docx/H62ndDuUhodT7dx0QIJc1sMFnfc)
 
-## SASS版及定制
-
-> 微信添加好友请备注来意，谢谢。
-
-<img src="resources/images/qrcode.jpg" width="266"/>
-
 ## License
 
 ![AGPL](resources/images/agplv3.png)
